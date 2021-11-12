@@ -1,0 +1,41 @@
+import React from 'react'
+import {Form, Row, Column, Button, Input} from 'antd'; 
+import {PlusCircleFilled} from '@ant-design/icons'
+import { render } from '@testing-library/react';
+
+const TaskForm = ({onFormSubmit}) => {
+    const [form] = Form.useForm(); // use form hook
+
+    const onFinish = () => {
+        onFormSubmit({
+            name: form.getFieldValue('name'),
+            completed: false 
+        });
+        console.log(form.getFieldValue('title'));
+
+        form.resetFields();
+    }
+
+    return(
+        <Form 
+            form={form} 
+            onFinish={onFinish} 
+            layout="horizontal" 
+            className="task-form">
+            <Row gutter={20}>
+                <col xs={24} s={24} md={17} lg={19} xl={20}>
+
+                </col>
+                <col xs={24} s={24} md={7} lg={5} xl={4}>
+                    <Button type="primary" htmlType="submit" block>
+                    <PlusCircleFilled />
+                        Add Task
+                    </Button>
+                </col>
+            </Row>
+
+        </Form>
+    )
+}
+
+export default TaskForm
