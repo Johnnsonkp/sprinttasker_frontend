@@ -13,25 +13,28 @@ import {
   Main,
 } from "./pages";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { AppState } from "./AppState";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Nav />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/main" element={<Main />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/developer" element={<Developer />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/my_work" element={<Mywork />} />
-            <Route path="/stand_up" element={<Standup />} />
-          </Routes>
+    <AppState>
+      <Router>
+        <div className="App">
+          <Nav />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/main" element={<Main />} />
+              <Route path="/auth:form" element={<Auth />} />
+              <Route path="/developer" element={<Developer />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/my_work" element={<Mywork />} />
+              <Route path="/stand_up" element={<Standup />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </AppState>
   );
 }
 

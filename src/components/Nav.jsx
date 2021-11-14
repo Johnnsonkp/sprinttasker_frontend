@@ -6,7 +6,7 @@ import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 import { Menu, Dropdown, message, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-export default function Nav() {
+export default function Nav(props) {
     const onClick = ({ key }) => {
         message.info(`Click on item ${key}`);
     };
@@ -47,13 +47,13 @@ export default function Nav() {
                     </a>
                 </Dropdown>
                 <div className="nav-auth">
-                    <Link to="/auth">Log in</Link>
+                    <Link to="/auth/login">Log in</Link>
                 </div>
               </nav>
             </div>
             {/* <button>Get Started</button> */}
             <Button type="primary" shape="round" size={size}>
-                <Link className="inner-nav" to="/auth">Get Started</Link>
+                <Link className="inner-nav" to="/auth/signup">Get Started</Link>
             </Button>
           </div>
         </header>
