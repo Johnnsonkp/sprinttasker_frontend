@@ -1,5 +1,6 @@
 import React from "react";
+import TaskList from "../components/TaskList";
 
 export default function Main() {
-  return <h1>Main Workspace</h1>;
+  return <TaskList />;
 }
