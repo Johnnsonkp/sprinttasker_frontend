@@ -156,3 +156,22 @@
     padding-left: 45px;
     padding-right: 15px;
   }
+
+
+
+
+/* Auth form */
+.form-wrapper{
+    border: 1px solid red;
+    height: 92vh;
+    max-height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-wrapper form {
+    width: 90%;
+    margin: auto;
+    border: 1px solid red;
+}

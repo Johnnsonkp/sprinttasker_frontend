@@ -23,9 +23,9 @@ function App() {
           <Nav />
           <div className="content">
             <Routes>
-              <Route path="/" element={<Landing />} />
+              <Route exact path="/" element={<Landing />} />
               <Route path="/main" element={<Main />} />
-              <Route path="/auth:form" element={<Auth />} />
+              <Route path="/auth/:form" element={<Auth />} />
               <Route path="/developer" element={<Developer />} />
               <Route path="/about" element={<About />} />
               <Route path="/my_work" element={<Mywork />} />
