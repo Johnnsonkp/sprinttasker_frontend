@@ -1,7 +1,12 @@
-const baseUrl = `${process.env.REACT_APP_API_URL}/ tasks`; // Url defined in .env file
+// const baseUrl = `${process.env.REACT_APP_API_URL}/tasks`; // Url defined in .env file
+const baseUrl = "http://localhost:3000/tasks";
 
 export const loadTasks = () => {
-  return fetch(baseUrl).then((res) => res.json());
+  return fetch(baseUrl)
+    .then((res) => res.json())
+    .catch((err) => {
+      throw new Error(err);
+    });
 };
 
 export const getTask = (id) => {
@@ -9,6 +14,7 @@ export const getTask = (id) => {
 };
 
 export const createTask = (task) => {
+  console.log("baseUrl:", baseUrl);
   return fetch(baseUrl, {
     method: "POST",
     headers: {
