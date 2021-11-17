@@ -162,16 +162,43 @@
 
 /* Auth form */
 .form-wrapper{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 92vh;
     max-height: 900px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    margin: auto;
 }
 .form-wrapper form {
     width: 90%;
     margin: auto;
     border: 1px solid red;
+}
+.form-container{
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-container form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  padding-top: 30px;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-bottom: 40px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  box-shadow: -2px 6px 10px 0 rgb(0 0 0 / 8%);
+  background-color: #f8f9fa !important;
+  color: #111;
+}
+.form-container .submitBtn{
+  background: transparent;
+  color: #fff;
+  border: none;
 }

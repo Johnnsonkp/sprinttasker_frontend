@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import { Button } from "antd";
 import TaskList from "./components/TaskList";
 import Nav from "./components/Nav";
 import {
@@ -12,30 +11,53 @@ import {
   Standup,
   Main,
 } from "./pages";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppState } from "./AppState";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import { AppState, useAppState } from "./AppState";
 
-function App() {
+export const App = (props) => {
+  const { state, dispatch } = useAppState();
+  const navigate = useNavigate();
+
+  const checkIfAuth = () => {
+    const auth = JSON.parse(window.localStorage.getItem("auth"));
+    if (auth) {
+      dispatch({ type: "auth", payload: auth });
+      navigate("/main");
+    } else {
+      navigate("/");
+    }
+  };
+
+  // React.useState(() => {
+  //   checkIfAuth();
+  // }, []);
+
+  React.useEffect(() => {
+    checkIfAuth();
+  }, []);
+
+  console.log("App.js State:", state);
   return (
-    <AppState>
-      <Router>
-        <div className="App">
-          <Nav />
-          <div className="content">
-            <Routes>
-              <Route exact path="/" element={<Landing />} />
-              <Route path="/main" element={<Main />} />
-              <Route path="/auth/:form" element={<Auth />} />
-              <Route path="/developer" element={<Developer />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/my_work" element={<Mywork />} />
-              <Route path="/stand_up" element={<Standup />} />
-            </Routes>
-          </div>
-        </div>
-      </Router>
-    </AppState>
+    <>
+      <div className="App">
+        <Nav />
+        {/* <div className="content"> */}
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/auth/:form" element={<Auth />} />
+          <Route path="/developer" element={<Developer />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/my_work" element={<Mywork />} />
+          <Route path="/stand_up" element={<Standup />} />
+        </Routes>
+        {/* </div> */}
+      </div>
+    </>
   );
-}
-
-export default App;
+};

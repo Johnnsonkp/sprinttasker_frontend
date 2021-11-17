@@ -1,11 +1,18 @@
-import React, {useReducer} from "react"; 
+import React, {useContext, useReducer} from "react"; 
 
 ////////////////////////////////////////////////////////////////////
 // INITIAL STATE //
 ////////////////////////////////////////////////////////////////////
 
 const initialState = {
-    url: "http://localhost:3000" // Changed before deplying 
+    url: "http://localhost:3000", // Change before deploying 
+    token: null,
+    username: null,
+    name: null,
+    email: null,
+    usertasks: [],
+    alltasks: [],
+    user_id: 0
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -13,12 +20,27 @@ const initialState = {
 ////////////////////////////////////////////////////////////////////
 
 const reducer = (state, action) => {
-
+    let newState;
     switch(action.type){
-        default: 
+        case "auth":
+            newState = {...state, ...action.payload}
+            return newState;
+            break;
+        case "logout":
+            newState = {...state, token: null, username: null, name: null, email: null, user_id: null, usertasks: null}
+            window.localStorage.removeItem('auth')
+            window.localStorage.removeItem('getTasks')
+            return newState;
+            break;
+        case "getTasks":
+            newState = {...state, ...action.payload}
+            return newState;
+            break;
+         default: 
             return state 
-    }
-}
+            break;
+    }   
+};
 
 ////////////////////////////////////////////////////////////////////
 // APP CONTEXT //

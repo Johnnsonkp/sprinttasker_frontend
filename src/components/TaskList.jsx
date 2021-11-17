@@ -3,15 +3,57 @@ import {Tabs, Layout, Row, Col, Input, message} from 'antd';
 import './TaskList.css'
 import TaskTab from './TaskTab';
 import TaskForm from './TaskForm';
-import {createTask, deleteTask, loadTasks, updateTask} from '../services/taskService';
+import { useAppState } from '../AppState';
+import {createTask, deleteTask, updateTask, LoadTasks} from '../services/taskService';
 const { TabPane} = Tabs;
 const { Content} = Layout;
+
 
 const TaskList = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [tasks, setTasks] = useState([]);
     const [activeTasks, setActiveTasks] = useState([]);
     const [completedTasks, setCompletedTasks] = useState();
+    const { state, dispatch } = useAppState();
+    const { token, alltasks, user, usertasks } = state;
+
+    // const getTask = (id) => {
+    //     return fetch(state.url + id).then((res) => res.json());
+    // };
+
+    // const createTask = (task) => {
+    //     return fetch(state.url, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         name: task.name,
+    //         completed: task.completed,
+    //       }),
+    //     }).then((res) => res.json());
+    // };
+
+    // const updateTask = (task) => {
+    //     return fetch(state.url + task.id, {
+    //       method: "PUT",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         id: task.id,
+    //         name: task.name,
+    //         completed: task.completed,
+    //       }),
+    //     }).then((res) => res.json());
+    //   };
+      
+    // const deleteTask = (id) => {
+    // return fetch(state.url + id, {
+    //     method: "DELETE",
+    // }).then((res) => res.json());
+    // };
+
 
     const handleFormSubmit = (task) => {
         console.log('task to create', task);
@@ -29,22 +71,56 @@ const TaskList = () => {
         updateTask(task).then(onRefresh());
         message.info('Task status updated!');
     }
+    // const LoadTasks = async () => {
+    //     const response = await fetch(state.url + "/tasks/", {
+    //         method: "GET",
+    //         headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer " + state.token,
+    //         },
+    //    }).then((res) => console.log("LoadTasks res:", res))
+    // }
 
-    const refresh = () => {
-        loadTasks()
-            .then(json => {
-                setTasks(json)
-                setActiveTasks(json.filter(task => task.completed === false))
-                setCompletedTasks(json.filter(task => task.completed === true))
-            }).then(console.log('fetch completed'));
+    const refresh = async () => {
+        const response = await fetch(state.url + "/tasks/", {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        }).then((res) => res.json())
+        .then((res) => {
+            console.log("LoadTasks res:", res)
+            dispatch({ type: "getTasks", payload: { alltasks: res },});
+            console.log("state.alltasks:", state.alltasks)
+            setTasks(res)
+            setActiveTasks(res.filter(json => json.completed === false))
+            setCompletedTasks(res.filter(json => json.completed === true))
+        }).then(console.log('fetch completed'));
+
+        // LoadTasks(token).then((res) => {
+        //     console.log("LoadTasks res:", res)
+        //     setTasks(res)
+            // setTasks(res)
+            // setActiveTasks(res.filter(json => json.completed === false))
+            // setCompletedTasks(res.filter(json => json.completed === true))
+            
+            
+        // })
+        // const updatedTask = tasks
+        // dispatch({ type: "getTasks", payload: tasks });
     }
 
     const onRefresh = useCallback( async () => {
         setRefreshing(true)
-        let data = await loadTasks();
-        setTasks(data);
-        setActiveTasks(data.filter(task => task.completed === false))
-        setCompletedTasks(data.filter(task => task.completed === true))
+        // let data = await LoadTasks();
+        // let data = await refresh();
+        setTasks(state.alltasks);
+        // setTasks(state.alltasks);
+        setActiveTasks(state.alltasks.filter(task => task.completed === false))
+        setCompletedTasks(state.alltasks.filter(task => task.completed === true))
         setRefreshing(false);
         console.log('Refreshing state', refreshing);
     }, [refreshing]);
