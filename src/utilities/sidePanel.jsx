@@ -9,6 +9,7 @@ import {
   UserOutlined,
   DownOutlined,
 } from '@ant-design/icons';
+import {Link, useNavigate} from "react-router-dom";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -35,7 +36,6 @@ export class SidePanel extends React.Component {
     console.log('click', e);
   }
 
-// export const SidePanel = () => {
     render() {
         const { collapsed } = this.state;
         console.log("this.state", this.state)
@@ -45,10 +45,14 @@ export class SidePanel extends React.Component {
               <div className="logo" />
               <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                 <Menu.Item key="1" icon={<PieChartOutlined />}>
-                  Option 1
+                    <Link to="/main">
+                        Main WorkSpace
+                    </Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined />}>
-                  Option 2
+                    <Link to="/my_work">
+                        My Workspace
+                    </Link>
                 </Menu.Item>
                 <SubMenu key="sub1" icon={<UserOutlined />} title="User">
                   <Menu.Item key="3">Tom</Menu.Item>

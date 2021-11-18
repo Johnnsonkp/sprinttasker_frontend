@@ -3,3 +3,48 @@
     padding: 24px;
     background: #fff;
 }
+.task-tag{
+    text-align: center;
+    display: flex;
+    font-size: 14px;
+    background: #f4f4f4;
+}
+.task-item{
+    /* border: 1px solid red; */
+    background-color: #f4f4f4;
+    width: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 90px 5px 5px;
+    grid-template-rows: auto;
+
+
+    grid-template-columns: 400px 120px 140px;
+  grid-template-rows: 40px; 
+  column-gap: 10px;
+  row-gap: 15px;
+}
+.task-wrap{
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+.btn-wrap{
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    /* border: 1px solid red; */
+}
+.subitem-wrap{
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    /* border: 1px solid red; */
+
+}
+.ant-col-14 {
+    width: 100vw;
+    max-width: 1400px;
+    flex: 1;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import TaskList from "../components/TaskList";
-import { Tabs, Layout, Row, Col, Input, message } from "antd";
+import { Tabs, Layout, Row, Col, Input, message, Button } from "antd";
 import TaskTab from "../components/TaskTab";
 import TaskForm from "../components/TaskForm";
 import { useAppState } from "../AppState";
@@ -48,7 +48,7 @@ const Main = (props) => {
     if (fetchedTasks) {
       dispatch({
         type: "getTasks",
-        payload: { alltasks: fetchedTasks },
+        payload: fetchedTasks,
       });
     }
     window.localStorage.setItem(
@@ -89,6 +89,9 @@ const Main = (props) => {
 
     return "hello";
   };
+  const textArea = (event) => {
+    console.log(event.target.value);
+  };
 
   const loaded = () => (
     <div className="Menu">
@@ -102,73 +105,18 @@ const Main = (props) => {
           // backgroundBlendMode: "overlay",
         }}
       >
-        <h1 className="rest-title">
-          {state.name ? state.name + "Workspace" : null}
-        </h1>
-      </div>
-
-      <div className="outer-wrap">
-        <div className="menu-add-meal-wrap">
-          <h3>Menu</h3>
-          {state.name ? (
-            <Link to="/admin/new">
-              <button>Add a meal</button>
-            </Link>
-          ) : null}
-        </div>
+        <textarea
+          onChange={textArea}
+          className="rest-title workspace-textfield"
+        >
+          {state.name ? state.name + " " + "Workspace" : "WorkSpace"}
+        </textarea>
       </div>
 
       {/* <Route
         path="/admin/:action"
         render={(rp) => <Form {...rp} getMeals={getMeals} />}
       /> */}
-
-      {/* <div className="menu-list-order">
-        <ul className="meal-list-side">
-          {state.alltasks
-            ? Object.entries(state.alltasks).map((task, i) => {
-                const key = task[0];
-                const taskValue = task[1].name;
-                const complete = task[1].completed;
-                console.log("state.alltasks)", state.alltasks);
-                return (
-                  <div className="menuList" key={key}>
-                    <div className="meal-picture"></div>
-                    <div className="meal-info">
-                      <h2 className="meal-name">Task name"{taskValue}</h2>
-                      <h4 className="meal-name">Task name"{complete}</h4>
-                    </div>
-                  </div>
-                );
-              })
-            : Object.entries(storedTasks.alltasks).map((task, i) => {
-                const key = task[0];
-                const taskValue = task[1].name;
-                console.log("state.alltasks)", state.alltasks);
-                return (
-                  <div className="menuList" key={key}>
-                    <div className="meal-picture"></div>
-                    <div className="meal-info">
-                      <h2 className="meal-name">Task name"{taskValue}</h2>
-                    </div>
-                  </div>
-                );
-              })}
-
-          {state.alltasks.map((task) => (
-            <li key={task.id}>{task.name}</li>
-          ))}
-        </ul>
-        {state.name || state.username ? (
-          <div className="order-tab">
-            <h2>User: {state.name}</h2>
-            <h3>Your Order</h3>
-            <div className="order-items"></div>
-            <div className="total"></div>
-          </div>
-        ) : null}
-      </div> */}
-
       <Layout className="layout">
         <Content style={{ padding: "0 50px" }}>
           <div className="tasklist">

@@ -44,13 +44,21 @@
       transform: rotate(0deg);
 
       filter: invert(72%) sepia(51%) saturate(6847%) hue-rotate(321deg) brightness(100%) contrast(80%);
-      filter: invert(44%) sepia(65%) saturate(360%) hue-rotate(153deg) brightness(95%) contrast(94%)
+      filter: invert(44%) sepia(65%) saturate(360%) hue-rotate(153deg) brightness(95%) contrast(94%);
+
+      filter: invert(62%) sepia(91%) saturate(754%) hue-rotate(196deg) brightness(93%) contrast(92%);
+      filter: invert(100%) sepia(52%) saturate(313%) hue-rotate(33deg) brightness(100%) contrast(95%)
     }
     to {
       transform: rotate(360deg);
 
+      /* filter: invert(62%) sepia(91%) saturate(754%) hue-rotate(196deg) brightness(93%) contrast(92%);
+      filter: invert(100%) sepia(52%) saturate(313%) hue-rotate(33deg) brightness(100%) contrast(95%) */
+
+      filter: invert(100%) sepia(52%) saturate(313%) hue-rotate(33deg) brightness(100%) contrast(95%);
       filter: invert(62%) sepia(91%) saturate(754%) hue-rotate(196deg) brightness(93%) contrast(92%);
-      filter: invert(100%) sepia(52%) saturate(313%) hue-rotate(33deg) brightness(100%) contrast(95%)
+      filter: invert(44%) sepia(65%) saturate(360%) hue-rotate(153deg) brightness(95%) contrast(94%);
+      filter: invert(72%) sepia(51%) saturate(6847%) hue-rotate(321deg) brightness(100%) contrast(80%);
     }
   }
   .content{
@@ -295,4 +303,23 @@ src/rainbow.png */
   text-align: left;
   width: 60%;
   margin-top: 20px;
+}
+
+/* Main workspace */
+.workspace-textfield{
+  border: none;
+  resize: none;
+  color: #111;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55%;
+  position: relative;
+  /* flex-direction: row;
+  width: 50%; */
+  margin: auto;
+  padding-top: 5px;
 }

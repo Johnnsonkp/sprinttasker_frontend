@@ -33,7 +33,7 @@ const reducer = (state, action) => {
             return newState;
             break;
         case "getTasks":
-            newState = {...state, ...action.payload}
+            newState = {...state, alltasks: action.payload}
             return newState;
             break;
          default: 

@@ -3,10 +3,12 @@ import {Tabs, Layout, Row, Col, List} from 'antd';
 import TaskItem from './TaskItem';
 
 const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
+
+    let reversedTaskOrder = tasks.reverse()
     return (
         <><List 
             locale={{ emptyText: "There's nothing to do"}}
-            dataSource={tasks}
+            dataSource={reversedTaskOrder}
             renderItem={(task) => (
                 <TaskItem 
                     task={task}

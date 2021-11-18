@@ -7,47 +7,50 @@ import TaskList from "../components/TaskList";
 import axios from "axios";
 
 const baseUrl = "http://localhost:3000/tasks";
+const authToken = JSON.parse(window.localStorage.getItem("auth"));
 
-// export const LoadTasks = async () => {
-// return fetch(baseUrl).then((res) => res.json());
-
-const LoadTasks = async () => {
-  const { state, dispatch } = useAppState();
-
-  return fetch(baseUrl, {
-    // const response = await fetch(baseUrl, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + state.token,
-    },
-  }).then((res) => console.log("LoadTasks res:", res));
+export const getTask = async () => {
+  try {
+    const tasks = await axios.get(baseUrl, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authToken.token,
+      },
+    });
+    // set State
+    console.log("tasks.data", tasks.data);
+    return tasks.data;
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 
-const getTask = (id) => {
-  return fetch(`${baseUrl}/${id}`).then((res) => res.json());
-};
+export function postTask(task) {
+  console.log("authToken", authToken.token);
+  console.log("authToken", authToken);
 
-const createTask = (task) => {
-  console.log("baseUrl:", baseUrl);
   return fetch(baseUrl, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
     },
     body: JSON.stringify({
       name: task.name,
       completed: task.completed,
     }),
   }).then((res) => res.json());
-};
+}
 
-const updateTask = (task) => {
+export const update = (task) => {
   return fetch(`${baseUrl}/${task.id}`, {
     method: "PUT",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
     },
     body: JSON.stringify({
       id: task.id,
@@ -57,10 +60,13 @@ const updateTask = (task) => {
   }).then((res) => res.json());
 };
 
-const deleteTask = (id) => {
+export const destroy = (id) => {
   return fetch(`${baseUrl}/${id}`, {
     method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
+    },
   }).then((res) => res.json());
 };
-
-export { LoadTasks, deleteTask, updateTask, createTask, getTask };
