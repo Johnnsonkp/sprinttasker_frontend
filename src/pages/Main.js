@@ -19,6 +19,7 @@ const { Content } = Layout;
 const Main = (props) => {
   const [fetchedTasks, setFetchedTasks] = React.useState(null);
   const { state, dispatch } = useAppState();
+  const [refreshing, setRefreshing] = useState(false);
 
   const getTasks = async () => {
     try {
@@ -34,6 +35,13 @@ const Main = (props) => {
       console.error(err.message);
     }
   };
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    // setTasks(state.alltasks);
+    setRefreshing(false);
+    console.log("Refreshing state", refreshing);
+  }, [refreshing]);
 
   useEffect(() => {
     getTasks();
@@ -56,7 +64,7 @@ const Main = (props) => {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [onRefresh]);
 
   const storedTasks = JSON.parse(window.localStorage.getItem("getTasks"));
   console.log("storedTasks", storedTasks);
@@ -115,7 +123,7 @@ const Main = (props) => {
         render={(rp) => <Form {...rp} getMeals={getMeals} />}
       /> */}
 
-      <div className="menu-list-order">
+      {/* <div className="menu-list-order">
         <ul className="meal-list-side">
           {state.alltasks
             ? Object.entries(state.alltasks).map((task, i) => {
@@ -136,14 +144,12 @@ const Main = (props) => {
             : Object.entries(storedTasks.alltasks).map((task, i) => {
                 const key = task[0];
                 const taskValue = task[1].name;
-                // const complete = task[1].completed;
                 console.log("state.alltasks)", state.alltasks);
                 return (
                   <div className="menuList" key={key}>
                     <div className="meal-picture"></div>
                     <div className="meal-info">
                       <h2 className="meal-name">Task name"{taskValue}</h2>
-                      {/* <h4 className="meal-name">Task name"{complete}</h4> */}
                     </div>
                   </div>
                 );
@@ -161,7 +167,7 @@ const Main = (props) => {
             <div className="total"></div>
           </div>
         ) : null}
-      </div>
+      </div> */}
 
       <Layout className="layout">
         <Content style={{ padding: "0 50px" }}>

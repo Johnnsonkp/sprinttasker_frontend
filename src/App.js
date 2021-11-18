@@ -18,13 +18,15 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { AppState, useAppState } from "./AppState";
+import { SidePanel } from "./utilities/sidePanel";
 
 export const App = (props) => {
   const { state, dispatch } = useAppState();
   const navigate = useNavigate();
+  const auth = JSON.parse(window.localStorage.getItem("auth"));
 
   const checkIfAuth = () => {
-    const auth = JSON.parse(window.localStorage.getItem("auth"));
+    // const auth = JSON.parse(window.localStorage.getItem("auth"));
     if (auth) {
       dispatch({ type: "auth", payload: auth });
       navigate("/main");
@@ -46,17 +48,18 @@ export const App = (props) => {
     <>
       <div className="App">
         <Nav />
-        {/* <div className="content"> */}
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/auth/:form" element={<Auth />} />
-          <Route path="/developer" element={<Developer />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/my_work" element={<Mywork />} />
-          <Route path="/stand_up" element={<Standup />} />
-        </Routes>
-        {/* </div> */}
+        <div className="content">
+          {auth ? <SidePanel /> : <></>}
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/auth/:form" element={<Auth />} />
+            <Route path="/developer" element={<Developer />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/my_work" element={<Mywork />} />
+            <Route path="/stand_up" element={<Standup />} />
+          </Routes>
+        </div>
       </div>
     </>
   );

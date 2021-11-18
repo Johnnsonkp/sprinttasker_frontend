@@ -1,0 +1,28 @@
+.sidePanel-container{
+    position: fixed;
+    left: 0;
+    border: 1px solid red;
+    width: 320px;
+    height: 100vh;
+    display: grid;
+}
+.inner-panel{
+    border: 8px solid green;
+    width: 75px;
+    height: 100vh;
+    position: absolute;
+    /* grid-area: 1 / col4-start / last-line / 6; */
+    grid-column: 1 / 2;
+
+}
+.second-inner-panel{
+    border: 1px solid blue;
+    position: relative;
+    margin-left: 75px;
+    width: 245px;
+
+}
+/* .container {
+    grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+    grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
+  } */

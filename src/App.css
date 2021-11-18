@@ -1,4 +1,10 @@
 @import '~antd/dist/antd.css';
+.ant-menu-vertical .ant-menu-item {
+  margin-top: 0px !important;
+}
+.ant-menu-inline .ant-menu-item{
+  margin-top: 0px !important;
+}
 .App {
     text-align: center;
     height: 100vh;
@@ -11,10 +17,13 @@
   .App-logo {
     height: 40vmin;
     pointer-events: none;
+    /* background-color: #ff0000; */
+    /* filter: invert(16%) sepia(90%) saturate(7500%) hue-rotate(0deg) brightness(96%) contrast(103%); */
   }
   @media (prefers-reduced-motion: no-preference) {
     .App-logo {
       animation: App-logo-spin infinite 20s linear;
+      /* animation: App-logo-color infinite 20s linear; */
     }
   }
   .App-header {
@@ -33,10 +42,19 @@
   @keyframes App-logo-spin {
     from {
       transform: rotate(0deg);
+
+      filter: invert(72%) sepia(51%) saturate(6847%) hue-rotate(321deg) brightness(100%) contrast(80%);
+      filter: invert(44%) sepia(65%) saturate(360%) hue-rotate(153deg) brightness(95%) contrast(94%)
     }
     to {
       transform: rotate(360deg);
+
+      filter: invert(62%) sepia(91%) saturate(754%) hue-rotate(196deg) brightness(93%) contrast(92%);
+      filter: invert(100%) sepia(52%) saturate(313%) hue-rotate(33deg) brightness(100%) contrast(95%)
     }
+  }
+  .content{
+    margin-top: 80px;
   }
 
   /* Nav */
@@ -53,28 +71,34 @@
       flex-direction: row;
       align-items: center;
       padding: 5px 8px;
+      padding: 0px 3px;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 6px 12px 0px;
     border: 1px solid green;
+    /* color: #fff !important; */
   }
   .TitleBox h3{
     /* border: 1px solid red; */
     margin: 0px;
+    /* color: #fff !important; */
   }
   .title-logo {
     height: 8vmin;
-    max-height: 50px;
+    max-height: 60px;
   }
   header{
     display: flex;
     margin: auto;
     background: rgba(255, 255, 255, 0.2);
+    background: #002140;
     height: 80px; 
-    border-bottom: 2px solid red;
-    color: #111;
+    background: #1b1a21;
+    /* border-bottom: 10px solid red; */
+    /* color: #111; */
+    /* color: #fff !important; */
   }
   .header-container{
     display: flex;
-    width: 90%;
+    width: 97%;
     margin-left: auto;
     margin-right: auto;
     align-items: center;
@@ -122,19 +146,10 @@
   } */
   .drop-down a{
       color: #111;
+      /* color: #fff !important; */
   }
-  .drop-down button{
-    background: #f4f4f4;
-    background: transparent;
-    border: none;
-    width: 100%;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-right: 15px;
-    padding-left: 15px;
-    border-radius: 8px;
-    font-size: 17px;
-    cursor: pointer;
+  .drop-down {
+    margin-right: 0px;
   }
   .drop-down .inner-nav{
     font-size: 12px;
@@ -146,14 +161,16 @@
   }
   .nav-itema:hover{
     background-color:rgba(0, 0, 0, .3);
-    color: #fff !important;
+    color: #111;
+    /* color: #fff !important; */
   }
   nav{
     display: flex;
     font-size: 16px;
+    /* color: #fff !important; */
   }
   nav .nav-auth{
-    padding-left: 45px;
+    padding-left: 30px;
     padding-right: 15px;
   }
 
@@ -161,6 +178,13 @@
 
 
 /* Auth form */
+.auth-container .banner{
+  position: absolute;
+  top: 0px;
+  height: 230px;
+  width: 100%;
+  background: #1b1a21;
+}
 .form-wrapper{
     /* border: 1px solid red; */
     height: 92vh;
@@ -201,4 +225,74 @@
   background: transparent;
   color: #fff;
   border: none;
+}
+
+
+/* Landing page */
+.landing-background{
+  background-image: url("/src/landing-background.svg"),url("/src/wave2.svg");
+  background-position: bottom 10% right,top 25% left;
+}
+.hero .bg-wave {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-repeat: no-repeat;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* 
+src/landing-background.svg
+src/rainbow.png */
+.hero {
+  align-items: center;
+  background: #1b1a21;
+  color: #fff;
+  display: flex;
+  font-family: Lato,sans-serif;
+  justify-content: center;
+  margin-top: -80px;
+  overflow: hidden;
+  padding: 0 40px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  max-height: 700px;
+}
+
+.hero .content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  margin-bottom: 150px;
+  /* border:1px solid red; */
+  z-index: 2;
+}
+.left h1, .right h1{
+  color: #fff;
+}
+.left h1{
+  font-weight: bolder;
+  font-size: 50px;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0px;
+}
+.left .content-inner{
+  /* border:1px solid green; */
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.left .content-inner .text{
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  width: 60%;
+  margin-top: 20px;
 }
