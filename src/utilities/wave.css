@@ -6,18 +6,18 @@
       transform: translate(-1600px);
     }
 }
-  .wave.-one {
-    height: 150px;
-    overflow: hidden;
-    width: 100%;
-    bottom: 0;
-      left: 0;
-    
-  }
-  .wave.-two {
-    animation: drift 90s linear infinite;
-      background-repeat: repeat-x;
-      background-size: 1600px 100%;
-      height: 100%;
-      width: 8000px;
-  }
+.wave.-one {
+  height: 80px;
+  overflow: hidden;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  
+}
+.wave.-two {
+  animation: drift 90s linear infinite;
+    background-repeat: repeat-x;
+    background-size: 1600px 100%;
+    height: 100%;
+    width: 8000px;
+}

@@ -14,6 +14,9 @@ export default function Wave() {
           background: `url(${Rainbow})`,
           backgroundPosition: "bottom 10% right,top 25% left",
           backgroundColor: "transparent",
+          backgroundSize: '20%',
+          // backgroundRepeat: 'no-repeat',
+          
         },
         box: {
           bottom: 0,

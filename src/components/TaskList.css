@@ -48,3 +48,19 @@
     max-width: 1400px;
     flex: 1;
 }
+.textarea {
+    min-height: 50px;
+ }
+ 
+.textarea textarea {
+    position: absolute;
+    min-height: 30px;
+    width: 400px;
+    transition: all 200ms;
+}
+ 
+.textarea textarea:focus {
+    z-index: 1001;
+    min-height:250px;
+ }
+ 

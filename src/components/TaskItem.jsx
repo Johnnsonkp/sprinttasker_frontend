@@ -2,14 +2,24 @@ import React, {useState} from 'react';
 import {Tooltip, Tag, List, Button, Popconfirm, Switch} from 'antd';
 import {CloseOutlined, CheckOutlined} from '@ant-design/icons'
 import TaskSubitems from './TaskSubitems'
+import Descriptions from './Descriptions'
+import { Collapse, Space } from 'antd';
+
 
 const Task = ({task, onTaskRemoval, onTaskToggle}) => {
 
+    const { Panel } = Collapse;
+    function callback(key) {
+        console.log(key);
+
+    }
     const styles = {
         listRow: {
             width: '100%'
         }
     }
+
+    const menu1 = "testing menu"
     return (
         <List.Item
             style={styles.listRow}
@@ -43,13 +53,13 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                         {task.name}
                     </Tag>
                 </div>
-                <div className="btn-wrap">
-                    <Button className="descriptionBtn" type="primary">
-                        Description
-                    </Button>
+                <div className="btnwrap">
+                    <Space wrap>
+                    <Descriptions description={task.description}/>
+                    </Space>
                 </div>
                 <div className="subitem-wrap">
-                    <TaskSubitems/>
+                    <TaskSubitems menu1={menu1}/>
                 </div>  
             </div>
         </List.Item>

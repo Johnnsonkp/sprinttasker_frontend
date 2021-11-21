@@ -30,6 +30,7 @@ const reducer = (state, action) => {
             newState = {...state, token: null, username: null, name: null, email: null, user_id: null, usertasks: null}
             window.localStorage.removeItem('auth')
             window.localStorage.removeItem('getTasks')
+            window.localStorage.removeItem('tasks')
             return newState;
             break;
         case "getTasks":

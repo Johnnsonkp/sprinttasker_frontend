@@ -7,6 +7,7 @@ import TaskList from "../components/TaskList";
 import axios from "axios";
 
 const baseUrl = "http://localhost:3000/tasks";
+const userTaskURL = "http://localhost:3000/user_task";
 const authToken = JSON.parse(window.localStorage.getItem("auth"));
 
 export const getTask = async () => {
@@ -18,7 +19,6 @@ export const getTask = async () => {
         Authorization: "Bearer " + authToken.token,
       },
     });
-    // set State
     console.log("tasks.data", tasks.data);
     return tasks.data;
   } catch (err) {
@@ -27,9 +27,6 @@ export const getTask = async () => {
 };
 
 export function postTask(task) {
-  console.log("authToken", authToken.token);
-  console.log("authToken", authToken);
-
   return fetch(baseUrl, {
     method: "POST",
     headers: {

@@ -10,7 +10,7 @@ const { TabPane} = Tabs;
 const { Content} = Layout;
 
 
-const TaskList = () => {
+const TaskList = (auth) => {
     const [refreshing, setRefreshing] = useState(false);
     const [tasks, setTasks] = useState([]);
     const [activeTasks, setActiveTasks] = useState([]);
@@ -18,6 +18,8 @@ const TaskList = () => {
     const { state, dispatch } = useAppState();
     const { token, alltasks, user, usertasks } = state;
     const [fetchedTasks, setFetchedTasks] = React.useState(null);
+
+
 
     const createTask = (task) => {
         return postTask(task)
@@ -32,6 +34,7 @@ const TaskList = () => {
     };
 
     const LoadTasks = async () => {
+        console.log("LoadTasks Tasklist");
       return getTask()
     }
 
@@ -59,8 +62,8 @@ const TaskList = () => {
         let data = await LoadTasks();
         setTasks(data.reverse())
         console.log("refresh data", data)
-        setActiveTasks(data.filter(task => task.completed === false))
-        setCompletedTasks(data.filter(task => task.completed === true))
+        setActiveTasks(data.reverse().filter(task => task.completed === false))
+        setCompletedTasks(data.reverse().filter(task => task.completed === true))
         setRefreshing(false);
         console.log('Refreshing state', refreshing);
     }, [refreshing]);
@@ -75,7 +78,7 @@ const TaskList = () => {
                 <div className="tasklist">
                     <Row>
                         <Col span={14} offset={5}>
-                            <h1>Task Lists</h1>
+                            {/* <h1>Task Lists</h1> */}
                             <TaskForm onFormSubmit={handleFormSubmit} />
                             <br />
                             <Tabs defaultActiveKey="all">

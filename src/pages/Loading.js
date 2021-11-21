@@ -2,17 +2,22 @@ import React, { Component } from "react";
 import logo from "../logo.svg";
 import "../App.css";
 
-class Standup extends Component {
+class Loading extends Component {
   render() {
+    const styles = {
+      landingBackground: {
+        background: "#fff",
+      },
+    };
     return (
-      <div className="App">
+      <div style={{ backgroundColor: "#fff" }} className="App loading">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>Unfortunately this page isn't available just yet :(</p>
+          <p>Loading...</p>
         </header>
       </div>
     );
   }
 }
 
-export default Standup;
+export default Loading;

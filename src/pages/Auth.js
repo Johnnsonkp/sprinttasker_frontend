@@ -21,7 +21,6 @@ const Auth = (props) => {
 
   React.useEffect(() => {
     if (userData) {
-      console.log("userData:", userData);
       const { token, user } = userData;
       dispatch({
         type: "auth",
@@ -31,9 +30,9 @@ const Auth = (props) => {
           name: user.name,
           username: user.username,
           email: user.email,
-          task: user.task_id,
         },
       });
+      console.log("user.task_id", user.task_id);
       window.localStorage.setItem(
         "auth",
         JSON.stringify({
@@ -44,9 +43,7 @@ const Auth = (props) => {
           email: user.email,
         })
       );
-      console.log("auth post sign in:", state);
-      // navigate("/my_work");
-      navigate("/main");
+      navigate("/my_work");
     }
   }, [userData]);
 

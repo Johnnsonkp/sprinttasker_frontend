@@ -6,12 +6,8 @@ import TaskForm from "../components/TaskForm";
 import { useAppState } from "../AppState";
 import { Route, Link } from "react-router-dom";
 import axios from "axios";
-import {
-  createTask,
-  deleteTask,
-  updateTask,
-  LoadTasks,
-} from "../services/taskService";
+import { postTask, destroy, update, getTask } from "../services/taskService";
+import Loading from "./Loading";
 
 const { TabPane } = Tabs;
 const { Content } = Layout;
@@ -22,6 +18,7 @@ const Main = (props) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const getTasks = async () => {
+    console.log("Main.js state:", state);
     try {
       const tasks = await axios.get(state.url + "/tasks/", {
         headers: {
@@ -30,7 +27,8 @@ const Main = (props) => {
           Authorization: "Bearer " + state.token,
         },
       });
-      setFetchedTasks(tasks.data); // set State
+      window.localStorage.setItem("tasks", tasks.data);
+      setFetchedTasks(tasks.data.reverse()); // set State
     } catch (err) {
       console.error(err.message);
     }
@@ -38,7 +36,7 @@ const Main = (props) => {
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    // setTasks(state.alltasks);
+    let data = await getTasks();
     setRefreshing(false);
     console.log("Refreshing state", refreshing);
   }, [refreshing]);
@@ -46,19 +44,8 @@ const Main = (props) => {
   useEffect(() => {
     getTasks();
     if (fetchedTasks) {
-      dispatch({
-        type: "getTasks",
-        payload: fetchedTasks,
-      });
+      dispatch({ type: "getTasks", payload: fetchedTasks });
     }
-    window.localStorage.setItem(
-      "getTasks",
-      JSON.stringify({
-        alltasks: fetchedTasks,
-      })
-    );
-    console.log("state.alltasks useEffect)", state.alltasks);
-
     const interval = setInterval(() => {
       getTasks();
     }, 10000);
@@ -66,28 +53,39 @@ const Main = (props) => {
     return () => clearInterval(interval);
   }, [onRefresh]);
 
-  const storedTasks = JSON.parse(window.localStorage.getItem("getTasks"));
-  console.log("storedTasks", storedTasks);
+  const createTask = (task) => {
+    return postTask(task);
+  };
+
+  const updateTask = (task) => {
+    return update(task);
+  };
+
+  const deleteTask = (id) => {
+    return destroy(id);
+  };
+
+  const LoadTasks = async () => {
+    return getTask();
+  };
+
+  const refresh = async () => {
+    return getTask();
+  };
 
   const handleFormSubmit = (task) => {
-    // console.log("task to create", task);
-    // createTask(task).then(onRefresh());
-    // message.success("Task added!");
-    return "hello";
+    createTask(task).then(onRefresh());
   };
 
   const handleRemoveTask = (task) => {
-    // deleteTask(task.id).then(onRefresh());
-    // message.warn("Task removed");
-    return "hello";
+    deleteTask(task.id).then(onRefresh());
+    message.warn("Task removed");
   };
 
   const handleToggleTaskStatus = (task) => {
-    // task.completed = !task.completed;
-    // updateTask(task).then(onRefresh());
-    // message.info("Task status updated!");
-
-    return "hello";
+    task.completed = !task.completed;
+    updateTask(task).then(onRefresh());
+    message.info("Task status updated!");
   };
   const textArea = (event) => {
     console.log(event.target.value);
@@ -95,58 +93,40 @@ const Main = (props) => {
 
   const loaded = () => (
     <div className="Menu">
-      <div
-        className="menu-banner"
-        style={{
-          backgroundImage: "url(/img/rest-banner.jpeg)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          // backgroundColor: "#fff",
-          // backgroundBlendMode: "overlay",
-        }}
-      >
+      <div className="menu-banner ant-col-offset-5">
         <textarea
+          value={"Main WorkSpace"}
           onChange={textArea}
           className="rest-title workspace-textfield"
-        >
-          {state.name ? state.name + " " + "Workspace" : "WorkSpace"}
-        </textarea>
+        ></textarea>
       </div>
 
-      {/* <Route
-        path="/admin/:action"
-        render={(rp) => <Form {...rp} getMeals={getMeals} />}
-      /> */}
       <Layout className="layout">
         <Content style={{ padding: "0 50px" }}>
           <div className="tasklist">
             <Row>
               <Col span={14} offset={5}>
-                <h1>Task Lists</h1>
+                {/* <h1>Task Lists</h1> */}
                 <TaskForm onFormSubmit={handleFormSubmit} />
                 <br />
                 <Tabs defaultActiveKey="all">
                   <TabPane tab="All" key="all">
                     <TaskTab
-                      tasks={
-                        state.alltasks ? state.alltasks : storedTasks.alltasks
-                      }
+                      tasks={fetchedTasks}
                       onTaskToggle={handleToggleTaskStatus}
                       onTaskRemoval={handleRemoveTask}
                     />
                   </TabPane>
                   <TabPane tab="Active" key="active">
                     <TaskTab
-                      tasks={
-                        state.alltasks ? state.alltasks : storedTasks.alltasks
-                      }
+                      tasks={fetchedTasks}
                       onTaskToggle={handleToggleTaskStatus}
                       onTaskRemoval={handleRemoveTask}
                     />
                   </TabPane>
                   <TabPane tab="Complete" key="complete">
                     <TaskTab
-                      tasks={state.alltasks.filter(
+                      tasks={fetchedTasks.filter(
                         (task) => task.completed === true
                       )}
                       onTaskToggle={handleToggleTaskStatus}
@@ -161,7 +141,7 @@ const Main = (props) => {
       </Layout>
     </div>
   );
-  return state.alltasks ? loaded() : <h1>Loading...</h1>;
+  return fetchedTasks ? loaded() : <Loading />;
 };
 
 export default Main;

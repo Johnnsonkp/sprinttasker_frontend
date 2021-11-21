@@ -4,11 +4,11 @@ import TaskItem from './TaskItem';
 
 const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
 
-    let reversedTaskOrder = tasks.reverse()
+    // let reversedTaskOrder = tasks.reverse()
     return (
         <><List 
             locale={{ emptyText: "There's nothing to do"}}
-            dataSource={reversedTaskOrder}
+            dataSource={tasks}
             renderItem={(task) => (
                 <TaskItem 
                     task={task}

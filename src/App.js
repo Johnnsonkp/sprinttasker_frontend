@@ -19,6 +19,9 @@ import {
 } from "react-router-dom";
 import { AppState, useAppState } from "./AppState";
 import { SidePanel } from "./utilities/sidePanel";
+import { postTask, destroy, update, getTask } from "./services/taskService";
+import { useLocation } from "react-router-dom";
+import Notes from "./pages/Notes";
 
 export const App = (props) => {
   const { state, dispatch } = useAppState();
@@ -26,22 +29,21 @@ export const App = (props) => {
   const auth = JSON.parse(window.localStorage.getItem("auth"));
 
   const checkIfAuth = () => {
-    // const auth = JSON.parse(window.localStorage.getItem("auth"));
     if (auth) {
       dispatch({ type: "auth", payload: auth });
-      navigate("/main");
+      navigate("/my_work");
     } else {
       navigate("/");
     }
   };
 
-  // React.useState(() => {
-  //   checkIfAuth();
-  // }, []);
-
   React.useEffect(() => {
     checkIfAuth();
   }, []);
+
+  const location = useLocation();
+  console.log(location.pathname);
+  // return <span>Path : {location.pathname}</span>
 
   console.log("App.js State:", state);
   return (
@@ -49,7 +51,7 @@ export const App = (props) => {
       <div className="App">
         <Nav />
         <div className="content">
-          {auth ? <SidePanel /> : <></>}
+          {auth && location.pathname != "/" ? <SidePanel /> : <></>}
           <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/main" element={<Main />} />
@@ -58,6 +60,7 @@ export const App = (props) => {
             <Route path="/about" element={<About />} />
             <Route path="/my_work" element={<Mywork />} />
             <Route path="/stand_up" element={<Standup />} />
+            <Route path="/notes" element={<Notes />} />
           </Routes>
         </div>
       </div>

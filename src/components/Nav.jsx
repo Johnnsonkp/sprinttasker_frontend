@@ -46,6 +46,26 @@ export default function Nav(props) {
     
   }
 
+  const colorFlkr = (event) => {
+    let highlights = [
+      {
+        color1: "#59C173",
+        color2: "#12c2e9",
+        color3: "#a17fe0",
+        color4: "#c471ed",
+        color5: "#f64f59",
+        color6: "#5D26C1",
+
+      }
+    ]
+    highlights = highlights[Math.floor(Math.random() * highlights.length - 1)]
+
+    event.target.style.backgroundColor = highlights
+    console.log("event.target.style.backgroundColor:", event.target.backgroundColor)
+    console.log("event.target.value:", event.target.value)
+
+  }
+
     const onClick = ({ key }) => {
         message.info(`Click on item ${key}`);
     };
@@ -71,7 +91,7 @@ export default function Nav(props) {
       return (
         <header style={styles.header}>
           <div className="header-container">
-            <div className="TitleBox">
+            <div className="TitleBox" onClick={colorFlkr}>
               <Link style={style} to="/">
                 <img src={logo} className="App-logo title-logo" alt="logo" />
                 <h3 style={styles.menuDark}>TaskSprinter</h3>
