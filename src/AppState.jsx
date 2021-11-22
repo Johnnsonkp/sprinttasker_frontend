@@ -6,7 +6,7 @@ import React, {useContext, useReducer} from "react";
 
 const initialState = {
     // url: "http://localhost:3000", // Change before deploying 
-    url: "http://sprinttaskerbackend.herokuapp.com",
+    url: "https://sprinttaskerbackend.herokuapp.com",
     token: null,
     username: null,
     name: null,
