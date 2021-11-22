@@ -16,9 +16,6 @@ const Main = (props) => {
   const [fetchedTasks, setFetchedTasks] = useState();
   const { state, dispatch } = useAppState();
   const [refreshing, setRefreshing] = useState(false);
-  // const [fetchedTasks, setFetchedTasks] = React.useState({
-  //   alltasks: [],
-  // });
 
   const getTasks = async () => {
     console.log("Main.js state:", state);

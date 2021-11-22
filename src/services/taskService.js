@@ -6,13 +6,13 @@ import Task from "../components/TaskItem";
 import TaskList from "../components/TaskList";
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/tasks";
-const userTaskURL = "http://localhost:3000/user_task";
+// const baseUrl = "http://localhost:3000/tasks";
+const baseUrl = process.env.REACT_APP_DEV_API_URL;
 const authToken = JSON.parse(window.localStorage.getItem("auth"));
 
 export const getTask = async () => {
   try {
-    const tasks = await axios.get(baseUrl, {
+    const tasks = await axios.get(baseUrl + "tasks", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -27,7 +27,8 @@ export const getTask = async () => {
 };
 
 export function postTask(task) {
-  return fetch(baseUrl, {
+  console.log("Mywork", task);
+  return fetch(baseUrl + "tasks", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -36,13 +37,14 @@ export function postTask(task) {
     },
     body: JSON.stringify({
       name: task.name,
+      description: task.description,
       completed: task.completed,
     }),
   }).then((res) => res.json());
 }
 
 export const update = (task) => {
-  return fetch(`${baseUrl}/${task.id}`, {
+  return fetch(`${baseUrl}tasks/${task.id}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -58,12 +60,12 @@ export const update = (task) => {
 };
 
 export const destroy = (id) => {
-  return fetch(`${baseUrl}/${id}`, {
+  return fetch(`${baseUrl}tasks/${id}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: "Bearer " + authToken.token,
     },
-  }).then((res) => res.json());
+  });
 };

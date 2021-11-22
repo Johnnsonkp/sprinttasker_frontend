@@ -86,17 +86,8 @@ const Mywork = () => {
       <Layout className="layout">
         <Content style={{ padding: "0 50px" }}>
           <div className="tasklist">
-            {/* <textarea
-              value={"Individual Sprints"}
-              onChange={textArea}
-              className="rest-title workspace-textfield"
-            ></textarea> */}
             <Row>
               <Col span={14} offset={5}>
-                {/* <div className="heading">
-                  <h1>Individual Sprints</h1>
-                </div> */}
-                {/* <TaskForm onFormSubmit={handleFormSubmit} /> */}
                 <br />
                 <Tabs defaultActiveKey="all">
                   <TabPane tab="All" key="all">
