@@ -5,12 +5,11 @@ import logo from "../logo.svg";
 import { Menu, Dropdown, message, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import {useAppState} from '../AppState'
-import zIndex from "@mui/material/styles/zIndex";
 
 export default function Nav(props) {
   const {dispatch, state} = useAppState()
   const navigate = useNavigate();
-
+  const auth = JSON.parse(window.localStorage.getItem("auth"));
   const styles = {
     signUp: {
       cursor: "pointer",
@@ -32,7 +31,8 @@ export default function Nav(props) {
     },
     menuDark: {
       color: "#fff",
-      fontWeight: "bolder"
+      fontWeight: "bolder",
+      cursor: "pointer"
     },
     header: {
       position: "fixed",
@@ -41,88 +41,76 @@ export default function Nav(props) {
       zIndex: 5,
       color: "#fff",
       fontWeight: "bolder"
+    },
+    links: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      textDecoration: "none",
+      color: "#fff",
     }
-
-    
   }
-
-  const colorFlkr = (event) => {
-    let highlights = [
-      {
-        color1: "#59C173",
-        color2: "#12c2e9",
-        color3: "#a17fe0",
-        color4: "#c471ed",
-        color5: "#f64f59",
-        color6: "#5D26C1",
-
-      }
-    ]
-    highlights = highlights[Math.floor(Math.random() * highlights.length - 1)]
-
-    event.target.style.backgroundColor = highlights
-    console.log("event.target.style.backgroundColor:", event.target.backgroundColor)
-    console.log("event.target.value:", event.target.value)
-
-  }
-
     const onClick = ({ key }) => {
         message.info(`Click on item ${key}`);
     };
-
     const menu = (
         <Menu onClick={onClick}>
           <Menu.Item key="1"><Link className="inner-nav" to="/about">About</Link></Menu.Item>
           <Menu.Item key="2"><Link  className="inner-nav" to="/developer">Developers Guide</Link></Menu.Item>
         </Menu>
     );
-
-    const style = {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        textDecoration: "none",
-        color: "#fff",
-    };
-    const divBtn = {
-      cursor: "pointer"
-    }
-    const auth = JSON.parse(window.localStorage.getItem("auth"));
+    const DropDownMenu = () => {
       return (
-        <header style={styles.header}>
-          <div className="header-container">
-            <div className="TitleBox" onClick={colorFlkr}>
-              <Link style={style} to="/">
-                <img src={logo} className="App-logo title-logo" alt="logo" />
-                <h3 style={styles.menuDark}>TaskSprinter</h3>
-              </Link>
-            </div>
-            <div className="drop-down">
-              <nav>
-                <Dropdown overlay={menu}>
-                    <a style={styles.menuDark} className="ant-dropdown-link nav-item" onClick={e => e.preventDefault()}>
-                    About <DownOutlined />
-                    </a>
-                </Dropdown>
-                <div  className="nav-auth">
-                    {!state.token ? <> <Link style={styles.menuDark} to="/auth/login">Log In</Link> </> : 
-                      <>
-                        <div style={styles.menuDark} to="/" onClick={() => {
-                          dispatch({type: "logout"})
-                          navigate("/")
-                        }}>Log Out</div>
-                      </>
-                    }
-                </div>
-              </nav>
-            </div>
-            <div style={styles.signUp}>
-              {auth ? 
-                <Link style={styles.menuDark} to="/auth/signup">Account</Link> :
-                <Link  style={styles.menuDark} to="/auth/signup">Get Started</Link>
-              }
-            </div>
+        <Dropdown overlay={menu}>
+          <a style={styles.menuDark} className="ant-dropdown-link nav-item" onClick={e => e.preventDefault()}>
+          About <DownOutlined />
+          </a>
+        </Dropdown>
+      )
+    }
+    const AuthBtn = () => {
+      return (
+        <div style={styles.signUp}>
+          {auth ? 
+            <Link style={styles.menuDark} to="/auth/signup">Account</Link> :
+            <Link  style={styles.menuDark} to="/auth/signup">Get Started</Link>
+          }
+        </div>
+      )
+    }
+    const LoginLogout = () => {
+      return (
+        <>
+          {!state.token ? <> <Link style={styles.menuDark} to="/auth/login">Log In</Link> </> : 
+            <>
+              <div style={styles.menuDark} to="/" onClick={() => {
+                dispatch({type: "logout"})
+                navigate("/")
+              }}>Log Out</div>
+            </>
+          }
+        </>
+      )
+    }
+    return (
+      <header style={styles.header}>
+        <div className="header-container">
+          <div className="TitleBox">
+            <Link style={styles.links} to="/">
+              <img src={logo} className="App-logo title-logo" alt="logo" />
+              <h3 style={styles.menuDark}>TaskSprinter</h3>
+            </Link>
           </div>
-        </header>
-      );
+          <div className="drop-down">
+            <nav>
+              <DropDownMenu />
+              <div  className="nav-auth">
+                <LoginLogout />
+              </div>
+            </nav>
+          </div>
+          <AuthBtn/>
+        </div>
+      </header>
+    );
 }

@@ -43,7 +43,7 @@ const Auth = (props) => {
           email: user.email,
         })
       );
-      navigate("/my_work");
+      navigate("/main");
     }
   }, [userData]);
 
@@ -76,7 +76,6 @@ const Auth = (props) => {
     let result = await actions[type]().then((data) => {
       setUserData(data);
     });
-    // navigate("main");
   }
   return (
     <div className="auth-container">

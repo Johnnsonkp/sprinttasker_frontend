@@ -8,14 +8,6 @@ import { AppState } from "./AppState";
 import { Auth } from "./pages";
 
 ReactDOM.render(
-  // <AppState>
-  //   <Router>
-  //     <Routes>
-  //       <Route path="/" element={<App />} />
-  //     </Routes>
-  //   </Router>
-  // </AppState>,
-
   <AppState>
     <Router>
       <App />

@@ -1,17 +1,11 @@
 import React from "react";
-import Background from "../landing-background.svg";
-import Background2 from "../wave2.svg";
 import { Link, useNavigate } from "react-router-dom";
-import Rainbow from "../rainbow.png";
-import { useAppState } from "../AppState";
 import Wave from "../utilities/wave";
 import reactLogo from "../reactLogo.svg";
 import railsLogo from "../rails.svg";
 import "../App.css";
-import { borderLeft } from "@mui/system";
 
 export default function Landing() {
-  const { dispatch, state } = useAppState();
   const styles = {
     landingPage: {
       color: "#fff",
@@ -140,10 +134,10 @@ export default function Landing() {
         </div>
         <div className="right">
           <div className="content-inner">
-            <img className="bannerLogo" src={reactLogo} />
+            {/* <img className="bannerLogo" src={reactLogo} />
             <img className="bannerLogo" src={railsLogo} />
             <img className="bannerLogo" src={railsLogo} />
-            <img className="bannerLogo" src={reactLogo} />
+            <img className="bannerLogo" src={reactLogo} /> */}
           </div>
         </div>
       </div>

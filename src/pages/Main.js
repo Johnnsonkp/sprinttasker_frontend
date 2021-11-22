@@ -13,9 +13,12 @@ const { TabPane } = Tabs;
 const { Content } = Layout;
 
 const Main = (props) => {
-  const [fetchedTasks, setFetchedTasks] = React.useState(null);
+  const [fetchedTasks, setFetchedTasks] = useState();
   const { state, dispatch } = useAppState();
   const [refreshing, setRefreshing] = useState(false);
+  // const [fetchedTasks, setFetchedTasks] = React.useState({
+  //   alltasks: [],
+  // });
 
   const getTasks = async () => {
     console.log("Main.js state:", state);
@@ -27,8 +30,10 @@ const Main = (props) => {
           Authorization: "Bearer " + state.token,
         },
       });
-      window.localStorage.setItem("tasks", tasks.data);
+      window.localStorage.setItem("tasks", tasks);
       setFetchedTasks(tasks.data.reverse()); // set State
+      console.log("tasks.data", tasks.data);
+      // console.log("fetchedTasks", fetchedTasks);
     } catch (err) {
       console.error(err.message);
     }
@@ -44,8 +49,10 @@ const Main = (props) => {
   useEffect(() => {
     getTasks();
     if (fetchedTasks) {
+      // console.log("fetchedTasks", fetchedTasks);
       dispatch({ type: "getTasks", payload: fetchedTasks });
     }
+    console.log("Interval", state.alltasks);
     const interval = setInterval(() => {
       getTasks();
     }, 10000);
@@ -93,7 +100,7 @@ const Main = (props) => {
 
   const loaded = () => (
     <div className="Menu">
-      <div className="menu-banner ant-col-offset-5">
+      <div className="menu-banner ant-col-offset-1">
         <textarea
           value={"Main WorkSpace"}
           onChange={textArea}
@@ -107,7 +114,7 @@ const Main = (props) => {
             <Row>
               <Col span={14} offset={5}>
                 {/* <h1>Task Lists</h1> */}
-                <TaskForm onFormSubmit={handleFormSubmit} />
+                {/* <TaskForm onFormSubmit={handleFormSubmit} /> */}
                 <br />
                 <Tabs defaultActiveKey="all">
                   <TabPane tab="All" key="all">
@@ -132,6 +139,9 @@ const Main = (props) => {
                       onTaskToggle={handleToggleTaskStatus}
                       onTaskRemoval={handleRemoveTask}
                     />
+                  </TabPane>
+                  <TabPane tab="Create Task" key="createtask">
+                    <TaskForm onFormSubmit={handleFormSubmit} />
                   </TabPane>
                 </Tabs>
               </Col>

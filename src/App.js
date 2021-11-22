@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import TaskList from "./components/TaskList";
 import Nav from "./components/Nav";
+import { useAppState } from "./AppState";
+import { SidePanel } from "./utilities/sidePanel";
+import { useLocation } from "react-router-dom";
+import Notes from "./pages/Notes";
 import {
   Landing,
   Auth,
@@ -17,11 +20,6 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import { AppState, useAppState } from "./AppState";
-import { SidePanel } from "./utilities/sidePanel";
-import { postTask, destroy, update, getTask } from "./services/taskService";
-import { useLocation } from "react-router-dom";
-import Notes from "./pages/Notes";
 
 export const App = (props) => {
   const { state, dispatch } = useAppState();
@@ -31,7 +29,7 @@ export const App = (props) => {
   const checkIfAuth = () => {
     if (auth) {
       dispatch({ type: "auth", payload: auth });
-      navigate("/my_work");
+      navigate("/main");
     } else {
       navigate("/");
     }
@@ -43,9 +41,7 @@ export const App = (props) => {
 
   const location = useLocation();
   console.log(location.pathname);
-  // return <span>Path : {location.pathname}</span>
-
-  console.log("App.js State:", state);
+  // console.log("App.js State:", state);
   return (
     <>
       <div className="App">

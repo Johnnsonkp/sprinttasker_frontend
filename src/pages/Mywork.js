@@ -34,10 +34,6 @@ const Mywork = () => {
     console.log("LoadTasks Tasklist");
     return getTask();
   };
-
-  // const refresh = async () => {
-  //   return getTask();
-  // };
   const handleFormSubmit = (task) => {
     console.log("task to create", task);
     createTask(task).then(onRefresh());
@@ -55,21 +51,16 @@ const Mywork = () => {
     message.info("Task status updated!");
   };
   const refresh = () => {
-    let fetchedTasks = JSON.parse(window.localStorage.getItem("getTasks"));
-    const { id, task_id, user_id, description, name } = fetchedTasks;
-    console.log("task.name", name);
-    setTasks(fetchedTasks);
-    console.log("refresh task", fetchedTasks);
+    setTasks(alltasks);
   };
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    let task = JSON.parse(window.localStorage.getItem("getTasks"));
-    setTasks(task);
-    console.log("on refresh task", task);
-
-    // setActiveTasks(data.reverse().filter((task) => task.completed === false));
-    // setCompletedTasks(data.reverse().filter((task) => task.completed === true));
+    // let task = JSON.parse(window.localStorage.getItem("tasks"));
+    // setTasks(task);
+    console.log("on refresh task", tasks);
+    setActiveTasks(tasks.filter((task) => task.completed === false));
+    setCompletedTasks(tasks.filter((task) => task.completed === true));
     setRefreshing(false);
     console.log("Refreshing state", refreshing);
   }, [refreshing]);
@@ -84,11 +75,12 @@ const Mywork = () => {
 
   const loaded = () => (
     <div className="Menu">
-      <div className="menu-banner">
+      <div className="menu-banner ant-col-offset-1">
         <textarea
           value={"Individual Sprints"}
           onChange={textArea}
           className="rest-title workspace-textfield"
+          style={{ padding: "20px 50px" }}
         ></textarea>
       </div>
       <Layout className="layout">
@@ -104,7 +96,7 @@ const Mywork = () => {
                 {/* <div className="heading">
                   <h1>Individual Sprints</h1>
                 </div> */}
-                <TaskForm onFormSubmit={handleFormSubmit} />
+                {/* <TaskForm onFormSubmit={handleFormSubmit} /> */}
                 <br />
                 <Tabs defaultActiveKey="all">
                   <TabPane tab="All" key="all">
@@ -127,6 +119,9 @@ const Mywork = () => {
                       onTaskToggle={handleToggleTaskStatus}
                       onTaskRemoval={handleRemoveTask}
                     />
+                  </TabPane>
+                  <TabPane tab="Create Task" key="createtask">
+                    <TaskForm onFormSubmit={handleFormSubmit} />
                   </TabPane>
                 </Tabs>
               </Col>

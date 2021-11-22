@@ -319,7 +319,8 @@
   text-transform: uppercase;
 }
 .right .content-inner{
-  background-image: url("/src/landingSmall.png");
+  /* background-image: url("/src/landingSmall.png"); */
+  background-image: url("/src/workspace.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -341,9 +342,9 @@
 .show{
   display: block !important;
 }
-.hideForm{
+/* .hideForm{
   display: none;
-}
+} */
 .bannerCta{
   text-align: center;
 }

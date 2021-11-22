@@ -11,7 +11,7 @@ const initialState = {
     name: null,
     email: null,
     usertasks: [],
-    alltasks: [],
+    alltasks: null,
     user_id: 0
 }
 
