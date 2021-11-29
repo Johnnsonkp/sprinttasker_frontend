@@ -1,25 +1,25 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {Tabs, Layout, Row, Col, Input, message} from 'antd';
+import {Tabs, Layout, Row, Col, Input, message, Button} from 'antd';
 import './TaskList.css'
 import TaskTab from './TaskTab';
 import TaskForm from './TaskForm';
 import { useAppState } from '../AppState';
-import axios from "axios";
-import {postTask, destroy, update, getTask} from '../services/taskService';
+import {postTask, destroy, update, getTasks, loadTasks} from '../services/taskService';
 const { TabPane} = Tabs;
 const { Content} = Layout;
 
 
 const TaskList = (auth) => {
     const [refreshing, setRefreshing] = useState(false);
-    const [tasks, setTasks] = useState([]);
+    // const [tasks, setTasks] = React.useState([]);
+    const [tasks, setLoadTask] = React.useState([]);
     const [activeTasks, setActiveTasks] = useState([]);
-    const [completedTasks, setCompletedTasks] = useState();
+    const [completedTasks, setCompletedTasks] = useState([]);
     const { state, dispatch } = useAppState();
     const { token, alltasks, user, usertasks } = state;
-    const [fetchedTasks, setFetchedTasks] = React.useState(null);
-
-
+    const [fetchedTasks, setFetchedTasks] = React.useState([]);
+    const [alert, setAlert] = useState(false);
+    let mounted = true;
 
     const createTask = (task) => {
         return postTask(task)
@@ -33,53 +33,61 @@ const TaskList = (auth) => {
         return destroy(id)
     };
 
-    const LoadTasks = async () => {
-        console.log("LoadTasks Tasklist");
-      return getTask()
-    }
-
-    const refresh = async () => {
-        return getTask()
-    }
     const handleFormSubmit = (task) => {
         console.log('task to create', task);
-        createTask(task).then(onRefresh());
-        message.success('Task added!');
+        createTask(task).then(() => {
+            message.success('Task added!');
+            setAlert(true);
+            setRefreshing(true)
+        })
     }
 
     const handleRemoveTask = (task) => {
-        deleteTask(task.id).then(onRefresh());
+        deleteTask(task.id)
         message.warn('Task removed');
+        setRefreshing(true)
     }
 
     const handleToggleTaskStatus = (task) => {
         task.completed = !task.completed;
-        updateTask(task).then(onRefresh());
+        updateTask(task)
+        setRefreshing(true)
         message.info('Task status updated!');
     }
-    const onRefresh = useCallback( async () => {
-        setRefreshing(true)
-        let data = await LoadTasks();
-        setTasks(data.reverse())
-        console.log("refresh data", data)
-        setActiveTasks(data.reverse().filter(task => task.completed === false))
-        setCompletedTasks(data.reverse().filter(task => task.completed === true))
+    
+    const refresh = () => {
+        loadTasks()
+            .then((json) => {
+                setLoadTask(json);
+                setActiveTasks(json.filter(task => task.completed === false))
+                setCompletedTasks(json.filter(task => task.completed === true))
+            }).then((console.log('fetch completed')))
+    };
+
+
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        let loadedTasks = await loadTasks();
+        setLoadTask(loadedTasks);
+        setActiveTasks(loadedTasks.filter(task => task.completed === false))
+        setCompletedTasks(loadedTasks.filter(task => task.completed === true))
+        console.log(tasks);
         setRefreshing(false);
-        console.log('Refreshing state', refreshing);
+        console.log("Refreshing state", refreshing);
     }, [refreshing]);
 
     useEffect(() => {
+        console.log("useEffect()");
         refresh();
-    }, [onRefresh])
+    }, [onRefresh]);
 
     return (
-        <Layout className="layout">
+        <>
+        <Layout className="layout" style={{overFlowX: 'hidden'}}>
             <Content style={{ padding: '0 50px'}}>
                 <div className="tasklist">
                     <Row>
                         <Col span={14} offset={5}>
-                            {/* <h1>Task Lists</h1> */}
-                            <TaskForm onFormSubmit={handleFormSubmit} />
                             <br />
                             <Tabs defaultActiveKey="all">
                                 <TabPane tab="All" key="all">
@@ -91,13 +99,16 @@ const TaskList = (auth) => {
                                 <TabPane tab="Complete" key="complete">
                                     <TaskTab tasks={completedTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>   
                                 </TabPane>
+                                    <TabPane tab="Create Task" key="createtask">
+                                            <TaskForm onFormSubmit={handleFormSubmit} />
+                                    </TabPane>
                             </Tabs>
                         </Col>
                     </Row>
                 </div>
             </Content>
-
         </Layout>
+        </>
     )
 }
 

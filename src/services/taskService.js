@@ -1,30 +1,30 @@
 // const baseUrl = `${process.env.REACT_APP_API_URL}/tasks`; // Url defined in .env file
-import userEvent from "@testing-library/user-event";
-import React from "react";
-import { useAppState } from "../AppState";
-import Task from "../components/TaskItem";
-import TaskList from "../components/TaskList";
-import axios from "axios";
 
 // const baseUrl = "http://localhost:3000/tasks";
 const baseUrl = process.env.REACT_APP_DEV_API_URL;
 const authToken = JSON.parse(window.localStorage.getItem("auth"));
 
-export const getTask = async () => {
-  try {
-    const tasks = await axios.get(baseUrl + "tasks", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authToken.token,
-      },
-    });
-    console.log("tasks.data", tasks.data);
-    return tasks.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+export const loadTasks = () => {
+  return fetch(baseUrl + "tasks", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
+    },
+  }).then((res) => res.json());
 };
+
+export function getTasks() {
+  return fetch(baseUrl + "tasks", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
+    },
+  }).then((data) => data.json());
+}
 
 export function postTask(task) {
   console.log("Mywork", task);

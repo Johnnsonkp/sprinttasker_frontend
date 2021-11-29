@@ -2,14 +2,19 @@ import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import '../App.css';
 import logo from "../logo.svg";
-import { Menu, Dropdown, message, Button } from 'antd';
+import { Menu, Dropdown, message, Button, Breadcrumb } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import {useAppState} from '../AppState'
+import Wave from "../utilities/wave";
+import { useLocation } from "react-router";
 
 export default function Nav(props) {
   const {dispatch, state} = useAppState()
   const navigate = useNavigate();
   const auth = JSON.parse(window.localStorage.getItem("auth"));
+  const location = useLocation();
+  let workMode = state.work_mode
+
   const styles = {
     signUp: {
       cursor: "pointer",
@@ -47,7 +52,10 @@ export default function Nav(props) {
       flexDirection: "row",
       alignItems: "center",
       textDecoration: "none",
-      color: "#fff",
+      color: "#fff"
+    },
+    hide: {
+      display: "none"
     }
   }
     const onClick = ({ key }) => {
@@ -62,7 +70,7 @@ export default function Nav(props) {
     const DropDownMenu = () => {
       return (
         <Dropdown overlay={menu}>
-          <a style={styles.menuDark} className="ant-dropdown-link nav-item" onClick={e => e.preventDefault()}>
+          <a style={styles.menuDark} className="ant-dropdown-link nav-item" onClick={(e) => e.preventDefault()}>
           About <DownOutlined />
           </a>
         </Dropdown>
@@ -92,7 +100,36 @@ export default function Nav(props) {
         </>
       )
     }
+    const BreadCrumb = () => {
+      return (
+        <div className="BreadCrumb" 
+            style={{maxHeight: '25px', width: '100%', display: 'absolute', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff'}} 
+            >
+         
+         {
+           !workMode ? 
+           <div>
+            <Breadcrumb separator=">">
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item href="">Application Center</Breadcrumb.Item>
+              <Breadcrumb.Item href="">Application List</Breadcrumb.Item>
+              <Breadcrumb.Item style={{color: '#fff'}}>Hi, {state.name}</Breadcrumb.Item>
+            </Breadcrumb>
+          </div> : 
+          <div className="BreadCrumb-wave">
+            <Wave />
+          </div>
+         }
+        </div>
+      );
+    }
+
     return (
+      <>
+      {location.pathname === "/" ? <></> :<BreadCrumb />}
+      {/* location.pathname === "/my_work" || location.pathname === "/main" || location.pathname === "/notes" || location.pathname === "/home" ? <></>  */}
+      {
+       location.pathname === "/" ?  
       <header style={styles.header}>
         <div className="header-container">
           <div className="TitleBox">
@@ -111,6 +148,8 @@ export default function Nav(props) {
           </div>
           <AuthBtn/>
         </div>
-      </header>
+      </header> : null
+      }
+      </>
     );
 }

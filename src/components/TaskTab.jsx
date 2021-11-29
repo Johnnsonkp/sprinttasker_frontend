@@ -3,24 +3,24 @@ import {Tabs, Layout, Row, Col, List} from 'antd';
 import TaskItem from './TaskItem';
 
 const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
-
-    // let reversedTaskOrder = tasks.reverse()
     return (
-        <><List 
-            locale={{ emptyText: "There's nothing to do"}}
-            dataSource={tasks}
-            renderItem={(task) => (
-                <TaskItem 
-                    task={task}
-                    onTaskToggle={onTaskToggle}
-                    onTaskRemoval={onTaskRemoval}
-                />
-            )}
-            pagination={{
-                position: "bottom",
-                pageSie: 10,
-            }}
-        /></>
+    <><List 
+        locale={{ emptyText: "There's nothing to do"}}
+        dataSource={tasks}
+        // itemLayout="vertical"
+        // size="large"
+        renderItem={(task) => (
+            <TaskItem 
+                task={task}
+                onTaskToggle={onTaskToggle}
+                onTaskRemoval={onTaskRemoval}
+            />
+        )}
+        pagination={{
+            position: "bottom",
+            pageSie: 10,
+        }}
+    /></>
     )
 }
 

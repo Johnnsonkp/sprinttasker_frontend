@@ -13,6 +13,7 @@ import {
   Mywork,
   Standup,
   Main,
+  Home,
 } from "./pages";
 import {
   BrowserRouter as Router,
@@ -57,6 +58,7 @@ export const App = (props) => {
             <Route path="/my_work" element={<Mywork />} />
             <Route path="/stand_up" element={<Standup />} />
             <Route path="/notes" element={<Notes />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
         </div>
       </div>

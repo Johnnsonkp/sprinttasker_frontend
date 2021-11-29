@@ -1,109 +1,117 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useAppState } from "../AppState";
+
 import './sidepanel.css'
-import { Layout, Menu, Breadcrumb, Dropdown, Button, message, Space, Tooltip } from 'antd';
+import { Layout, Menu, message, Divider } from 'antd';
 import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  DownOutlined,
   FormOutlined,
   AppstoreOutlined,
   MessageOutlined,
-  UnorderedListOutlined
+  UnorderedListOutlined,
+  BankOutlined,
+  
 } from '@ant-design/icons';
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import SidePanelTabs from "./SidePanelTabs";
-import { useAppState } from '../AppState';
+import logo from "../logo.svg";
+import { useLocation } from "react-router";
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
-// const { state, dispatch } = useAppState();
-const auth = JSON.parse(window.localStorage.getItem("auth"))
 
-export class SidePanel extends React.Component {
-  
-  state = {
-    collapsed: true,
-  };
 
-  onCollapse = collapsed => {
+export function SidePanel() {
+  const { Header, Content, Sider } = Layout;
+  const location = useLocation();
+// export class SidePanel extends React.Component {
+  const [collapsed, setCollapsed] = useState(true)
+  const onCollapse = () => {
     console.log(collapsed);
-    this.setState({ collapsed });
+    return (setCollapsed(!collapsed))
   };
-
-  handleButtonClick(e) {
-    message.info('Click on left button.');
-    console.log('click left button', e);
+  const sliderSelectedKey = (e) => {
+    let workSpaces = {
+      1: "/home",
+      2: '/main',
+      3: '/my_work',
+      4: '/notes',
+      5: '/stand_up',
+      6: '/'
+    }
+    for (const [key, value] of Object.entries(workSpaces)){
+      if(location.pathname === value){
+        return key
+      }
+    }
   }
-  
-  handleMenuClick(e) {
-    message.info('Click on menu item.');
-    console.log('click', e);
-  }
-
-
-    render() {
-        const { collapsed } = this.state;
-        console.log("this.state", this.state)
+        
         return (
-          <Layout style={{ minHeight: '100vh', minWidth: '350px', position: 'fixed' }}>
-            <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+          <div className="sidePanel">
+          <Layout style={{ minHeight: '100vh', minWidth: '300px', position: 'fixed', top: '0px' }}>
+            {/* <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}> */}
+            <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}>
               <div className="logo" />
-              <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                <Menu.Item key="1" icon={<AppstoreOutlined />}>
+              {/* defaultSelectedKeys={['1']} */}
+              <Menu theme="dark" defaultSelectedKeys={(e) => sliderSelectedKey(e)} mode="inline" onClick={(e) => console.log(e)}>
+                  <Menu.Item key="1" icon={<BankOutlined />} >
+                      <Link to="/home">
+                          Home
+                      </Link>
+                  </Menu.Item>
+                <Menu.Item key="2" icon={<AppstoreOutlined />}>
                     <Link to="/main">
                         Main WorkSpace
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<UnorderedListOutlined />}>
+                <Menu.Item key="3" icon={<UnorderedListOutlined />}>
                     <Link to="/my_work">
                         My Sprints
                     </Link>
                 </Menu.Item>
-                {/* <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                  <Menu.Item key="3">Tom</Menu.Item>
-                  <Menu.Item key="4">Bill</Menu.Item>
-                  <Menu.Item key="5">Alex</Menu.Item>
-                </SubMenu>
-                <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                  <Menu.Item key="6">Team 1</Menu.Item>
-                  <Menu.Item key="8">Team 2</Menu.Item>
-                </SubMenu> */}
-                <Menu.Item key="9" icon={<FormOutlined />}>
+                <Menu.Item key="4" icon={<FormOutlined />}>
                 <Link to="/notes">
                   Notes
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="10" icon={<MessageOutlined />}>
+                <Menu.Item key="5" icon={<MessageOutlined />}>
                 <Link to="/stand_up">
                         Stand Up
                 </Link>
                 </Menu.Item>
+                <Menu.Item key="6" icon={<AppstoreOutlined />}>
+                    <Link to="/">
+                        Landing Page
+                    </Link>
+                </Menu.Item>
               </Menu>
             </Sider>
+            {collapsed ? 
             <Layout className="site-layout">
               <Header className="site-layout-background" style={{ padding: 0 }} />
               <Content style={{ margin: '0 16px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                  <Breadcrumb.Item>User</Breadcrumb.Item>
-                  <Breadcrumb.Item>{auth ? auth.name : null}</Breadcrumb.Item>
-                </Breadcrumb>
+
+              {collapsed ?   
+                <Link to="/" className="sideNavLogo">
+                  <img src={logo} className="App-logo title-logo" alt="logo" />
+                  <h3 >TaskSprinter</h3>
+                </Link> : <></>
+              }
+                <Divider />
                 
-                <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                  <div style={{ maxWidth: 150 }}>
-                      <SidePanelTabs />
-                    </div>
+                {collapsed ? 
+                <div className="site-layout-background" style={{ padding: 5, minHeight: 360 }}>
+                    <div style={{ maxWidth: 150 }}>
+                        <SidePanelTabs /> 
+                      </div>
                 </div>
-                {/* <div style={{ maxWidth: 150 }}>
-                    <SidePanelTabs />
-                  </div> */}
+                :
+                <></> 
+                }
               </Content>
-              {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
             </Layout>
+              : <></>
+            }
           </Layout>
+          </div>
         );
-      }
+      // }
 }
     

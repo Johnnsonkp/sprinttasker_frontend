@@ -5,5 +5,6 @@ import About from "./About";
 import Mywork from "./Mywork";
 import Standup from "./Standup";
 import Main from "./Main";
+import Home from "./Home";
 
-export { Landing, Auth, Developer, About, Mywork, Standup, Main };
+export { Landing, Auth, Developer, About, Mywork, Standup, Main, Home };

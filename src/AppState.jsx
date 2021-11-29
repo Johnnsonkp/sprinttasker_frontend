@@ -13,7 +13,8 @@ const initialState = {
     email: null,
     usertasks: [],
     alltasks: null,
-    user_id: 0
+    user_id: 0,
+    work_mode: false
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -36,6 +37,10 @@ const reducer = (state, action) => {
             break;
         case "getTasks":
             newState = {...state, alltasks: action.payload}
+            return newState;
+            break;
+        case "workMode":
+            newState = {...state, work_mode: action.payload}
             return newState;
             break;
          default: 

@@ -2,7 +2,6 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { useParams, useNavigate, useHistory } from "react-router-dom";
 import { useAppState } from "../AppState";
-import Task from "../components/TaskItem";
 import Wave from "../utilities/wave";
 
 const Auth = (props) => {

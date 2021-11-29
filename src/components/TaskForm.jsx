@@ -36,9 +36,8 @@ const TaskForm = ({onFormSubmit}) => {
                             <Input placeholder="What needs to be done?" />
                         </Form.Item>
                         <Form.Item
-                            description={'description'}>
-                            <Input value="Task Description" />
-                            <TextArea rows={4} />
+                            name={'description'}>
+                            <TextArea placeholder="Task Description" />
                         </Form.Item>
                     </Col>
                     <Col xs={24} s={24} md={7} lg={5} xl={4}>

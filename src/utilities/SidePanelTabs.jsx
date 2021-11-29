@@ -1,27 +1,11 @@
 import React from "react";
-import { Tabs, Radio } from 'antd';
-import {Link, useNavigate} from "react-router-dom";
-// const { TabPane } = Tabs;
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-    DownOutlined,
-    DatabaseOutlined
-  } from '@ant-design/icons';
-  import { Layout, Menu, Breadcrumb, Dropdown, Button, message, Space, Tooltip, Empty } from 'antd';
-//   import './sidepanel.css'
+import {Link} from "react-router-dom";
+import {DatabaseOutlined} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
 
 
 export default function SidePanelTabs(){
     const { Sider } = Layout;
-    const mode = "left"
-
-
-    let iboard = "/main"
-    const Nav = useNavigate()
     return (
         <div className="sidePanelTab">
           <Sider style={{ maxWidth: 180, marginTop: "20px" }}>

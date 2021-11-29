@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Wave from "../utilities/wave";
 import reactLogo from "../reactLogo.svg";
 import railsLogo from "../rails.svg";
+import slackLogo from "../slack.svg";
+import everNote from "../evernote.svg";
+import docs from "../docs.svg";
 import "../App.css";
 
 export default function Landing() {
@@ -92,14 +95,15 @@ export default function Landing() {
               <h1 style={styles.appNamelg}>Remain On Task</h1>
             </div>
             <div className="text">
+              <p style={styles.appText}>
+                All your favourite features from your favourite project
+                management tools combined into one. SprintTasker is the project
+                management tool of now.
+              </p>
               {/* <p style={styles.appText}>
                 SingleStore is The Database of Now TM. Built for data-intensive
                 applications that runs anywhere from bare metal to hybrid cloud.
               </p> */}
-              <p style={styles.appText}>
-                SingleStore is The Database of Now TM. Built for data-intensive
-                applications that runs anywhere from bare metal to hybrid cloud.
-              </p>
             </div>
 
             <div
@@ -133,11 +137,11 @@ export default function Landing() {
           </div>
         </div>
         <div className="right">
-          <div className="content-inner">
-            {/* <img className="bannerLogo" src={reactLogo} />
-            <img className="bannerLogo" src={railsLogo} />
-            <img className="bannerLogo" src={railsLogo} />
-            <img className="bannerLogo" src={reactLogo} /> */}
+          <div className="content-inner"></div>
+          <div className="logo-container">
+            <img className="bannerLogo" src={slackLogo} />
+            <img className="bannerLogo" src={everNote} />
+            <img className="bannerLogo" src={docs} />
           </div>
         </div>
       </div>

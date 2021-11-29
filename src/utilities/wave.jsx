@@ -1,9 +1,5 @@
 import React from "react";
-import Background from "../landing-background.svg";
-import Background2 from "../wave2.svg";
-import { Link, useNavigate } from "react-router-dom";
 import Rainbow from "../rainbow.png";
-import { useAppState } from "../AppState";
 import "../App.css";
 import './wave.css'
 
@@ -15,8 +11,6 @@ export default function Wave() {
           backgroundPosition: "bottom 10% right,top 25% left",
           backgroundColor: "transparent",
           backgroundSize: '20%',
-          // backgroundRepeat: 'no-repeat',
-          
         },
         box: {
           bottom: 0,
