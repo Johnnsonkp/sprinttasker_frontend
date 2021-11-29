@@ -7,6 +7,7 @@ import { useAppState } from "../AppState";
 import { postTask } from "../services/taskService";
 import Loading from "./Loading";
 import StandUpComp from "../components/Standupcomponent";
+import Pomodoro from "../components/Pomodoro";
 
 export default function Main(props) {
   const [refreshing, setRefreshing] = useState();
@@ -42,12 +43,8 @@ export default function Main(props) {
             className="rest-title workspace-textfield"
           ></textarea>
 
-          <Button className="add-task-btn-main.js" type="primary">
-            {" "}
-            Add Task
-          </Button>
-          <div style={{ width: "50%", display: "none" }}>
-            <TaskForm onFormSubmit={handleFormSubmit} />
+          <div style={{ width: "50%" }}>
+            <Pomodoro />
           </div>
         </div>
         {/* <div style={{ marginLeft: "22%", marginRight: "1%" }}> */}
