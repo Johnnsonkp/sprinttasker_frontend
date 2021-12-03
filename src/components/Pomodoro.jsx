@@ -2,16 +2,18 @@ import React, {useEffect, useState} from "react";
 import { useAppState } from "../AppState";
 import { Collapse } from 'antd';
 
-export default function Pomodoro() {
+export default function Pomodoro(props) {
   const [minutes, setMinutes] = useState(24)
   const [seconds, setSeconds] = useState(59)
   const [displayMessage, setdisplayMessage] = useState(false)
+  const [toggle, setToggle] = useState(false)
   const {state} = useAppState()
   const [stopTimer, setStopTimer] = useState(true)
   const { Panel } = Collapse;
 
   function callback(key) {
     console.log(key);
+    setToggle(!toggle)
   }
 
   useEffect(() => {
@@ -54,47 +56,74 @@ export default function Pomodoro() {
   const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
   const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
   const timer = `${timerMinutes} : ${timerSeconds}`
-  return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid red', width: '70%', marginLeft: '110px'}} className="pomodoro">
-      <h3 style={{margin: '0px', paddingLeft: '10px',color: state.work_mode ? "red" : "green"}}>{state.work_mode ? "Workmode" : "RestMode"} </h3> 
-      <Collapse 
-        onChange={callback}
-        style={{width: "60%"}}
-      > 
-        <Panel header={timer} key="1">
-          <div className="timer" 
-            style={{color: "#111", marginRight: '5px', boxSizing: 'borderBox', fontSize: '42px', fontWeight: '700', lineHeight: '1', position: 'relative'}} 
-            >
-            {timer}
-          </div>
-          <Collapse 
-            defaultActiveKey="1">
-            <Panel header="This is panel nest panel" key="1">
-            <div className="message">
-              {displayMessage && <div>Break time! New session starts in:</div>}
-            </div>
-            </Panel>
-          </Collapse>
-        </Panel>
-      </Collapse> 
 
-      {/* <div className="message">
-        {displayMessage && <div>Break time! New session starts in:</div>}
+  useEffect(() => {
+    // setToggle(!toggle)
+    console.log("toggle", toggle)
+  }, [callback])
+
+  console.log(toggle)
+
+  return (
+    <>
+    { !props.timer ?
+      <div 
+        style={{
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          border: '1px solid #323439', 
+          width: '60%', 
+          width: '300px',
+          marginLeft: '110px', 
+          position: "relative", 
+          top: "0px", 
+          zIndex: '10',
+          backgroundColor: state.work_mode ? "red" : "green",
+          maxHeight: '50px'
+        }} 
+        className="pomodoro">
+          <h3 style={{margin: '0px', paddingLeft: '10px', color: '#fff'}}>
+            {state.work_mode ? "Work Mode" : "Rest Mode"} 
+          </h3> 
+        <Collapse 
+          onChange={callback}
+          style={{ 
+            position: 'relative',
+            top: toggle? '28px' : '0px',
+            minWidth: "60%",
+            color: '#fff',
+            border: toggle? '1px solid red' : '1px solid green'
+          }}
+        > 
+          <Panel className="timer" header={timer} key="1" style={{background: '#323439', color: '#fff'}}>
+            <div className="timer" 
+              style={{color: "#fff", marginRight: '5px', boxSizing: 'borderBox', fontSize: '20px', fontWeight: '700', lineHeight: '1', position: 'relative', background: '#323439', border: '1px solid #323439', borderRadius: '8px'}} 
+              >
+              {timer}
+              <div>
+                {
+                  state.selectedTask ? <p style={{fontSize: '10px'}}>{state.selectedTask}</p> : null
+                }
+              </div>
+            </div>
+            {/* <Collapse 
+              defaultActiveKey="1">
+              <Panel header="" key="1">
+              <div className="message">
+                {displayMessage && <div>Break time! New session starts in:</div>}
+              </div>
+              </Panel>
+            </Collapse> */}
+          </Panel>
+        </Collapse> 
       </div>
-        <div className="timer">
-          {timerMinutes}:{timerSeconds}
-        </div> */}
-    </div>
-    
+      : <div>{timer}</div>
+    } 
+    </>
   )
 }
 
-{/* <Collapse onChange={callback}>
-  <Panel header="This is panel header 1" key="1">
-    <Collapse defaultActiveKey="1">
-      <Panel header="This is panel nest panel" key="1">
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
-  </Panel>
-</Collapse> */}
+
+
+

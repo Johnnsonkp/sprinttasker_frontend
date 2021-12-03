@@ -2,7 +2,7 @@ import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import '../App.css';
 import logo from "../logo.svg";
-import { Menu, Dropdown, message, Button, Breadcrumb } from 'antd';
+import { Menu, Dropdown, message, Breadcrumb } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import {useAppState} from '../AppState'
 import Wave from "../utilities/wave";
@@ -91,8 +91,9 @@ export default function Nav(props) {
         <>
           {!state.token ? <> <Link style={styles.menuDark} to="/auth/login">Log In</Link> </> : 
             <>
-              <div style={styles.menuDark} to="/" onClick={() => {
+              <div style={styles.menuDark} onClick={(e) => {
                 dispatch({type: "logout"})
+                alert(e.target.innerText)
                 navigate("/")
               }}>Log Out</div>
             </>
@@ -103,22 +104,21 @@ export default function Nav(props) {
     const BreadCrumb = () => {
       return (
         <div className="BreadCrumb" 
-            style={{maxHeight: '25px', width: '100%', display: 'absolute', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff'}} 
+            style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden'}} 
             >
          
          {
-           !workMode ? 
-           <div>
-            <Breadcrumb separator=">">
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item href="">Application Center</Breadcrumb.Item>
-              <Breadcrumb.Item href="">Application List</Breadcrumb.Item>
-              <Breadcrumb.Item style={{color: '#fff'}}>Hi, {state.name}</Breadcrumb.Item>
-            </Breadcrumb>
-          </div> : 
-          <div className="BreadCrumb-wave">
+           workMode ? 
+           <div className="BreadCrumb-wave" style={{overflow: 'hidden'}}>
             <Wave />
-          </div>
+          </div> 
+            :
+           <div style={{position: 'sticky'}}>
+            <Breadcrumb separator=">">
+              <Breadcrumb.Item style={{color: '#fff', marginRight: '36px'}}>Hi, {state.name}</Breadcrumb.Item>
+            </Breadcrumb>
+          </div> 
+          
          }
         </div>
       );
@@ -127,9 +127,7 @@ export default function Nav(props) {
     return (
       <>
       {location.pathname === "/" ? <></> :<BreadCrumb />}
-      {/* location.pathname === "/my_work" || location.pathname === "/main" || location.pathname === "/notes" || location.pathname === "/home" ? <></>  */}
-      {
-       location.pathname === "/" ?  
+      {location.pathname === "/" || location.pathname === "/about" || location.pathname  === "/developer"?  
       <header style={styles.header}>
         <div className="header-container">
           <div className="TitleBox">

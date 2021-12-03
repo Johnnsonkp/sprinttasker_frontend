@@ -1,7 +1,5 @@
 import React from "react";
-
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, message, Space } from 'antd';
 
 const Descriptions = (props) => {
 
@@ -11,30 +9,29 @@ const Descriptions = (props) => {
     }
 
     function handleMenuClick(e) {
-    message.info('Click on menu item.');
-    console.log('click', e);
+        message.info('Click on menu item.');
+        console.log('click', e);
     }
     const customMenuItem = {
         textarea: {
             minWidth: "350px",
             minHeight: "250px",
         }
-        
     }
 
     const menu = (
-    <Menu onClick={handleMenuClick}>
-        <Menu.Item style={customMenuItem.textarea} size="large" key="1" >
-        {props.description}
-        </Menu.Item>
-    </Menu>
+        <Menu onClick={handleMenuClick}>
+            <Menu.Item style={customMenuItem.textarea} size="large" key="1" >
+                {props.description}
+            </Menu.Item>
+        </Menu>
     );
 
     return (
         <>
         <Space wrap>
             <Dropdown.Button onClick={handleButtonClick} overlay={menu} arrow="true" size="large">
-            Description
+                Description
             </Dropdown.Button>
         </Space>
         </>

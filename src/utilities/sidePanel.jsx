@@ -9,17 +9,19 @@ import {
   MessageOutlined,
   UnorderedListOutlined,
   BankOutlined,
+  PoweroffOutlined
   
 } from '@ant-design/icons';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import SidePanelTabs from "./SidePanelTabs";
 import logo from "../logo.svg";
 import { useLocation } from "react-router";
 
 
-
-export function SidePanel() {
-  const { Header, Content, Sider } = Layout;
+export function SidePanel({notes}) {
+  const {dispatch, state} = useAppState()
+  const navigate = useNavigate();
+  const { Header, Content, Sider, Footer } = Layout;
   const location = useLocation();
 // export class SidePanel extends React.Component {
   const [collapsed, setCollapsed] = useState(true)
@@ -45,8 +47,7 @@ export function SidePanel() {
         
         return (
           <div className="sidePanel">
-          <Layout style={{ minHeight: '100vh', minWidth: '300px', position: 'fixed', top: '0px' }}>
-            {/* <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}> */}
+          <Layout style={{ minHeight: '100vh', minWidth: '300px', position: 'fixed', top: '0px', zIndex: '1' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}>
               <div className="logo" />
               {/* defaultSelectedKeys={['1']} */}
@@ -95,21 +96,44 @@ export function SidePanel() {
                 </Link> : <></>
               }
                 <Divider />
-                
                 {collapsed ? 
                 <div className="site-layout-background" style={{ padding: 5, minHeight: 360 }}>
                     <div style={{ maxWidth: 150 }}>
-                        <SidePanelTabs /> 
+                        <SidePanelTabs notes={notes}/> 
                       </div>
                 </div>
                 :
                 <></> 
                 }
-              </Content>
+
+                <Footer style={{backgroundColor: '#323439', position: "relative", top: '120px', left: '0px', padding: '0px', width: '55%'}}>
+                  <div 
+                    style={{
+                      display: 'flex', 
+                      justifyContent: 'space-around', 
+                      alignItems: 'center',
+                      color: '#fff',
+                      width: '90%',
+                      fontSize: '16px', 
+                      cursor: 'pointer',
+                      
+                  
+                    }}
+                    onClick={() => {
+                    dispatch({type: "logout"})
+                    navigate("/")
+                  }}><PoweroffOutlined /><span>Log Out</span>
+                  </div>
+                  {/* <div style={{marginTop: '10px'}}>
+                    <h3 style={{color: '#fff'}}>{state.email}</h3>
+                  </div> */}
+                </Footer>
+              </Content> 
             </Layout>
               : <></>
             }
           </Layout>
+          
           </div>
         );
       // }

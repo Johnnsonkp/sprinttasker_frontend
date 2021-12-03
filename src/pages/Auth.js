@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { useParams, useNavigate, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAppState } from "../AppState";
 import Wave from "../utilities/wave";
 
@@ -31,7 +31,8 @@ const Auth = (props) => {
           email: user.email,
         },
       });
-      console.log("user.task_id", user.task_id);
+      console.log("userData", userData);
+      console.log("userData id", userData.user.id);
       window.localStorage.setItem(
         "auth",
         JSON.stringify({
@@ -70,12 +71,14 @@ const Auth = (props) => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  async function handleSubmit(event) {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    let result = await actions[type]().then((data) => {
+    actions[type]().then((data) => {
       setUserData(data);
     });
-  }
+  };
+
   return (
     <div className="auth-container">
       <div className="banner">

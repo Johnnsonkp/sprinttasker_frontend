@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from "react"; 
+import React, {useReducer} from "react"; 
 
 ////////////////////////////////////////////////////////////////////
 // INITIAL STATE //
@@ -14,7 +14,20 @@ const initialState = {
     usertasks: [],
     alltasks: null,
     user_id: 0,
-    work_mode: false
+    work_mode: false,
+    notes: [],
+    selectedTask: '',
+    selectedNote: [],
+    subtask: '',
+    new: {
+        title: "",
+        body: ""
+    },
+    edit: {
+        id: 0,
+        title: "",
+        body: ""
+    }
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -41,6 +54,21 @@ const reducer = (state, action) => {
             break;
         case "workMode":
             newState = {...state, work_mode: action.payload}
+            return newState;
+            break;
+        case "getNotes":
+            console.log("payload", action.payload)
+            newState = {...state, notes: action.payload}
+            return newState;
+            break;
+        case "selectTask":
+            console.log("payload", action.payload)
+            newState = {...state, selectedTask: action.payload}
+            return newState;
+            break;
+        case "selectedNote":
+            console.log("payload", action.payload)
+            newState = {...state, selectedNote: action.payload}
             return newState;
             break;
          default: 

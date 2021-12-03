@@ -54,7 +54,7 @@ export default function Main(props) {
             marginRight: "1%",
             background: "#f0f2f5",
           }}
-          bordered={false}
+          // bordered={false}
           defaultActiveKey={["1"]}
           expandIcon={({ isActive }) => (
             <CaretRightOutlined rotate={isActive ? 90 : 0} />
@@ -74,5 +74,5 @@ export default function Main(props) {
       </div>
     );
   };
-  return loaded() ? loaded() : <Loading />;
+  return <TaskList /> ? loaded() : <Loading />;
 }

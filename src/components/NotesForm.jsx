@@ -1,20 +1,20 @@
-import React from 'react'
-import {Form, Row, Button, Input, Col} from 'antd'; 
+import React, {useState} from 'react'
+import {Form, Row, Column, Button, Input, Col} from 'antd'; 
 import {PlusCircleFilled} from '@ant-design/icons'
+import { render } from '@testing-library/react';
+import { Descriptions, } from 'antd';
 const { TextArea } = Input;
 
-const TaskForm = ({onFormSubmit}) => {
+const NotesForm = ({onFormSubmit}) => {
     const [form] = Form.useForm(); // use form hook
 
     const onFinish = () => {
         onFormSubmit({
-            name: form.getFieldValue('name'),
-            description: form.getFieldValue('description'),
-            subtask: form.getFieldValue('subtask'),
-            completed: false 
+            title: form.getFieldValue('title'),
+            body: form.getFieldValue('body'),
         });
-        console.log(form.getFieldValue('name'));
-        console.log(form.getFieldValue('description'));
+        console.log(form.getFieldValue('title'));
+        console.log(form.getFieldValue('body'));
 
         form.resetFields();
     }
@@ -24,33 +24,24 @@ const TaskForm = ({onFormSubmit}) => {
             <Form 
                 form={form} 
                 onFinish={onFinish} 
-                layout="horizontal" 
+                layout="vertical" 
                 className="task-form hideForm">
                 <Row gutter={20}>
                     <Col xs={24} s={24} md={17} lg={19} xl={20}>
                         <Form.Item
-                            name={'name'}
-                            rules={[{ required: true, message: "This field is required"}]}>
+                            name={'title'}
+                            rules={[{ required: true, message: "Notes must have a title"}]}>
                             <Input placeholder="What needs to be done?" />
                         </Form.Item>
                         <Form.Item
-                            name={'description'}>
+                            name={'body'}>
                             <TextArea placeholder="Task Description" />
-                        </Form.Item>
-                
-                    </Col>
-                    <Col xs={24} s={24} md={17} lg={19} xl={8}>
-                        {/* <label>Add a Subtask</label> */}
-                        <Form.Item
-                            name={'subtask'}
-                        >
-                            <Input placeholder="Add a Subtask" />
                         </Form.Item>
                     </Col>
                     <Col xs={24} s={24} md={7} lg={5} xl={4}>
                         <Button type="primary" htmlType="submit" block>
                         <PlusCircleFilled />
-                            Add Task
+                            Submit
                         </Button>
                     </Col>
                 </Row>
@@ -59,6 +50,4 @@ const TaskForm = ({onFormSubmit}) => {
     )
 }
 
-export default TaskForm
-
-
+export default NotesForm

@@ -6,6 +6,8 @@ import railsLogo from "../rails.svg";
 import slackLogo from "../slack.svg";
 import everNote from "../evernote.svg";
 import docs from "../docs.svg";
+import notion from "../notion-logo-1.svg";
+import monday from "../monday-icon.svg";
 import "../App.css";
 
 export default function Landing() {
@@ -18,6 +20,13 @@ export default function Landing() {
       fontWeight: "bolder",
       textAlign: "center",
       width: "100px",
+    },
+    menuLight: {
+      color: "#fff",
+      fontWeight: "bolder",
+      textAlign: "center",
+      width: "100px",
+      color: "#111",
     },
     signUp: {
       cursor: "pointer",
@@ -34,16 +43,41 @@ export default function Landing() {
       fontWeight: "700",
       padding: "0.6em 0.7em",
       whiteSpace: "nowrap",
-      background: "none",
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      // background: "none",
+      // backgroundColor: "rgba(255, 255, 255, 0.1)",
+      backgroundColor: "transparent",
       textAlign: "center",
       width: "180px",
       marginTop: "55px",
+      borderRadius: "8px",
+    },
+    demoBtn: {
+      backgroundColor: "#2CEEF0",
+      ursor: "pointer",
+      textDecoration: "none",
+      lineHeight: "normal",
+      transition: "all 0.15s ease-in-out 0s",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "2px solid #2CEEF0",
+      borderRadius: "4px",
+      color: "rgb(255, 255, 255)",
+      color: "#111",
+      display: "flex",
+      fontSize: "16px",
+      fontWeight: "700",
+      padding: "0.6em 0.7em",
+      whiteSpace: "nowrap",
+      textAlign: "center",
+      width: "180px",
+      marginTop: "55px",
+      borderRadius: "8px",
     },
     appName: {
       fontWeight: "bold",
       boxSizing: "inherit",
       color: "rgb(255, 0, 255)",
+      color: "#2CEEF0",
       fontFamily: "Lato, sans-serif",
       fontWeight: "700",
       margin: "0px",
@@ -111,9 +145,10 @@ export default function Landing() {
                 display: "flex",
                 justifyContent: "space-between",
                 width: "370px",
+                width: "390px",
               }}
             >
-              <div style={styles.signUp}>
+              <div className="ctaBtn" style={styles.signUp}>
                 {auth ? (
                   <Link
                     className="bannerCta"
@@ -123,13 +158,17 @@ export default function Landing() {
                     Back to Work
                   </Link>
                 ) : (
-                  <Link style={styles.menuDark} to="/auth/signup">
+                  <Link
+                    className="bannerCta"
+                    style={styles.menuDark}
+                    to="/auth/signup"
+                  >
                     Get Started
                   </Link>
                 )}
               </div>
-              <div style={styles.signUp}>
-                <Link style={styles.menuDark} to="/auth/signup">
+              <div className="demoBtn" style={styles.demoBtn}>
+                <Link style={styles.menuLight} to="/auth/signup">
                   Demo Mode
                 </Link>
               </div>
@@ -140,8 +179,8 @@ export default function Landing() {
           <div className="content-inner"></div>
           <div className="logo-container">
             <img className="bannerLogo" src={slackLogo} />
-            <img className="bannerLogo" src={everNote} />
-            <img className="bannerLogo" src={docs} />
+            <img className="bannerLogo" src={notion} />
+            <img className="bannerLogo" src={monday} />
           </div>
         </div>
       </div>

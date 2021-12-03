@@ -41,48 +41,16 @@ li.ant-list-item.list-item:hover{
   width: 100%;
 }
 .task-wrap{
-    /* border-left: 3px solid #fff;
-    border-right: 3px solid #fff; */
     width: 40%;
     text-align: left;
     margin-right: 20px;
     width: 380px;
-    /* width: 353px; */
-    /* border-right: 1px solid red; */
-    /* height: 100%; */
-    /* border: 1px solid red; */
-    /* display: flex;
-    align-items: flex-start;
-    justify-content: flex-start; */
-}
-.btn-wrap{
-    /* border-left: 3px solid #fff;
-    border-right: 3px solid #fff; */
-}
-.subitem-wrap{
-    /* border-left: 3px solid #fff;
-    border-right: 3px solid #fff; */
 }
 .ant-col-14 {
     width: 100vw;
     max-width: 1400px;
     flex: 1;
 }
-/* .textarea {
-    min-height: 50px;
- }
- 
-.textarea textarea {
-    position: absolute;
-    min-height: 30px;
-    width: 400px;
-    transition: all 200ms;
-}
- 
-.textarea textarea:focus {
-    z-index: 1001;
-    min-height:250px;
- } */
  .ant-list-split .ant-list-item {
     border-bottom: none;
 }
@@ -102,10 +70,7 @@ li.ant-list-item.list-item:hover{
 }
 
 
-/* // Pop up description */
-/* .popup {
-    display: inline-block;
-} */
+
 .popup .popuptext {
     visibility: hidden;
     width: 50px;
@@ -115,8 +80,6 @@ li.ant-list-item.list-item:hover{
     border-radius: 6px;
     padding: 20px;
     position:relative;
-    /* top:0px;
-    right:0; */
 }
 .popup .show {
     visibility: visible;
@@ -136,4 +99,10 @@ li.ant-list-item.list-item:hover{
     background-color: blue;
     position: relative;
     right: -650px;
+}
+.layout .ant-col-14{
+    max-width: 1020px;
+}
+.layout .ant-col-offset-5 {
+    margin-left: 18.83333333%;
 }

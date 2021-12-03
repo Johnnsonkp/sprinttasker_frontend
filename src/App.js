@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Nav from "./components/Nav";
 import { useAppState } from "./AppState";
@@ -15,17 +15,14 @@ import {
   Main,
   Home,
 } from "./pages";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { SingleNote } from "./components/SingleNote";
 
 export const App = (props) => {
   const { state, dispatch } = useAppState();
   const navigate = useNavigate();
   const auth = JSON.parse(window.localStorage.getItem("auth"));
+  const notes = state.notes;
 
   const checkIfAuth = () => {
     if (auth) {
@@ -36,7 +33,7 @@ export const App = (props) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     checkIfAuth();
   }, []);
 
@@ -48,7 +45,17 @@ export const App = (props) => {
       <div className="App">
         <Nav />
         <div className="content">
-          {auth && location.pathname != "/" ? <SidePanel /> : <></>}
+          {auth &&
+          location.pathname !== "/" &&
+          location.pathname !== "/notes" &&
+          location.pathname !== "/single-note" ? (
+            <SidePanel />
+          ) : location.pathname === "/notes" ||
+            location.pathname === "/single-note" ? (
+            <SidePanel notes={notes} />
+          ) : (
+            <></>
+          )}
           <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/main" element={<Main />} />
@@ -57,8 +64,9 @@ export const App = (props) => {
             <Route path="/about" element={<About />} />
             <Route path="/my_work" element={<Mywork />} />
             <Route path="/stand_up" element={<Standup />} />
-            <Route path="/notes" element={<Notes />} />
+            <Route path="/notes/" element={<Notes />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/single-note" element={<SingleNote />} />
           </Routes>
         </div>
       </div>

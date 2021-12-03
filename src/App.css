@@ -58,10 +58,6 @@
       filter: invert(72%) sepia(51%) saturate(6847%) hue-rotate(321deg) brightness(100%) contrast(80%);
     }
   }
-  /* .content{
-    margin-top: 60px;
-  } */
-
   /* Nav */
   .TitleBox{
     box-sizing: border-box;
@@ -79,6 +75,7 @@
     padding: 0px 3px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 6px 12px 0px;
     border: 1px solid green;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   .TitleBox h3{
     /* border: 1px solid red; */
@@ -96,9 +93,6 @@
     background: #002140;
     height: 80px; 
     background: #1b1a21;
-    /* border-bottom: 10px solid red; */
-    /* color: #111; */
-    /* color: #fff !important; */
   }
   .header-container{
     display: flex;
@@ -124,8 +118,6 @@
 }
   .drop-down{
     box-sizing: border-box;
-    /* margin-top: 20px;
-    margin-bottom: 20px; */
     margin-right: 25px;
     display: flex;
     justify-content: center;
@@ -175,25 +167,20 @@
     padding-right: 15px;
   }
 
-/* .BreadCrumb .BreadCrumb-wave .rainbow-wrap{
-  height: 8%;
-  position: fixed;
-  z-index: 10;
-} */
 .BreadCrumb .BreadCrumb-wave{
   height: 23px;
 }
 .BreadCrumb .BreadCrumb-wave .wave.-two{
   position: fixed;
-  top: -680px;
-  z-index: 1;
+  top: -685px;
+  width: 6400px;
 }
 
 /* Auth form */
 .auth-container .banner{
   position: absolute;
   top: 0px;
-  height: 230px;
+  height: 130px;
   width: 100%;
   background: #1b1a21;
 }
@@ -244,6 +231,23 @@
 .landing-background{
   background-image: url("/src/landing-background.svg"),url("/src/wave2.svg");
   background-position: bottom 10% right,top 25% left;
+
+  /* background-image: url("/src/wave-small.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 50px; */
+}
+.bannerLogo{
+  border: 1px solid red;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px;
+  border-radius: 8px;
+}
+.logo-container{
+  /* border: 1px solid red; */
+  height: 60px;
+  display: flex;
+  align-items: center;
 }
 .hero .bg-wave {
   height: 100%;
@@ -261,7 +265,8 @@
   display: flex;
   font-family: Lato,sans-serif;
   justify-content: center;
-  margin-top: -80px;
+  /* margin-top: -80px; */
+  margin-top: -30px;
   overflow: hidden;
   padding: 0 40px;
   position: relative;
@@ -271,6 +276,8 @@
   max-height: 700px;
   /* margin-bottom:100px;
   border:1px solid red; */
+  /* border-bottom:3px solid rgb(134, 131, 131);
+  border-radius: 18px; */
 }
 
 .hero .content{
@@ -279,10 +286,18 @@
   align-items: center;
   width: 90%;
   /* height: 90%; */
-  margin-top: 80px;
+  margin-top: 90px;
+  margin-top: 15px;
   /* border:5px solid red; */
   z-index: 2;
   max-width: 1250px;
+}
+.ctaBtn, .demoBtn{
+  transition: ease-in-out 5s all;
+}
+.ctaBtn:hover, .demoBtn:hover{
+  transform: scaleX(1.1);
+  /* transition: all ease-in-out 5s; */
 }
 .left h1, .right h1{
   color: #fff;
@@ -319,16 +334,6 @@
   color: #111;
   font-size: 20px;
   font-weight: bolder;
-  /* border: 1px solid red; */
-  /* display: flex;
-  align-items: center;
-  justify-content: flex-start; */
-  /* width: 100%; */
-  /* position: relative; */
-  /* flex-direction: row;
-  width: 50%; */
-  /* margin: auto; */
-  /* margin-top: 50px; */
   padding-top: 15px;
   padding-bottom: 0px;
   margin-bottom: 0px;
@@ -355,13 +360,14 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
-  height: 250px;
+  height: 230px;
   width: 450px;
   z-index: 5;
   z-index: 9000;
   border: 1px solid #fff;
+  border: 3px solid #2CEEF0;
   border-radius: 20px;
-  
+  margin-bottom: 20px;
 }
 .bannerLogo{
   width: 50px;
@@ -381,19 +387,10 @@
   position: absolute;
   top: 0px;
 }
-/* .hideForm{
-  display: none;
-} */
+
 .bannerCta{
   text-align: center;
 }
-/* .loading{
-  background-color: #fff !important;
-}
-.loading .App-header{
-  background-color: #fff !important;
-} */
-
 [data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
 .site-collapse-custom-collapse .site-collapse-custom-panel {
   margin-bottom: 24px;
@@ -435,6 +432,15 @@
 #projects .inner{
   z-index: 0;
 }
+#homeContent:hover{
+  background-color: lightgrey;
+  background-blend-mode: darken;
+  z-index: 9000;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  transform: scale(1.02);
+}
+
 #calender .site-calendar-demo-card {
   width: 100%;
   height: 150px;
@@ -446,4 +452,122 @@
 }
 #announcements{
   flex: 0.6;
+}
+.
+
+
+/* // Pomodorro */
+.pomodoro .timer{
+  color: #fff !important;
+}
+.pomodoro .ant-collapse-header{
+  color: #fff !important;
+}
+.hideTimer{
+  display: none;
+}
+/* .ant-collapse.ant-collapse-icon-position-left {
+  margin-top: 55px;
+} */
+
+
+/* Notes  */
+
+.notes-container {
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 35px;
+}
+
+.notes-list{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.note.new{
+  background-color: #67d7cc;
+}
+.note.new textarea{
+  border: none;
+  resize: none;
+  background-color: #67d7cc;
+}
+.note.new textarea:focus{
+  outline: none;
+}
+.note.new TextArea:focus{
+  outline: none;
+}
+
+.note.new .save {
+  background: #e1e1e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+}
+.save:hover{
+  background-color: #ededed;
+  cursor: pointer;
+}
+.note {
+  background-color: #fef68a;
+  color: #111;
+  /* margin-bottom: 10px; */
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.note-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.singleNoteContainer{
+  margin-left: 20.83333333%;
+  margin-right: auto;
+  border: 1px solid red;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 50px;
+}
+.singleNoteContainer .singleNote{
+  background-color: #fef68a;
+  min-height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid red; */
+  display: none;
+  background-color: #282c34;
+  color: #111;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+}
+.singleNoteContainer .singleNote textarea{
+  text-align: center;
+  padding: 10px;
+  background-color: #282c34;
+  color: #fff;
+  border: none;
+  resize: none;
+}
+.singleNoteContainer .singleNote textarea:focus{
+  outline: none;
+}
+.singleNote .note-footer small{
+  color: #fff;
 }

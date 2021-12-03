@@ -1,31 +1,18 @@
 import React, {useState} from 'react';
-import {Tooltip, Tag, List, Button, Popconfirm, Switch, Input} from 'antd';
-import {CloseOutlined, CheckOutlined, CheckCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
+import {Tooltip, Tag, List, Button, Popconfirm} from 'antd';
+import {CheckOutlined, PlayCircleOutlined, PauseCircleOutlined} from '@ant-design/icons'
 import TaskSubitems from './TaskSubitems'
-import Descriptions from './Descriptions'
-import { Collapse, Space, Divider, Popover, Card } from 'antd';
+import { Divider, Card } from 'antd';
 import { useAppState } from '../AppState';
-const {TextArea} = Input;
+import Pomodoro from '../components/Pomodoro'
 
 
 const Task = ({task, onTaskRemoval, onTaskToggle}) => {
-    const { state, dispatch } = useAppState();
-    // const [toggle, setToggle] = React.useState(false)
-    const [toggle, setToggle] = React.useState(false)
-    const [display, setDisplay] = React.useState(false)
+    const {state, dispatch } = useAppState();
+    const [toggle, setToggle] = useState(true)
     const [showDesc, setShow] = React.useState(false)
+    const [hover, setHover] = useState(false);
     
-    const setToggleFunction = (e) => {
-        // e.preventDefault()
-        // setToggle(!toggle)
-        console.log("toggle", toggle)
-        // dispatch({ type: "workMode", payload: toggle})
-    }
-    const setDisplayFunction = (e) => {
-        setDisplay(!display)
-        console.log("display", display)
-        // dispatch({ type: "workMode", payload: toggle})
-    }
     const styles = {
         listRow: {
             width: '100%'
@@ -35,7 +22,6 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
             width: '100%'
         }
     }
-
     const displayDescription = (e) => {
         console.log(e.target)
         setShow(!showDesc)
@@ -44,21 +30,32 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    const timer = () => {
+        return (
+            <h1>Timer</h1>
+        )
+    }
+    const mouseOverCheck = (e) => {
+        document.querySelectorAll(".task-item").forEach((time) => {
+            time.addEventListener("mouseover", ()  => {
+                time.classList.toggle('hideTimer')
+            })
+        })
+    }
 
 
-    const menu1 = "testing menu"
+    const menu1 = task
     return (
+        
         <>
         <List.Item
             style={ task.completed? styles.completed : styles.listRow}
-            itemLayout="horizontal"
             actions={[
                 <Popconfirm
                     name={'Are you sure you want to delete?'}
                     onConfirm={() => {
                         onTaskRemoval(task);
                     }}>
-
                     <Button className="remove-task-button" type="primary" danger>
                         X
                     </Button>
@@ -67,13 +64,16 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
             className="list-item"
             key={task.id}
         >   
-            <div className="task-item">
+            <div className="task-item"
+                onMouseOver={() => hover? "" : setHover(true)}
+                // onMouseOut={() => setHover(false)}
+            >
                 <div className="btnToggle">
                     <Tooltip
                         name={task.completed ? 'Mark as uncompleted' : 'Mark as completed'}>
                         <Button type="secondary-btnToggle" shape="circle" icon={<CheckOutlined />} 
-                            checkedChildren={<CheckOutlined />}
-                            unCheckedChildren={<CloseOutlined />}
+                            // checkedChildren={<CheckOutlined />}
+                            // unCheckedChildren={<CloseOutlined />}
                             defaultChecked={task.completed}
                             onClick={() => onTaskToggle(task)}
                         />
@@ -86,20 +86,33 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                 </div>
                 <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
                 <div className="subitem-wrap">
-                    <TaskSubitems menu1={menu1}/>
+                    <TaskSubitems task={task}/>
                 </div> 
 
                 <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
                 <div className="btnwrap">
-                    <Button type="primary" shape="circle" 
+                    <Button type={toggle ? "primary" : "danger"} shape="circle" 
                         onClick={(e) => {
                             setToggle(!toggle)
+                            if(toggle === false){
+                                setHover(false)
+                            }
                             dispatch({ type: "workMode", payload: toggle})
+                            dispatch({ type: "selectTask", payload: capitalizeFirstLetter(task.name)})
                         }}
-                        icon={<PlayCircleOutlined />}/>
+                        icon={toggle ? <PlayCircleOutlined /> : <PauseCircleOutlined />}/> 
                 </div>
 
-                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}}       type="vertical" orientation="left" />
+                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
+
+                <div className="timerSlot">
+                    {
+                        state.work_mode &&  hover? <Pomodoro timer={timer}/> :
+                        "0:00"
+                    }
+                </div>
+
+                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
                         
             </div>
         </List.Item>
