@@ -72,7 +72,7 @@ const TaskList = () => {
         let loadedTasks = await refresh()
         console.log("loadedTasks", loadedTasks)
         setLoadTask(loadedTasks);
-        setActiveTasks(loadedTasks.filter(task => task.completed === false))
+        setActiveTasks(loadedTasks.filter(task => task.completed === true))
         setCompletedTasks(loadedTasks.filter(task => task.completed === true))
         console.log(tasks);
         setRefreshing(false);
