@@ -14,9 +14,9 @@ const { Content} = Layout;
 
 const TaskList = () => {
     const [refreshing, setRefreshing] = useState(false);
-    const [tasks, setLoadTask] = React.useState();
-    const [activeTasks, setActiveTasks] = useState([]);
-    const [completedTasks, setCompletedTasks] = useState([]);
+    const [tasks, setLoadTask] = React.useState([]);
+    const [activeTasks, setActiveTasks] = useState();
+    const [completedTasks, setCompletedTasks] = useState();
     const { state, dispatch } = useAppState();
 
     const createTask = (task) => {
@@ -24,7 +24,7 @@ const TaskList = () => {
     };
 
     const updateTask = (task) => {
-        return update(task).then(setRefreshing(!refreshing))
+        return update(task).then(onRefresh())
     };
       
     const deleteTask = (id) => {
@@ -33,22 +33,19 @@ const TaskList = () => {
 
     const handleFormSubmit = (task) => {
         console.log('task to create', task);
-        createTask(task).then(() => {
-            message.success('Task added!');
-            setRefreshing(!refreshing)
-        })
+        createTask(task).then(onRefresh())
+        message.success('Task added!');
     }
 
     const handleRemoveTask = (task) => {
-        deleteTask(task.id)
+        deleteTask(task.id).then(onRefresh())
         message.warn('Task removed');
-        setRefreshing(!refreshing)
+        // setRefreshing(true)
     }
 
     const handleToggleTaskStatus = (task) => {
         task.completed = !task.completed;
-        updateTask(task)
-        setRefreshing(!refreshing)
+        updateTask(task).then(onRefresh())
         message.info('Task status updated!');
     }
     
@@ -60,7 +57,7 @@ const TaskList = () => {
                 setLoadTask(parsedTask)
                 setActiveTasks(parsedTask.filter(task => task.completed === true))
                 setCompletedTasks(parsedTask.filter(task => task.completed === true))
-                setRefreshing(!refreshing)
+                // setRefreshing(!refreshing)
                 dispatch({ type: 'getTasks', payload: parsedTask})
             })
     };
@@ -69,26 +66,20 @@ const TaskList = () => {
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
         console.log("useCallback", "useCallback")
-        let loadedTasks = await refresh()
-        console.log("loadedTasks", loadedTasks)
-        setLoadTask(loadedTasks);
-        setActiveTasks(loadedTasks.filter(task => task.completed === true))
-        setCompletedTasks(loadedTasks.filter(task => task.completed === true))
+        let loadedTasks = await loadTasks()
+        const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
+        // console.log("loadedTasks", loadedTasks)
+        setLoadTask(parsedTask);
+        setActiveTasks(parsedTask.filter(task => task.completed === true))
+        setCompletedTasks(parsedTask.filter(task => task.completed === true))
         console.log(tasks);
         setRefreshing(false);
         console.log("Refreshing state", refreshing);
     }, [refreshing]);
 
-    // useEffect(() => {
-    //     console.log("useEffect()");
-    //     setRefreshing(true)
-    //     refresh();
-    // }, [onRefresh]);
-
     useEffect(() => {
         console.log("useEffect()");
-        setRefreshing(false)
-        refresh();
+        refresh()
     }, [onRefresh]);
 
     const loaded = () => {
