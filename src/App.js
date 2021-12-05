@@ -38,8 +38,6 @@ export const App = () => {
   }, []);
 
   const location = useLocation();
-  console.log(location.pathname);
-  // console.log("App.js State:", state);
   return (
     <>
       <div className="App">

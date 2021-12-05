@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Wave from "../utilities/wave";
-// import reactLogo from "../reactLogo.svg";
-// import railsLogo from "../rails.svg";
+import reactLogo from "../reactLogo.svg";
+import railsLogo from "../rails.svg";
 import slackLogo from "../slack.svg";
 import notion from "../notion-logo-1.svg";
 import monday from "../monday-icon.svg";
+import heroku from "../heroku-ar21.svg";
+import netlify from "../netlify-ar21.svg";
 import "../App.css";
 
 export default function Landing() {
@@ -104,71 +106,80 @@ export default function Landing() {
   };
   const auth = JSON.parse(window.localStorage.getItem("auth"));
   return (
-    <div className="hero" style={styles.landingPage}>
-      <div className="landing-background bg-wave"></div>
+    <>
+      <div className="hero" style={styles.landingPage}>
+        <div className="landing-background bg-wave"></div>
 
-      <div className="content">
-        <div className="left">
-          <h1 style={styles.appName} className="app-name">
-            TaskSprinter
-          </h1>
-          <div className="content-inner">
-            <div className="cta-text">
-              <h1 style={styles.appNamelg}>Stay Focused</h1>
-              <h1 style={styles.appNamelg}>Remain On Task</h1>
-            </div>
-            <div className="text">
-              <p style={styles.appText}>
-                All your favourite features from your favourite project
-                management tools combined into one. SprintTasker is the project
-                management tool of now.
-              </p>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "390px",
-              }}
-            >
-              <div className="ctaBtn" style={styles.signUp}>
-                {auth ? (
-                  <Link
-                    className="bannerCta"
-                    style={styles.menuDark}
-                    to="/main"
-                  >
-                    Back to Work
-                  </Link>
-                ) : (
-                  <Link
-                    className="bannerCta"
-                    style={styles.menuDark}
-                    to="/auth/signup"
-                  >
-                    Get Started
-                  </Link>
-                )}
+        <div className="content">
+          <div className="left">
+            <h1 style={styles.appName} className="app-name">
+              TaskSprinter
+            </h1>
+            <div className="content-inner">
+              <div className="cta-text">
+                <h1 style={styles.appNamelg}>Stay Focused</h1>
+                <h1 style={styles.appNamelg}>Remain On Task</h1>
               </div>
-              <div className="demoBtn" style={styles.demoBtn}>
-                <Link style={styles.menuLight} to="/auth/signup">
-                  Demo Mode
-                </Link>
+              <div className="text">
+                <p style={styles.appText}>
+                  All your favourite features from your favourite project
+                  management tools combined into one. SprintTasker is the
+                  project management tool of now.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "390px",
+                }}
+              >
+                <div className="ctaBtn" style={styles.signUp}>
+                  {auth ? (
+                    <Link
+                      className="bannerCta"
+                      style={styles.menuDark}
+                      to="/main"
+                    >
+                      Back to Work
+                    </Link>
+                  ) : (
+                    <Link
+                      className="bannerCta"
+                      style={styles.menuDark}
+                      to="/auth/signup"
+                    >
+                      Get Started
+                    </Link>
+                  )}
+                </div>
+                <div className="demoBtn" style={styles.demoBtn}>
+                  <Link style={styles.menuLight} to="/auth/signup">
+                    Demo Mode
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="right">
-          <div className="content-inner"></div>
-          <div className="logo-container">
-            <img className="bannerLogo" alt="slackLogo" src={slackLogo} />
-            <img className="bannerLogo" alt="notion" src={notion} />
-            <img className="bannerLogo" alt="monday" src={monday} />
+          <div className="right">
+            <div className="content-inner"></div>
+            <div className="logo-container">
+              <img className="bannerLogo" alt="slackLogo" src={slackLogo} />
+              <img className="bannerLogo" alt="notion" src={notion} />
+              <img className="bannerLogo" alt="monday" src={monday} />
+            </div>
           </div>
         </div>
+        <Wave />
       </div>
-      <Wave />
-    </div>
+
+      {/* <div className="logo-container">
+        <img className="bannerLogo" alt="slackLogo" src={reactLogo} />
+        <img className="bannerLogo" alt="notion" src={railsLogo} />
+        <img className="bannerLogo" alt="monday" src={heroku} />
+        <img className="bannerLogo" alt="monday" src={netlify} />
+      </div> */}
+    </>
   );
 }

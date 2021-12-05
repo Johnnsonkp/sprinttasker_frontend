@@ -39,6 +39,7 @@ export function getTasks() {
 }
 
 export function postTask(task) {
+  const authToken = JSON.parse(window.localStorage.getItem("auth"));
   return fetch(baseUrl + "tasks", {
     method: "POST",
     headers: {
@@ -55,6 +56,7 @@ export function postTask(task) {
 }
 
 export const update = (task) => {
+  const authToken = JSON.parse(window.localStorage.getItem("auth"));
   return fetch(`${baseUrl}tasks/${task.id}`, {
     method: "PUT",
     headers: {
@@ -71,6 +73,7 @@ export const update = (task) => {
 };
 
 export const destroy = (id) => {
+  const authToken = JSON.parse(window.localStorage.getItem("auth"));
   return fetch(`${baseUrl}tasks/${id}`, {
     method: "DELETE",
     headers: {

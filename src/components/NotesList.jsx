@@ -11,7 +11,6 @@ const NotesList = ( {notes, handleAddNote, deleteNote}) => {
         return newDate
     }
     
-    console.log("NotesList notes:", notes)
     return (
         <>
             { notes? 

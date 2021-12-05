@@ -15,7 +15,6 @@ const Auth = ({ name, username, password, email }) => {
   });
   const [userData, setUserData] = React.useState(null);
   const { state, dispatch } = useAppState();
-  console.log("auth pre sign in:", state);
   let navigate = useNavigate();
 
   React.useEffect(() => {
@@ -31,8 +30,6 @@ const Auth = ({ name, username, password, email }) => {
           email: user.email,
         },
       });
-      console.log("userData", userData);
-      console.log("userData id", userData.user.id);
       window.localStorage.setItem(
         "auth",
         JSON.stringify({
@@ -58,7 +55,6 @@ const Auth = ({ name, username, password, email }) => {
       }).then((response) => response.json());
     },
     login: () => {
-      console.log("State url", state.url);
       return fetch(state.url + "/login", {
         method: "post",
         headers: {

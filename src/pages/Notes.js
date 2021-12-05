@@ -38,7 +38,6 @@ const Notes = () => {
 
   const loadNotes = () => {
     getNotes().then((json) => {
-      console.log("json notes", json);
       const fetchedNotes = json;
       setLoadNotes(fetchedNotes);
       setNotes(fetchedNotes);
@@ -63,23 +62,10 @@ const Notes = () => {
   };
 
   const deleteNote = (note) => {
-    return (
-      destroyNote(note.id)
-        // .then((res) => console.log(res))
-        .then(() => setRefreshing(true))
-        .then(navigate("/notes"))
-    );
+    return destroyNote(note.id)
+      .then(() => setRefreshing(true))
+      .then(navigate("/notes"));
   };
-
-  // const onRefresh = useCallback(async () => {
-  //   setRefreshing(true);
-  //   let loadedNotes = await loadNotes();
-  //   setLoadNotes(loadedNotes);
-  //   console.log(notes);
-  //   setRefreshing(false);
-  //   console.log("Refreshing state", refreshing);
-  // }, [refreshing]);
-
   useEffect(() => {
     setRefreshing(false);
     loadNotes();
@@ -89,10 +75,7 @@ const Notes = () => {
     return (
       <div style={styles.container}>
         <div style={styles.notesContainer}>
-          {/* <SearchBar handleSearchNote={setSearchText} /> */}
           <AllNotes
-            // searchText={searchText}
-            // notes={notes}
             notes={loadedNotes}
             addNote={addNote}
             deleteNote={deleteNote}
