@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useAppState } from "../AppState";
 
 import './sidepanel.css'
-import { Layout, Menu, message, Divider } from 'antd';
+import { Layout, Menu, Divider } from 'antd';
 import {
   FormOutlined,
   AppstoreOutlined,
@@ -19,11 +19,10 @@ import { useLocation } from "react-router";
 
 
 export function SidePanel({notes}) {
-  const {dispatch, state} = useAppState()
+  const {dispatch} = useAppState()
   const navigate = useNavigate();
   const { Header, Content, Sider, Footer } = Layout;
   const location = useLocation();
-// export class SidePanel extends React.Component {
   const [collapsed, setCollapsed] = useState(true)
   const onCollapse = () => {
     console.log(collapsed);
@@ -106,7 +105,7 @@ export function SidePanel({notes}) {
                 <></> 
                 }
 
-                <Footer style={{backgroundColor: '#323439', position: "relative", top: '120px', left: '0px', padding: '0px', width: '55%'}}>
+                <Footer style={{backgroundColor: '#323439', position: "relative", top: '120px', left: '0px', padding: '0px', width: '65%'}}>
                   <div 
                     style={{
                       display: 'flex', 
@@ -116,7 +115,10 @@ export function SidePanel({notes}) {
                       width: '90%',
                       fontSize: '16px', 
                       cursor: 'pointer',
-                      
+                      border: '1px solid red',
+                      padding: '7px 10px',
+                      borderRadius: '18px',
+                      backgroundColor: '#ff4d4f'
                   
                     }}
                     onClick={() => {
@@ -124,9 +126,6 @@ export function SidePanel({notes}) {
                     navigate("/")
                   }}><PoweroffOutlined /><span>Log Out</span>
                   </div>
-                  {/* <div style={{marginTop: '10px'}}>
-                    <h3 style={{color: '#fff'}}>{state.email}</h3>
-                  </div> */}
                 </Footer>
               </Content> 
             </Layout>

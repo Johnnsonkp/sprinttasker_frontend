@@ -30,11 +30,14 @@ const initialState = {
     }
 }
 
+// type: "auth", 
+// payload: { token, user_id: user.id, name: user.name, username: user.username, email: user.email }
+
 ////////////////////////////////////////////////////////////////////
 // REDUCER //
 ////////////////////////////////////////////////////////////////////
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     let newState;
     switch(action.type){
         case "auth":

@@ -1,26 +1,25 @@
 import React, {useState, useEffect} from 'react'
-import { getNotes } from '../services/taskService'
 import { useAppState } from '../AppState'
 
-export const SingleNote = ({note, handleAddNote}) => {
-    const [noteText, setNoteText] = useState();
-    const {state, dispatch} = useAppState()
+export const SingleNote = ({ handleAddNote}) => {
+    const [noteText] = useState();
+    const {state} = useAppState()
     const {selectedNote} = state
+    const [body, setBody] = useState(selectedNote.body)
+
     console.log("selectedNote:", selectedNote)
 
     const handleChange = (event) => {
+      setBody(event.target.value)
       console.log(event.target.value);
-    //   setNoteText(event.target.value);
     };
 
     const handleSaveClick = (event) => {
       handleAddNote(noteText);
-      // createNotes();
     };
 
     const styles = {
         container: {
-            // marginLeft: "20.83333333%",
             backgroundColor: '#282c34',
             minHeight: '100vh',
             width: '100%',
@@ -28,27 +27,29 @@ export const SingleNote = ({note, handleAddNote}) => {
         },
     }
 
+    useEffect(() => {
+        setBody(selectedNote.body)
+    }, [selectedNote])
+
     return(
         <div style={styles.container}>
             <div className="singleNoteContainer">
                 <div className="singleNote">
                     <textarea
-                        // rows="2"
-                        // cols="2"
                         placeholder="Add a note title"
                         onChange={handleChange}
                         value={selectedNote.title}
-                        style={{ border: "1px solid red", fontSize: '20px', fontWeight: 'bolder' }}
+                        style={{ border: "3px solid #323439", fontSize: '20px', fontWeight: 'bolder' }}
                     ></textarea> 
                     <textarea
                         rows="20"
                         cols="10"
                         placeholder="Type to add a note..."
                         onChange={handleChange}
-                        value={selectedNote.body}
+                        value={body}
                     ></textarea>
                     <div className="note-footer">
-                        <small>200 Remaining</small>
+                        <small>{selectedNote.created_at}</small>
                         <button className="save" onClick={handleSaveClick}>
                             Save
                         </button>

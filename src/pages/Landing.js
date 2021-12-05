@@ -1,11 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Wave from "../utilities/wave";
-import reactLogo from "../reactLogo.svg";
-import railsLogo from "../rails.svg";
+// import reactLogo from "../reactLogo.svg";
+// import railsLogo from "../rails.svg";
 import slackLogo from "../slack.svg";
-import everNote from "../evernote.svg";
-import docs from "../docs.svg";
 import notion from "../notion-logo-1.svg";
 import monday from "../monday-icon.svg";
 import "../App.css";
@@ -22,7 +20,6 @@ export default function Landing() {
       width: "100px",
     },
     menuLight: {
-      color: "#fff",
       fontWeight: "bolder",
       textAlign: "center",
       width: "100px",
@@ -36,15 +33,12 @@ export default function Landing() {
       alignItems: "center",
       justifyContent: "center",
       border: "2px solid rgb(255, 255, 255)",
-      borderRadius: "4px",
       color: "rgb(255, 255, 255)",
       display: "flex",
       fontSize: "16px",
       fontWeight: "700",
       padding: "0.6em 0.7em",
       whiteSpace: "nowrap",
-      // background: "none",
-      // backgroundColor: "rgba(255, 255, 255, 0.1)",
       backgroundColor: "transparent",
       textAlign: "center",
       width: "180px",
@@ -60,8 +54,6 @@ export default function Landing() {
       alignItems: "center",
       justifyContent: "center",
       border: "2px solid #2CEEF0",
-      borderRadius: "4px",
-      color: "rgb(255, 255, 255)",
       color: "#111",
       display: "flex",
       fontSize: "16px",
@@ -74,9 +66,6 @@ export default function Landing() {
       borderRadius: "8px",
     },
     appName: {
-      fontWeight: "bold",
-      boxSizing: "inherit",
-      color: "rgb(255, 0, 255)",
       color: "#2CEEF0",
       fontFamily: "Lato, sans-serif",
       fontWeight: "700",
@@ -134,17 +123,12 @@ export default function Landing() {
                 management tools combined into one. SprintTasker is the project
                 management tool of now.
               </p>
-              {/* <p style={styles.appText}>
-                SingleStore is The Database of Now TM. Built for data-intensive
-                applications that runs anywhere from bare metal to hybrid cloud.
-              </p> */}
             </div>
 
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                width: "370px",
                 width: "390px",
               }}
             >
@@ -178,9 +162,9 @@ export default function Landing() {
         <div className="right">
           <div className="content-inner"></div>
           <div className="logo-container">
-            <img className="bannerLogo" src={slackLogo} />
-            <img className="bannerLogo" src={notion} />
-            <img className="bannerLogo" src={monday} />
+            <img className="bannerLogo" alt="slackLogo" src={slackLogo} />
+            <img className="bannerLogo" alt="notion" src={notion} />
+            <img className="bannerLogo" alt="monday" src={monday} />
           </div>
         </div>
       </div>

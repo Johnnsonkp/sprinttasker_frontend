@@ -8,7 +8,8 @@ import {useAppState} from '../AppState'
 import Wave from "../utilities/wave";
 import { useLocation } from "react-router";
 
-export default function Nav(props) {
+// export default function Nav(props) {
+const Nav = () => {
   const {dispatch, state} = useAppState()
   const navigate = useNavigate();
   const auth = JSON.parse(window.localStorage.getItem("auth"));
@@ -109,9 +110,9 @@ export default function Nav(props) {
          
          {
            workMode ? 
-           <div className="BreadCrumb-wave" style={{overflow: 'hidden'}}>
-            <Wave />
-          </div> 
+            <div className="BreadCrumb-wave" style={{overflow: 'hidden'}}>
+              <Wave />
+            </div> 
             :
            <div style={{position: 'sticky'}}>
             <Breadcrumb separator=">">
@@ -124,30 +125,37 @@ export default function Nav(props) {
       );
     }
 
-    return (
-      <>
-      {location.pathname === "/" ? <></> :<BreadCrumb />}
-      {location.pathname === "/" || location.pathname === "/about" || location.pathname  === "/developer"?  
-      <header style={styles.header}>
-        <div className="header-container">
-          <div className="TitleBox">
-            <Link style={styles.links} to="/">
-              <img src={logo} className="App-logo title-logo" alt="logo" />
-              <h3 style={styles.menuDark}>TaskSprinter</h3>
-            </Link>
-          </div>
-          <div className="drop-down">
-            <nav>
-              <DropDownMenu />
-              <div  className="nav-auth">
-                <LoginLogout />
+    const NavComponent = () => {
+
+      return (
+        <>
+        {location.pathname === "/" || location.pathname == "/auth/login" || location.pathname == "/auth/signup"  ? <></> :<BreadCrumb />}
+        {location.pathname === "/" || location.pathname === "/about" || location.pathname  === "/developer"?  
+          <header style={styles.header}>
+            <div className="header-container">
+              <div className="TitleBox">
+                <Link style={styles.links} to="/">
+                  <img src={logo} className="App-logo title-logo" alt="logo" />
+                  <h3 style={styles.menuDark}>TaskSprinter</h3>
+                </Link>
               </div>
-            </nav>
-          </div>
-          <AuthBtn/>
-        </div>
-      </header> : null
-      }
-      </>
-    );
+              <div className="drop-down">
+                <nav>
+                  <DropDownMenu />
+                  <div  className="nav-auth">
+                    <LoginLogout />
+                  </div>
+                </nav>
+              </div>
+              <AuthBtn/>
+            </div>
+          </header> : null
+        }
+        </>
+      );
+    }
+
+    return NavComponent() 
 }
+
+export default Nav;

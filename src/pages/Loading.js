@@ -4,11 +4,6 @@ import "../App.css";
 
 class Loading extends Component {
   render() {
-    const styles = {
-      landingBackground: {
-        background: "#fff",
-      },
-    };
     return (
       <div style={{ backgroundColor: "#fff" }} className="App loading">
         <header className="App-header">

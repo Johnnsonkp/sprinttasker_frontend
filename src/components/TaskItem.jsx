@@ -35,16 +35,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
             <h1>Timer</h1>
         )
     }
-    const mouseOverCheck = (e) => {
-        document.querySelectorAll(".task-item").forEach((time) => {
-            time.addEventListener("mouseover", ()  => {
-                time.classList.toggle('hideTimer')
-            })
-        })
-    }
 
-
-    const menu1 = task
     return (
         
         <>

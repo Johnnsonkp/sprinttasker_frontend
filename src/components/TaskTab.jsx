@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Tabs, Layout, Row, Col, List} from 'antd';
+import React from 'react';
+import {List} from 'antd';
 import TaskItem from './TaskItem';
 
 const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
@@ -7,8 +7,6 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
     <><List 
         locale={{ emptyText: "There's nothing to do"}}
         dataSource={tasks}
-        // itemLayout="vertical"
-        // size="large"
         renderItem={(task) => (
             <TaskItem 
                 task={task}

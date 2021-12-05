@@ -1,9 +1,6 @@
 const baseUrl = process.env.REACT_APP_DEV_API_URL;
-// const authToken = JSON.parse(window.localStorage.getItem("auth"));
-// const authToken = window.localStorage.getItem("auth");
-// const authToken = asyncLocalStorage.getItem("auth");
 
-export async function loadTasks(state) {
+export async function loadTasks() {
   const authToken = await JSON.parse(window.localStorage.getItem("auth"));
   return await fetch(baseUrl + "tasks", {
     method: "GET",
@@ -42,7 +39,6 @@ export function getTasks() {
 }
 
 export function postTask(task) {
-  console.log("Mywork", task);
   return fetch(baseUrl + "tasks", {
     method: "POST",
     headers: {
@@ -134,4 +130,14 @@ export async function getNotes() {
       console.error("api", "_fetch", "err", err);
       return false;
     });
+}
+export async function destroyNote(id) {
+  return await fetch(`${baseUrl}notes/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
+    },
+  });
 }

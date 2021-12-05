@@ -4,28 +4,35 @@ import AddNote from './AddNote';
 import { format } from "date-fns";
 
 
-const NotesList = ( {notes, handleAddNote}) => {
+const NotesList = ( {notes, handleAddNote, deleteNote}) => {
 
     const reformatDate = (railsDate) => {
-        console.log("rails date:", railsDate)
         const newDate = format(new Date(railsDate), "yyyy/MM/dd")
-
-        console.log("date", newDate)
         return newDate
     }
+    
+    console.log("NotesList notes:", notes)
     return (
         <>
-            <div className="notes-list">
-                {notes.map((note) => (
-                    <Note 
-                        id={note.id} 
-                        title={note.title} 
-                        body={note.body} 
-                        created_at={reformatDate(note.created_at)} />
-                ))}
-                <AddNote handleAddNote={handleAddNote}/>
-            </div>
+            { notes? 
+                <div className="notes-list">
+                    {notes.map((note) => (
+                        <>
+                        <Note
+                            key={note.id} 
+                            id={note.id} 
+                            title={note.title} 
+                            body={note.body} 
+                            created_at={reformatDate(note.created_at)} 
+                            deleteNote={deleteNote}
+                            />
+                        </>
+                    ))}
+                    <AddNote handleAddNote={handleAddNote}/>
+                </div> : null
+            }
         </>
+                
     );
 }
 

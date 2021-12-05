@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {CloseCircleOutlined} from '@ant-design/icons'
 import { useNavigate } from "react-router";
 import { useAppState } from '../AppState';
+import {Button} from 'antd'
 
 
-const Note = ({id, title, body, created_at}) => {
+const Note = ({id, title, body, created_at, deleteNote}) => {
     const Navigate = useNavigate()
     const {state, dispatch} = useAppState()
+
     const note = {
         id: id,
         title: title, 
@@ -16,10 +18,11 @@ const Note = ({id, title, body, created_at}) => {
     const style = {
         mouseOver: {
            cursor: 'pointer'
+           
         }
     }
 
-    const selectedNote = (note) => {
+    const selectedNote = (note, e) => {
         console.log("selected note:", note)
         dispatch({ type: "selectedNote", payload: note})
 
@@ -27,10 +30,21 @@ const Note = ({id, title, body, created_at}) => {
           Navigate('/single-note')
         }
     }
+    const destroyNote = (note) => {
+        return deleteNote(note)
+    }
 
+    const clicked = (e, note) => {
+        console.log("target.value:", e.target.innerText)
+        if(e.target.innerText == "X"){
+            destroyNote(note)
+        } else{
+            selectedNote(note)
+        }
+    }
 
     return (
-        <div className="note" onClick={() => selectedNote(note)} style={style.mouseOver}>
+        <div className="note" onClick={(e) => clicked(e, note)} style={style.mouseOver} key={id}>
             <div className="title">
                 <h4>{title}</h4>
             </div>
@@ -39,7 +53,9 @@ const Note = ({id, title, body, created_at}) => {
             </div>
             <div className="note-footer">
                 <small>{created_at}</small>
-                <CloseCircleOutlined type="danger" className="delete-icon"/>
+                <Button className="delete-icon" danger onClick={(e) => clicked(e, note)}>
+                    X
+                </Button>
             </div>
         </div>
     )

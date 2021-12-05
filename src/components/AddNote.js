@@ -10,7 +10,6 @@ const AddNote = ({ handleAddNote }) => {
     handleAddNote({
       title: form.getFieldValue("title"),
       body: form.getFieldValue("body"),
-      //   created_at: new Date(),
     });
     console.log(form.getFieldValue("title"));
     console.log(form.getFieldValue("body"));
@@ -40,7 +39,7 @@ const AddNote = ({ handleAddNote }) => {
             >
               <Input
                 placeholder="Add a title"
-                style={{ backgroundColor: "#e1e1e1" }}
+                style={{ backgroundColor: "transparent" }}
               />
             </Form.Item>
           </Col>

@@ -1,10 +1,10 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Button } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppState } from "../AppState";
 import Wave from "../utilities/wave";
 
-const Auth = (props) => {
+const Auth = ({ name, username, password, email }) => {
   const type = useParams().form;
 
   const [formData, setFormData] = React.useState({

@@ -18,13 +18,10 @@
   .App-logo {
     height: 40vmin;
     pointer-events: none;
-    /* background-color: #ff0000; */
-    /* filter: invert(16%) sepia(90%) saturate(7500%) hue-rotate(0deg) brightness(96%) contrast(103%); */
   }
   @media (prefers-reduced-motion: no-preference) {
     .App-logo {
       animation: App-logo-spin infinite 20s linear;
-      /* animation: App-logo-color infinite 20s linear; */
     }
   }
   .App-header {
@@ -419,7 +416,7 @@
 #projects:hover, #calender:hover, #announcements:hover{
   background-color: lightgrey;
   background-blend-mode: darken;
-  z-index: 9000;
+  /* z-index: 9000; */
   cursor: pointer;
   transition: all ease-in-out 0.3s;
   transform: scale(1.02);
@@ -435,7 +432,7 @@
 #homeContent:hover{
   background-color: lightgrey;
   background-blend-mode: darken;
-  z-index: 9000;
+  /* z-index: 9000; */
   cursor: pointer;
   transition: all ease-in-out 0.3s;
   transform: scale(1.02);
@@ -453,7 +450,7 @@
 #announcements{
   flex: 0.6;
 }
-.
+
 
 
 /* // Pomodorro */
@@ -524,15 +521,27 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.note:hover{
+  background-color: #67d7cc;
+}
 .note-footer{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.note-footer .delete-icon{
+  /* background-color: red; */
+  background-color: #ff4d4f;
+  color: #fff;
+  border-radius: 30px;
+}
+.note-footer .delete-icon:hover{
+  transform: rotate(360deg);
+}
 .singleNoteContainer{
   margin-left: 20.83333333%;
   margin-right: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   max-width: 1200px;
   display: flex;
   justify-content: center;
@@ -571,3 +580,15 @@
 .singleNote .note-footer small{
   color: #fff;
 }
+.note.new Input::placeholder{
+  color:rgba(0, 0, 0, .3);
+}
+.note.new  TextArea::placeholder{
+  color:rgba(0, 0, 0, .3);
+}
+
+.note.new Input{
+  border: none;
+}
+
+/* fill={red}  */

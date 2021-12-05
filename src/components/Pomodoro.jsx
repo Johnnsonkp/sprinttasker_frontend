@@ -58,7 +58,6 @@ export default function Pomodoro(props) {
   const timer = `${timerMinutes} : ${timerSeconds}`
 
   useEffect(() => {
-    // setToggle(!toggle)
     console.log("toggle", toggle)
   }, [callback])
 
@@ -73,14 +72,18 @@ export default function Pomodoro(props) {
           alignItems: 'center', 
           justifyContent: 'space-between', 
           border: '1px solid #323439', 
-          width: '60%', 
+          border: 'none',
           width: '300px',
           marginLeft: '110px', 
           position: "relative", 
           top: "0px", 
           zIndex: '10',
           backgroundColor: state.work_mode ? "red" : "green",
-          maxHeight: '50px'
+          maxHeight: '50px',
+          borderTopLeftRadius: '8px',
+          borderBottomLeftRadius: '8px',
+          borderTopRightRadius: '8px',
+          borderBottomRightRadius: '8px'
         }} 
         className="pomodoro">
           <h3 style={{margin: '0px', paddingLeft: '10px', color: '#fff'}}>
@@ -93,12 +96,12 @@ export default function Pomodoro(props) {
             top: toggle? '28px' : '0px',
             minWidth: "60%",
             color: '#fff',
-            border: toggle? '1px solid red' : '1px solid green'
+            border: toggle? '1px solid red' : '1px solid green',
           }}
         > 
-          <Panel className="timer" header={timer} key="1" style={{background: '#323439', color: '#fff'}}>
+          <Panel className="timer" header={timer} key="1" style={{background: '#323439', color: '#fff', borderTopRightRadius: '8px', borderBottomRightRadius: '8px'}}>
             <div className="timer" 
-              style={{color: "#fff", marginRight: '5px', boxSizing: 'borderBox', fontSize: '20px', fontWeight: '700', lineHeight: '1', position: 'relative', background: '#323439', border: '1px solid #323439', borderRadius: '8px'}} 
+              style={{color: "#fff", marginRight: '5px', boxSizing: 'borderBox', fontSize: '20px', fontWeight: '700', lineHeight: '1', position: 'relative', background: '#323439', border: '1px solid #323439', borderRadius: '8px', border: 'none'}} 
               >
               {timer}
               <div>

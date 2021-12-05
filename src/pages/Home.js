@@ -1,21 +1,16 @@
 import React from "react";
-import { useAppState } from "../AppState";
 import { Avatar } from "antd";
 import { Input, Calendar } from "antd";
 import TaskList from "../components/TaskList";
-import TaskItem from "../components/TaskItem";
-import { useLocation, useNavigate } from "react-router";
 import SmallWave from "../wave-small.png";
 import Notes from "./Notes";
 import { DisplayBox } from "../components/DisplayBox";
 const { Search } = Input;
 
 export default function Home() {
-  const { state, dispatch } = useAppState();
   const auth = JSON.parse(window.localStorage.getItem("auth"));
   const userFirstInitials = auth.name[0].toUpperCase();
   const User = auth.name.toUpperCase();
-  const navigate = useNavigate();
 
   const styles = {
     container: {
@@ -39,7 +34,6 @@ export default function Home() {
     searchField: {
       marginTop: "20px",
       marginBottom: "30px",
-      // border: "1px solid #2CEEF0",
       display: "flex",
       justifyContent: "flex-start",
       padding: "90px 20px 50px 30px",
@@ -47,11 +41,10 @@ export default function Home() {
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center center",
       backgroundSize: "cover",
-      backgroundColor: "#2CEEF0",
       backgroundColor: "#1890ff",
-      borderLeft: "1px solid #cbd4db",
-      borderRight: "1px solid #cbd4db",
-      borderTop: "1px solid #cbd4db",
+      // borderLeft: "1px solid #cbd4db",
+      // borderRight: "1px solid #cbd4db",
+      // borderTop: "1px solid #cbd4db",
     },
   };
 

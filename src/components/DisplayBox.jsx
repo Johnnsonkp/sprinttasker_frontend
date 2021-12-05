@@ -1,20 +1,14 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export const DisplayBox = ({component, title, link}) => {
     const navigate = useNavigate();
-    const styles = {
-        placeHolder: {
-            backgroundColor: '#fff'
-        }
-    }
-
     return (
         <div
           id="homeContent"
           style={{
             marginTop: "30px",
-            border: "1px solid #1890ff",
+            border: "3px solid rgb(98 178 251)",
             borderRadius: "10px",
             height: "280px",
             maxHeight: "280px",
@@ -22,7 +16,8 @@ export const DisplayBox = ({component, title, link}) => {
             width: "100%",
             boxSizing: "border box",
             padding: "0px",
-            backgroundColor: "#1890ff"
+            // backgroundColor: "#1890ff",
+            backgroundColor: "rgb(98 178 251)"
           }}
         >
           <h3
@@ -52,7 +47,7 @@ export const DisplayBox = ({component, title, link}) => {
               navigate(link);
             }}
           >
-            <div className="inner" style={{backgroundColor: component? "#1890ff" : "#fff"}}>
+            <div className="inner" style={{backgroundColor: component? "rgb(98 178 251)" : "#fff"}}>
                 {component}
             </div>
           </div>

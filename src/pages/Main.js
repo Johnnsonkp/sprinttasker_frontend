@@ -1,45 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import TaskList from "../components/TaskList";
-import { message, Button, Collapse } from "antd";
+import { Collapse } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
-import TaskForm from "../components/TaskForm";
 import { useAppState } from "../AppState";
-import { postTask } from "../services/taskService";
 import Loading from "./Loading";
 import StandUpComp from "../components/Standupcomponent";
 import Pomodoro from "../components/Pomodoro";
 
 export default function Main(props) {
-  const [refreshing, setRefreshing] = useState();
-  const [activeTasks, setActiveTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
-  const { state, dispatch } = useAppState();
-  const { token, alltasks, user, usertasks } = state;
+  const { state } = useAppState();
   const { Panel } = Collapse;
 
-  const textArea = (event) => {
-    console.log(event.target.value);
-  };
+  // const textArea = (event) => {
+  //   console.log(event.target.value);
+  // };
 
-  const createTask = (task) => {
-    return postTask(task);
-  };
+  // const createTask = (task) => {
+  //   return postTask(task);
+  // };
 
-  const handleFormSubmit = (task) => {
-    console.log("task to create", task);
-    createTask(task).then(() => {
-      message.success("Task added!");
-      setRefreshing(true);
-    });
-  };
+  // const handleFormSubmit = (task) => {
+  //   console.log("task to create", task);
+  //   createTask(task).then(() => {
+  //     message.success("Task added!");
+  //     setRefreshing(true);
+  //   });
+  // };
 
   const loaded = () => {
     return (
       <div>
         <div className="menu-banner ant-col-offset-1">
           <textarea
-            value={state.name + " Main WorkSpace"}
-            onChange={textArea}
+            defaultValue={state.name + " Main WorkSpace"}
             className="rest-title workspace-textfield"
           ></textarea>
 
@@ -47,7 +40,6 @@ export default function Main(props) {
             <Pomodoro />
           </div>
         </div>
-        {/* <div style={{ marginLeft: "22%", marginRight: "1%" }}> */}
         <Collapse
           style={{
             marginLeft: "22%",
@@ -69,10 +61,10 @@ export default function Main(props) {
             <StandUpComp />
           </Panel>
         </Collapse>
-        {/* </div> */}
         <TaskList />
       </div>
     );
   };
   return <TaskList /> ? loaded() : <Loading />;
+  // return state.alltasks ? loaded() : <Loading />;
 }

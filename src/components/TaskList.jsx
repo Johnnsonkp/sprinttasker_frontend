@@ -5,13 +5,16 @@ import TaskTab from './TaskTab';
 import TaskForm from './TaskForm';
 import { useAppState } from '../AppState';
 import {postTask, destroy, update, loadTasks} from '../services/taskService';
+import Loading from '../pages/Loading';
+
 const { TabPane} = Tabs;
 const { Content} = Layout;
 
 
+
 const TaskList = () => {
     const [refreshing, setRefreshing] = useState(false);
-    const [tasks, setLoadTask] = React.useState([]);
+    const [tasks, setLoadTask] = React.useState();
     const [activeTasks, setActiveTasks] = useState([]);
     const [completedTasks, setCompletedTasks] = useState([]);
     const { state, dispatch } = useAppState();
@@ -62,54 +65,65 @@ const TaskList = () => {
     };
 
 
-    const onRefresh = useCallback(async () => {
-        setRefreshing(true);
-        console.log("useCallback", "useCallback")
-        let loadedTasks = await refresh()
-        console.log("loadedTasks", loadedTasks)
-        setLoadTask(loadedTasks);
-        setActiveTasks(loadedTasks.filter(task => task.completed === false))
-        setCompletedTasks(loadedTasks.filter(task => task.completed === true))
-        console.log(tasks);
-        setRefreshing(false);
-        console.log("Refreshing state", refreshing);
-    }, [refreshing]);
+    // const onRefresh = useCallback(async () => {
+    //     setRefreshing(true);
+    //     console.log("useCallback", "useCallback")
+    //     let loadedTasks = await refresh()
+    //     console.log("loadedTasks", loadedTasks)
+    //     setLoadTask(loadedTasks);
+    //     setActiveTasks(loadedTasks.filter(task => task.completed === false))
+    //     setCompletedTasks(loadedTasks.filter(task => task.completed === true))
+    //     console.log(tasks);
+    //     setRefreshing(false);
+    //     console.log("Refreshing state", refreshing);
+    // }, [refreshing]);
+
+    // useEffect(() => {
+    //     console.log("useEffect()");
+    //     setRefreshing(true)
+    //     refresh();
+    // }, [onRefresh]);
 
     useEffect(() => {
         console.log("useEffect()");
-        setRefreshing(true)
+        setRefreshing(false)
         refresh();
-    }, [onRefresh]);
+    }, [refreshing]);
 
-    return (
-        <>
-        <Layout className="layout" style={{overFlowX: 'hidden'}}>
-            <Content style={{ padding: '0 50px'}}>
-            <div className="tasklist">
-                <Row>
-                    <Col span={14} offset={5}>
-                    <br />
-                    <Tabs defaultActiveKey="all">
-                        <TabPane tab="All" key="all">
-                            <TaskTab tasks={tasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>
-                        </TabPane>
-                        <TabPane tab="Active" key="active">
-                            <TaskTab tasks={activeTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>
-                        </TabPane>
-                        <TabPane tab="Complete" key="complete">
-                            <TaskTab tasks={completedTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>   
-                        </TabPane>
-                            <TabPane tab="Create Task" key="createtask">
-                                <TaskForm onFormSubmit={handleFormSubmit} />
+    const loaded = () => {
+        return (
+            <>
+            <Layout className="layout" style={{overFlowX: 'hidden'}}>
+                <Content style={{ padding: '0 50px'}}>
+                <div className="tasklist">
+                    <Row>
+                        <Col span={14} offset={5}>
+                        <br />
+                        <Tabs defaultActiveKey="all">
+                            <TabPane tab="All" key="all">
+                                <TaskTab tasks={tasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>
                             </TabPane>
-                    </Tabs>
-                    </Col>
-                </Row>
-            </div>
-            </Content>
-        </Layout>
-        </>
-    )
+                            <TabPane tab="Active" key="active">
+                                <TaskTab tasks={activeTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>
+                            </TabPane>
+                            <TabPane tab="Complete" key="complete">
+                                <TaskTab tasks={completedTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>   
+                            </TabPane>
+                                <TabPane tab="Create Task" key="createtask">
+                                    <TaskForm onFormSubmit={handleFormSubmit} />
+                                </TabPane>
+                        </Tabs>
+                        </Col>
+                    </Row>
+                </div>
+                </Content>
+            </Layout>
+            </>
+        )
+    }
+
+    // return tasks ? loaded() : <Loading />
+    return loaded() 
 }
 
 export default TaskList
