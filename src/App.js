@@ -18,7 +18,7 @@ import {
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { SingleNote } from "./components/SingleNote";
 
-export const App = (props) => {
+export const App = () => {
   const { state, dispatch } = useAppState();
   const navigate = useNavigate();
   const auth = JSON.parse(window.localStorage.getItem("auth"));
