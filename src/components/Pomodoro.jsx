@@ -77,7 +77,6 @@ export default function Pomodoro(props) {
           marginLeft: '110px', 
           position: "relative", 
           top: "0px", 
-          zIndex: '10',
           backgroundColor: state.work_mode ? "red" : "green",
           maxHeight: '50px',
           borderTopLeftRadius: '8px',
@@ -96,7 +95,8 @@ export default function Pomodoro(props) {
             top: toggle? '28px' : '0px',
             minWidth: "60%",
             color: '#fff',
-            border: toggle? '1px solid red' : '1px solid green',
+            border: '1px solid #323439',
+            borderRadius: '8px'
           }}
         > 
           <Panel className="timer" header={timer} key="1" style={{background: '#323439', color: '#fff', borderTopRightRadius: '8px', borderBottomRightRadius: '8px'}}>
@@ -110,14 +110,6 @@ export default function Pomodoro(props) {
                 }
               </div>
             </div>
-            {/* <Collapse 
-              defaultActiveKey="1">
-              <Panel header="" key="1">
-              <div className="message">
-                {displayMessage && <div>Break time! New session starts in:</div>}
-              </div>
-              </Panel>
-            </Collapse> */}
           </Panel>
         </Collapse> 
       </div>

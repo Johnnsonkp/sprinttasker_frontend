@@ -60,6 +60,7 @@ const TaskList = () => {
                 setLoadTask(parsedTask)
                 setActiveTasks(parsedTask.filter(task => task.completed === true))
                 setCompletedTasks(parsedTask.filter(task => task.completed === true))
+                setRefreshing(!refreshing)
                 dispatch({ type: 'getTasks', payload: parsedTask})
             })
     };
@@ -78,17 +79,17 @@ const TaskList = () => {
         console.log("Refreshing state", refreshing);
     }, [refreshing]);
 
-    useEffect(() => {
-        console.log("useEffect()");
-        setRefreshing(true)
-        refresh();
-    }, [onRefresh]);
-
     // useEffect(() => {
     //     console.log("useEffect()");
-    //     setRefreshing(false)
+    //     setRefreshing(true)
     //     refresh();
-    // }, [refreshing]);
+    // }, [onRefresh]);
+
+    useEffect(() => {
+        console.log("useEffect()");
+        setRefreshing(false)
+        refresh();
+    }, [onRefresh]);
 
     const loaded = () => {
         return (

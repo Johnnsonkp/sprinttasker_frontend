@@ -42,9 +42,6 @@ export default function Home() {
       backgroundPosition: "center center",
       backgroundSize: "cover",
       backgroundColor: "#1890ff",
-      // borderLeft: "1px solid #cbd4db",
-      // borderRight: "1px solid #cbd4db",
-      // borderTop: "1px solid #cbd4db",
     },
   };
 
@@ -70,7 +67,7 @@ export default function Home() {
             {userFirstInitials}
           </Avatar>
           <div>
-            <h1 style={styles.h1}>Good Morning, {User}</h1>
+            <h1 style={styles.h1}>Welcome, {User}</h1>
           </div>
         </div>
 
