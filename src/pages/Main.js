@@ -10,29 +10,18 @@ import Pomodoro from "../components/Pomodoro";
 export default function Main(props) {
   const { state } = useAppState();
   const { Panel } = Collapse;
-
-  // const textArea = (event) => {
-  //   console.log(event.target.value);
-  // };
-
-  // const createTask = (task) => {
-  //   return postTask(task);
-  // };
-
-  // const handleFormSubmit = (task) => {
-  //   console.log("task to create", task);
-  //   createTask(task).then(() => {
-  //     message.success("Task added!");
-  //     setRefreshing(true);
-  //   });
-  // };
+  const authToken = JSON.parse(window.localStorage.getItem("auth"));
 
   const loaded = () => {
     return (
       <div>
         <div className="menu-banner ant-col-offset-1">
           <textarea
-            defaultValue={state.name + " Main WorkSpace"}
+            defaultValue={
+              state.name
+                ? state.name + " Main WorkSpace"
+                : authToken.name + " Main WorkSpace"
+            }
             className="rest-title workspace-textfield"
           ></textarea>
 

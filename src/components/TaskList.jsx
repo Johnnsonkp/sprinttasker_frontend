@@ -64,11 +64,31 @@ const TaskList = () => {
             })
     };
 
+
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        console.log("useCallback", "useCallback")
+        let loadedTasks = await refresh()
+        console.log("loadedTasks", loadedTasks)
+        setLoadTask(loadedTasks);
+        setActiveTasks(loadedTasks.filter(task => task.completed === false))
+        setCompletedTasks(loadedTasks.filter(task => task.completed === true))
+        console.log(tasks);
+        setRefreshing(false);
+        console.log("Refreshing state", refreshing);
+    }, [refreshing]);
+
     useEffect(() => {
         console.log("useEffect()");
-        setRefreshing(false)
+        setRefreshing(true)
         refresh();
-    }, [refreshing]);
+    }, [onRefresh]);
+
+    // useEffect(() => {
+    //     console.log("useEffect()");
+    //     setRefreshing(false)
+    //     refresh();
+    // }, [refreshing]);
 
     const loaded = () => {
         return (
@@ -101,6 +121,8 @@ const TaskList = () => {
             </>
         )
     }
+
+    // return tasks ? loaded() : <Loading />
     return loaded() 
 }
 
