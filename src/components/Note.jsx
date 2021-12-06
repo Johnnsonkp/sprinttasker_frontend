@@ -44,12 +44,12 @@ const Note = ({id, title, body, created_at, deleteNote}) => {
     }
 
     return (
-        <div className="note" onClick={(e) => clicked(e, note)} style={style.mouseOver} key={id}>
+        <div className="note" onClick={(e) => clicked(e, note)} style={style.mouseOver}>
             <div className="title">
-                <h4>{title}</h4>
+                <h3>{title}</h3>
             </div>
-            <div className="body">
-                <span>{body}</span>
+            <div className="body" style={{overflow: 'hidden'}}>
+                <span>{body.substring(0, 180)}</span>
             </div>
             <div className="note-footer">
                 <small>{created_at}</small>

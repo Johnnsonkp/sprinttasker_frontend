@@ -50,16 +50,11 @@ const TaskList = () => {
     }
     
     const refresh = async () => {
-        loadTasks()
-            .then((json) => json.filter(parsedTask => parsedTask.user_id === state.user_id))
-            .then((parsedTask) =>  {
-                console.log('task',parsedTask)
-                setLoadTask(parsedTask)
-                setActiveTasks(parsedTask.filter(task => task.completed === false))
-                setCompletedTasks(parsedTask.filter(task => task.completed === true))
-                // setRefreshing(!refreshing)
-                dispatch({ type: 'getTasks', payload: parsedTask})
-            })
+        const loadedTask = await loadTasks()
+        console.log("loadedTask await", loadedTask)
+        setLoadTask(loadedTask);
+        setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
+        setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
     };
 
 
@@ -68,7 +63,6 @@ const TaskList = () => {
         console.log("useCallback", "useCallback")
         let loadedTasks = await loadTasks()
         const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
-        // console.log("loadedTasks", loadedTasks)
         setLoadTask(parsedTask);
         setActiveTasks(parsedTask.filter(task => task.completed === false))
         setCompletedTasks(parsedTask.filter(task => task.completed === true))

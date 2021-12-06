@@ -515,11 +515,13 @@
   color: #111;
   /* margin-bottom: 10px; */
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1.2rem;
   min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-height: 250px;
+  overflow: hidden;
 }
 .note:hover{
   background-color: #67d7cc;

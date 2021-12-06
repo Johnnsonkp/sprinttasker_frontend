@@ -24,6 +24,7 @@ export function SidePanel({notes}) {
   const { Header, Content, Sider, Footer } = Layout;
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(true)
+
   const onCollapse = () => {
     console.log(collapsed);
     return (setCollapsed(!collapsed))
@@ -43,6 +44,8 @@ export function SidePanel({notes}) {
       }
     }
   }
+
+  let url
         
         return (
           <div className="sidePanel">
@@ -50,7 +53,7 @@ export function SidePanel({notes}) {
             <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}>
               <div className="logo" />
               {/* defaultSelectedKeys={['1']} */}
-              <Menu theme="dark" defaultSelectedKeys={(e) => sliderSelectedKey(e)} mode="inline" onClick={(e) => console.log(e)}>
+              <Menu theme="dark" defaultSelectedKeys={(e) => sliderSelectedKey(e)} mode="inline" >
                   <Menu.Item key="1" icon={<BankOutlined />} >
                       <Link to="/home">
                           Home

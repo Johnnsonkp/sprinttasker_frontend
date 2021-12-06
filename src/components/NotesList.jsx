@@ -15,10 +15,10 @@ const NotesList = ( {notes, handleAddNote, deleteNote}) => {
         <>
             { notes? 
                 <div className="notes-list">
-                    {notes.map((note) => (
+                    {notes.map((note, i) => (
                         <>
                         <Note
-                            key={note.id} 
+                            key={note.id + i} 
                             id={note.id} 
                             title={note.title} 
                             body={note.body} 
