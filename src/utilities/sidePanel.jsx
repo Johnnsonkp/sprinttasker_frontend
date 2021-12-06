@@ -118,7 +118,12 @@ export function SidePanel({notes}) {
                       border: '1px solid red',
                       padding: '7px 10px',
                       borderRadius: '18px',
-                      backgroundColor: '#ff4d4f'
+                      backgroundColor: 'rgb(248 72 74 / 48%)',
+
+                      ['&:hover']: {
+                        backgroundColor: "#ff4d4f"
+                      }
+                      
                   
                     }}
                     onClick={() => {

@@ -30,11 +30,19 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    // const timer = () => {
+    //     return (
+    //         <h1>Timer</h1>
+    //     )
+    // }
     const timer = () => {
         return (
             <h1>Timer</h1>
         )
     }
+
+    const minute = 23
+    const seconds = 59
 
     return (
         

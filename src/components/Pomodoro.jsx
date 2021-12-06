@@ -3,7 +3,7 @@ import { useAppState } from "../AppState";
 import { Collapse } from 'antd';
 
 export default function Pomodoro(props) {
-  const [minutes, setMinutes] = useState(24)
+  const [minutes, setMinutes] = useState(23)
   const [seconds, setSeconds] = useState(59)
   const [displayMessage, setdisplayMessage] = useState(false)
   const [toggle, setToggle] = useState(false)

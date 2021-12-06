@@ -15,8 +15,8 @@ const { Content} = Layout;
 const TaskList = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [tasks, setLoadTask] = React.useState([]);
-    const [activeTasks, setActiveTasks] = useState();
-    const [completedTasks, setCompletedTasks] = useState();
+    const [activeTasks, setActiveTasks] = useState([]);
+    const [completedTasks, setCompletedTasks] = useState([]);
     const { state, dispatch } = useAppState();
 
     const createTask = (task) => {
@@ -55,7 +55,7 @@ const TaskList = () => {
             .then((parsedTask) =>  {
                 console.log('task',parsedTask)
                 setLoadTask(parsedTask)
-                setActiveTasks(parsedTask.filter(task => task.completed === true))
+                setActiveTasks(parsedTask.filter(task => task.completed === false))
                 setCompletedTasks(parsedTask.filter(task => task.completed === true))
                 // setRefreshing(!refreshing)
                 dispatch({ type: 'getTasks', payload: parsedTask})
@@ -70,7 +70,7 @@ const TaskList = () => {
         const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
         // console.log("loadedTasks", loadedTasks)
         setLoadTask(parsedTask);
-        setActiveTasks(parsedTask.filter(task => task.completed === true))
+        setActiveTasks(parsedTask.filter(task => task.completed === false))
         setCompletedTasks(parsedTask.filter(task => task.completed === true))
         console.log(tasks);
         setRefreshing(false);
