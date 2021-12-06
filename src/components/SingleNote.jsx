@@ -1,21 +1,33 @@
 import React, {useState, useEffect} from 'react'
 import { useAppState } from '../AppState'
+import { updateNote } from '../services/taskService';
+ 
 
-export const SingleNote = ({ handleAddNote}) => {
+export const SingleNote = () => {
     const [noteText] = useState();
     const {state} = useAppState()
     const {selectedNote} = state
     const [body, setBody] = useState(selectedNote.body)
+    const [title, setTitle] = useState(selectedNote.title)
 
     console.log("selectedNote:", selectedNote)
 
-    const handleChange = (event) => {
-      setBody(event.target.value)
+    const handleTitleChange = (event) => {
+      setTitle(event.target.value)
       console.log(event.target.value);
     };
+    const handleBodyChange = (event) => {
+        setBody(event.target.value)
+        console.log(event.target.value);
+    };
 
-    const handleSaveClick = (event) => {
-      handleAddNote(noteText);
+    const handleSaveClick = () => {
+      const updatedNote = {
+        id: state.selectedNote.id, 
+        title: title, 
+        body: body 
+      }
+      updateNote(updatedNote).then(() => alert("Note saved!"))
     };
 
     const styles = {
@@ -37,16 +49,17 @@ export const SingleNote = ({ handleAddNote}) => {
                 <div className="singleNote">
                     <textarea
                         placeholder="Add a note title"
-                        onChange={handleChange}
-                        value={selectedNote.title}
+                        onChange={handleTitleChange}
+                        value={title}
                         style={{ border: "3px solid #323439", fontSize: '20px', fontWeight: 'bolder' }}
                     ></textarea> 
                     <textarea
                         rows="20"
                         cols="10"
                         placeholder="Type to add a note..."
-                        onChange={handleChange}
+                        onChange={handleBodyChange}
                         value={body}
+                        style={{ textAlign: 'left', padding: '30px' }}
                     ></textarea>
                     <div className="note-footer">
                         <small>{selectedNote.created_at}</small>

@@ -26,6 +26,3 @@ export default AllNotes;
 
 
 
-
-
-// backgroundColor: '#ff4d4f'

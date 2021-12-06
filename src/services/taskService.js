@@ -144,3 +144,20 @@ export async function destroyNote(id) {
     },
   });
 }
+
+export const updateNote = (note) => {
+  const authToken = JSON.parse(window.localStorage.getItem("auth"));
+  return fetch(`${baseUrl}notes/${note.id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken.token,
+    },
+    body: JSON.stringify({
+      id: note.id,
+      title: note.title,
+      body: note.body,
+    }),
+  }).then((res) => res.json());
+};
