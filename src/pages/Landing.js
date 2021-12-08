@@ -174,12 +174,30 @@ export default function Landing() {
         <Wave />
       </div>
 
-      {/* <div className="logo-container">
-        <img className="bannerLogo" alt="slackLogo" src={reactLogo} />
-        <img className="bannerLogo" alt="notion" src={railsLogo} />
-        <img className="bannerLogo" alt="monday" src={heroku} />
-        <img className="bannerLogo" alt="monday" src={netlify} />
-      </div> */}
+      <div className="icon-container">
+        <div className="inner-icons">
+          <img
+            className="bannerLogo railsLogo landingIcon"
+            alt="Rails Logo"
+            src={railsLogo}
+          />
+          <img
+            className="bannerLogo reactLogo landingIcon"
+            alt="React Logo"
+            src={reactLogo}
+          />
+          <img
+            className="bannerLogo heroku landingIcon"
+            alt="Heroku"
+            src={heroku}
+          />
+          <img
+            className="bannerLogo netlify landingIcon"
+            alt="Netlify"
+            src={netlify}
+          />
+        </div>
+      </div>
     </>
   );
 }
