@@ -4,7 +4,8 @@ import TaskItem from './TaskItem';
 
 const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
     return (
-    <><List 
+    <>  
+    <List 
         locale={{ emptyText: "There's nothing to do"}}
         dataSource={tasks}
         renderItem={(task) => (

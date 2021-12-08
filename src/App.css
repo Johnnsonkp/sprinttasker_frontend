@@ -393,7 +393,7 @@
   margin-bottom: 24px;
   overflow: hidden;
   background: #f0f2f5;
-  border: 0px;
+  border: 1px solid grey;
   border-radius: 2px;
 }
 
@@ -593,4 +593,65 @@
   border: none;
 }
 
-/* fill={red}  */
+/* Pmodoro timer container */
+.timer-container{
+  /* border: 1px solid red; */
+  /* position: relative;
+  top: 25px;
+  left: 55px; */
+  width: 270px;
+  /* margin-right: 50px; */
+  position: relative;
+  top: -30px;
+}
+.timer-display{
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.show-hide-timer{
+  border: 1px solid orange;
+}
+.timer-display .left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* flex: 1; */
+  
+}
+.timer-display .left h3{
+  padding-right: 15px;
+}
+.timer-display .right{
+  display: flex;
+  justify-content: space-between;
+  flex: 0.07;
+}
+.show-hide-timer{
+  /* visibility: hidden; */
+  border: 1px solid red;
+  /* opacity: 0; */
+  border: 1px solid transparent;
+  color: #111;
+  z-index: 20;
+}
+.show-hide-timer .inner-timer{
+  text-align: left;
+  padding: 8px;
+  margin-right: 100px;
+  background: #fff;
+  width: 100%;
+}
+.timer-display .time-display{
+  color: #fff;
+}
+.show-hide-timer .footer{
+  border-top: 1px solid red;
+  border-top: 1px solid #d9d9d9;
+  height: 0px;
+  margin: 20px;
+}

@@ -10,8 +10,6 @@ import Loading from '../pages/Loading';
 const { TabPane} = Tabs;
 const { Content} = Layout;
 
-
-
 const TaskList = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [tasks, setLoadTask] = React.useState([]);
@@ -44,8 +42,12 @@ const TaskList = () => {
     }
 
     const handleToggleTaskStatus = (task) => {
-        task.completed = !task.completed;
-        updateTask(task).then(onRefresh())
+        
+        // task.completed = !task.completed;
+        task.completed ? task.completed = false : task.completed = true
+        // updateTask(task).then(onRefresh())
+        updateTask(task)
+        message.info('task.completed ? ', task.completed);
         message.info('Task status updated!');
     }
     

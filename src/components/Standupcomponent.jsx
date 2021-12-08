@@ -12,7 +12,8 @@ export default function StandUpComp() {
             background: "#f0f2f5",
             height: '180px',
             backgroundImage: `url(${banner})`,
-            backgroundSize: 'center center',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
             padding: '0px'
             // border: '1px solid red'
         },
@@ -20,6 +21,7 @@ export default function StandUpComp() {
             // paddingLeft: '10px',
             // paddingRight: '10px',
             paddingTop: '20px',
+            margin: '0px',
             display: 'flex',
             width: '90%',
             // marginLeft: 'auto',
@@ -36,12 +38,17 @@ export default function StandUpComp() {
         <div style={styles.container}>
 
             <div style={styles.innerCard} className="site-card-border-less-wrapper">
-                <Card title="Stand Up" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#feff9c' }}>
+                <Card title="Stand Up" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff' }}>
                 <p>Card content</p>
                 <p>Card content</p>
                 </Card>
 
-                <Card title="Stand Down" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#feff9c' }}>
+                <Card title="Stand Down" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff' }}>
+                <p>Card content</p>
+                <p>Card content</p>
+                </Card>
+
+                <Card title="Completed Task" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff' }}>
                 <p>Card content</p>
                 <p>Card content</p>
                 </Card>

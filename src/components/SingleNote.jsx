@@ -4,7 +4,6 @@ import { updateNote } from '../services/taskService';
  
 
 export const SingleNote = () => {
-    const [noteText] = useState();
     const {state} = useAppState()
     const {selectedNote} = state
     const [body, setBody] = useState(selectedNote.body)

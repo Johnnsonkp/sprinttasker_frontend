@@ -6,6 +6,7 @@ import { useAppState } from "../AppState";
 import Loading from "./Loading";
 import StandUpComp from "../components/Standupcomponent";
 import Pomodoro from "../components/Pomodoro";
+import TimerContainer from "../components/TimerContainer";
 
 export default function Main(props) {
   const { state } = useAppState();
@@ -14,7 +15,14 @@ export default function Main(props) {
 
   const loaded = () => {
     return (
-      <div>
+      <div
+        style={{
+          paddingLeft: "20px",
+          paddingRight: "20px",
+          maxWidth: "1440px",
+          margin: "auto",
+        }}
+      >
         <div className="menu-banner ant-col-offset-1">
           <textarea
             defaultValue={
@@ -25,14 +33,15 @@ export default function Main(props) {
             className="rest-title workspace-textfield"
           ></textarea>
 
-          <div style={{ width: "50%" }}>
-            <Pomodoro />
+          <div style={{ position: "relative", top: "28px" }}>
+            {/* <Pomodoro /> */}
+            <TimerContainer />
           </div>
         </div>
         <Collapse
           style={{
             marginLeft: "22%",
-            marginRight: "1%",
+            // marginRight: "1%",
             background: "#f0f2f5",
           }}
           // bordered={false}

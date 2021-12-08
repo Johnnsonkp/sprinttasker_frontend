@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Tooltip, Tag, List, Button, Popconfirm} from 'antd';
-import {CheckOutlined, PlayCircleOutlined, PauseCircleOutlined} from '@ant-design/icons'
+import {CheckOutlined, PlayCircleOutlined, PauseCircleOutlined, MessageOutlined} from '@ant-design/icons'
 import TaskSubitems from './TaskSubitems'
 import { Divider, Card } from 'antd';
 import { useAppState } from '../AppState';
@@ -15,11 +15,46 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     
     const styles = {
         listRow: {
-            width: '100%'
+            width: '100%',
+            maxHeight: '40px'
         },
         completed: {
             backgroundColor: '#d2f8d2',
             width: '100%'
+        },
+        activeCell: {
+            backgroundColor: '#c4c4c4',
+            position: 'relative',
+            height: '100%',
+            height: '100px',
+            padding: '0 8px',
+            textAlign: 'left',
+            fontSize: '12px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            width: '150px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        completeCell: {
+            backgroundColor: '#d2f8d2',
+            backgroundColor: 'rgb(0, 200, 117)',
+            position: 'relative',
+            height: '100%',
+            height: '100px',
+            padding: '0 8px',
+            textAlign: 'left',
+            fontSize: '12px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            width: '150px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#fff'
         }
     }
     const displayDescription = (e) => {
@@ -30,25 +65,17 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    // const timer = () => {
-    //     return (
-    //         <h1>Timer</h1>
-    //     )
-    // }
     const timer = () => {
         return (
             <h1>Timer</h1>
         )
     }
 
-    const minute = 23
-    const seconds = 59
-
     return (
         
         <>
         <List.Item
-            style={ task.completed? styles.completed : styles.listRow}
+            style={styles.listRow}
             actions={[
                 <Popconfirm
                     name={'Are you sure you want to delete?'}
@@ -65,14 +92,11 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
         >   
             <div className="task-item"
                 onMouseOver={() => hover? "" : setHover(true)}
-                // onMouseOut={() => setHover(false)}
             >
                 <div className="btnToggle">
                     <Tooltip
                         name={task.completed ? 'Mark as uncompleted' : 'Mark as completed'}>
                         <Button type="secondary-btnToggle" shape="circle" icon={<CheckOutlined />} 
-                            // checkedChildren={<CheckOutlined />}
-                            // unCheckedChildren={<CloseOutlined />}
                             defaultChecked={task.completed}
                             onClick={() => onTaskToggle(task)}
                         />
@@ -82,15 +106,24 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                     <Tag className="task-tag">
                         {capitalizeFirstLetter(task.name)}
                     </Tag>
+                    {task.description ? <MessageOutlined style={{color: '#7e8386'}}/> : null}
                 </div>
-                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
+
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
+
                 <div className="subitem-wrap">
                     <TaskSubitems task={task}/>
                 </div> 
 
-                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
+                    <div className="task-status" style={task.completed ? styles.completeCell : styles.activeCell}>
+                        {task.completed ? "Complete" : null}
+                    </div>
+                
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
+                
                 <div className="btnwrap">
-                    <Button type={toggle ? "primary" : "danger"} shape="circle" 
+                    <Button size="small" type={toggle ? "primary" : "danger"} shape="circle" 
                         onClick={(e) => {
                             setToggle(!toggle)
                             if(toggle === false){
@@ -100,19 +133,22 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                             dispatch({ type: "selectTask", payload: capitalizeFirstLetter(task.name)})
                         }}
                         icon={toggle ? <PlayCircleOutlined /> : <PauseCircleOutlined />}/> 
-                </div>
 
-                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
-
-                <div className="timerSlot">
-                    {
-                        state.work_mode &&  hover? <Pomodoro timer={timer}/> :
-                        "0:00"
-                    }
-                </div>
-
-                <Divider style={{borderTop: "3px solid #cbd4db", height: "48px"}} type="vertical" orientation="left" />
+                    <div className="timerSlot">
+                        {
+                            state.work_mode && !toggle? <Pomodoro taskid={task.id} timer={timer}/> :
+                            ""
+                        }
+                    </div>
+                    <div className="timerSlot">
                         
+                    </div>
+                </div>
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />  
+
+                {/* <div className="btnwrap">
+                        <h4>{task.completed ? new Date.now() : null}</h4>
+                </div> */}
             </div>
         </List.Item>
 
@@ -127,7 +163,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
             </div>
             : null
         }
-        </>                    
+        </>   
+                         
     )
 }
 
