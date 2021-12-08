@@ -49,7 +49,7 @@ const Note = ({id, title, body, created_at, deleteNote}) => {
                 <h3>{title}</h3>
             </div>
             <div className="body" style={{overflow: 'hidden'}}>
-                <span>{body.substring(0, 180)}</span>
+                <span>{body ? body.substring(0, 180) : body}</span>
             </div>
             <div className="note-footer">
                 <small>{created_at}</small>
