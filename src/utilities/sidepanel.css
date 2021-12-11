@@ -37,9 +37,9 @@
       text-align: left;
       font-size: 25px;
   }
-  .ant-col-offset-5 {
+  /* .ant-col-offset-5 {
     margin-left: 20.83333333%;
-  }
+  } */
   .sidePanelTab slider{
     width: 50px !important;
   }
@@ -121,4 +121,8 @@
 }
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #e6f7ff33;
+}
+.logoutBtn:hover{
+  background-color: #ff4d4f !important;
+  cursor: pointer;
 }

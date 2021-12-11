@@ -17,48 +17,27 @@ export default function Main(props) {
     return (
       <div
         style={{
-          paddingLeft: "20px",
-          paddingRight: "20px",
-          maxWidth: "1440px",
+          paddingLeft: "100px",
+          paddingRight: "0px",
+          maxWidth: "1500px",
+          width: "100%",
           margin: "auto",
         }}
       >
-        <div className="menu-banner ant-col-offset-1">
-          <textarea
-            defaultValue={
-              state.name
-                ? state.name + " Main WorkSpace"
-                : authToken.name + " Main WorkSpace"
-            }
-            className="rest-title workspace-textfield"
-          ></textarea>
+        <div className="menu-banner">
+          <div className="rest-title workspace-textfield">
+            {state.name
+              ? state.name + " Main WorkSpace"
+              : authToken.name + " Main WorkSpace"}
+          </div>
 
           <div style={{ position: "relative", top: "28px" }}>
-            {/* <Pomodoro /> */}
             <TimerContainer />
           </div>
         </div>
-        <Collapse
-          style={{
-            marginLeft: "22%",
-            // marginRight: "1%",
-            background: "#f0f2f5",
-          }}
-          // bordered={false}
-          defaultActiveKey={["1"]}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
-          )}
-          className="site-collapse-custom-collapse"
-        >
-          <Panel
-            header="Stand Up / Stand Down"
-            key="1"
-            className="site-collapse-custom-panel"
-          >
-            <StandUpComp />
-          </Panel>
-        </Collapse>
+        <div className="standup-section">
+          <StandUpComp />
+        </div>
         <TaskList />
       </div>
     );

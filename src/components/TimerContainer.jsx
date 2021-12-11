@@ -28,14 +28,19 @@ export default function TimerContainer() {
             left: '0px',
             top: '50px',
             borderRadius: '15px',
-            boxShadow: '0 4px 17px 6px rgb(0 0 0 / 10%)'
+            boxShadow: '0 4px 17px 6px rgb(0 0 0 / 10%)',
+            zIndex: '20'
         },
         workMode: {
-            backgroundColor: "red",
+            // backgroundColor: "red",
+            backgroundColor: '#111',
+            border: "3px solid #ff4d4f"
         },
         restMode: {
-            backgroundColor: "rgb(0, 200, 117)",
-        }
+            // backgroundColor: "rgb(0, 200, 117)",
+            backgroundColor: '#111',
+            border: "3px solid rgb(0, 200, 117)"
+        },
     }
 
     return (
@@ -49,7 +54,7 @@ export default function TimerContainer() {
             </div>
             <div style={show ? styles.show : styles.hide} className="show-hide-timer">
                 <Pomodoro />
-                <div className="inner-timer">
+                <div className="inner-timer" >
                     <h3>Task:</h3>
                     <h5>{state.work_mode ? task : null}</h5>
                     <div className="footer">

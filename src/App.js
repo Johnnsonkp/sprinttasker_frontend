@@ -42,7 +42,7 @@ export const App = () => {
     <>
       <div className="App">
         <Nav />
-        <div className="content">
+        <div className="main-content">
           {auth &&
           location.pathname !== "/" &&
           location.pathname !== "/notes" &&

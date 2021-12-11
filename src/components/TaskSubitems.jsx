@@ -19,12 +19,6 @@ const TaskSubitems = ({task}) => {
             <Menu.Item key="1" icon={<UserOutlined />}>
                 
             </Menu.Item>
-            {/* <Menu.Item key="2" icon={<UserOutlined />}>
-               
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UserOutlined />}>
-                
-            </Menu.Item> */}
         </Menu>
     );
 
@@ -32,7 +26,7 @@ const TaskSubitems = ({task}) => {
         <>
         <Space wrap>
             <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
-            Subitems
+            <p className="task-subitems">Subitems</p>
             </Dropdown.Button>
         </Space>
         </>

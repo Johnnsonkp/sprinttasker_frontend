@@ -45,7 +45,6 @@ export function SidePanel({notes}) {
     }
   }
 
-  let url
         
         return (
           <div className="sidePanel">
@@ -118,17 +117,12 @@ export function SidePanel({notes}) {
                       width: '90%',
                       fontSize: '16px', 
                       cursor: 'pointer',
-                      border: '1px solid red',
-                      padding: '7px 10px',
+                      border: '1px solid rgba(248, 72, 74, 0.48)',
+                      padding: '5px 12px',
                       borderRadius: '18px',
-                      backgroundColor: 'rgb(248 72 74 / 48%)',
-
-                      ['&:hover']: {
-                        backgroundColor: "#ff4d4f"
-                      }
-                      
-                  
+                      backgroundColor: 'rgb(248 72 74 / 48%)'
                     }}
+                    className="logoutBtn"
                     onClick={() => {
                     dispatch({type: "logout"})
                     navigate("/")

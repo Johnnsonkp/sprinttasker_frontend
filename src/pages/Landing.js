@@ -8,6 +8,7 @@ import notion from "../notion-logo-1.svg";
 import monday from "../monday-icon.svg";
 import heroku from "../heroku-ar21.svg";
 import netlify from "../netlify-ar21.svg";
+import { LogoBlock } from "../components/LogoBlock";
 import "../App.css";
 
 export default function Landing() {
@@ -175,28 +176,12 @@ export default function Landing() {
       </div>
 
       <div className="icon-container">
-        <div className="inner-icons">
-          <img
-            className="bannerLogo railsLogo landingIcon"
-            alt="Rails Logo"
-            src={railsLogo}
-          />
-          <img
-            className="bannerLogo reactLogo landingIcon"
-            alt="React Logo"
-            src={reactLogo}
-          />
-          <img
-            className="bannerLogo heroku landingIcon"
-            alt="Heroku"
-            src={heroku}
-          />
-          <img
-            className="bannerLogo netlify landingIcon"
-            alt="Netlify"
-            src={netlify}
-          />
-        </div>
+        <LogoBlock
+          firstLogo={railsLogo}
+          secondLogo={reactLogo}
+          thirdLogo={heroku}
+          fourthLogo={netlify}
+        />
       </div>
     </>
   );

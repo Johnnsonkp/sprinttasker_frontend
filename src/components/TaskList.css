@@ -1,17 +1,18 @@
 .tasklist {
-    /* margin: 24px; */
-    /* margin-top: 20px; */
-    /* margin: 50px; */
-    margin-left: 50px;
-    /* margin-right: 25px; */
-    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     background: #fff;
     width: 100%;
-    overflow: hidden;
+    /* min-width: 1000px; */
+    margin: auto;
+    margin-right: 10px;
+    margin-left: 10px;
+    /* overflow-x: visible !important; */
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    min-width: 1050px;
 }
-.ant-list-items{
-    overflow: hidden;
-}
+
 li.ant-list-item.list-item {
     /* border-top: 1px solid #cbd4db; */
     box-sizing: border-box;
@@ -21,6 +22,7 @@ li.ant-list-item.list-item {
     background-color: #f5f6f8;
     border-left: 5px solid #1890ff; 
     border-bottom: 3px solid #fff;
+    /* margin-right: 15px; */
 }
 li.ant-list-item.list-item:hover{
     background-color:#fff;
@@ -29,8 +31,12 @@ li.ant-list-item.list-item:hover{
 .task-tag{
     text-align: center;
     display: flex;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
     /* background: #f4f4f4; */
+}
+.task-subitems{
+    font-size: 12px;
 }
 .ant-tag{
     border: none;
@@ -42,6 +48,7 @@ li.ant-list-item.list-item:hover{
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  
 }
 .task-tag{
     width: 310px;
@@ -55,11 +62,24 @@ li.ant-list-item.list-item:hover{
     width: 340px;
     display: flex;
     justify-content: space-between;
+    
 }
 .ant-col-14 {
-    width: 100vw;
-    max-width: 1400px;
+    /* width: 100vw; */
+    /* max-width: 1400px; */
+    /* max-width: 1800px; */
+    width: 100%;
+    max-width: 3000px;
     flex: 1;
+    /* margin-bottom: 15px; */
+}
+.ant-list-pagination{
+    /* width: 34vw;
+    max-width: 1000px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 15px;
 }
  .ant-list-split .ant-list-item {
     border-bottom: none;
@@ -73,14 +93,11 @@ li.ant-list-item.list-item:hover{
     cursor: pointer;
 }
 .ant-spin-nested-loading{
-    width: 98%;
+    width: 100%;
 }
 .playBtn{
     width: 50px;
 }
-
-
-
 .popup .popuptext {
     visibility: hidden;
     width: 50px;
@@ -103,21 +120,31 @@ li.ant-list-item.list-item:hover{
     -webkit-animation: fadeIn 3s;
     animation: fadeIn 3s;
     display: flex;
+    align-items: flex-start;
+    /* border: 1px solid red; */
+}
+.task-description .ant-card-head{
+    background: #f0f2f5;
+    /* background: #fef68a;
+    border-bottom: 2px solid lightgrey; */
+}
+.singleCard{
+    background: #fff;
+    border: 1px solid lightgrey;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 6px 12px 0px;
+    border-radius: 10px;
+}
+.singleCard:hover:hover{
+    border: 1px solid blue;
+}
+.completed-task-card{
+    background: #fff;
 }
 .tabButton{
     padding: 20px;
     background-color: blue;
     position: relative;
     right: -650px;
-}
-.layout .ant-col-14{
-    max-width: 1020px;
-}
-.layout .ant-col-offset-5 {
-    margin-left: 18.83333333%;
-}
-.menu-banner .main-banner{
-    /* display: flex; */
 }
 .ant-list-item{
     padding: 0px;
@@ -130,4 +157,3 @@ li.ant-list-item.list-item:hover{
     width: 120px;
     padding: 10px;
 }
-/* #1890ff */

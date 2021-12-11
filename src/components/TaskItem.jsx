@@ -16,7 +16,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     const styles = {
         listRow: {
             width: '100%',
-            maxHeight: '40px'
+            maxHeight: '40px',
         },
         completed: {
             backgroundColor: '#d2f8d2',
@@ -146,19 +146,24 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />  
 
-                {/* <div className="btnwrap">
-                        <h4>{task.completed ? new Date.now() : null}</h4>
+                {/* <div className="timerSlot">
+                        {
+                            state.work_mode && !toggle? <Pomodoro taskid={task.id} timer={timer}/> :
+                            ""
+                        }
                 </div> */}
+
+                {/* <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />  */}
             </div>
         </List.Item>
 
         {showDesc?
             <div className="task-description" >
                 <List.Item>
-                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '10px' }} title="Task Description">{task.description}</Card>
+                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Task Description">{task.description}</Card>
                 </List.Item>
                 <List.Item>
-                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '10px' }} title="Subtask">{task.subtask}</Card>
+                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card>
                 </List.Item>
             </div>
             : null
