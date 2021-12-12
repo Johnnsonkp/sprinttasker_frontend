@@ -26,6 +26,7 @@ export function SidePanel({notes}) {
   const [collapsed, setCollapsed] = useState(true)
   const auth = JSON.parse(window.localStorage.getItem("auth"));
   const userFirstInitials = auth.name[0].toUpperCase();
+  const userName = auth.name.toUpperCase();
 
   const onCollapse = () => {
     console.log(collapsed);
@@ -86,6 +87,7 @@ export function SidePanel({notes}) {
                     </Link>
                 </Menu.Item>
               </Menu>
+              <div>
               <Avatar
                   style={{
                     backgroundColor: "#f56a00",
@@ -95,13 +97,14 @@ export function SidePanel({notes}) {
                     marginRight: "10px",
                     position: 'absolute',
                     bottom: '8vh',
-                    left: '0%'
+                    left: collapsed ? '0vw' : '4.8vw' 
                   }}
-                  size={40}
+                  size={collapsed ? 40 : 45 }
                   gap={2}
                 >
-                  {userFirstInitials}
+                  {collapsed ? userFirstInitials : userName }
                 </Avatar>
+              </div>
             </Sider>
             {collapsed ? 
             <Layout className="site-layout">
