@@ -107,7 +107,7 @@ export function SidePanel({notes}) {
                 <></> 
                 }
 
-                <Footer style={{backgroundColor: '#323439', position: "relative", top: '120px', left: '0px', padding: '0px', width: '65%'}}>
+                <Footer style={{backgroundColor: '#323439', position: "relative", left: '0px', padding: '0px', width: '65%'}}>
                   <div 
                     style={{
                       display: 'flex', 
