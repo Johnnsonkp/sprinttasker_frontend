@@ -12,7 +12,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     const [toggle, setToggle] = useState(true)
     const [showDesc, setShow] = React.useState(false)
     const [hover, setHover] = useState(false);
-    
+    const [date, setDate] = useState();
+
     const styles = {
         listRow: {
             width: '100%',
@@ -98,6 +99,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                         name={task.completed ? 'Mark as uncompleted' : 'Mark as completed'}>
                         <Button type="secondary-btnToggle" shape="circle" icon={<CheckOutlined />} 
                             defaultChecked={task.completed}
+                            onClick={() => onTaskToggle(task)}
                             onClick={() => onTaskToggle(task)}
                         />
                     </Tooltip>

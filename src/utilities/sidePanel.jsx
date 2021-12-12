@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useAppState } from "../AppState";
 
 import './sidepanel.css'
-import { Layout, Menu, Divider } from 'antd';
+import { Layout, Menu, Divider, Avatar } from 'antd';
 import {
   FormOutlined,
   AppstoreOutlined,
@@ -24,6 +24,8 @@ export function SidePanel({notes}) {
   const { Header, Content, Sider, Footer } = Layout;
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(true)
+  const auth = JSON.parse(window.localStorage.getItem("auth"));
+  const userFirstInitials = auth.name[0].toUpperCase();
 
   const onCollapse = () => {
     console.log(collapsed);
@@ -84,6 +86,22 @@ export function SidePanel({notes}) {
                     </Link>
                 </Menu.Item>
               </Menu>
+              <Avatar
+                  style={{
+                    backgroundColor: "#f56a00",
+                    verticalAlign: "middle",
+                    margin: 'auto',
+                    marginLeft: "11px",
+                    marginRight: "10px",
+                    position: 'absolute',
+                    bottom: '8vh',
+                    left: '0%'
+                  }}
+                  size={40}
+                  gap={2}
+                >
+                  {userFirstInitials}
+                </Avatar>
             </Sider>
             {collapsed ? 
             <Layout className="site-layout">
