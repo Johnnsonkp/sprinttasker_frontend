@@ -116,7 +116,7 @@ const Nav = () => {
             :
            <div style={{position: 'sticky'}}>
             <Breadcrumb separator=">">
-              <Breadcrumb.Item style={{color: '#fff', marginRight: '36px'}}>Hi, {state.name}</Breadcrumb.Item>
+              <Breadcrumb.Item style={{color: '#fff', marginRight: '36px', margintop: 'auto', marginBottom: 'auto'}}>Hi, {state.name}</Breadcrumb.Item>
             </Breadcrumb>
           </div> 
           
@@ -130,7 +130,7 @@ const Nav = () => {
       return (
         <>
         {location.pathname === "/" || location.pathname == "/auth/login" || location.pathname == "/auth/signup"  ? <></> :<BreadCrumb />}
-        {location.pathname === "/" || location.pathname === "/about" || location.pathname  === "/developer"?  
+        {location.pathname === "/" || location.pathname === "/about" || location.pathname  === "/developer" || location.pathname == "/auth/login" || location.pathname == "/auth/signup" ?  
           <header style={styles.header}>
             <div className="header-container">
               <div className="TitleBox">

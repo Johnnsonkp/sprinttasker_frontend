@@ -5,6 +5,7 @@ import TaskList from "../components/TaskList";
 import SmallWave from "../wave-small.png";
 import Notes from "./Notes";
 import { DisplayBox } from "../components/DisplayBox";
+import AllNotes from "../components/AllNotes";
 const { Search } = Input;
 
 export default function Home() {
@@ -16,10 +17,10 @@ export default function Home() {
     container: {
       marginLeft: "21%",
       marginTop: "20px",
-      marginBottom: "20px",
+      marginBottom: "50px",
     },
     containerInner: {
-      width: "82%",
+      width: "92%",
       margin: "auto",
     },
     welcomeBanner: {
@@ -36,7 +37,7 @@ export default function Home() {
       marginBottom: "30px",
       display: "flex",
       justifyContent: "flex-start",
-      padding: "90px 20px 50px 30px",
+      padding: "90px 20px 80px 30px",
       backgroundImage: `url(${SmallWave})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center center",
@@ -61,8 +62,8 @@ export default function Home() {
               marginLeft: "15px",
               marginRight: "15px",
             }}
-            size={50}
-            gap={1}
+            size={45}
+            gap={0}
           >
             {userFirstInitials}
           </Avatar>
@@ -84,7 +85,7 @@ export default function Home() {
           style={{
             marginTop: "30px",
             // marginBottom: "20px",
-            width: "100%",
+            // width: "100%",
             height: "310px",
             // border: "1px solid orange",
             display: "flex",
@@ -93,14 +94,19 @@ export default function Home() {
           }}
           className="projects"
         >
-          <DisplayBox title={"Announcements"} link={"/notes"} />
-          <DisplayBox
-            component={
-              <Calendar fullscreen={false} onPanelChange={onPanelChange} />
-            }
-            title={"Calendar"}
-            link={"/notes"}
-          />
+          <div style={{ width: "49%" }}>
+            <DisplayBox title={"Announcements"} link={"/notes"} />
+          </div>
+
+          <div style={{ width: "49%" }}>
+            <DisplayBox
+              component={
+                <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+              }
+              title={"Calendar"}
+              link={"/notes"}
+            />
+          </div>
         </div>
         <DisplayBox
           component={<TaskList />}

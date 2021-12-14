@@ -12,7 +12,7 @@ const initialState = {
     name: null,
     email: null,
     usertasks: [],
-    alltasks: null,
+    alltasks: [],
     user_id: 0,
     work_mode: false,
     notes: [],
@@ -52,6 +52,7 @@ export const reducer = (state, action) => {
             return newState;
             break;
         case "getTasks":
+            console.log("getTasks alltasks", action.payload)
             newState = {...state, alltasks: action.payload}
             return newState;
             break;
@@ -60,7 +61,7 @@ export const reducer = (state, action) => {
             return newState;
             break;
         case "getNotes":
-            console.log("payload", action.payload)
+            // console.log("payload", action.payload)
             newState = {...state, notes: action.payload}
             return newState;
             break;

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {DatabaseOutlined} from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 import { useAppState } from '../AppState';
 
 
@@ -10,6 +11,7 @@ export default function SidePanelTabs({notes}){
     const { Sider } = Layout;
     const Navigate = useNavigate()
     const {state, dispatch} = useAppState()
+    const location = useLocation();
 
     const notesSidePanelTabs = ({note}) => {
 
@@ -46,24 +48,16 @@ export default function SidePanelTabs({notes}){
           <div className="logo" />
           <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1" icon={<DatabaseOutlined />}>
-                <Link to="/my_work">
-                  Board 1
-                </Link>
+                {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/completed-tasks">Task History</Link> : "Board 1"}
             </Menu.Item>
             <Menu.Item key="2" icon={<DatabaseOutlined />}>
-                <Link to="/main">
-                  Board 2
-                </Link>
+              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/countdown-timer">Countdown Timer</Link> : "Board 2"}
             </Menu.Item>
             <Menu.Item key="3" icon={<DatabaseOutlined />}>
-                <Link to="/my_work">
-                  Board 3
-                </Link>
+              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/standup">Stand Up - Stand Down</Link> : "Board 3"}
             </Menu.Item>
             <Menu.Item key="4" icon={<DatabaseOutlined />}>
-                <Link to="/main">
-                  Board 4
-                </Link>
+              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/task-cards">Task Cards</Link> : "Board 4"}
             </Menu.Item>
             </Menu>
         </Sider>

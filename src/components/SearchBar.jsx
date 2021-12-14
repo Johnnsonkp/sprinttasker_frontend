@@ -14,7 +14,7 @@ const SearchBar = ({handleSearchNote}) => {
                 allowClear
                 onSearch={onSearch}
                 onChange={(e) => handleSearchNote(e.target.value)}
-                style={{ width: "100%", maxWidth: "1020px", marginTop: '50px', marginBottom: '50px', borderRadius: '15px', border: '1px solid #fff', padding: '5px', background: '#fff' }}
+                style={{ width: "100%", maxWidth: "1020px", marginTop: '30px', marginBottom: '50px', borderRadius: '8px', border: '1px solid #fff', padding: '8px', background: '#fff' }}
           />
         </div>
     )

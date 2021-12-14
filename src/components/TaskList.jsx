@@ -32,7 +32,7 @@ const TaskList = () => {
     };
 
     const handleFormSubmit = (task) => {
-        console.log('task to create', task);
+        // console.log('task to create', task);
         createTask(task).then(onRefresh())
         message.success('Task added!');
     }
@@ -55,24 +55,26 @@ const TaskList = () => {
     
     const refresh = async () => {
         const loadedTask = await loadTasks()
-        console.log("loadedTask await", loadedTask)
+        // console.log("loadedTask await", loadedTask)
         setLoadTask(loadedTask);
         setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
         setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
+        dispatch({type: "getTasks", payload: tasks});
     };
 
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        console.log("useCallback", "useCallback")
+        // console.log("useCallback", "useCallback")
         let loadedTasks = await loadTasks()
+        dispatch({type: "getTasks", payload: loadedTasks});
         const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
         setLoadTask(parsedTask);
         setActiveTasks(parsedTask.filter(task => task.completed === false))
         setCompletedTasks(parsedTask.filter(task => task.completed === true))
-        console.log(tasks);
+        // console.log(tasks);
         setRefreshing(false);
-        console.log("Refreshing state", refreshing);
+        // console.log("Refreshing state", refreshing);
     }, [refreshing]);
 
     useEffect(() => {
@@ -82,7 +84,7 @@ const TaskList = () => {
 
     const loaded = () => {
         return (
-            <div className="trackList">
+            <div id="trackList" className="trackList">
                 <div className="dummy-side-panel">
                 </div>
                 <Layout className="layout" style={{backgroundColor: '#fff'}}>

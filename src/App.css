@@ -89,10 +89,11 @@
   header{
     display: flex;
     margin: auto;
-    background: rgba(255, 255, 255, 0.2);
-    background: #002140;
+    /* background: rgba(255, 255, 255, 0.2); */
+    /* background: #002140; */
     height: 80px; 
     background: #1b1a21;
+    /* background: transparent; */
   }
   .header-container{
     display: flex;
@@ -160,7 +161,6 @@
   nav{
     display: flex;
     font-size: 16px;
-    /* color: #fff !important; */
   }
   nav .nav-auth{
     padding-left: 30px;
@@ -181,13 +181,13 @@
 .auth-container .banner{
   position: absolute;
   top: 0px;
-  height: 130px;
+  height: 150px;
   width: 100%;
   background: #1b1a21;
 }
 .form-wrapper{
     /* border: 1px solid red; */
-    height: 92vh;
+    height: 100vh;
     max-height: 900px;
     display: flex;
     justify-content: center;
@@ -195,6 +195,9 @@
     flex-direction: column;
     width: 100%;
     margin: auto;
+}
+.form-wrapper h1{
+  padding-top: 80px;
 }
 .form-wrapper form {
     width: 90%;
@@ -225,16 +228,31 @@
   background: transparent;
   color: #fff;
   border: none;
+  font-weight: bold;
+
 }
-
-
+label{
+  text-align: left;
+  margin-top: 8px;
+  font-weight: bold;
+}
+.auth-container form input{
+  height: 35px;
+  border: 1px solid lightgrey;
+}
+.button-submit{
+  margin-top: 15px;
+  cursor: pointer;
+}
+.button-submit input{
+  cursor: pointer;
+}
 /* Landing page */
 .landing-background{
   background-image: url("/src/landing-background.svg"),url("/src/wave2.svg");
   background-position: bottom 10% right,top 25% left;
 }
 .bannerLogo{
-  border: 1px solid red;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 5px;
   border-radius: 8px;
@@ -414,21 +432,36 @@
   overflow: hidden;
 }
 #projects .ant-col.ant-col-14.ant-col-offset-5, #projects .ant-col-offset-5 {
-  margin-left: -0% !important;
-  margin-top: 0% !important;
+  /* margin-left: -0% !important;
+  margin-top: 0% !important; */
 } 
+#projects .dummy-side-panel{
+  display: none;
+}
+#projects #note .note-container{
+  margin-left: 0px !important;
+}
 
 #projects .ant-layout-content{
   padding: 0px !important;
   background-color: #fff !important;
 }
 #projects .tasklist{
-  margin-left: 10px;
-  flex: 1;
+  /* margin-left: 10px; */
+  /* flex: 1; */
+  transform: scale(0.8);
+  position: relative;
+  top: -50px;
+  left: -40px;
 }
 #projects{
   position: relative;
   cursor: pointer;
+}
+#projects .ant-picker-calendar-mini{
+  transform: scale(0.8);
+  position: relative;
+  top: -25px;
 }
 #projects:hover, #calender:hover, #announcements:hover{
   background-color: lightgrey;
@@ -437,7 +470,13 @@
   transition: all ease-in-out 0.3s;
   transform: scale(1.02);
 }
-#projects h3 {
+#projects .notes-container{
+  padding-top: 0px;
+  transform: scale(0.8);
+  position: relative;
+  top: -115px;
+}
+#projects .display-box-title {
   position: absolute;
   top: 0px;
   left: 15px;
@@ -653,17 +692,21 @@
   text-align: left;
   padding: 8px;
   margin-right: 100px;
-  background: #fff;
+  background: #f5f6f8;
   width: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .timer-display .time-display{
   color: #fff;
 }
 .show-hide-timer .footer{
   border-top: 1px solid red;
-  border-top: 1px solid #d9d9d9;
+  border-top: 1px solid #111;
   height: 0px;
   margin: 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .layout .ant-col-offset-5{
   margin: 0px !important;
@@ -683,4 +726,34 @@
 }
 .dummy-side-panel{
   width: 100px;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+  z-index: 0;
+}
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+  z-index: 0 !important;
+}
+.searchfield .ant-input-group{
+  padding: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.searchfield .ant-input-group .ant-input-affix-wrapper{
+  border: none;
+}
+#menu-banner .tasklist{
+  height: 80px;
+}
+.standup-section{
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+#trackList .tasklist{
+  margin-top: 0px;
+}
+.tasklist:hover{
+  border: 1px solid blue;
+  cursor: pointer;
 }

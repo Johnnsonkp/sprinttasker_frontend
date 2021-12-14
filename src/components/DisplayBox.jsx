@@ -9,6 +9,7 @@ export const DisplayBox = ({component, title, link}) => {
           style={{
             marginTop: "30px",
             border: "3px solid rgb(98 178 251)",
+            border: "3px solid lightGrey",
             borderRadius: "10px",
             height: "280px",
             maxHeight: "280px",
@@ -17,15 +18,18 @@ export const DisplayBox = ({component, title, link}) => {
             boxSizing: "border box",
             padding: "0px",
             // backgroundColor: "#1890ff",
-            backgroundColor: "rgb(98 178 251)"
+            backgroundColor: "rgb(98 178 251)",
+            // backgroundColor: "#fff"
           }}
         >
           <h3
+            className="display-box-title"
             style={{
               textAlign: "left",
               padding: "8px",
               marginBottom: "3px",
               color: "#fff",
+              // color: "#111",
               fontWeight: "bolder",
               fontSize: "18px",
             }}
@@ -47,7 +51,7 @@ export const DisplayBox = ({component, title, link}) => {
               navigate(link);
             }}
           >
-            <div className="inner" style={{backgroundColor: component? "rgb(98 178 251)" : "#fff"}}>
+            <div className="inner" style={{backgroundColor: component? "#fff" : "#fff"}}>
                 {component}
             </div>
           </div>

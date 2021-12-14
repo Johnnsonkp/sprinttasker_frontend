@@ -73,8 +73,8 @@ const Notes = () => {
 
   const loaded = () => {
     return (
-      <div style={styles.container}>
-        <div style={styles.notesContainer}>
+      <div id="note" style={styles.container}>
+        <div className="note-container" style={styles.notesContainer}>
           <AllNotes
             notes={loadedNotes}
             addNote={addNote}

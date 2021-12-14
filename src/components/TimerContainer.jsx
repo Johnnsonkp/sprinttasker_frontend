@@ -17,7 +17,8 @@ export default function TimerContainer() {
             width: '100%',
             position: "absolute",
             left: '0px',
-            top: '100px'
+            top: '100px',
+            backgroundColor: "lightGrey"
         },
         show: {
             opacity: 1,
@@ -29,7 +30,8 @@ export default function TimerContainer() {
             top: '50px',
             borderRadius: '15px',
             boxShadow: '0 4px 17px 6px rgb(0 0 0 / 10%)',
-            zIndex: '20'
+            zIndex: '1',
+            backgroundColor: "#f5f6f8"
         },
         workMode: {
             // backgroundColor: "red",
@@ -53,14 +55,25 @@ export default function TimerContainer() {
                 <div className="right"><CaretRightOutlined backgroundColor="#111" rotate={show ? 0 : 90} /></div>
             </div>
             <div style={show ? styles.show : styles.hide} className="show-hide-timer">
-                <Pomodoro />
-                <div className="inner-timer" >
-                    <h3>Task:</h3>
-                    <h5>{state.work_mode ? task : null}</h5>
-                    <div className="footer">
+                <h4 style={{display: 'flex', alignItems: 'center', padding: '4px', borderBottom: '1px solid #111', color: 'red', fontWeight: 'bolder'}}>Timer:{ state.work_mode ?  <Pomodoro /> : '00:00' }</h4>
+                    <div className="inner-timer" >
+                    { state.work_mode ? 
+                        <>
+                        <div style={{border: "1px solid #111", padding: '5px', borderRadius: '8px', marginBottom: '15x'}}>
+                            <h4>Task:</h4>
+                            <h5>{state.work_mode ? task : null}</h5>
+                        </div>
+                        <div style={{border: "1px solid #444", padding: '5px', borderRadius: '8px', marginTop: '15px'}}>
+                            <h4>Subtask:</h4>
+                            <h5>{state.work_mode && task.subtask ? task.subtask : null}</h5>
+                        </div>
+                        </>
+                     : null
+                    }
+                        <div className="footer">
 
-                    </div>
-                </div>
+                        </div>
+                    </div> 
                 
             </div>
         </div>

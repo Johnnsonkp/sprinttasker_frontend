@@ -17,7 +17,7 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle}) => {
         )}
         pagination={{
             position: "bottom",
-            pageSie: 10,
+            pageSize: 13,
         }}
     /></>
     )

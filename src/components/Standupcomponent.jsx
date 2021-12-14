@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import { Card } from 'antd';
+import { useAppState } from '../AppState';
 import banner from '../std-banner.svg';
 
 
-export default function StandUpComp() {
+export default function StandUpComp(props) {
 
     const styles = {
         container: {
@@ -53,8 +54,39 @@ export default function StandUpComp() {
             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 6px 12px 0px',
             cursor: 'pointer'
         }
+       
 
     }
+    const {state} = useAppState()
+    const [completedTask, setCompletedTasks] = useState(null)
+    const [toggle, setToggle] = useState(false)
+
+    const TaskComplete = () => {
+        
+        setToggle(false)
+        return (
+            completedTask.map((task) => (
+                console.log("completedTasks forloop:", completedTask),
+                <p key={task.id}>{task.name}</p>
+            ))   
+        )
+    }
+
+    useEffect(() => {
+        if(toggle){
+            setToggle(false)
+            setCompletedTasks(state.alltasks)
+        }
+        
+    }, [toggle])
+    const Toggled = () => {
+        setToggle(!toggle)
+        console.log("toggled",toggle)
+        return (
+            null
+        )
+    }
+
     return (
         // <div style={styles.container}>
         <div className="trackList">
@@ -73,9 +105,12 @@ export default function StandUpComp() {
                         <p>Days Hours Minutes Seconds</p>
                     </Card>
 
-                    <Card style={styles.card} className="singleCard completed-task-card" title="Completed Task" bordered={true} style={{ width: 450, minHeight: 200, textAlign: 'left', backgroundColor: '#fff', margin: '10px' }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
+                    <Card style={styles.card} className="singleCard completed-task-card" title="Completed Task" bordered={true} style={{ width: 450, minHeight: 200, maxHeight: '200px', textAlign: 'left', backgroundColor: '#fff', margin: '10px', overflow: 'hidden' }}>
+                        {/* {completedTask ? completedTask.map((task) => (
+                            console.log("completedTasks forloop:", completedTask),
+                            <p key={task.id}>{task.name}</p>
+                        )) : null} */}
+            
                     </Card>
                 </div>
             </div>

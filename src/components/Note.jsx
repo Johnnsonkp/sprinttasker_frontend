@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import {CloseCircleOutlined} from '@ant-design/icons'
+import React from 'react'
 import { useNavigate } from "react-router";
 import { useAppState } from '../AppState';
 import {Button} from 'antd'

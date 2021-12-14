@@ -4,37 +4,46 @@ export const LogoBlock = (props) => {
     const styles = {
         innerIcons: {
             display: 'flex',
-            justifyContent: 'space-around',
+            flexDirection: props.flexDirection ? props.flexDirection : "row",
+            justifyContent: props.justifyContent? props.justifyContent : 'space-around',
+            flexWrap: props.flexWrap ? props.flexWrap : null,
             alignItems: 'center',
-            border: '2px solid #61dafb',
-            width: '85%',
+            border: props.blockBorder ? props.blockBorder : null,
+            width: props.containerWidth ?  props.containerWidth: '85%',
+            height: props.height ? props.height : null,
             margin: 'auto',
             borderRadius: '50px',
-            backgroundColor: '#f4f4f4',
+            backgroundColor: props.backgroundColor ? props.backgroundColor : '#f4f4f4',
             boxShadow: '-2px 6px 10px 0 rgb(0 0 0 / 8%)', 
             maxWidth: '1200px'
         },
         landingIcon: {
-            width: '120px'
+            width: props.iconWidth ? props.iconWidth : "120px",
+            border: props.iconBorder ? props.iconBorder  : null,
         }
     }
     const Logos = [
-        { Logo: props.firstLogo },
-        { Logo: props.secondLogo },
-        { Logo: props.thirdLogo },
-        { Logo: props.fourthLogo }
+        { Logo: props.firstLogo ? props.firstLogo : null },
+        { Logo: props.secondLogo ? props.secondLogo : null },
+        { Logo: props.thirdLogo ? props.thirdLogo : null },
+        { Logo: props.fourthLogo ? props.fourthLogo : null }
     ]
+    let i = 0;
     return (
         <div style={styles.innerIcons} className="inner-icons">
-          {Logos.map(item => {
-            return (
-                <img
-                    style={styles.landingIcon}
-                    className="bannerLogo railsLogo landingIcon"
-                    alt="Landing page logo"
-                    src={item['Logo']}
-                />
-            )
+          {Logos.map((item) => {
+              i++
+            if(item['Logo'] !== null) {
+                return (
+                    <img
+                        key={i}
+                        style={styles.landingIcon}
+                        className="bannerLogo railsLogo landingIcon"
+                        alt="Landing page logo"
+                        src={item['Logo']}
+                    />
+                )
+            } 
           })}
         </div>
     )

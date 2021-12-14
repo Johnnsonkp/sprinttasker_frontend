@@ -81,7 +81,7 @@ const Auth = ({ name, username, password, email }) => {
         <Wave />
       </div>
       <div className="form-wrapper">
-        <h1>{type}</h1>
+        <h1>{type.toUpperCase()}</h1>
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             {type === "LOGIN" ? (
@@ -140,8 +140,17 @@ const Auth = ({ name, username, password, email }) => {
                 />
               </>
             )}
-            <Button type="primary" shape="round" size="large">
-              <input className="submitBtn" type="submit" value={type} />
+            <Button
+              className="button-submit"
+              type="primary"
+              shape="round"
+              size="large"
+            >
+              <input
+                className="submitBtn"
+                type="submit"
+                value={type.toUpperCase()}
+              />
             </Button>
           </form>
         </div>

@@ -24,19 +24,24 @@ export default function Main(props) {
           margin: "auto",
         }}
       >
-        <div className="menu-banner">
-          <div className="rest-title workspace-textfield">
-            {state.name
-              ? state.name + " Main WorkSpace"
-              : authToken.name + " Main WorkSpace"}
-          </div>
+        {/* <div className="menu-banner "> */}
+        <div id="menu-banner" className="trackList ">
+          <div className="dummy-side-panel"></div>
+          <div className="tasklist ">
+            <div className="rest-title workspace-textfield">
+              {state.name
+                ? state.name + " Main WorkSpace"
+                : authToken.name + " Main WorkSpace"}
+            </div>
 
-          <div style={{ position: "relative", top: "28px" }}>
-            <TimerContainer />
+            {/* <div style={{ position: "relative", top: "28px" }}> */}
+            <div style={{ position: "relative", top: "-20px", left: "75%" }}>
+              <TimerContainer />
+            </div>
           </div>
         </div>
         <div className="standup-section">
-          <StandUpComp />
+          <StandUpComp tasks={state.alltasks} />
         </div>
         <TaskList />
       </div>

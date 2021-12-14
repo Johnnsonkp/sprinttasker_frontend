@@ -17,6 +17,7 @@ import {
 } from "./pages";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { SingleNote } from "./components/SingleNote";
+import { TaskCards } from "./pages/TaskCards";
 
 export const App = () => {
   const { state, dispatch } = useAppState();
@@ -45,8 +46,13 @@ export const App = () => {
         <div className="main-content">
           {auth &&
           location.pathname !== "/" &&
+          location.pathname !== "/about" &&
+          location.pathname !== "/developer" &&
           location.pathname !== "/notes" &&
-          location.pathname !== "/single-note" ? (
+          location.pathname !== "/auth/login" &&
+          location.pathname !== "/auth/signup" &&
+          location.pathname !== "/single-note" &&
+          location.pathname !== "/task-cards" ? (
             <SidePanel />
           ) : location.pathname === "/notes" ||
             location.pathname === "/single-note" ? (
@@ -65,6 +71,7 @@ export const App = () => {
             <Route path="/notes/" element={<Notes />} />
             <Route path="/home" element={<Home />} />
             <Route path="/single-note" element={<SingleNote />} />
+            <Route path="/task-cards" element={<TaskCards />} />
           </Routes>
         </div>
       </div>

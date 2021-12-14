@@ -15,6 +15,9 @@
     grid-column: 1 / 2;
 
 }
+/* .ant-menu-title-content{
+  margin-left: 30px !important;
+} */
 .second-inner-panel{
     border: 1px solid blue;
     position: relative;
@@ -108,7 +111,7 @@
     color: #111;
   }
   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a{
-    color: #111 !important;
+    color: #1890ff !important;
 }
 .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
   border-right: none !important;

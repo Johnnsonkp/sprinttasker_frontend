@@ -166,9 +166,14 @@ export default function Landing() {
           <div className="right">
             <div className="content-inner"></div>
             <div className="logo-container">
-              <img className="bannerLogo" alt="slackLogo" src={slackLogo} />
-              <img className="bannerLogo" alt="notion" src={notion} />
-              <img className="bannerLogo" alt="monday" src={monday} />
+              <LogoBlock
+                backgroundColor={"transparent"}
+                iconWidth={"50px"}
+                iconBorder={"1px solid lightGrey"}
+                firstLogo={slackLogo}
+                secondLogo={notion}
+                thirdLogo={monday}
+              />
             </div>
           </div>
         </div>
@@ -177,12 +182,36 @@ export default function Landing() {
 
       <div className="icon-container">
         <LogoBlock
+          blockBorder={"2px solid #61dafb"}
           firstLogo={railsLogo}
           secondLogo={reactLogo}
           thirdLogo={heroku}
           fourthLogo={netlify}
         />
       </div>
+
+      {/* <div>
+        <div>
+          <h1>Features</h1>
+        </div>
+        <div style={{ display: "flex" }}>
+          <LogoBlock
+            iconWidth={"450px"}
+            containerWidth={"400px"}
+            height={"500px"}
+            containerWidth={"500px"}
+            flexWrap={"wrap"}
+            fourthLogo={netlify}
+          />
+          <LogoBlock
+            iconWidth={"450px"}
+            containerWidth={"500px"}
+            height={"500px"}
+            flexWrap={"wrap"}
+            thirdLogo={heroku}
+          />
+        </div>
+      </div> */}
     </>
   );
 }
