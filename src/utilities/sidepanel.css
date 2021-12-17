@@ -33,9 +33,11 @@
     border: 1px solid #1890ff;
   }
   .sidePanelTab {
-    width: 190px;
+    width: 210px;
+    height: 410px;
+    overflow-x: hidden;
+    border-bottom: 1px solid rgb(72 72 72 / 48%);
   }
-
   .heading{
       text-align: left;
       font-size: 25px;

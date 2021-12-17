@@ -693,6 +693,8 @@ label{
   padding: 8px;
   margin-right: 100px;
   background: #f5f6f8;
+  background-color: #3e3e3e;
+  color: #fff;
   width: 100%;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -701,12 +703,12 @@ label{
   color: #fff;
 }
 .show-hide-timer .footer{
-  border-top: 1px solid red;
+  /* border-top: 1px solid red;
   border-top: 1px solid #111;
   height: 0px;
-  margin: 20px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  margin: 20px; */
+  /* border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px; */
 }
 .layout .ant-col-offset-5{
   margin: 0px !important;

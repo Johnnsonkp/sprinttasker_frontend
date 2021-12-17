@@ -19,6 +19,8 @@ const initialState = {
     selectedTask: '',
     selectedNote: [],
     subtask: '',
+    timer: 0,
+    inProgressTimer: 0,
     new: {
         title: "",
         body: ""
@@ -52,7 +54,6 @@ export const reducer = (state, action) => {
             return newState;
             break;
         case "getTasks":
-            console.log("getTasks alltasks", action.payload)
             newState = {...state, alltasks: action.payload}
             return newState;
             break;
@@ -66,13 +67,23 @@ export const reducer = (state, action) => {
             return newState;
             break;
         case "selectTask":
-            console.log("payload", action.payload)
             newState = {...state, selectedTask: action.payload}
             return newState;
             break;
         case "selectedNote":
-            console.log("payload", action.payload)
             newState = {...state, selectedNote: action.payload}
+            return newState;
+            break;
+        case "timer":
+            newState = {...state, timer: action.payload}
+            return newState;
+            break;
+        case "inProgressTimer":
+            newState = {...state, inProgressTimer: action.payload}
+            return newState;
+            break;
+        case "stopTimer":
+            newState = {...state, timer: action.payload}
             return newState;
             break;
          default: 

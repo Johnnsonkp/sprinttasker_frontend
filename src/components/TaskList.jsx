@@ -3,10 +3,12 @@ import {Tabs, Layout, Row, Col, message, Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import './TaskList.css'
 import TaskTab from './TaskTab';
+import InProgressTab from './inProgressTab'
 import TaskForm from './TaskForm';
 import { useAppState } from '../AppState';
 import {postTask, destroy, update, loadTasks} from '../services/taskService';
 import Loading from '../pages/Loading';
+import Pomodoro from '../components/Pomodoro'
 
 const { TabPane} = Tabs;
 const { Content} = Layout;
@@ -18,6 +20,13 @@ const TaskList = () => {
     const [completedTasks, setCompletedTasks] = useState([]);
     const { state, dispatch } = useAppState();
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
+    const taskInProgress = () => {
+
+        return (
+            <h1>Task in progress</h1>
+        )
+    }
 
     const createTask = (task) => {
         return postTask(task)
@@ -40,14 +49,10 @@ const TaskList = () => {
     const handleRemoveTask = (task) => {
         deleteTask(task.id).then(onRefresh())
         message.warn('Task removed');
-        // setRefreshing(true)
     }
 
     const handleToggleTaskStatus = (task) => {
-        
-        // task.completed = !task.completed;
         task.completed ? task.completed = false : task.completed = true
-        // updateTask(task).then(onRefresh())
         updateTask(task)
         message.info('task.completed ? ', task.completed);
         message.info('Task status updated!');
@@ -55,13 +60,12 @@ const TaskList = () => {
     
     const refresh = async () => {
         const loadedTask = await loadTasks()
-        // console.log("loadedTask await", loadedTask)
+        console.log("loadedTask await", loadedTask)
         setLoadTask(loadedTask);
         setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
         setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
         dispatch({type: "getTasks", payload: tasks});
     };
-
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
@@ -91,18 +95,22 @@ const TaskList = () => {
                     <Content style={{ }}>
                     <div className="tasklist">
                         <Row>
-                            {/* <Col span={14} offset={0}> */}
                             <Col span={14} offset={0}>
                             <br />
-                            <Tabs defaultActiveKey="all">
+                            <Tabs defaultActiveKey={state.work_mode ? "Inprogress" : "all"}>
+                                { state.work_mode ? 
+                                    <TabPane type="danger" tab="In Progress" key="Inprogress">
+                                        <InProgressTab onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}  /> 
+                                    </TabPane> : null
+                                }
                                 <TabPane tab="All" key="all">
-                                    <TaskTab tasks={tasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>
+                                    <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
                                 </TabPane>
                                 <TabPane tab="Active" key="active">
-                                    <TaskTab tasks={activeTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>
+                                    <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
                                 </TabPane>
                                 <TabPane tab="Complete" key="complete">
-                                    <TaskTab tasks={completedTasks} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}/>   
+                                    <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
                                 </TabPane>
                                     <TabPane tab="Create Task" key="createtask">
                                         <TaskForm onFormSubmit={handleFormSubmit} />

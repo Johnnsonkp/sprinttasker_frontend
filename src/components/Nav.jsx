@@ -109,7 +109,7 @@ const Nav = () => {
             >
          
          {
-           workMode ? 
+           state.work_mode ? 
             <div className="BreadCrumb-wave" style={{overflow: 'hidden'}}>
               <Wave />
             </div> 

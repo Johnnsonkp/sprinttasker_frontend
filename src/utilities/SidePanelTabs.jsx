@@ -25,7 +25,7 @@ export default function SidePanelTabs({notes}){
       }
 
       return (
-        <Sider style={{ maxWidth: 180, marginTop: "20px" }}>
+        <Sider style={{ maxWidth: 180, marginTop: "5px" }}>
               <div className="logo" />
               <Menu theme="light" defaultSelectedKeys={['0']} mode="inline">
                   <Menu.Item key={0} icon={<DatabaseOutlined />}>

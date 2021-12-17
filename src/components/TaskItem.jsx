@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Tooltip, Tag, List, Button, Popconfirm} from 'antd';
 import {CheckOutlined, PlayCircleOutlined, PauseCircleOutlined, MessageOutlined} from '@ant-design/icons'
 import TaskSubitems from './TaskSubitems'
@@ -13,6 +13,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     const [showDesc, setShow] = React.useState(false)
     const [hover, setHover] = useState(false);
     const [date, setDate] = useState();
+    const [buttonColor, setButtonColor] = useState(false)
 
     const styles = {
         listRow: {
@@ -66,11 +67,10 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    const timer = () => {
-        return (
-            <h1>Timer</h1>
-        )
-    }
+
+    useEffect(() => {
+        setButtonColor(state.work_mode && state.selectedTask.id === task.id ? true : false)
+    }, [state.work_mode, state.selectedTask])
 
     return (
         
@@ -106,7 +106,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                 </div>
                 <div className="task-wrap" onClick={(e) => displayDescription(e)}>
                     <Tag className="task-tag">
-                        {capitalizeFirstLetter(task.name)}
+                        {task ? capitalizeFirstLetter(task.name) : task.name}
                     </Tag>
                     {task.description ? <MessageOutlined style={{color: '#7e8386'}}/> : null}
                 </div>
@@ -125,37 +125,29 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
                 
                 <div className="btnwrap">
-                    <Button size="small" type={toggle ? "primary" : "danger"} shape="circle" 
+                    <Button size="small" 
+                        type={ buttonColor && task.id === state.selectedTask.id ? "danger" : "primary"} 
+                        shape="circle" 
                         onClick={(e) => {
                             setToggle(!toggle)
                             if(toggle === false){
                                 setHover(false)
                             }
                             dispatch({ type: "workMode", payload: toggle})
-                            dispatch({ type: "selectTask", payload: capitalizeFirstLetter(task.name)})
+                            dispatch({ type: "selectTask", payload: task})
                         }}
-                        icon={toggle ? <PlayCircleOutlined /> : <PauseCircleOutlined />}/> 
+                        icon={buttonColor && task.id === state.selectedTask.id ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/> 
 
                     <div className="timerSlot">
-                        {
-                            state.work_mode && !toggle? <Pomodoro taskid={task.id} timer={timer}/> :
-                            ""
-                        }
+                        {/* {state.work_mode && state.selectedTask.id === task.id ? state.timer : null} */}
+                        {state.work_mode && state.selectedTask.id === task.id ? state.inProgressTimer : null}
+
                     </div>
                     <div className="timerSlot">
                         
                     </div>
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />  
-
-                {/* <div className="timerSlot">
-                        {
-                            state.work_mode && !toggle? <Pomodoro taskid={task.id} timer={timer}/> :
-                            ""
-                        }
-                </div> */}
-
-                {/* <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />  */}
             </div>
         </List.Item>
 

@@ -13,7 +13,7 @@ const AllNotes = ({notes, addNote, deleteNote}) => {
 
     return (
         <div className="notes-container">
-            <h1 style={{ textAlign: "left", color: '#fff', fontWeight: 'bold', fontSize: '35px', marginBottom: '0px' }}>NOTES</h1>
+            <h1 style={{ textAlign: "left", color: '#fff', fontWeight: 'bold', fontSize: '30px', marginBottom: '0px' }}>NOTES</h1>
             <SearchBar handleSearchNote={setSearchText} style={{ marginTop: '0px'}}/>
             <NotesList 
                 notes={searchText ? SearchedText : notes} 

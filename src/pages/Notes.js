@@ -5,7 +5,6 @@ import "../App.css";
 import AllNotes from "../components/AllNotes";
 import Loading from "./Loading";
 import { useNavigate } from "react-router";
-import SearchBar from "../components/SearchBar";
 
 const Notes = () => {
   const styles = {

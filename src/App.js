@@ -18,6 +18,7 @@ import {
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { SingleNote } from "./components/SingleNote";
 import { TaskCards } from "./pages/TaskCards";
+import { Data } from "./pages/Data";
 
 export const App = () => {
   const { state, dispatch } = useAppState();
@@ -72,6 +73,7 @@ export const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/single-note" element={<SingleNote />} />
             <Route path="/task-cards" element={<TaskCards />} />
+            <Route path="/data" element={<Data />} />
           </Routes>
         </div>
       </div>

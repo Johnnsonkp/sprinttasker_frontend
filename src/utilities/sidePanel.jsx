@@ -81,7 +81,12 @@ export function SidePanel({notes}) {
                         Stand Up
                 </Link>
                 </Menu.Item>
-                <Menu.Item key="6" icon={<AppstoreOutlined />}>
+                <Menu.Item key="6" icon={<MessageOutlined />}>
+                <Link to="/data">
+                        Data
+                </Link>
+                </Menu.Item>
+                <Menu.Item key="7" icon={<AppstoreOutlined />}>
                     <Link to="/">
                         Landing Page
                     </Link>
