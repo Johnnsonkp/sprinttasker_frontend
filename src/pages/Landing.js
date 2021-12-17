@@ -10,6 +10,7 @@ import heroku from "../heroku-ar21.svg";
 import netlify from "../netlify-ar21.svg";
 import { LogoBlock } from "../components/LogoBlock";
 import "../App.css";
+import Preload from "../utilities/Preload";
 
 export default function Landing() {
   const styles = {
@@ -106,91 +107,92 @@ export default function Landing() {
     },
   };
   const auth = JSON.parse(window.localStorage.getItem("auth"));
-  return (
-    <>
-      <div className="hero" style={styles.landingPage}>
-        <div className="landing-background bg-wave"></div>
+  const loaded = () => {
+    return (
+      <>
+        <div className="hero" style={styles.landingPage}>
+          <div className="landing-background bg-wave"></div>
 
-        <div className="content">
-          <div className="left">
-            <h1 style={styles.appName} className="app-name">
-              TaskSprinter
-            </h1>
-            <div className="content-inner">
-              <div className="cta-text">
-                <h1 style={styles.appNamelg}>Stay Focused</h1>
-                <h1 style={styles.appNamelg}>Remain On Task</h1>
-              </div>
-              <div className="text">
-                <p style={styles.appText}>
-                  All your favourite features from your favourite project
-                  management tools combined into one. SprintTasker is the
-                  project management tool of now.
-                </p>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "390px",
-                }}
-              >
-                <div className="ctaBtn" style={styles.signUp}>
-                  {auth ? (
-                    <Link
-                      className="bannerCta"
-                      style={styles.menuDark}
-                      to="/main"
-                    >
-                      Back to Work
-                    </Link>
-                  ) : (
-                    <Link
-                      className="bannerCta"
-                      style={styles.menuDark}
-                      to="/auth/signup"
-                    >
-                      Get Started
-                    </Link>
-                  )}
+          <div className="content">
+            <div className="left">
+              <h1 style={styles.appName} className="app-name">
+                TaskSprinter
+              </h1>
+              <div className="content-inner">
+                <div className="cta-text">
+                  <h1 style={styles.appNamelg}>Stay Focused</h1>
+                  <h1 style={styles.appNamelg}>Remain On Task</h1>
                 </div>
-                <div className="demoBtn" style={styles.demoBtn}>
-                  <Link style={styles.menuLight} to="/auth/signup">
-                    Demo Mode
-                  </Link>
+                <div className="text">
+                  <p style={styles.appText}>
+                    All your favourite features from your favourite project
+                    management tools combined into one. SprintTasker is the
+                    project management tool of now.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "390px",
+                  }}
+                >
+                  <div className="ctaBtn" style={styles.signUp}>
+                    {auth ? (
+                      <Link
+                        className="bannerCta"
+                        style={styles.menuDark}
+                        to="/main"
+                      >
+                        Back to Work
+                      </Link>
+                    ) : (
+                      <Link
+                        className="bannerCta"
+                        style={styles.menuDark}
+                        to="/auth/signup"
+                      >
+                        Get Started
+                      </Link>
+                    )}
+                  </div>
+                  <div className="demoBtn" style={styles.demoBtn}>
+                    <Link style={styles.menuLight} to="/auth/signup">
+                      Demo Mode
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="right">
-            <div className="content-inner"></div>
-            <div className="logo-container">
-              <LogoBlock
-                backgroundColor={"transparent"}
-                iconWidth={"50px"}
-                iconBorder={"1px solid lightGrey"}
-                firstLogo={slackLogo}
-                secondLogo={notion}
-                thirdLogo={monday}
-              />
+            <div className="right">
+              <div className="content-inner"></div>
+              <div className="logo-container">
+                <LogoBlock
+                  backgroundColor={"transparent"}
+                  iconWidth={"50px"}
+                  iconBorder={"1px solid lightGrey"}
+                  firstLogo={slackLogo}
+                  secondLogo={notion}
+                  thirdLogo={monday}
+                />
+              </div>
             </div>
           </div>
+          <Wave />
         </div>
-        <Wave />
-      </div>
 
-      <div className="icon-container">
-        <LogoBlock
-          blockBorder={"2px solid #61dafb"}
-          firstLogo={railsLogo}
-          secondLogo={reactLogo}
-          thirdLogo={heroku}
-          fourthLogo={netlify}
-        />
-      </div>
+        <div className="icon-container">
+          <LogoBlock
+            blockBorder={"2px solid #61dafb"}
+            firstLogo={railsLogo}
+            secondLogo={reactLogo}
+            thirdLogo={heroku}
+            fourthLogo={netlify}
+          />
+        </div>
 
-      {/* <div>
+        {/* <div>
         <div>
           <h1>Features</h1>
         </div>
@@ -212,6 +214,8 @@ export default function Landing() {
           />
         </div>
       </div> */}
-    </>
-  );
+      </>
+    );
+  };
+  return <Preload timeoutLengthInSeconds={400} handleFunction={loaded()} />;
 }

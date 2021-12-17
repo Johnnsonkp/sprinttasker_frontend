@@ -7,8 +7,7 @@ import InProgressTab from './inProgressTab'
 import TaskForm from './TaskForm';
 import { useAppState } from '../AppState';
 import {postTask, destroy, update, loadTasks} from '../services/taskService';
-import Loading from '../pages/Loading';
-import Pomodoro from '../components/Pomodoro'
+import Preload from '../utilities/Preload'
 
 const { TabPane} = Tabs;
 const { Content} = Layout;
@@ -124,7 +123,8 @@ const TaskList = () => {
             </div>
         )
     }
-    return tasks ? loaded() : <Spin indicator={antIcon} />
+    // return tasks ? loaded() : <Spin indicator={antIcon} />
+    return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
 }
 
 export default TaskList
