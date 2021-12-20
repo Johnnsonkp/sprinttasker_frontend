@@ -63,8 +63,8 @@ const TaskList = () => {
         setLoadTask(loadedTask);
         // setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
         // setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
-        setActiveTasks(parsedTask)
-        setCompletedTasks(parsedTask)
+        setActiveTasks(loadedTask)
+        setCompletedTasks(loadedTask)
         dispatch({type: "getTasks", payload: tasks});
     };
 
