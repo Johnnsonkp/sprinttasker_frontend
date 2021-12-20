@@ -64,9 +64,9 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
         setShow(!showDesc)
         console.log(showDesc)
     }
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+    // function capitalizeFirstLetter(string) {
+    //     return string.charAt(0).toUpperCase() + string.slice(1);
+    // }
 
     useEffect(() => {
         setButtonColor(state.work_mode && state.selectedTask.id === task.id ? true : false)
@@ -106,7 +106,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                 </div>
                 <div className="task-wrap" onClick={(e) => displayDescription(e)}>
                     <Tag className="task-tag">
-                        {task ? capitalizeFirstLetter(task.name) : task.name}
+                        {/* {task ? capitalizeFirstLetter(task.name) : task.name} */}
+                        {task ? task.name : null}
                     </Tag>
                     {task.description ? <MessageOutlined style={{color: '#7e8386'}}/> : null}
                 </div>
