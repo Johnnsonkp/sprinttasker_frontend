@@ -73,8 +73,10 @@ const TaskList = () => {
         dispatch({type: "getTasks", payload: loadedTasks});
         const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
         setLoadTask(parsedTask);
-        setActiveTasks(parsedTask.filter(task => task.completed === false))
-        setCompletedTasks(parsedTask.filter(task => task.completed === true))
+        // setActiveTasks(parsedTask.filter(task => task.completed === false))
+        // setCompletedTasks(parsedTask.filter(task => task.completed === true))
+        setActiveTasks(parsedTask)
+        setCompletedTasks(parsedTask)
         // console.log(tasks);
         setRefreshing(false);
         // console.log("Refreshing state", refreshing);
@@ -123,8 +125,8 @@ const TaskList = () => {
             </div>
         )
     }
-    return tasks ? loaded() : <Spin indicator={antIcon} />
-    // return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
+    // return tasks ? loaded() : <Spin indicator={antIcon} />
+    return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
 }
 
 export default TaskList
