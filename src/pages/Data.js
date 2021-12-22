@@ -1,11 +1,11 @@
 import React from "react";
-import Spreadsheet from "../components/Spreadsheet";
+import SpreadsheetContainer from "../components/SpreadsheetContainer";
 
 export const Data = () => {
   return (
     <div>
-      <h1>Data</h1>
-      <Spreadsheet />
+      <h1>SpreadSheets</h1>
+      <SpreadsheetContainer />
     </div>
   );
 };

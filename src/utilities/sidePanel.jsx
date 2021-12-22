@@ -9,7 +9,8 @@ import {
   MessageOutlined,
   UnorderedListOutlined,
   BankOutlined,
-  PoweroffOutlined
+  PoweroffOutlined,
+  FileExcelOutlined
   
 } from '@ant-design/icons';
 import {Link, useNavigate} from "react-router-dom";
@@ -51,6 +52,7 @@ export function SidePanel({notes}) {
         
         return (
           <div className="sidePanel">
+            { location.pathname !== '/data' ?
           <Layout style={{ minHeight: '100vh', minWidth: '300px', position: 'fixed', top: '0px', zIndex: '1' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}>
               <div className="logo" />
@@ -81,7 +83,7 @@ export function SidePanel({notes}) {
                         Stand Up
                 </Link>
                 </Menu.Item>
-                <Menu.Item key="6" icon={<MessageOutlined />}>
+                <Menu.Item key="6" icon={<FileExcelOutlined />}>
                 <Link to="/data">
                         Data
                 </Link>
@@ -159,8 +161,8 @@ export function SidePanel({notes}) {
             </Layout>
               : <></>
             }
-          </Layout>
-          
+          </Layout>: null
+          }
           </div>
         );
       // }

@@ -32,9 +32,6 @@ const initialState = {
     }
 }
 
-// type: "auth", 
-// payload: { token, user_id: user.id, name: user.name, username: user.username, email: user.email }
-
 ////////////////////////////////////////////////////////////////////
 // REDUCER //
 ////////////////////////////////////////////////////////////////////
@@ -67,6 +64,10 @@ export const reducer = (state, action) => {
             return newState;
             break;
         case "selectTask":
+            newState = {...state, selectedTask: action.payload}
+            return newState;
+            break;
+        case "unSelectTask":
             newState = {...state, selectedTask: action.payload}
             return newState;
             break;
