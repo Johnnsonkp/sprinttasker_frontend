@@ -52,7 +52,7 @@ export default function Pomodoro(props) {
     let timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
     let timer = `${timerMinutes} : ${timerSeconds}`
       
-    // dispatch({ type: "timer", payload: timer}) 
+    dispatch({ type: "timer", payload: timer}) 
   }, [seconds])
 
   useEffect(() => {
