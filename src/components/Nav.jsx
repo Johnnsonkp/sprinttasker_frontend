@@ -105,7 +105,7 @@ const Nav = () => {
     const BreadCrumb = () => {
       return (
         <div className="BreadCrumb" 
-            style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden'}} 
+            style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto'}} 
             >
          
          {
@@ -114,9 +114,9 @@ const Nav = () => {
               <Wave />
             </div> 
             :
-           <div style={{position: 'sticky'}}>
+           <div style={{position: 'sticky', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
             <Breadcrumb separator=">">
-              <Breadcrumb.Item style={{color: '#fff', marginRight: '36px', margintop: 'auto', marginBottom: 'auto'}}>Hi, {state.name}</Breadcrumb.Item>
+              <Breadcrumb.Item style={{color: '#fff', marginRight: '36px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
             </Breadcrumb>
           </div> 
           

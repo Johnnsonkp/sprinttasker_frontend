@@ -5,6 +5,10 @@ import { useAppState } from "../AppState";
 
 const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress}) => {
     const {state, dispatch} = useAppState()
+
+    // let completedTasks = tasks.map(task => task.completed === true)
+    // let allTasks = tasks.map(task => task.completed === false)
+    // allTasks.unshift(completedTasks)
     return (
     <>  
         <List 

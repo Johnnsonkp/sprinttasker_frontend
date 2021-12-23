@@ -52,6 +52,7 @@ export const reducer = (state, action) => {
             break;
         case "getTasks":
             newState = {...state, alltasks: action.payload}
+            console.log('getTasks:', state.alltasks)
             return newState;
             break;
         case "workMode":

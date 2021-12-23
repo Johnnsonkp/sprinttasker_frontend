@@ -8,16 +8,18 @@ import TaskForm from './TaskForm';
 import { useAppState } from '../AppState';
 import {postTask, destroy, update, loadTasks} from '../services/taskService';
 import Preload from '../utilities/Preload'
+import { useLocation } from 'react-router-dom';
 
 const { TabPane} = Tabs;
 const { Content} = Layout;
 
 const TaskList = () => {
     const [refreshing, setRefreshing] = useState(false);
-    const [tasks, setLoadTask] = React.useState();
+    const [tasks, setLoadTask] = React.useState(null);
     const [activeTasks, setActiveTasks] = useState([]);
     const [completedTasks, setCompletedTasks] = useState([]);
     const { state, dispatch } = useAppState();
+    const location = useLocation()
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
     const taskInProgress = () => {
@@ -59,18 +61,17 @@ const TaskList = () => {
     
     const refresh = async () => {
         const loadedTask = await loadTasks()
-        console.log("loadedTask await", loadedTask)
-        setLoadTask(loadedTask);
         setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
         setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
-        dispatch({type: "getTasks", payload: tasks});
+        setLoadTask(loadedTask.filter(parsedTask => parsedTask.completed === true).concat(loadedTask.filter(parsedTask => parsedTask.completed === false)));
     };
+
+    
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        // console.log("useCallback", "useCallback")
         let loadedTasks = await loadTasks()
-        dispatch({type: "getTasks", payload: loadedTasks});
+        // dispatch({type: "getTasks", payload: loadedTasks});
         const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
         setLoadTask(parsedTask);
         setActiveTasks(parsedTask.filter(task => task.completed === false))
@@ -85,6 +86,22 @@ const TaskList = () => {
         refresh()
     }, [onRefresh]);
 
+    const MySprints = () => {
+        return (
+            <TabPane tab="My Sprint" key="complete">
+                <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
+            </TabPane>
+        )
+    }
+
+    const DefaultTasklist = () => {
+        return (
+            <TabPane tab="All" key="all">
+                <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
+            </TabPane>
+        )
+    }
+
     const loaded = () => {
         return (
             <div id="trackList" className="trackList">
@@ -97,20 +114,33 @@ const TaskList = () => {
                             <Col span={14} offset={0}>
                             <br />
                             <Tabs defaultActiveKey={state.work_mode ? "Inprogress" : "all"}>
+                                
                                 { state.work_mode ? 
                                     <TabPane type="danger" tab="In Progress" key="Inprogress">
                                         <InProgressTab onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}  /> 
                                     </TabPane> : null
                                 }
-                                <TabPane tab="All" key="all">
-                                    <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
-                                </TabPane>
-                                <TabPane tab="Active" key="active">
-                                    <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
-                                </TabPane>
-                                <TabPane tab="Complete" key="complete">
-                                    <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
-                                </TabPane>
+                                { location.pathname !== '/my_work' ?
+                                    <TabPane tab="All" key="all">
+                                        <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
+                                    </TabPane> : null
+                                }
+                                { location.pathname !== '/my_work' ?
+                                    <TabPane tab="Active" key="active">
+                                        <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
+                                    </TabPane> : null
+                                }
+                                { location.pathname !== '/my_work' ?
+                                    <TabPane tab="Complete" key="complete">
+                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
+                                    </TabPane> : null
+                                }
+                                { location.pathname === '/my_work' ?
+                                    <TabPane tab="Mysprints" key="complete">
+                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
+                                    </TabPane> : null
+                                }
+
                                     <TabPane tab="Create Task" key="createtask">
                                         <TaskForm onFormSubmit={handleFormSubmit} />
                                     </TabPane>

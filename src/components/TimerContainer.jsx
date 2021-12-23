@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Pomodoro from './Pomodoro'
 import { useAppState } from '../AppState'
 import { CaretRightOutlined } from "@ant-design/icons";
@@ -13,9 +13,9 @@ export default function TimerContainer() {
     const styles = {
         hide: {
             opacity: 0,
-            transition: 'all 5ms ease-in',
+            transition: 'all 10ms ease-in',
             transitionProperty: 'opacity,width',
-            width: '100%',
+            width: '0%',
             position: "absolute",
             left: '0px',
             top: '100px',
@@ -24,7 +24,7 @@ export default function TimerContainer() {
         show: {
             opacity: 1,
             width: '100%',
-            transition: 'all 5ms ease-in',
+            transition: 'all 10ms ease-in',
             transitionProperty: 'opacity,width',
             position: "absolute",
             left: '0px',
@@ -56,6 +56,13 @@ export default function TimerContainer() {
     const newTimer = () => {
         return <Pomodoro />
     }
+
+    useEffect(() => {
+        if(state.work_mode && show === false){
+            setShow(true)
+        } 
+        
+    }, [state.work_mode])
 
     return (
         <div className="timer-container" >
