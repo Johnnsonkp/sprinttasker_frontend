@@ -10,32 +10,26 @@ const InProgressTab = ({ onTaskRemoval, onTaskToggle}) => {
     [
         state.selectedTask 
     ]
-    console.log("arr", arr)
+
+    let defaultArr = [{test: "test name", testindex: "text Index"}]
     return (
     <>  
-        { state.work_mode ?
-            <List 
-                locale={{ emptyText: "There's nothing to do"}}
-                dataSource={arr}
-                renderItem={(task, i) => (
-                    <TaskItem 
-                        task={task}
-                        onTaskToggle={onTaskToggle}
-                        onTaskRemoval={onTaskRemoval}
-                    />
-                )}
-                pagination={{
-                    position: "bottom",
-                    pageSize: 13,
-                }}
-            />  : 
-            <List 
-                locale={{ emptyText: "No task in progress"}}
-                pagination={{
-                    position: "bottom",
-                    pageSize: 13,
-                }}
-            />
+        { state.selectedTask ? 
+        <List 
+            locale={{ emptyText: "There's nothing to do"}}
+            dataSource={arr || defaultArr}
+            renderItem={(task, i) => (
+                <TaskItem 
+                    task={task}
+                    onTaskToggle={onTaskToggle}
+                    onTaskRemoval={onTaskRemoval}
+                />
+            )}
+            pagination={{
+                position: "bottom",
+                pageSize: 1,
+            }}
+        /> : null
         }
     </>
     )
