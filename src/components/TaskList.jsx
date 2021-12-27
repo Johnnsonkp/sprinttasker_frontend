@@ -115,7 +115,7 @@ const TaskList = () => {
                             <br />
                             <Tabs defaultActiveKey={state.work_mode ? "Inprogress" : "all"}>
                                 
-                                { state.work_mode ? 
+                                { state.selectedTask && state.work_mode ? 
                                     <TabPane type="danger" tab="In Progress" key="Inprogress">
                                         <InProgressTab onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}  /> 
                                     </TabPane> : null
@@ -135,11 +135,11 @@ const TaskList = () => {
                                         <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
                                     </TabPane> : null
                                 }
-                                { location.pathname === '/my_work' ?
+                                {/* { location.pathname === '/my_work' ?
                                     <TabPane tab="Mysprints" key="complete">
                                         <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
                                     </TabPane> : null
-                                }
+                                } */}
 
                                     <TabPane tab="Create Task" key="createtask">
                                         <TaskForm onFormSubmit={handleFormSubmit} />

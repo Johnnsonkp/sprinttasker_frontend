@@ -145,7 +145,8 @@ export function SidePanel({notes}) {
                       width: '90%',
                       fontSize: '16px', 
                       cursor: 'pointer',
-                      border: '1px solid rgba(248, 72, 74, 0.48)',
+                      // border: '1px solid rgba(248, 72, 74, 0.48)',
+                      border: 'none',
                       padding: '5px 12px',
                       borderRadius: '18px',
                       backgroundColor: 'rgb(248 72 74 / 48%)'

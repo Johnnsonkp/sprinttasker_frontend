@@ -14,6 +14,35 @@ const Table = (props) => {
     }
 
     const TestTable = (props) =>  {
+        // let header = []
+        // let tableData = []
+        // props.title.forEach((name) => {
+        //     header.push({ value: name })
+        // }) 
+        // props.body.forEach((name) => {
+
+        //     name.forEach((arr) => {
+        //         tableData.push({ value: arr },)
+        //     }) 
+        //     // tableData.push({ value: name })
+        // }) 
+
+        
+        // // for (let i = 0; i <= 99; i++) {
+        // //     let ans  
+        // //     ans.push(rows[i]._rawData);
+
+        // // }
+
+        // return <Spreadsheet row={5} data={[header], [tableData]}/>;
+
+        const data = [
+            [{ row: 1 }, { value: "Chocolate" }],
+            [{ value: "Strawberry" }, { value: "Cookies" }],
+        ];
+        return <Spreadsheet data={data} />;
+    };
+    const TestBody = (props) =>  {
         let header = []
         let tableData = []
         props.title.forEach((name) => {
@@ -22,18 +51,10 @@ const Table = (props) => {
         props.body.forEach((name) => {
 
             name.forEach((arr) => {
-                tableData.push({ value: arr },)
+                tableData.push({ value: arr })
             }) 
             // tableData.push({ value: name })
         }) 
-
-        
-        // for (let i = 0; i <= 99; i++) {
-        //     let ans  
-        //     ans.push(rows[i]._rawData);
-
-        // }
-
         return <Spreadsheet row={5} data={[header], [tableData]}/>;
     };
 
@@ -58,6 +79,7 @@ const Table = (props) => {
         <>
             <h1>Table</h1>
             <TestTable style={styles.width} title={tableHeaders} body={tableBody}/>
+            <TestBody style={styles.width} title={tableHeaders} body={tableBody}/>
         </>
     )
 }
