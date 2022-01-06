@@ -759,3 +759,15 @@ label{
   border: 1px solid blue;
   cursor: pointer;
 }
+
+/* standup component */
+.contentEditableDiv{
+  float: left;
+}
+.item{
+  color: #3d3d3d;
+}
+.delete{
+  color: red;
+  cursor: pointer;
+}

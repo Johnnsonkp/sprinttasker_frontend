@@ -15,6 +15,7 @@ const TaskForm = ({onFormSubmit}) => {
         });
         console.log(form.getFieldValue('name'));
         console.log(form.getFieldValue('description'));
+        console.log(form.getFieldValue('subtask'));
 
         form.resetFields();
     }

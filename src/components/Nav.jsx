@@ -91,13 +91,14 @@ const Nav = () => {
       return (
         <>
           {!state.token ? <> <Link style={styles.menuDark} to="/auth/login">Log In</Link> </> : 
-            <>
-              <div style={styles.menuDark} onClick={(e) => {
+            
+              <div style={styles.menuDark} 
+              onClick={(e) => {
                 dispatch({type: "logout"})
                 alert(e.target.innerText)
                 navigate("/")
               }}>Log Out</div>
-            </>
+            
           }
         </>
       )

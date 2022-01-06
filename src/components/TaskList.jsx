@@ -61,6 +61,7 @@ const TaskList = () => {
     
     const refresh = async () => {
         const loadedTask = await loadTasks()
+        console.log("loadedTask:", loadedTask)
         setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
         setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
         setLoadTask(loadedTask.filter(parsedTask => parsedTask.completed === true).concat(loadedTask.filter(parsedTask => parsedTask.completed === false)));
@@ -86,21 +87,21 @@ const TaskList = () => {
         refresh()
     }, [onRefresh]);
 
-    const MySprints = () => {
-        return (
-            <TabPane tab="My Sprint" key="complete">
-                <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
-            </TabPane>
-        )
-    }
+    // const MySprints = () => {
+    //     return (
+    //         <TabPane tab="My Sprint" key="complete">
+    //             <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
+    //         </TabPane>
+    //     )
+    // }
 
-    const DefaultTasklist = () => {
-        return (
-            <TabPane tab="All" key="all">
-                <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
-            </TabPane>
-        )
-    }
+    // const DefaultTasklist = () => {
+    //     return (
+    //         <TabPane tab="All" key="all">
+    //             <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
+    //         </TabPane>
+    //     )
+    // }
 
     const loaded = () => {
         return (

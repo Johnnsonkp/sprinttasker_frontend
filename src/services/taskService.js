@@ -12,6 +12,7 @@ export async function loadTasks() {
   })
     .then(async (res) => {
       if (res.ok) {
+        console.log("res:", res);
         return await res
           .clone()
           .json()
@@ -50,9 +51,12 @@ export function postTask(task) {
     body: JSON.stringify({
       name: task.name,
       description: task.description,
+      subtask: task.subtask,
       completed: task.completed,
     }),
-  }).then((res) => res.json());
+  })
+    .then(console.log("post task:", task))
+    .then((res) => res.json());
 }
 
 export const update = (task) => {
@@ -67,6 +71,8 @@ export const update = (task) => {
     body: JSON.stringify({
       id: task.id,
       name: task.name,
+      description: task.description,
+      subtask: task.subtask,
       completed: task.completed,
     }),
   }).then((res) => res.json());

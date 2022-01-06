@@ -115,6 +115,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
 
                 <div className="subitem-wrap">
                     <TaskSubitems task={task}/>
+                    {/* {task.subtask? task.subtask : null} */}
                 </div> 
 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
