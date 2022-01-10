@@ -17,7 +17,7 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress}) => {
             renderItem={(task, i) => (
                 <TaskItem 
                     task={task}
-                    inProgress={inProgress}
+                    // inProgress={inProgress}
                     onTaskToggle={onTaskToggle}
                     onTaskRemoval={onTaskRemoval}
                 />

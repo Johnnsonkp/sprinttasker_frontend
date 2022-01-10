@@ -17,7 +17,7 @@ const InProgressTab = ({ onTaskRemoval, onTaskToggle}) => {
         { state.selectedTask ? 
         <List 
             locale={{ emptyText: "There's nothing to do"}}
-            dataSource={arr || defaultArr}
+            dataSource={arr || []}
             renderItem={(task, i) => (
                 <TaskItem 
                     task={task}
@@ -27,7 +27,7 @@ const InProgressTab = ({ onTaskRemoval, onTaskToggle}) => {
             )}
             pagination={{
                 position: "bottom",
-                pageSize: 1,
+                pageSize: 2,
             }}
         /> : null
         }

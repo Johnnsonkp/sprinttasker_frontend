@@ -156,6 +156,7 @@ const TaskList = () => {
     }
     // return tasks ? loaded() : <Spin indicator={antIcon} />
     return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
+    
 }
 
 export default TaskList

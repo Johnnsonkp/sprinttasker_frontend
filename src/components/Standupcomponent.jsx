@@ -2,6 +2,11 @@ import React, {useEffect, useState, useCallback} from 'react';
 import { Card } from 'antd';
 import { useAppState } from '../AppState';
 import banner from '../std-banner.svg';
+import {
+    StandUpComponent,
+    StandDownComponent,
+    CheckinHeader,
+} from "../components/StandUp.jsx";
 
 
 export default function StandUpComp(props) {
@@ -88,18 +93,11 @@ export default function StandUpComp(props) {
     }
 
     return (
-        // <div style={styles.container}>
         <div className="trackList">
             <div className="dummy-side-panel"></div>
             <div style={styles.container}>
-                {/* <div style={styles.header}>Title</div> */}
                 <div style={styles.innerCard} className="site-card-border-less-wrapper">
-
-                    <Card style={styles.card} className="singleCard" title="Stand Up / Stand Down" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fef68a', margin: '10px' }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-
+                    <StandUpComponent />
                     <Card style={styles.card} className="singleCard" title="Countdown Timer" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff', margin: '10px' }}>
                         <p>0 0 0 0</p>
                         <p>Days Hours Minutes Seconds</p>

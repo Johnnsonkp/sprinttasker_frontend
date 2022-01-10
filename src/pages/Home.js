@@ -108,11 +108,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <DisplayBox
-          component={<TaskList />}
-          title={"Projects"}
-          link={"/main"}
-        />
+        <DisplayBox component={<TaskList />} title={"Projects"} link={"/"} />
         <DisplayBox component={<Notes />} title={"Notes"} link={"/notes"} />
       </div>
     </div>

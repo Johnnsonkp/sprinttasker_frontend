@@ -40,7 +40,7 @@ const Auth = ({ name, username, password, email }) => {
           email: user.email,
         })
       );
-      navigate("/main");
+      navigate("/");
     }
   }, [userData]);
 
