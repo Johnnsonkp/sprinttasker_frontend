@@ -3,11 +3,12 @@ import "../App.css";
 import { Container, Segment, Header, Divider } from "semantic-ui-react";
 import InputListComponent from "../components/InputList.component.jsx";
 import { format, formatRelative, subDays } from "date-fns";
-import {
-  StandUpComponent,
-  // StandDownComponent,
-  CheckinHeader,
-} from "../components/StandUp.jsx";
+// import {
+//   StandUpComponent,
+//   // StandDownComponent,
+//   CheckinHeader,
+// } from "../components/StandUp.jsx";
+import StandUpComp from "../components/Standupcomponent";
 import { Notification } from "../components/NotificationSlider";
 
 const Standup = () => {
@@ -27,7 +28,7 @@ const Standup = () => {
           justifyContent: "space-between",
         }}
       >
-        <StandUpComponent />
+        <StandUpComp />
         {/* <StandDownComponent /> */}
       </div>
     </div>
