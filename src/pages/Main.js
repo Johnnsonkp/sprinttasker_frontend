@@ -42,4 +42,5 @@ export default function Main(props) {
     );
   };
   return <Preload timeoutLengthInSeconds={600} handleFunction={loaded()} />;
+  // return loaded();
 }

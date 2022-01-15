@@ -26,7 +26,7 @@ const TaskSubitems = ({task}) => {
         <>
         <Space wrap>
             <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
-            <p className="task-subitems">Subitems</p>
+            <p className="task-subitems">Comments</p>
             </Dropdown.Button>
         </Space>
         </>

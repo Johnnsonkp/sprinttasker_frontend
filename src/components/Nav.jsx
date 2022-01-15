@@ -7,6 +7,7 @@ import { DownOutlined } from '@ant-design/icons';
 import {useAppState} from '../AppState'
 import Wave from "../utilities/wave";
 import { useLocation } from "react-router";
+import Preload from '../utilities/Preload'
 
 // export default function Nav(props) {
 const Nav = () => {
@@ -156,7 +157,9 @@ const Nav = () => {
       );
     }
 
-    return NavComponent() 
+    // return NavComponent() 
+    return <Preload timeoutLengthInSeconds={400} handleFunction={NavComponent()} />;
+    // return NavComponent()
 }
 
 export default Nav;

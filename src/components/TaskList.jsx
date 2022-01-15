@@ -22,6 +22,21 @@ const TaskList = () => {
     const location = useLocation()
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
+    const dummyData = [
+        {   
+            completed: true,
+            created_at: "2022-01-06T22:28:39.283Z",
+            description: "Create a new task",
+            id: 222,
+            name: "Tasklist is empty, create a new task here",
+            subtask: null,
+            time_to_complete: null,
+            timer: "00:00",
+            updated_at: "2022-01-13T03:59:54.250Z",
+            user_id: 8
+        }
+    ]
+
     const taskInProgress = () => {
 
         return (
@@ -34,7 +49,7 @@ const TaskList = () => {
     };
 
     const updateTask = (task) => {
-        return update(task).then(onRefresh())
+        update(task).then(onRefresh())
     };
       
     const deleteTask = (id) => {
@@ -58,50 +73,68 @@ const TaskList = () => {
         message.info('task.completed ? ', task.completed);
         message.info('Task status updated!');
     }
+    const handleTimer = (task, updateTimer) => {
+        console.log("handleTimer function", task, "updateTimer:", updateTimer)
+        task.timer = updateTimer.toString()
+        console.log("task.timer:", task.timer)
+        updateTask(task)
+        message.info('Timer update? ', task.timer);
+    }
+    function sortByDate( a, b ) {
+        if ( a.created_at < b.created_at ){
+          return -1;
+        }
+        if ( a.created_at > b.created_at ){
+          return 1;
+        }
+        return 0;
+    }
     
     const refresh = async () => {
-        const loadedTask = await loadTasks()
-        console.log("loadedTask:", loadedTask)
-        setActiveTasks(loadedTask.filter(parsedTask => parsedTask.completed === false))
-        setCompletedTasks(loadedTask.filter(parsedTask => parsedTask.completed === true))
-        setLoadTask(loadedTask.filter(parsedTask => parsedTask.completed === true).concat(loadedTask.filter(parsedTask => parsedTask.completed === false)));
-    };
 
-    
+        await loadTasks().then((res) => {
+            console.log("res:", res)
+            if(res.length > 0){
+                let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
+                console.log("sortby:", sortTaskById)
+                setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
+                setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
+                setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));
+            }
+            else {
+                setActiveTasks(dummyData)
+                setLoadTask(dummyData)
+                setCompletedTasks(dummyData)
+            }
+        })
+    };
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        let loadedTasks = await loadTasks()
-        // dispatch({type: "getTasks", payload: loadedTasks});
-        const parsedTask = loadedTasks.filter(parsedTask => parsedTask.user_id === state.user_id)
-        setLoadTask(parsedTask);
-        setActiveTasks(parsedTask.filter(task => task.completed === false))
-        setCompletedTasks(parsedTask.filter(task => task.completed === true))
-        // console.log(tasks);
+        await loadTasks().then((res) => {
+            console.log("res:", res)
+            if(res.length > 0){
+                let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
+                console.log("sortby:", sortTaskById)
+                setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
+                setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
+                setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));
+            }
+            else {
+                setActiveTasks(dummyData)
+                setLoadTask(dummyData)
+                setCompletedTasks(dummyData)
+            }
+        })
         setRefreshing(false);
-        // console.log("Refreshing state", refreshing);
     }, [refreshing]);
 
     useEffect(() => {
         console.log("useEffect()");
-        refresh()
+        refresh().catch(e => {
+            console.log("this is the error:", e)  // returns a promise
+          })
     }, [onRefresh]);
-
-    // const MySprints = () => {
-    //     return (
-    //         <TabPane tab="My Sprint" key="complete">
-    //             <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
-    //         </TabPane>
-    //     )
-    // }
-
-    // const DefaultTasklist = () => {
-    //     return (
-    //         <TabPane tab="All" key="all">
-    //             <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
-    //         </TabPane>
-    //     )
-    // }
 
     const loaded = () => {
         return (
@@ -123,7 +156,7 @@ const TaskList = () => {
                                 }
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="All" key="all">
-                                        <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
+                                        <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTimer={handleTimer}/>
                                     </TabPane> : null
                                 }
                                 { location.pathname !== '/my_work' ?
@@ -154,8 +187,8 @@ const TaskList = () => {
             </div>
         )
     }
-    // return tasks ? loaded() : <Spin indicator={antIcon} />
-    return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
+    return tasks ? loaded() : <Spin indicator={antIcon} />
+    // return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
     
 }
 

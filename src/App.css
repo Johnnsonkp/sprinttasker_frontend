@@ -782,7 +782,7 @@ label{
   translateY(var(--translate-y, 0));
   background-color: yellow;
 }
-.ant-card{
+.site-card-border-less-wrapper .ant-card{
   transform-style: preserve-3d;
   transition: 150ms;
   cursor: pointer;

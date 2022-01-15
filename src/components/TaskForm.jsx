@@ -11,11 +11,14 @@ const TaskForm = ({onFormSubmit}) => {
             name: form.getFieldValue('name'),
             description: form.getFieldValue('description'),
             subtask: form.getFieldValue('subtask'),
-            completed: false 
+            completed: false,
+            time_to_complete: form.getFieldValue('completeTime')
         });
         console.log(form.getFieldValue('name'));
         console.log(form.getFieldValue('description'));
-        console.log(form.getFieldValue('subtask'));
+        console.log("time:", form.getFieldValue('completeTime'))
+        console.log("typeof time:", typeof form.getFieldValue('completeTime'))
+        // console.log("Object", [{1: form.getFieldValue('subtask1'), 2: form.getFieldValue('subtask2')}])
 
         form.resetFields();
     }
@@ -41,11 +44,17 @@ const TaskForm = ({onFormSubmit}) => {
                 
                     </Col>
                     <Col xs={24} s={24} md={17} lg={19} xl={8}>
-                        {/* <label>Add a Subtask</label> */}
                         <Form.Item
                             name={'subtask'}
                         >
                             <Input placeholder="Add a Subtask" />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={24} s={24} md={17} lg={19} xl={8}>
+                        <Form.Item
+                            name={'completeTime'}
+                        >
+                            <Input placeholder="Timer to complete" />
                         </Form.Item>
                     </Col>
                     <Col xs={24} s={24} md={7} lg={5} xl={4}>

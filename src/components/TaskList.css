@@ -59,7 +59,7 @@ li.ant-list-item.list-item:hover{
     text-align: left;
     margin-right: 20px;
     margin-right: 5px;
-    width: 340px;
+    width: 270px;
     display: flex;
     justify-content: space-between;
     
@@ -117,8 +117,8 @@ li.ant-list-item.list-item:hover{
     min-height: 120px;
     width: 100%;
     position: relative;
-    -webkit-animation: fadeIn 3s;
-    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
     display: flex;
     align-items: flex-start;
     /* border: 1px solid red; */

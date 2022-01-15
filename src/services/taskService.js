@@ -52,6 +52,7 @@ export function postTask(task) {
       name: task.name,
       description: task.description,
       subtask: task.subtask,
+      time_to_complete: parseInt(task.time_to_complete),
       completed: task.completed,
     }),
   })
@@ -60,6 +61,7 @@ export function postTask(task) {
 }
 
 export const update = (task) => {
+  console.log("update task.timer:", task.timer);
   const authToken = JSON.parse(window.localStorage.getItem("auth"));
   return fetch(`${baseUrl}tasks/${task.id}`, {
     method: "PUT",
@@ -74,6 +76,7 @@ export const update = (task) => {
       description: task.description,
       subtask: task.subtask,
       completed: task.completed,
+      timer: task.timer,
     }),
   }).then((res) => res.json());
 };

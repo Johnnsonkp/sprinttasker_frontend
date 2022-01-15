@@ -3,7 +3,7 @@ import {List} from 'antd';
 import TaskItem from './TaskItem';
 import { useAppState } from "../AppState";
 
-const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress}) => {
+const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer}) => {
     const {state, dispatch} = useAppState()
 
     // let completedTasks = tasks.map(task => task.completed === true)
@@ -20,6 +20,7 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress}) => {
                     // inProgress={inProgress}
                     onTaskToggle={onTaskToggle}
                     onTaskRemoval={onTaskRemoval}
+                    updateTimer={updateTimer}
                 />
             )}
             pagination={{

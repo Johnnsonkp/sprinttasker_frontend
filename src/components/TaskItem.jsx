@@ -7,7 +7,7 @@ import { useAppState } from '../AppState';
 import Pomodoro from '../components/Pomodoro'
 
 
-const Task = ({task, onTaskRemoval, onTaskToggle}) => {
+const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
     const {state, dispatch } = useAppState();
     const [toggle, setToggle] = useState(true)
     const [showDesc, setShow] = React.useState(false)
@@ -70,6 +70,12 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
 
     useEffect(() => {
         setButtonColor(state.work_mode && state.selectedTask.id === task.id ? true : false)
+
+        if(!state.work_mode && state.selectedTask.id === task.id){
+            console.log("typeof and finish timer:", state.inProgressTimer, typeof state.inProgressTimer)
+            updateTimer(task, state.inProgressTimer)
+        }
+        
     }, [state.work_mode, state.selectedTask])
 
     return (
@@ -120,7 +126,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
                     <div className="task-status" style={task.completed ? styles.completeCell : styles.activeCell}>
-                        {task.completed ? "Complete" : null}
+                        {task.completed ? "Complete" : "status"}
                     </div>
                 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
@@ -140,15 +146,17 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                         icon={buttonColor && task.id === state.selectedTask.id ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/> 
 
                     <div className="timerSlot">
-                        {/* {state.work_mode && state.selectedTask.id === task.id ? state.timer : null} */}
-                        {state.work_mode && state.selectedTask.id === task.id ? state.inProgressTimer : null}
-
+                        {state.work_mode && state.selectedTask.id === task.id ? state.inProgressTimer : task.timer? task.timer : "00:00"}
                     </div>
                     <div className="timerSlot">
-                        
+                        {/* {task.time_to_complete? task.time_to_complete : null} */}
                     </div>
                 </div>
-                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />  
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} /> 
+                <div className="timerSlot" style={{width: '150px', display: 'flex', justifyContent: 'space-around'}}>
+                     <p>Complete by:</p>   {task.time_to_complete? task.time_to_complete : "00:00"}
+                </div> 
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
             </div>
         </List.Item>
 
@@ -158,7 +166,14 @@ const Task = ({task, onTaskRemoval, onTaskToggle}) => {
                     <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Task Description">{task.description}</Card>
                 </List.Item>
                 <List.Item>
-                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card>
+                    {/* <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card> */}
+
+                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">
+                        {/* <input type="checkbox" id="subitems" name="subitems" />
+                        <label for="subitems"> {task.subtask}</label> */}
+                    {/* {task.subtask.split(",").forEach((items) => <p>{items}</p>)} */}
+                    {task.subtask}
+                    </Card>
                 </List.Item>
             </div>
             : null
