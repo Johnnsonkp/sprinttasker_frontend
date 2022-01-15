@@ -154,7 +154,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} /> 
                 <div className="timerSlot" style={{width: '150px', display: 'flex', justifyContent: 'space-around'}}>
-                     <p>Complete by:</p>   {task.time_to_complete? task.time_to_complete : "00:00"}
+                     <p style={{fontSize: '12px'}}>Complete by:</p>   {task.time_to_complete? task.time_to_complete : null}
                 </div> 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
             </div>
