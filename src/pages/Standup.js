@@ -5,7 +5,7 @@ import InputListComponent from "../components/InputList.component.jsx";
 import { format, formatRelative, subDays } from "date-fns";
 import {
   StandUpComponent,
-  StandDownComponent,
+  // StandDownComponent,
   CheckinHeader,
 } from "../components/StandUp.jsx";
 import { Notification } from "../components/NotificationSlider";
@@ -28,7 +28,7 @@ const Standup = () => {
         }}
       >
         <StandUpComponent />
-        <StandDownComponent />
+        {/* <StandDownComponent /> */}
       </div>
     </div>
   );
