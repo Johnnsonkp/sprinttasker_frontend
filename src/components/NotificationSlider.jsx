@@ -1,10 +1,5 @@
 import React from "react"; 
 import { Button, notification, Space } from 'antd';
-import {
-    StandUpComponent,
-    StandDownComponent,
-    CheckinHeader,
-} from "../components/StandUp.jsx";
 
 const standUpNotification = type => {
     notification[type]({

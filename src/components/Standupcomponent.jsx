@@ -2,12 +2,13 @@ import React, {useEffect, useState, useCallback} from 'react';
 import { Card } from 'antd';
 import { useAppState } from '../AppState';
 import banner from '../std-banner.svg';
-import {
-    StandUpComponent,
-    StandDownComponent,
-    CheckinHeader,
-} from "../components/StandUp.jsx";
+// import {
+//     StandUpComponent,
+//     StandDownComponent,
+//     CheckinHeader,
+// } from "../components/StandUp.jsx";
 
+import { StandUpComponent } from '../components/StandUp.jsx';
 
 export default function StandUpComp(props) {
 

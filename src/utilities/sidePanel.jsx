@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useAppState } from "../AppState";
-
+import notion from "../notion-logo-1.svg";
 import './sidepanel.css'
 import { Layout, Menu, Divider, Avatar } from 'antd';
 import {
@@ -13,11 +13,12 @@ import {
   FileExcelOutlined
   
 } from '@ant-design/icons';
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, Redirect} from "react-router-dom";
 import SidePanelTabs from "./SidePanelTabs";
 import logo from "../logo.svg";
 import { useLocation } from "react-router";
-
+import { LogoBlock } from "../components/LogoBlock";
+// import { Redirect } from "react-router-dom";
 
 export function SidePanel({notes}) {
   const {dispatch} = useAppState()
@@ -93,8 +94,22 @@ export function SidePanel({notes}) {
                         Landing Page
                     </Link>
                 </Menu.Item>
+                <Menu.Item key="8" >
+                  <LogoBlock
+                    backgroundColor={"transparent"}
+                    iconWidth={"30px"}
+                    iconBorder={"1px solid transparent"}
+                    firstLogo={notion}
+                  />
+                    <Link to="#" onClick={() => {
+                      return window.location.href = 'https://www.notion.so/Main-Workspace-7defe116a35c4356a86d9924b417779b'
+                    }} >
+                        Notion
+                    </Link>
+              </Menu.Item>
               </Menu>
               <div>
+              
               <Avatar
                   style={{
                     backgroundColor: "#f56a00",
