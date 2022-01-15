@@ -1,7 +1,7 @@
 import React from "react";
 import TaskList from "../components/TaskList";
 import { useAppState } from "../AppState";
-import StandUpComp from "../components/Standupcomponent";
+import StandUpComp from "../components/SlideDashboard";
 import TimerContainer from "../components/TimerContainer";
 import Preload from "../utilities/Preload";
 

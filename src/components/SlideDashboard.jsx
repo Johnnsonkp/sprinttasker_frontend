@@ -8,7 +8,9 @@ import banner from '../std-banner.svg';
 //     CheckinHeader,
 // } from "../components/StandUp.jsx";
 
-import { StandUpComponent } from './StandUp.jsx';
+// import { StandUpComponent } from './StandUp.jsx';
+// import { StandUpComponent } from './src/components/StandUp.jsx'
+import  {StandUpComponent} from './StandUpContainer.jsx';
 
 export default function StandUpComp(props) {
 

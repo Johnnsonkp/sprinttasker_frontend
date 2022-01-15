@@ -1,6 +1,6 @@
 import React from "react";
 import Loading from "./Loading";
-import StandUpComp from "../components/Standupcomponent";
+import StandUpComp from "../components/SlideDashboard";
 import { useAppState } from "../AppState";
 import TimerContainer from "../components/TimerContainer";
 import TaskList from "../components/TaskList";

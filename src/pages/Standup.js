@@ -8,7 +8,7 @@ import { format, formatRelative, subDays } from "date-fns";
 //   // StandDownComponent,
 //   CheckinHeader,
 // } from "../components/StandUp.jsx";
-import StandUpComp from "../components/Standupcomponent";
+import StandUpComp from "../components/SlideDashboard";
 import { Notification } from "../components/NotificationSlider";
 
 const Standup = () => {
