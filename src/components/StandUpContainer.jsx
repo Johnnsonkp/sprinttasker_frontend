@@ -61,7 +61,7 @@ export const StandUpComponent = () => {
                 // width={{'3em'}}
             />
             <Card 
-                title="Stand Up" 
+                title="Stand Up @5:00am" 
                 bordered={false} 
                 style={{width: 300, textAlign: 'left' }}>
                 

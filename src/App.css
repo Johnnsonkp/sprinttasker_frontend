@@ -651,7 +651,7 @@ label{
   width: 270px;
   /* margin-right: 50px; */
   position: relative;
-  top: -30px;
+  top: -20px;
 }
 .timer-display{
   /* border: 1px solid green; */
@@ -807,4 +807,11 @@ label{
 }
 .card .ant-card-body{
   padding: 0px;
+}
+
+.ant-breadcrumb{
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

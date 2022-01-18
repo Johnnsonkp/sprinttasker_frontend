@@ -2,12 +2,13 @@ import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import '../App.css';
 import logo from "../logo.svg";
-import { Menu, Dropdown, message, Breadcrumb } from 'antd';
+import { Menu, Dropdown, message, Breadcrumb, Avatar } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import {useAppState} from '../AppState'
 import Wave from "../utilities/wave";
 import { useLocation } from "react-router";
 import Preload from '../utilities/Preload'
+
 
 // export default function Nav(props) {
 const Nav = () => {
@@ -105,6 +106,9 @@ const Nav = () => {
       )
     }
     const BreadCrumb = () => {
+      const auth = JSON.parse(window.localStorage.getItem("auth"));
+      const userFirstInitials = auth.name[0].toUpperCase();
+
       return (
         <div className="BreadCrumb" 
             style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto'}} 
@@ -118,8 +122,25 @@ const Nav = () => {
             :
            <div style={{position: 'sticky', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
             <Breadcrumb separator=">">
-              <Breadcrumb.Item style={{color: '#fff', marginRight: '36px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
+              <Breadcrumb.Item style={{color: '#fff', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
+              <Breadcrumb.Item >
+                <Avatar
+                    style={{
+                      backgroundColor: "#f56a00",
+                      verticalAlign: "middle",
+                      margin: 'auto',
+                      marginRight: '10px'
+                  
+                    }}
+                    size={23}
+                    gap={3}
+                  >
+                  {userFirstInitials}
+              </Avatar>
+              </Breadcrumb.Item>
             </Breadcrumb>
+            
+            
           </div> 
           
          }

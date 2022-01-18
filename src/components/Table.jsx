@@ -4,6 +4,7 @@ import Spreadsheet from "react-spreadsheet";
 const Table = (props) => {
     const tableHeaders = props.header
     const tableBody = props.body
+    const allData = props.data
 
     function range(rows) {
         var ans = [];
@@ -40,18 +41,27 @@ const Table = (props) => {
             [{ row: 1 }, { value: "Chocolate" }],
             [{ value: "Strawberry" }, { value: "Cookies" }],
         ];
+        // const data = [
+        //     [
+        //         allData.headerValues.forEach((head) => {
+        //             return(
+        //                 {value: head} + ','
+        //             )
+        //         })
+        //     ],
+        // ]
         return <Spreadsheet data={data} />;
     };
     const TestBody = (props) =>  {
         let header = []
         let tableData = []
-        props.title.forEach((name) => {
-            header.push({ value: name })
-        }) 
+        // props.title.forEach((name) => {
+        //     header.push({ value: name })
+        // }) 
         props.body.forEach((name) => {
 
             name.forEach((arr) => {
-                tableData.push({ value: arr })
+                tableData.push({ value: arr },)
             }) 
             // tableData.push({ value: name })
         }) 
