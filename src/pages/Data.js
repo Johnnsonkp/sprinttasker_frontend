@@ -5,7 +5,7 @@ export const Data = () => {
   return (
     <div>
       <h1>SpreadSheets</h1>
-      <SpreadsheetContainer />
+      {/* <SpreadsheetContainer /> */}
     </div>
   );
 };
