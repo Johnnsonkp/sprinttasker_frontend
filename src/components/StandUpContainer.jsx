@@ -17,6 +17,7 @@ export const StandUpComponent = () => {
     let [blockData, setBlockData] = useState([])
     let [blockInput, setBlockInput] = useState([])
     let [blockToggle, setBlockToggle] = useState(false)
+    let [checked, setChecked] = useState(false)
     let counter = 1
     const [flip, setFlip] = useState(false);
     const [height, setHeight] = useState("initial");
@@ -75,10 +76,12 @@ export const StandUpComponent = () => {
         const now = new Date()
         const eod = +new Date("2022-01-19T12:00:00+1100")
         let arr = []
-        arr.push(value[1], value[2], value[3])
+        value[0] === initialText ?
+            arr.push(value[1], value[2], value[3]) :
+            arr.push(value[0], value[1], value[2])
+            
         const item = {
             value: arr,
-            expiry: now.getTime() + ttl,
         }
         localStorage.setItem(key, JSON.stringify(item))
         alert("Stand up saved")
@@ -128,13 +131,16 @@ export const StandUpComponent = () => {
                             {data && data.length > 0 ? 
                                 data.map(content => content !== initialText ? 
                                     (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#f4f4f4', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #555', width: '100%'}}>
-                                        <input type="checkbox" id={data.indexOf(content)} name={data.indexOf(content)}
+                                        <input onClick={() => setChecked(!checked)} 
+                                            type="checkbox" 
+                                            id={data.indexOf(content)} 
+                                            name={data.indexOf(content)}
                                          ></input>
                                     <label style={styles.taskContainer}>
                                         <p style={styles.individualTask} 
                                             key={data.indexOf(content)}>
-                                                <div>{counter++}. </div>
-                                                {content}
+                                                <div style={{}}>{counter++}. </div>
+                                                <span style={{ }}>{content}</span>
                                         </p> 
                                         <Button 
                                             onClick={(e) => onTaskDelete(content)} 
