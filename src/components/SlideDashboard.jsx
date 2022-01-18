@@ -2,14 +2,6 @@ import React, {useEffect, useState, useCallback} from 'react';
 import { Card } from 'antd';
 import { useAppState } from '../AppState';
 import banner from '../std-banner.svg';
-// import {
-//     StandUpComponent,
-//     StandDownComponent,
-//     CheckinHeader,
-// } from "../components/StandUp.jsx";
-
-// import { StandUpComponent } from './StandUp.jsx';
-// import { StandUpComponent } from './src/components/StandUp.jsx'
 import  {StandUpComponent} from './StandUpContainer.jsx';
 
 export default function StandUpComp(props) {
@@ -31,7 +23,8 @@ export default function StandUpComp(props) {
             marginLeft: '10px',
             border: '1px solid lightgrey',
             borderRadius: '10px',
-            minWidth: '1050px'
+            minWidth: '1050px',
+            minHeight: '300px'
         },
         header: {
             width: '100%',
@@ -60,7 +53,8 @@ export default function StandUpComp(props) {
         },
         card: {
             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 6px 12px 0px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            marginTop: '50px'
         }
        
 
@@ -101,17 +95,12 @@ export default function StandUpComp(props) {
             <div style={styles.container}>
                 <div style={styles.innerCard} className="site-card-border-less-wrapper">
                     <StandUpComponent />
-                    <Card style={styles.card} className="singleCard" title="Countdown Timer" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff', margin: '10px' }}>
+                    <Card style={styles.card} className="singleCard" title="Countdown Timer" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff', marginTop: '30px', marginLeft: '10px', marginRight: '10px' }}>
                         <p>0 0 0 0</p>
                         <p>Days Hours Minutes Seconds</p>
                     </Card>
 
-                    <Card style={styles.card} className="singleCard completed-task-card" title="Completed Task" bordered={true} style={{ width: 450, minHeight: 200, maxHeight: '200px', textAlign: 'left', backgroundColor: '#fff', margin: '10px', overflow: 'hidden' }}>
-                        {/* {completedTask ? completedTask.map((task) => (
-                            console.log("completedTasks forloop:", completedTask),
-                            <p key={task.id}>{task.name}</p>
-                        )) : null} */}
-            
+                    <Card style={styles.card} className="singleCard completed-task-card" title="Completed Task" bordered={true} style={{ width: 450, minHeight: 200, maxHeight: '200px', textAlign: 'left', backgroundColor: '#fff', marginTop: '30px', marginLeft: '10px', marginRight: '10px', overflow: 'hidden' }}>
                     </Card>
                 </div>
             </div>

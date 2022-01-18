@@ -15,14 +15,10 @@ export async function showCal () {
         alert("That doesn't look like a valid email...");
         blocker.style.display = 'block';
     }
-    console.log(auth)
-    console.log(auth.email)
 }
 
 export const LargeCalendar = () => {
     const { state, dispatch } = useAppState();
-    
-
     return (
         <div id="calendarEmbedWrapper">
             <iframe id="calendarEmbed"></iframe>
