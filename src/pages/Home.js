@@ -6,6 +6,7 @@ import SmallWave from "../wave-small.png";
 import Notes from "./Notes";
 import { DisplayBox } from "../components/DisplayBox";
 import AllNotes from "../components/AllNotes";
+import { LargeCalendar, showCal } from "../components/Calendar";
 const { Search } = Input;
 
 export default function Home() {
@@ -83,8 +84,8 @@ export default function Home() {
 
         <div
           style={{
-            marginTop: "30px",
-            // marginBottom: "20px",
+            marginTop: "-30px",
+            marginBottom: "55px",
             // width: "100%",
             height: "310px",
             // border: "1px solid orange",
@@ -100,11 +101,9 @@ export default function Home() {
 
           <div style={{ width: "49%" }}>
             <DisplayBox
-              component={
-                <Calendar fullscreen={false} onPanelChange={onPanelChange} />
-              }
+              component={<LargeCalendar customFunction={showCal()} />}
               title={"Calendar"}
-              link={"/notes"}
+              link={"/calendar"}
             />
           </div>
         </div>

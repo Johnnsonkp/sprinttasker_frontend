@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 
-export const DisplayBox = ({component, title, link}) => {
+
+export const DisplayBox = ({component, title, link, customFunction}) => {
     const navigate = useNavigate();
+    const location = useLocation();
     return (
         <div
           id="homeContent"
@@ -11,8 +14,8 @@ export const DisplayBox = ({component, title, link}) => {
             border: "3px solid rgb(98 178 251)",
             border: "3px solid lightGrey",
             borderRadius: "10px",
-            height: "280px",
-            maxHeight: "280px",
+            height: location.pathname !== '/calendar'? "300px" : '600px',
+            maxHeight: location.pathname !== '/calendar'? "300px" : '600px',
             overflow: "hidden",
             width: "100%",
             boxSizing: "border box",
@@ -41,7 +44,7 @@ export const DisplayBox = ({component, title, link}) => {
               // marginTop: "20px",
               marginBottom: "20px",
               width: "100%",
-              height: "250px",
+              height: location.pathname !== '/calendar'? "250px" : '800px',
               border: "1px solid lightgrey",
               borderRadius: "5px",
               overflow: "hidden",
@@ -51,7 +54,7 @@ export const DisplayBox = ({component, title, link}) => {
               navigate(link);
             }}
           >
-            <div className="inner" style={{backgroundColor: component? "#fff" : "#fff"}}>
+            <div className="inner" style={{backgroundColor: component? "#fff" : "#fff"}} onLoad={() => customFunction}>
                 {component}
             </div>
           </div>

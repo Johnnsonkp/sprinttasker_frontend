@@ -6,5 +6,16 @@ import Mywork from "./Mywork";
 import Standup from "./Standup";
 import Main from "./Main";
 import Home from "./Home";
+import CalendarPage from "./CalendarPage";
 
-export { Landing, Auth, Developer, About, Mywork, Standup, Main, Home };
+export {
+  Landing,
+  Auth,
+  Developer,
+  About,
+  Mywork,
+  Standup,
+  Main,
+  Home,
+  CalendarPage,
+};

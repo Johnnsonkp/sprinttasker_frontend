@@ -14,6 +14,7 @@ import {
   Standup,
   Main,
   Home,
+  CalendarPage,
 } from "./pages";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { SingleNote } from "./components/SingleNote";
@@ -74,6 +75,7 @@ export const App = () => {
             <Route path="/single-note" element={<SingleNote />} />
             <Route path="/task-cards" element={<TaskCards />} />
             <Route path="/data" element={<Data />} />
+            <Route path="/calendar" element={<CalendarPage />} />
           </Routes>
         </div>
       </div>

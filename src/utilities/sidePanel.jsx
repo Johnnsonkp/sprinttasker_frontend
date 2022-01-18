@@ -10,8 +10,8 @@ import {
   UnorderedListOutlined,
   BankOutlined,
   PoweroffOutlined,
-  FileExcelOutlined
-  
+  FileExcelOutlined,
+  CalendarOutlined
 } from '@ant-design/icons';
 import {Link, useNavigate, Redirect} from "react-router-dom";
 import SidePanelTabs from "./SidePanelTabs";
@@ -79,22 +79,27 @@ export function SidePanel({notes}) {
                   Notes
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="5" icon={<MessageOutlined />}>
+                <Menu.Item key="5" icon={<CalendarOutlined />}>
+                <Link to="/calendar">
+                        Calendar
+                </Link>
+                </Menu.Item>
+                <Menu.Item key="6" icon={<MessageOutlined />}>
                 <Link to="/stand_up">
                         Stand Up
                 </Link>
                 </Menu.Item>
-                <Menu.Item key="6" icon={<FileExcelOutlined />}>
+                <Menu.Item key="7" icon={<FileExcelOutlined />}>
                 <Link to="/data">
                         Data
                 </Link>
                 </Menu.Item>
-                <Menu.Item key="7" icon={<AppstoreOutlined />}>
+                <Menu.Item key="8" icon={<AppstoreOutlined />}>
                     <Link to="/">
                         Landing Page
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="8" >
+                <Menu.Item key="9" >
                   <LogoBlock
                     backgroundColor={"transparent"}
                     iconWidth={"30px"}
