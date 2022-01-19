@@ -14,6 +14,7 @@ export default function StandUpComp(props) {
             backgroundImage: `url(${banner})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
+            paddingTop: '0px',
             paddingLeft: '10px',
             paddingRight: '10px',
             background: '#fff',
@@ -24,7 +25,7 @@ export default function StandUpComp(props) {
             border: '1px solid lightgrey',
             borderRadius: '10px',
             minWidth: '1050px',
-            minHeight: '300px'
+            minHeight: '350px'
         },
         header: {
             width: '100%',
@@ -42,7 +43,7 @@ export default function StandUpComp(props) {
             paddingTop: '20px',
             margin: '0px',
             display: 'flex',
-            width: '90%',
+            width: '95%',
             // marginLeft: 'auto',
             // marginRight: 'auto',
             margin: 'auto',

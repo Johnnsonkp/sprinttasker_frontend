@@ -46,7 +46,7 @@ export const StandUpComponent = () => {
     const styles = {
         taskContainer: {
             backgroundColor: '#f4f4f4', 
-            paddingLeft: '10px', 
+            paddingLeft: '0px', 
             paddingRight: '10px',  
             margin: '8px', 
             marginTop: '0px',
@@ -60,10 +60,10 @@ export const StandUpComponent = () => {
             paddingBottom: '8px'
         },
         individualTask: {
-            fontSize: '12px', 
+            fontSize: '13px', 
             // paddingTop: '5px',
             margin: '0px',
-            paddingLeft: '5px',
+            paddingLeft: '0px',
             paddingRight: '5px',
             display: 'flex'
         }
@@ -99,8 +99,13 @@ export const StandUpComponent = () => {
         }
         return item.value
     }
-    function getDayValue(){
-        const date = Date.now()
+    function setCheckedFunction(e, counter){
+        console.log('e.currentTarget:', e.currentTarget)
+        setChecked(!checked)
+        console.log('counter:', counter)
+        console.log('checked:', checked)
+        console.log("document.getElementById('content').getAttribute('data-key'):", document.getElementById("content").getAttribute('data-key'))
+        console.log("e.currentTarget.id === document.getElementById('content').getAttribute('data-key'):", e.currentTarget.id === document.getElementById("content").getAttribute('data-key'))
     }
 
     return (
@@ -118,6 +123,7 @@ export const StandUpComponent = () => {
                 bordered={false} 
                 style={{minWidth: 350, minHeight: 220, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
                 <Button 
+                    type={'primary'}
                     style={{position: "relative", top: '-45px', left: '240px', cursor: 'pointer'}}
                     onClick={() => setWithExpiry("standup", data, 1642640400000 )}
                 >Save Items</Button>
@@ -129,18 +135,28 @@ export const StandUpComponent = () => {
                     {!flip ?
                         <div className="front" ref={frontEl} style={{width: '100%', margin: 'auto', position: "relative", top: '-20px'}}>
                             {data && data.length > 0 ? 
-                                data.map(content => content !== initialText ? 
+                                data.map((content, key) => content !== initialText ? 
                                     (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#f4f4f4', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #555', width: '100%'}}>
-                                        <input onClick={() => setChecked(!checked)} 
+                                        <input 
+                                            onClick={(e) => setCheckedFunction(e, counter)} 
                                             type="checkbox" 
-                                            id={data.indexOf(content)} 
-                                            name={data.indexOf(content)}
+                                            id={key} 
+                                            name={data.indexOf(content) + counter}
+                                            // checked={checked ? true : false}
                                          ></input>
-                                    <label style={styles.taskContainer}>
+                                    <label style={styles.taskContainer} 
+                                        for={key}>
                                         <p style={styles.individualTask} 
-                                            key={data.indexOf(content)}>
+                                            >
                                                 <div style={{}}>{counter++}. </div>
-                                                <span style={{ }}>{content}</span>
+                                                <span 
+                                                    id={'content'}
+                                                    data-key={key}
+                                                    style={{ textDecoration: checked && input.id === counter ? 'line-through' : null }} 
+                                                    key={key}
+                                                    >
+                                                        {content}
+                                                </span>
                                         </p> 
                                         <Button 
                                             onClick={(e) => onTaskDelete(content)} 
