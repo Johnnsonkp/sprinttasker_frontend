@@ -30,7 +30,7 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                     minHeight: 250, 
                     textAlign: 'left', 
                     backgroundColor: '#fff', 
-                    marginTop: '10px', 
+                    marginTop: '20px', 
                     marginLeft: '10px', 
                     marginRight: '10px', 
                     overflow: 'hidden' 
@@ -44,8 +44,8 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 } 
                 <Button 
                     type={'primary'}
-                    style={{marginTop: '30px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
-                    onClick={() => SetShowHide(true)}
+                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px', position: 'relative', top: '120px', left: '0px'}}
+                    onClick={() => SetShowHide(false)}
                 >Completion Rate (%)</Button>
                 
             </Card>  
@@ -96,7 +96,7 @@ export const CompletedRate = ({SetShowHide}) => {
             bordered={true} 
             style={{ 
                 width: 450, 
-                minHeight: 250, 
+                minHeight: 240, 
                 textAlign: 'left', 
                 backgroundColor: '#fff', 
                 marginTop: '20px', 
@@ -111,8 +111,8 @@ export const CompletedRate = ({SetShowHide}) => {
             </div>
             <Button 
                 type={'primary'}
-                style={{marginTop: '30px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
-                onClick={() => SetShowHide(false)}
+                style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
+                onClick={() => SetShowHide(true)}
             >Completed Tasks</Button>
             
         </Card>

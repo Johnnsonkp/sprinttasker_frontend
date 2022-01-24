@@ -40,7 +40,7 @@ export default function StandUpComp(props) {
             border: '1px solid red'
         },
         innerCard: {
-            paddingTop: '20px',
+            paddingTop: '0px',
             margin: '0px',
             display: 'flex',
             width: '100%',
@@ -53,7 +53,7 @@ export default function StandUpComp(props) {
         card: {
             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 6px 12px 0px',
             cursor: 'pointer',
-            marginTop: '50px'
+            // marginTop: '50px'
         }
        
 
@@ -95,7 +95,7 @@ export default function StandUpComp(props) {
             <div style={styles.container}>
                 <div style={styles.innerCard} className="site-card-border-less-wrapper">
                     <StandUpComponent />
-                    {   !showHide?
+                    {   showHide?
                         <DailyCompletedTask SetShowHide={SetShowHide}/> : <CompletedRate SetShowHide={SetShowHide}/>
                     }
                     
