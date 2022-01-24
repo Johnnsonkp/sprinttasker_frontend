@@ -44,7 +44,7 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 } 
                 <Button 
                     type={'primary'}
-                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px', position: 'relative', top: '120px', left: '0px'}}
+                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px', position: 'relative', top: state.alltasks? null : '120px', left: state.alltasks? null : '0px'}}
                     onClick={() => SetShowHide(false)}
                 >Completion Rate (%)</Button>
                 
