@@ -122,7 +122,7 @@ export const StandUpComponent = () => {
             <Card 
                 title={flip ? `Stand Down @5:00pm` : `Stand Up @5:00am` }
                 bordered={false} 
-                style={{minWidth: 450, minHeight: 250, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
+                style={{minWidth: 450, minHeight: 266.14, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
                 <Button 
                     type={'primary'}
                     style={{position: "relative", top: '-45px', left: '300px', cursor: 'pointer'}}

@@ -27,7 +27,7 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 bordered={true} 
                 style={{ 
                     width: 450, 
-                    minHeight: 250, 
+                    minHeight: 266.14, 
                     textAlign: 'left', 
                     backgroundColor: '#fff', 
                     marginTop: '20px', 
@@ -96,7 +96,7 @@ export const CompletedRate = ({SetShowHide}) => {
             bordered={true} 
             style={{ 
                 width: 450, 
-                minHeight: 240, 
+                minHeight: 266.14, 
                 textAlign: 'left', 
                 backgroundColor: '#fff', 
                 marginTop: '20px', 
