@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
 import "../App.css";
-import { Container, Segment, Header, Divider } from "semantic-ui-react";
-import InputListComponent from "./InputList.component.jsx";
-import { format, formatRelative, subDays } from "date-fns";
-import { Card, Button } from 'antd';
-import {RightCircleOutlined} from '@ant-design/icons';
 
+import { Button, Card } from 'antd';
+import { Container, Divider, Header, Segment } from "semantic-ui-react";
+import React, { useEffect, useRef, useState } from "react";
+import { format, formatRelative, subDays } from "date-fns";
+
+import InputListComponent from "./InputList.component.jsx";
+import {RightCircleOutlined} from '@ant-design/icons';
 
 export const StandUpComponent = () => {
     const initialText = 'What are you working on today?'
@@ -121,10 +122,10 @@ export const StandUpComponent = () => {
             <Card 
                 title={flip ? `Stand Down @5:00pm` : `Stand Up @5:00am` }
                 bordered={false} 
-                style={{minWidth: 350, minHeight: 220, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
+                style={{minWidth: 450, minHeight: 250, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
                 <Button 
                     type={'primary'}
-                    style={{position: "relative", top: '-45px', left: '240px', cursor: 'pointer'}}
+                    style={{position: "relative", top: '-45px', left: '300px', cursor: 'pointer'}}
                     onClick={() => setWithExpiry("standup", data, 1642640400000 )}
                 >Save Items</Button>
 
@@ -226,7 +227,7 @@ export const StandDownComponent = () => {
 
     return (
         <div className="site-card-border-less-wrapper">
-            <Card title="Stand Down" bordered={false} style={{width: 300, background: 'yellow', textAlign: 'left' }}>
+            <Card title="Stand Down" bordered={false} style={{width: 450, background: 'yellow', textAlign: 'left' }}>
                 
                 <h4>What did you work on today?</h4>
                 {data? data.map(content => <div style={{backgroundColor: '#fff', padding: '3px', margin: '8px'}}><p><span>{data.indexOf(content) + 1}.</span>{content}</p> </div>) : 

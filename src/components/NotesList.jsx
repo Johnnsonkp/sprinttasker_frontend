@@ -1,28 +1,22 @@
-import React from 'react'
-import Note from './Note'
 import AddNote from './AddNote';
-import { format } from "date-fns";
-
+import Note from './Note'
+import React from 'react'
+import { reformatDate } from '../utilities/utilFunctions';
 
 const NotesList = ( {notes, handleAddNote, deleteNote}) => {
-
-    const reformatDate = (railsDate) => {
-        const newDate = format(new Date(railsDate), "yyyy/MM/dd")
-        return newDate
-    }
-    
+    let sortedNotes = notes.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
     return (
         <>
             { notes? 
                 <div className="notes-list">
-                    {notes.map((note, i) => (
+                    {sortedNotes.map((note) => (
                         <>
                         <Note
-                            key={note.id + i} 
+                            key={note.id} 
                             id={note.id} 
                             title={note.title} 
                             body={note.body} 
-                            created_at={reformatDate(note.created_at)} 
+                            created_at={reformatDate(note.created_at, "dd/MM/yyyy")} 
                             deleteNote={deleteNote}
                             />
                         </>

@@ -1,13 +1,15 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {Tabs, Layout, Row, Col, message, Spin} from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import './TaskList.css'
-import TaskTab from './TaskTab';
+
+import {Col, Layout, Row, Spin, Tabs, message} from 'antd';
+import React, {useCallback, useEffect, useState} from 'react';
+import {destroy, loadTasks, postTask, update} from '../services/taskService';
+
 import InProgressTab from './inProgressTab'
-import TaskForm from './TaskForm';
-import { useAppState } from '../AppState';
-import {postTask, destroy, update, loadTasks} from '../services/taskService';
+import { LoadingOutlined } from '@ant-design/icons';
 import Preload from '../utilities/Preload'
+import TaskForm from './TaskForm';
+import TaskTab from './TaskTab';
+import { useAppState } from '../AppState';
 import { useLocation } from 'react-router-dom';
 
 const { TabPane} = Tabs;
@@ -95,11 +97,14 @@ const TaskList = () => {
         await loadTasks().then((res) => {
             console.log("res:", res)
             if(res.length > 0){
+                dispatch({ type: "getTasks", payload: res})
                 let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
                 console.log("sortby:", sortTaskById)
                 setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                 setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
                 setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));
+
+                
             }
             else {
                 setActiveTasks(dummyData)
@@ -114,11 +119,14 @@ const TaskList = () => {
         await loadTasks().then((res) => {
             console.log("res:", res)
             if(res.length > 0){
+                dispatch({ type: "getTasks", payload: res})
                 let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
                 console.log("sortby:", sortTaskById)
                 setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                 setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
                 setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));
+
+                // dispatch({ type: "alltasks", payload: res})
             }
             else {
                 setActiveTasks(dummyData)

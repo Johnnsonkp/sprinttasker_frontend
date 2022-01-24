@@ -1,8 +1,10 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import { CompletedRate, DailyCompletedTask } from './CompletedTask';
+import React, {useCallback, useEffect, useState} from 'react';
+
 import { Card } from 'antd';
-import { useAppState } from '../AppState';
-import banner from '../std-banner.svg';
 import  {StandUpComponent} from './StandUpContainer.jsx';
+import banner from '../std-banner.svg';
+import { useAppState } from '../AppState';
 
 export default function StandUpComp(props) {
 
@@ -25,7 +27,7 @@ export default function StandUpComp(props) {
             border: '1px solid lightgrey',
             borderRadius: '10px',
             minWidth: '1050px',
-            minHeight: '350px'
+            minHeight: '310px'
         },
         header: {
             width: '100%',
@@ -38,14 +40,10 @@ export default function StandUpComp(props) {
             border: '1px solid red'
         },
         innerCard: {
-            // paddingLeft: '10px',
-            // paddingRight: '10px',
             paddingTop: '20px',
             margin: '0px',
             display: 'flex',
-            width: '95%',
-            // marginLeft: 'auto',
-            // marginRight: 'auto',
+            width: '100%',
             margin: 'auto',
             justifyContent: 'space-around',
             alignItems: 'center',
@@ -63,6 +61,7 @@ export default function StandUpComp(props) {
     const {state} = useAppState()
     const [completedTask, setCompletedTasks] = useState(null)
     const [toggle, setToggle] = useState(false)
+    const [showHide, SetShowHide] = useState(null)
 
     const TaskComplete = () => {
         
@@ -96,13 +95,10 @@ export default function StandUpComp(props) {
             <div style={styles.container}>
                 <div style={styles.innerCard} className="site-card-border-less-wrapper">
                     <StandUpComponent />
-                    <Card style={styles.card} className="singleCard" title="Countdown Timer" bordered={true} style={{ width: 400, minHeight: 200, textAlign: 'left', backgroundColor: '#fff', marginTop: '30px', marginLeft: '10px', marginRight: '10px' }}>
-                        <p>0 0 0 0</p>
-                        <p>Days Hours Minutes Seconds</p>
-                    </Card>
-
-                    <Card style={styles.card} className="singleCard completed-task-card" title="Completed Task" bordered={true} style={{ width: 450, minHeight: 200, maxHeight: '200px', textAlign: 'left', backgroundColor: '#fff', marginTop: '30px', marginLeft: '10px', marginRight: '10px', overflow: 'hidden' }}>
-                    </Card>
+                    {   !showHide?
+                        <DailyCompletedTask SetShowHide={SetShowHide}/> : <CompletedRate SetShowHide={SetShowHide}/>
+                    }
+                    
                 </div>
             </div>
         </div>

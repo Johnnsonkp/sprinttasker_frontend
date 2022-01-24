@@ -1,4 +1,4 @@
-import React, {useReducer} from "react"; 
+import React, {useReducer} from "react";
 
 ////////////////////////////////////////////////////////////////////
 // INITIAL STATE //
@@ -12,7 +12,7 @@ const initialState = {
     name: null,
     email: null,
     usertasks: [],
-    alltasks: [],
+    alltasks: null,
     user_id: 0,
     work_mode: false,
     notes: [],
