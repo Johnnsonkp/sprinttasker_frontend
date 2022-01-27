@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import {PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
+import React, {useEffect, useState} from 'react'
+
+import {Button} from 'antd';
+import { CaretRightOutlined } from "@ant-design/icons";
 import Pomodoro from './Pomodoro'
 import { useAppState } from '../AppState'
-import { CaretRightOutlined } from "@ant-design/icons";
-import {PlayCircleOutlined, PauseCircleOutlined} from '@ant-design/icons'
-import {Button} from 'antd';
 
 export default function TimerContainer() {
     const {state} = useAppState()
@@ -13,7 +14,7 @@ export default function TimerContainer() {
     const styles = {
         hide: {
             opacity: 0,
-            transition: 'all 10ms ease-in',
+            transition: 'all 5ms ease-in',
             transitionProperty: 'opacity,width',
             width: '0%',
             position: "absolute",
@@ -24,7 +25,7 @@ export default function TimerContainer() {
         show: {
             opacity: 1,
             width: '100%',
-            transition: 'all 10ms ease-in',
+            transition: 'all 5ms ease-in',
             transitionProperty: 'opacity,width',
             position: "absolute",
             left: '0px',
@@ -101,14 +102,11 @@ export default function TimerContainer() {
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'space-around',
-                        // width: '70%',
                         padding: '0px 10px', 
-                        // borderBottom: '1px solid #111', 
                         color: '#fff', 
                         fontWeight: 'bolder', 
                         fontSize: '18px',
                         marginRight: '0px',
-                        // background: 'hsla(0,0%,100%,.1)'
                     }}>
                     {newTimer() }
                     <span style={{
@@ -139,7 +137,7 @@ export default function TimerContainer() {
                 <div className="inner-timer" >
                     <div 
                         style={{
-                            width: '97%',
+                            width: '100%',
                             margin: 'auto',
                             padding: '5px 10px',
                             display: 'flex',
@@ -153,18 +151,33 @@ export default function TimerContainer() {
                         }}>
                         <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px'}}>{state.work_mode ? task.name : "No task selected"}</h5>
                     </div>
-                    <div 
+                    <div
                         style={{
                             border: "1px solid #444", 
-                            padding: '5px', 
+                            padding: '5px 10px', 
                             borderRadius: '8px', 
                             marginTop: '15px',
                             marginBottom: '15px',
                             background: 'hsla(0,0%,100%,.1)'
-                        }}>
-                        <h4 style={{ color: '#fff'}}>Subtask:</h4>
-                        <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px'}}>{state.work_mode && task.subtask ? task.subtask : "No subtask selected"}</h5>
-                    </div> 
+                        }}
+                    >   
+                        <h5 style={{ color: '#fff', marginBottom: '0px'}}>Task Description:</h5>
+                        <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px', marginTop: '15px'}}>{state.work_mode && task.description ? task.description : "No task description"}</h5>
+                    </div>
+                    {state.work_mode && task.subtask &&
+                        <div 
+                            style={{
+                                border: "1px solid #444", 
+                                padding: '5px', 
+                                borderRadius: '8px', 
+                                marginTop: '15px',
+                                marginBottom: '15px',
+                                background: 'hsla(0,0%,100%,.1)'
+                            }}>
+                            <h4 style={{ color: '#fff'}}>Subtask:</h4>
+                            <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px'}}>{task.subtask}</h5>
+                        </div> 
+                    }
                 </div> 
                 <div 
                     className="footer" 
