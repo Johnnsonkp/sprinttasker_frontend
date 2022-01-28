@@ -59,7 +59,6 @@ const TaskList = () => {
     };
 
     const handleFormSubmit = (task) => {
-        // console.log('task to create', task);
         createTask(task).then(onRefresh())
         message.success('Task added!');
     }
@@ -71,9 +70,7 @@ const TaskList = () => {
 
     const handleToggleTaskStatus = (task) => {
         task.completed ? task.completed = false : task.completed = true
-        updateTask(task)
-        message.info('task.completed ? ', task.completed);
-        message.info('Task status updated!');
+        updateTask(task).then(message.info('Task status updated!'))
     }
     const handleTimer = (task, updateTimer) => {
         console.log("handleTimer function", task, "updateTimer:", updateTimer)
@@ -195,9 +192,10 @@ const TaskList = () => {
             </div>
         )
     }
-    return tasks ? loaded() : <Spin indicator={antIcon} />
+    // return tasks ? loaded() : <Spin indicator={antIcon} />
     // return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
-    
+    // return loaded()
+    return tasks && loaded() 
 }
 
 export default TaskList

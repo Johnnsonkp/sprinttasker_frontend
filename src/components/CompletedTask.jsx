@@ -26,14 +26,16 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 style={styles.card} 
                 bordered={true} 
                 style={{ 
-                    width: 450, 
+                    width: 450,
+                    width: 490, 
                     minHeight: 266.14, 
+                    maxHeight: 266.14,
                     textAlign: 'left', 
                     backgroundColor: '#fff', 
                     marginTop: '20px', 
                     marginLeft: '10px', 
                     marginRight: '10px', 
-                    overflow: 'hidden' 
+                    overflowY: 'scroll' 
                 }}>
                 {state.alltasks && sortedTask && sortedTask.map(task => task.completed === true &&
                     reformatDate(task.created_at, "dd/MM/yyyy") === reformatDate(Date.now(), "dd/MM/yyyy") &&
@@ -94,8 +96,9 @@ export const CompletedRate = ({SetShowHide}) => {
             style={styles.card} 
             bordered={true} 
             style={{ 
-                width: 450, 
+                width: 490, 
                 minHeight: 266.14, 
+                maxHeight: 266.14, 
                 textAlign: 'left', 
                 backgroundColor: '#fff', 
                 marginTop: '20px', 
@@ -103,10 +106,26 @@ export const CompletedRate = ({SetShowHide}) => {
                 marginRight: '10px', 
                 overflow: 'hidden' 
             }}>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                <Progress type="circle" percent={completedPercentage(completedTaskCount(), taskCreatedToday())} style={{marginLeft: '10px', marginRight: '10px'}}/>
-                <h5 style={{margin: '0px', textAlign: 'left'}}>Created Tasks: {taskCreatedToday()}</h5>
-                <h5 style={{margin: '0px', textAlign: 'left'}}>Completed Tasks: {completedTaskCount()}</h5>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px', border: '2px solid lightGrey', background: 'rgb(244, 244, 244)'}}>
+                <Progress 
+                    type="circle" 
+                    percent={completedPercentage(completedTaskCount(), taskCreatedToday())} 
+                    width={'100px'}
+                    strokeColor={completedPercentage(completedTaskCount(), taskCreatedToday()) >= 80? 'green' : completedPercentage(completedTaskCount(), taskCreatedToday()) > 50? 'orange' : 'red'}
+                    trailColor={'#444'}
+                    style={{
+                        marginLeft: '10px', 
+                        marginRight: '10px', 
+                        border: '1px solid lightGrey', 
+                        paddingTop: '10px', 
+                        paddingBottom: '10px', 
+                        paddingLeft: '10px', 
+                        paddingRight: '10px'}}
+                    />
+
+                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px'}}>Created Tasks: {taskCreatedToday()}</h5>
+
+                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px'}}>Completed Tasks: {completedTaskCount()}</h5>
             </div>
             <Button 
                 type={'primary'}

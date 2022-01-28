@@ -1,9 +1,9 @@
-import React from "react";
-import TaskList from "../components/TaskList";
-import { useAppState } from "../AppState";
-import StandUpComp from "../components/SlideDashboard";
-import TimerContainer from "../components/TimerContainer";
 import Preload from "../utilities/Preload";
+import React from "react";
+import StandUpComp from "../components/SlideDashboard";
+import TaskList from "../components/TaskList";
+import TimerContainer from "../components/TimerContainer";
+import { useAppState } from "../AppState";
 
 export default function Main(props) {
   const { state } = useAppState();
@@ -37,6 +37,6 @@ export default function Main(props) {
       </div>
     );
   };
-  return <Preload timeoutLengthInSeconds={600} handleFunction={loaded()} />;
+  return <Preload timeoutLengthInSeconds={1000} handleFunction={loaded()} />;
   // return loaded();
 }
