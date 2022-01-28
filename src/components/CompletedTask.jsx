@@ -106,26 +106,28 @@ export const CompletedRate = ({SetShowHide}) => {
                 marginRight: '10px', 
                 overflow: 'hidden' 
             }}>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px', border: '2px solid lightGrey', background: 'rgb(244, 244, 244)'}}>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px', border: '1px solid lightGrey', background: 'rgb(244, 244, 244)'}}>
                 <Progress 
                     type="circle" 
                     percent={completedPercentage(completedTaskCount(), taskCreatedToday())} 
                     width={'100px'}
-                    strokeColor={completedPercentage(completedTaskCount(), taskCreatedToday()) >= 80? 'green' : completedPercentage(completedTaskCount(), taskCreatedToday()) > 50? 'orange' : 'red'}
+                    strokeColor={completedPercentage(completedTaskCount(), taskCreatedToday()) >= 80? 'lightGreen' : completedPercentage(completedTaskCount(), taskCreatedToday()) > 50? 'orange' : 'red'}
                     trailColor={'#444'}
                     style={{
                         marginLeft: '10px', 
                         marginRight: '10px', 
-                        border: '1px solid lightGrey', 
+                        border: '1px solid lightGrey',
+                        background: 'rgb(244, 244, 244)', 
+                        background: '#fff',
                         paddingTop: '10px', 
                         paddingBottom: '10px', 
                         paddingLeft: '10px', 
                         paddingRight: '10px'}}
                     />
 
-                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px'}}>Created Tasks: {taskCreatedToday()}</h5>
+                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Created Tasks: {taskCreatedToday()}</h5>
 
-                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px'}}>Completed Tasks: {completedTaskCount()}</h5>
+                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>Completed Tasks: {completedTaskCount()}</h5>
             </div>
             <Button 
                 type={'primary'}

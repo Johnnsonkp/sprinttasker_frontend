@@ -70,7 +70,8 @@ const TaskList = () => {
 
     const handleToggleTaskStatus = (task) => {
         task.completed ? task.completed = false : task.completed = true
-        updateTask(task).then(message.info('Task status updated!'))
+        updateTask(task)
+        message.info('Task status updated!')
     }
     const handleTimer = (task, updateTimer) => {
         console.log("handleTimer function", task, "updateTimer:", updateTimer)
