@@ -467,8 +467,8 @@ label{
   background-color: lightgrey;
   background-blend-mode: darken;
   cursor: pointer;
-  transition: all ease-in-out 0.3s;
-  transform: scale(1.02);
+  /* transition: all ease-in-out 0.3s;
+  transform: scale(1.02); */
 }
 #projects .notes-container{
   padding-top: 0px;
@@ -485,11 +485,11 @@ label{
   z-index: 0;
 }
 #homeContent:hover{
-  background-color: lightgrey;
-  background-blend-mode: darken;
+  /* background-color: lightgrey;
+  background-blend-mode: darken; */
   cursor: pointer;
   transition: all ease-in-out 0.3s;
-  transform: scale(1.02);
+  transform: scale(1.005);
 }
 
 #calender .site-calendar-demo-card {

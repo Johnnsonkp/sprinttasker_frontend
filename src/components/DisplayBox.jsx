@@ -1,7 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router";
 
 export const DisplayBox = ({component, title, link, customFunction}) => {
     const navigate = useNavigate();
