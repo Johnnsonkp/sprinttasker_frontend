@@ -87,7 +87,6 @@ export const CompletedRate = ({SetShowHide}) => {
         const percentage = taskCreatedToday / completedTaskCount * 100
         return parseInt(percentage)
     }
-    console.log("completedPercentage(completedTaskCount, taskCreatedToday)", completedPercentage(completedTaskCount(), taskCreatedToday()))
 
     return (
         <Card 

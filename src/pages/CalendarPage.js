@@ -22,6 +22,7 @@ export default function CalendarPage() {
             top: "45%",
             left: "55%",
             display: "block",
+            zIndex: "9000",
           }}
           indicator={antIcon}
         />
@@ -34,7 +35,7 @@ export default function CalendarPage() {
     const auth = await JSON.parse(window.localStorage.getItem("auth"));
     if (document.getElementById("calendarEmbed")) {
       var iframe = document.getElementById("calendarEmbed");
-      var email = "john.nkp1@gmail.com";
+      var email = auth.email;
       var blocker = document.getElementById("calendarEmbedBlocker");
       if (email && /.+\@.+/.test(email)) {
         iframe.src =
@@ -74,7 +75,7 @@ export default function CalendarPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setToggle(!toggle);
+      setToggle(true);
     }, 2000);
     setToggle(false);
     return () => clearTimeout(timer);
