@@ -37,6 +37,6 @@ export default function Main(props) {
       </div>
     );
   };
-  return <Preload timeoutLengthInSeconds={1000} handleFunction={loaded()} />;
+  return <Preload timeoutLengthInSeconds={2000} handleFunction={loaded()} />;
   // return loaded();
 }

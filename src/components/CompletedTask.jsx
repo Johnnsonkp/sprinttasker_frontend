@@ -106,7 +106,7 @@ export const CompletedRate = ({SetShowHide}) => {
                 marginRight: '10px', 
                 overflow: 'hidden' 
             }}>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px', border: '1px solid lightGrey', background: 'rgb(244, 244, 244)'}}>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px'}}>
                 <Progress 
                     type="circle" 
                     percent={completedPercentage(completedTaskCount(), taskCreatedToday())} 
@@ -125,9 +125,9 @@ export const CompletedRate = ({SetShowHide}) => {
                         paddingRight: '10px'}}
                     />
 
-                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Created Tasks: {taskCreatedToday()}</h5>
+                <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Created Tasks: {taskCreatedToday()}</h5>
 
-                <h5 style={{margin: '0px', textAlign: 'left', border: '1px solid lightGrey', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>Completed Tasks: {completedTaskCount()}</h5>
+                <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>Completed Tasks: {completedTaskCount()}</h5>
             </div>
             <Button 
                 type={'primary'}

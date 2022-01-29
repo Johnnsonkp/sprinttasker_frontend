@@ -1,6 +1,8 @@
-import React, {useState} from "react";
-import { useAppState } from '../AppState';
 import './Calendar.css'
+
+import React, {useState} from "react";
+
+import { useAppState } from '../AppState';
 
 export async function showCal () {
     const auth = await JSON.parse(window.localStorage.getItem("auth"));

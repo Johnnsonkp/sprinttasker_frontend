@@ -7,6 +7,7 @@ import {destroy, loadTasks, postTask, update} from '../services/taskService';
 import InProgressTab from './inProgressTab'
 import { LoadingOutlined } from '@ant-design/icons';
 import Preload from '../utilities/Preload'
+import { SkeletonTemplate } from '../utilities/skeleton/skeleton';
 import TaskForm from './TaskForm';
 import TaskTab from './TaskTab';
 import { useAppState } from '../AppState';
@@ -123,8 +124,6 @@ const TaskList = () => {
                 setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                 setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
                 setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));
-
-                // dispatch({ type: "alltasks", payload: res})
             }
             else {
                 setActiveTasks(dummyData)
@@ -196,7 +195,8 @@ const TaskList = () => {
     // return tasks ? loaded() : <Spin indicator={antIcon} />
     // return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
     // return loaded()
-    return tasks && loaded() 
+    // return tasks && loaded() || <Spin indicator={antIcon} />
+    return tasks? loaded() : <SkeletonTemplate />
 }
 
 export default TaskList
