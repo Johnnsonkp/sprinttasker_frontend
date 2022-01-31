@@ -153,8 +153,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
                     </div>
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} /> 
-                <div className="timerSlot" style={{width: '150px', display: 'flex', justifyContent: 'space-around'}}>
-                     <p style={{fontSize: '13px', display:'flex', justifyContent: 'space-between', width: '60%'}}><h5 style={{fontWeight: '400'}}>ETC:</h5> {task.time_to_complete? task.time_to_complete : null}</p>
+                <div className="timerSlot" style={{width: '120px', display: 'flex', justifyContent: 'space-around'}}>
+                     <p style={{fontSize: '14px', display:'flex', justifyContent: 'space-between', width: '60%'}}><h5 style={{fontWeight: '600', marginTop: 'auto', marginBottom: 'auto'}}>ETC:</h5> {task.time_to_complete? task.time_to_complete : null}</p>
                 </div> 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
             </div>
