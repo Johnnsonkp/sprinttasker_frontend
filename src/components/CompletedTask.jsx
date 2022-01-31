@@ -39,7 +39,7 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 }}>
                 {state.alltasks && sortedTask && sortedTask.map(task => task.completed === true &&
                     reformatDate(task.created_at, "dd/MM/yyyy") === reformatDate(Date.now(), "dd/MM/yyyy") &&
-                        <div style={{border: '1px solid lightGray', marginBottom: '5px', padding: '3px', backgroundColor:'rgba(0, 200, 117, 0.8)', color: '#111'}}>
+                        <div style={{border: '1px solid rgba(111,111,111,0.1)', marginBottom: '5px', padding: '3px', backgroundColor:'rgba(0, 200, 117, 0.8)', color: '#111'}}>
                             {counter++}. <span style={{listStyle: 'none', fontSize: '12px', paddingLeft: '2px'}} key={task.id}>{task.name}</span>
                         </div> 
                     ) 
