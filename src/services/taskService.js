@@ -52,7 +52,7 @@ export function postTask(task) {
       name: task.name,
       description: task.description,
       subtask: task.subtask,
-      time_to_complete: parseInt(task.time_to_complete),
+      time_to_complete: task.time_to_complete,
       completed: task.completed,
     }),
   })
@@ -77,6 +77,7 @@ export const update = (task) => {
       subtask: task.subtask,
       completed: task.completed,
       timer: task.timer,
+      time_to_complete: task.time_to_complete,
     }),
   }).then((res) => res.json());
 };

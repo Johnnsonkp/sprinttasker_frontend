@@ -1,14 +1,15 @@
-import React from "react";
-import {Link, useNavigate} from "react-router-dom";
 import '../App.css';
-import logo from "../logo.svg";
-import { Menu, Dropdown, message, Breadcrumb, Avatar } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import {useAppState} from '../AppState'
-import Wave from "../utilities/wave";
-import { useLocation } from "react-router";
-import Preload from '../utilities/Preload'
 
+import { Avatar, Breadcrumb, Dropdown, Menu, message } from 'antd';
+import {Link, useNavigate} from "react-router-dom";
+
+import { DownOutlined } from '@ant-design/icons';
+import Preload from '../utilities/Preload'
+import React from "react";
+import Wave from "../utilities/wave";
+import logo from "../logo.svg";
+import {useAppState} from '../AppState'
+import { useLocation } from "react-router";
 
 // export default function Nav(props) {
 const Nav = () => {
@@ -114,12 +115,7 @@ const Nav = () => {
             style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto'}} 
             >
          
-         {
-           state.work_mode ? 
-            <div className="BreadCrumb-wave" style={{overflow: 'hidden'}}>
-              <Wave />
-            </div> 
-            :
+
            <div style={{position: 'sticky', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
             <Breadcrumb separator=">">
               <Breadcrumb.Item style={{color: '#fff', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
@@ -139,11 +135,7 @@ const Nav = () => {
               </Avatar>
               </Breadcrumb.Item>
             </Breadcrumb>
-            
-            
           </div> 
-          
-         }
         </div>
       );
     }

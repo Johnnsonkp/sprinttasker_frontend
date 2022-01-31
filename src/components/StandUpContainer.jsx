@@ -125,7 +125,7 @@ export const StandUpComponent = () => {
                 style={{minWidth: 450, minHeight: 266.14, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
                 <Button 
                     type={'primary'}
-                    style={{position: "relative", top: '-45px', left: '300px', cursor: 'pointer'}}
+                    style={{position: "relative", top: '-45px', left: '75%', cursor: 'pointer'}}
                     onClick={() => setWithExpiry("standup", data, 1642640400000 )}
                 >Save Items</Button>
 
@@ -177,7 +177,7 @@ export const StandUpComponent = () => {
                                     <input
                                         onChange={(event) => handleChange(event)}
                                         value={toggle ? '' : input}
-                                        style={{width: '73%', padding: '5px'}}
+                                        style={{width: '80%', padding: '5px'}}
                                         
                                         placeholder="What are you working on today?"
                                     ></input>

@@ -1,23 +1,26 @@
-import React, {useState} from "react";
-import { useAppState } from "../AppState";
-import notion from "../notion-logo-1.svg";
 import './sidepanel.css'
-import { Layout, Menu, Divider, Avatar } from 'antd';
+
 import {
-  FormOutlined,
   AppstoreOutlined,
-  MessageOutlined,
-  UnorderedListOutlined,
   BankOutlined,
-  PoweroffOutlined,
+  CalendarOutlined,
   FileExcelOutlined,
-  CalendarOutlined
+  FormOutlined,
+  MessageOutlined,
+  PoweroffOutlined,
+  UnorderedListOutlined
 } from '@ant-design/icons';
-import {Link, useNavigate, Redirect} from "react-router-dom";
+import { Avatar, Divider, Layout, Menu } from 'antd';
+import {Link, Redirect, useNavigate} from "react-router-dom";
+import React, {useState} from "react";
+
+import { LogoBlock } from "../components/LogoBlock";
 import SidePanelTabs from "./SidePanelTabs";
 import logo from "../logo.svg";
+import notion from "../notion-logo-1.svg";
+import { useAppState } from "../AppState";
 import { useLocation } from "react-router";
-import { LogoBlock } from "../components/LogoBlock";
+
 // import { Redirect } from "react-router-dom";
 
 export function SidePanel({notes}) {
@@ -162,12 +165,13 @@ export function SidePanel({notes}) {
                       justifyContent: 'space-around', 
                       alignItems: 'center',
                       color: '#fff',
-                      width: '90%',
+                      width: '95%',
+                      height: '37px',
                       fontSize: '16px', 
                       cursor: 'pointer',
                       // border: '1px solid rgba(248, 72, 74, 0.48)',
                       border: 'none',
-                      padding: '5px 12px',
+                      padding: '5px 12spx',
                       borderRadius: '18px',
                       backgroundColor: 'rgb(248 72 74 / 48%)'
                     }}

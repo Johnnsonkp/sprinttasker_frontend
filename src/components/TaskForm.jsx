@@ -1,6 +1,8 @@
-import React from 'react'
-import {Form, Row, Button, Input, Col} from 'antd'; 
+import {Button, Col, Form, Input, Row} from 'antd';
+
 import {PlusCircleFilled} from '@ant-design/icons'
+import React from 'react'
+
 const { TextArea } = Input;
 
 const TaskForm = ({onFormSubmit}) => {
@@ -12,14 +14,11 @@ const TaskForm = ({onFormSubmit}) => {
             description: form.getFieldValue('description'),
             subtask: form.getFieldValue('subtask'),
             completed: false,
-            time_to_complete: form.getFieldValue('completeTime')
+            time_to_complete: form.getFieldValue('ttcomplete')
         });
-        console.log(form.getFieldValue('name'));
-        console.log(form.getFieldValue('description'));
-        console.log("time:", form.getFieldValue('completeTime'))
-        console.log("typeof time:", typeof form.getFieldValue('completeTime'))
-        // console.log("Object", [{1: form.getFieldValue('subtask1'), 2: form.getFieldValue('subtask2')}])
 
+        console.log('complete:',  form.getFieldValue('ttcomplete'))
+        console.log('typeof complete:', typeof form.getFieldValue('ttcomplete'))
         form.resetFields();
     }
 
@@ -52,7 +51,7 @@ const TaskForm = ({onFormSubmit}) => {
                     </Col>
                     <Col xs={24} s={24} md={17} lg={19} xl={8}>
                         <Form.Item
-                            name={'completeTime'}
+                            name={'ttcomplete'}
                         >
                             <Input placeholder="Timer to complete" />
                         </Form.Item>

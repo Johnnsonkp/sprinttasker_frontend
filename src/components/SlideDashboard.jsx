@@ -98,7 +98,6 @@ export default function StandUpComp(props) {
                     {   showHide?
                         <DailyCompletedTask SetShowHide={SetShowHide}/> : <CompletedRate SetShowHide={SetShowHide}/>
                     }
-                    
                 </div>
             </div>
         </div>

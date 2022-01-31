@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {Tooltip, Tag, List, Button, Popconfirm} from 'antd';
-import {CheckOutlined, PlayCircleOutlined, PauseCircleOutlined, MessageOutlined} from '@ant-design/icons'
-import TaskSubitems from './TaskSubitems'
-import { Divider, Card } from 'antd';
-import { useAppState } from '../AppState';
-import Pomodoro from '../components/Pomodoro'
+import {Button, List, Popconfirm, Tag, Tooltip} from 'antd';
+import { Card, Divider } from 'antd';
+import {CheckOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
+import React, {useEffect, useState} from 'react';
 
+import Pomodoro from '../components/Pomodoro'
+import TaskSubitems from './TaskSubitems'
+import { useAppState } from '../AppState';
 
 const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
     const {state, dispatch } = useAppState();
@@ -154,7 +154,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} /> 
                 <div className="timerSlot" style={{width: '150px', display: 'flex', justifyContent: 'space-around'}}>
-                     <p style={{fontSize: '12px'}}>Complete by:</p>   {task.time_to_complete? task.time_to_complete : null}
+                     <p style={{fontSize: '13px', display:'flex', justifyContent: 'space-between', width: '60%'}}><h5 style={{fontWeight: '400'}}>ETC:</h5> {task.time_to_complete? task.time_to_complete : null}</p>
                 </div> 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
             </div>
