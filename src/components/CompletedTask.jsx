@@ -108,6 +108,7 @@ export const CompletedRate = ({SetShowHide}) => {
             }}>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px'}}>
                 <Progress 
+                    strokeWidth={12}
                     type="circle" 
                     percent={completedPercentage(completedTaskCount(), taskCreatedToday())} 
                     width={'100px'}
