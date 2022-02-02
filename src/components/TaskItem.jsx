@@ -161,7 +161,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                     style={{width: '120px', display: 'flex', justifyContent: 'space-around'}}
                 >
                      <p 
-                        style={{fontSize: '14px', display:'flex', justifyContent: 'space-between', width: '70%'}}
+                        style={{fontSize: '14px', display:'flex', justifyContent: 'space-between', width: '90%'}}
                     >
                         <h5 style={{fontWeight: '400', marginTop: 'auto', marginBottom: 'auto'}}>ETC:</h5> 
                         <textarea 
