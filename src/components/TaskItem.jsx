@@ -2,12 +2,13 @@ import {Button, List, Popconfirm, Tag, Tooltip} from 'antd';
 import { Card, Divider } from 'antd';
 import {CheckOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import React, {useEffect, useState} from 'react';
+import { onChangeETC, updateEstimatedTimeToComplete } from '../utilities/utilFunctions';
 
 import Pomodoro from '../components/Pomodoro'
 import TaskSubitems from './TaskSubitems'
 import { useAppState } from '../AppState';
 
-const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
+const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
     const {state, dispatch } = useAppState();
     const [toggle, setToggle] = useState(true)
     const [showDesc, setShow] = React.useState(false)
@@ -79,7 +80,6 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
     }, [state.work_mode, state.selectedTask])
 
     return (
-        
         <>
         <List.Item
             style={styles.listRow}
@@ -145,7 +145,9 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
                         }}
                         icon={buttonColor && task.id === state.selectedTask.id ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/> 
 
-                    <div className="timerSlot">
+                    <div 
+                        className="timerSlot" 
+                        style={{color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null }}>
                         {state.work_mode && state.selectedTask.id === task.id ? state.inProgressTimer : task.timer? task.timer : "00:00"}
                     </div>
                     <div className="timerSlot">
@@ -153,9 +155,31 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
                     </div>
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} /> 
-                <div className="timerSlot" style={{width: '120px', display: 'flex', justifyContent: 'space-around'}}>
-                     <p style={{fontSize: '14px', display:'flex', justifyContent: 'space-between', width: '60%'}}><h5 style={{fontWeight: '600', marginTop: 'auto', marginBottom: 'auto'}}>ETC:</h5> {task.time_to_complete? task.time_to_complete : null}</p>
+
+                <div 
+                    className="timerSlot" 
+                    style={{width: '120px', display: 'flex', justifyContent: 'space-around'}}
+                >
+                     <p 
+                        style={{fontSize: '14px', display:'flex', justifyContent: 'space-between', width: '70%'}}
+                    >
+                        <h5 style={{fontWeight: '400', marginTop: 'auto', marginBottom: 'auto'}}>ETC:</h5> 
+                        <textarea 
+                            onChange={(e) => updateEstimatedTimeToComplete(e, task, updateTask)}
+                            // defaultValue={task.time_to_complete}
+                            rows="1" 
+                            cols='10' 
+                            style={{
+                                border: '1px solid transparent', 
+                                padding: '5px',
+                                width: '100%', 
+                                height: '100%', 
+                                background: 'transparent', 
+                                resize: "none"
+                            }}>{task.time_to_complete? task.time_to_complete : null}
+                        </textarea></p>
                 </div> 
+
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
             </div>
         </List.Item>
@@ -178,9 +202,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer}) => {
             </div>
             : null
         }
-        </>   
-                         
+        </>                           
     )
 }
-
 export default Task;

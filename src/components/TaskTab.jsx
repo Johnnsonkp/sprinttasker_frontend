@@ -1,9 +1,9 @@
-import React from 'react';
 import {List} from 'antd';
+import React from 'react';
 import TaskItem from './TaskItem';
 import { useAppState } from "../AppState";
 
-const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer}) => {
+const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, updateTask}) => {
     const {state, dispatch} = useAppState()
 
     // let completedTasks = tasks.map(task => task.completed === true)
@@ -21,6 +21,7 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer}) 
                     onTaskToggle={onTaskToggle}
                     onTaskRemoval={onTaskRemoval}
                     updateTimer={updateTimer}
+                    updateTask={updateTask}
                 />
             )}
             pagination={{

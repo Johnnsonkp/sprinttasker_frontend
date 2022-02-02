@@ -90,9 +90,7 @@ const TaskList = () => {
         }
         return 0;
     }
-    
     const refresh = async () => {
-
         await loadTasks().then((res) => {
             console.log("res:", res)
             if(res.length > 0){
@@ -101,9 +99,7 @@ const TaskList = () => {
                 console.log("sortby:", sortTaskById)
                 setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                 setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
-                setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));
-
-                
+                setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));               
             }
             else {
                 setActiveTasks(dummyData)
@@ -117,6 +113,7 @@ const TaskList = () => {
         setRefreshing(true);
         await loadTasks().then((res) => {
             console.log("res:", res)
+            console.log("onRefresh:", res)
             if(res.length > 0){
                 dispatch({ type: "getTasks", payload: res})
                 let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
@@ -156,22 +153,22 @@ const TaskList = () => {
                                 
                                 { state.selectedTask && state.work_mode ? 
                                     <TabPane type="danger" tab="In Progress" key="Inprogress">
-                                        <InProgressTab onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}  /> 
+                                        <InProgressTab onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}  updateTask={updateTask}/> 
                                     </TabPane> : null
                                 }
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="All" key="all">
-                                        <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTimer={handleTimer}/>
+                                        <TaskTab tasks={tasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTimer={handleTimer} updateTask={updateTask}/>
                                     </TabPane> : null
                                 }
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="Active" key="active">
-                                        <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />
+                                        <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTask={updateTask}/>
                                     </TabPane> : null
                                 }
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="Complete" key="complete">
-                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
+                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTask={updateTask}/>   
                                     </TabPane> : null
                                 }
                                 {/* { location.pathname === '/my_work' ?
