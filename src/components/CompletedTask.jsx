@@ -39,8 +39,8 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 }}>
                 {state.alltasks && sortedTask && sortedTask.map(task => task.completed === true &&
                     reformatDate(task.created_at, "dd/MM/yyyy") === reformatDate(Date.now(), "dd/MM/yyyy") &&
-                        <div style={{border: '1px solid rgba(111,111,111,0.1)', marginBottom: '5px', padding: '3px', backgroundColor:'rgba(0, 200, 117, 0.8)', color: '#111'}}>
-                            {counter++}. <span style={{listStyle: 'none', fontSize: '12px', paddingLeft: '2px'}} key={task.id}>{task.name}</span>
+                        <div style={{border: '1px solid rgba(111,111,111,0.1)', marginBottom: '5px', padding: '3px', backgroundColor:'rgba(0, 200, 117, 0.5)', color: '#111'}}>
+                            {counter++}. <span style={{listStyle: 'none', fontSize: '12px', paddingLeft: '2px'}} key={task.id}>{task.name}- <span style={{color: 'red'}}>{task.timer}</span></span>
                         </div> 
                     ) 
                 } 
@@ -85,6 +85,15 @@ export const CompletedRate = ({SetShowHide}) => {
             return parseInt(counter)
         }
     }
+    const totalTimeWorkedOnTask = () => {
+        let counter = 0
+        {state.alltasks && state.alltasks.map((task) => {
+            counter += parseFloat(task.timer) 
+        })}
+            
+        return counter
+        
+    }
     const completedPercentage = (taskCreatedToday, completedTaskCount) => {
         const percentage = taskCreatedToday / completedTaskCount * 100
         return parseInt(percentage)
@@ -115,8 +124,8 @@ export const CompletedRate = ({SetShowHide}) => {
                     strokeColor={completedPercentage(completedTaskCount(), taskCreatedToday()) >= 80? 'lightGreen' : completedPercentage(completedTaskCount(), taskCreatedToday()) > 50? 'orange' : 'red'}
                     trailColor={'#444'}
                     style={{
-                        marginLeft: '10px', 
-                        marginRight: '10px', 
+                        marginLeft: '5px', 
+                        marginRight: '5px', 
                         border: '1px solid lightGrey',
                         background: 'rgb(244, 244, 244)', 
                         background: '#fff',
@@ -125,10 +134,51 @@ export const CompletedRate = ({SetShowHide}) => {
                         paddingLeft: '10px', 
                         paddingRight: '10px'}}
                     />
+                    {/* <Progress 
+                    strokeWidth={12}
+                    type="circle" 
+                    percent={totalTimeWorkedOnTask()} 
+                    width={'100px'}
+                    strokeColor={totalTimeWorkedOnTask() >= 80? 'lightGreen' : totalTimeWorkedOnTask() > 50? 'orange' : 'red'}
+                    trailColor={'#444'}
+                    style={{
+                        marginLeft: '5px', 
+                        marginRight: '5px', 
+                        border: '1px solid lightGrey',
+                        background: 'rgb(244, 244, 244)', 
+                        background: '#fff',
+                        paddingTop: '10px', 
+                        paddingBottom: '10px', 
+                        paddingLeft: '5px', 
+                        paddingRight: '5px'}}
+                    /> */}
 
-                <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Created Tasks: {taskCreatedToday()}</h5>
 
-                <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>Completed Tasks: {completedTaskCount()}</h5>
+                {/* <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Created Tasks: {taskCreatedToday()}</h5> */}
+
+                {/* <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>Completed Tasks: {completedTaskCount()}</h5> */}
+
+                {/* <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Total minutes worked: {totalTimeWorkedOnTask()}</h5> */}
+            
+                <div 
+                    style={{margin: '0px', textAlign: 'center', paddingTop: '25px', paddingBottom: '25px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>
+                    <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+                        <h3 tyle={{addingRight: '10px'}}>{taskCreatedToday()}</h3>
+                        <p>Task Created</p>
+                    </div>
+                    <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+                        <h3 style={{addingRight: '10px'}}>{completedTaskCount()}</h3>
+                        <p>Task Completed</p>
+                    </div>
+                </div>
+
+                <div 
+                    style={{margin: '0px', textAlign: 'left', paddingTop: '35px', paddingBottom: '35px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <h5>Total minutes worked</h5>
+                        <p>{totalTimeWorkedOnTask()} Mins</p>
+                    </div>
+                </div>
             </div>
             <Button 
                 type={'primary'}
