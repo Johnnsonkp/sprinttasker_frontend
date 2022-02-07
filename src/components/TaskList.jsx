@@ -75,7 +75,8 @@ const TaskList = () => {
     }
     const handleTimer = (task, updateTimer) => {
         console.log("handleTimer function", task, "updateTimer:", updateTimer)
-        task.timer = updateTimer.toString()
+        // task.timer = updateTimer.toString()
+        task.timer = updateTimer
         console.log("task.timer:", task.timer)
         updateTask(task)
         message.info('Timer update? ', task.timer);
