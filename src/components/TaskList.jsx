@@ -41,7 +41,6 @@ const TaskList = () => {
     ]
 
     const taskInProgress = () => {
-
         return (
             <h1>Task in progress</h1>
         )
@@ -71,7 +70,7 @@ const TaskList = () => {
 
     const handleToggleTaskStatus = (task) => {
         task.completed ? task.completed = false : task.completed = true
-        updateTask(task)
+        updateTask(task).then(onRefresh())
         message.info('Task status updated!')
     }
     const handleTimer = (task, updateTimer) => {
@@ -81,22 +80,13 @@ const TaskList = () => {
         updateTask(task)
         message.info('Timer update? ', task.timer);
     }
-    function sortByDate( a, b ) {
-        if ( a.created_at < b.created_at ){
-          return -1;
-        }
-        if ( a.created_at > b.created_at ){
-          return 1;
-        }
-        return 0;
-    }
+
     const refresh = async () => {
         await loadTasks().then((res) => {
             console.log("res:", res)
             if(res.length > 0){
                 dispatch({ type: "getTasks", payload: res})
                 let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
-                console.log("sortby:", sortTaskById)
                 setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                 setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
                 setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));               
@@ -110,10 +100,9 @@ const TaskList = () => {
     };
 
     const onRefresh = useCallback(async () => {
-        setRefreshing(true);
+        setRefreshing(true)
         await loadTasks().then((res) => {
-            console.log("res:", res)
-            console.log("onRefresh:", res)
+            console.log("useCallback:", res)
             if(res.length > 0){
                 dispatch({ type: "getTasks", payload: res})
                 let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
@@ -128,7 +117,7 @@ const TaskList = () => {
                 setCompletedTasks(dummyData)
             }
         })
-        setRefreshing(false);
+        setRefreshing(false)
     }, [refreshing]);
 
     useEffect(() => {
@@ -171,12 +160,6 @@ const TaskList = () => {
                                         <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTask={updateTask}/>   
                                     </TabPane> : null
                                 }
-                                {/* { location.pathname === '/my_work' ?
-                                    <TabPane tab="Mysprints" key="complete">
-                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} />   
-                                    </TabPane> : null
-                                } */}
-
                                     <TabPane tab="Create Task" key="createtask">
                                         <TaskForm onFormSubmit={handleFormSubmit} />
                                     </TabPane>

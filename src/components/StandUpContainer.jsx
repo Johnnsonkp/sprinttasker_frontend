@@ -9,9 +9,10 @@ import InputListComponent from "./InputList.component.jsx";
 import {RightCircleOutlined} from '@ant-design/icons';
 
 export const StandUpComponent = () => {
-    const initialText = 'What are you working on today?'
+    // const initialText = 'What are you working on today?'
+    const initialText = {task: 'What are you working on today?', toggle: false}
     const standUpLocalStorage = JSON.parse(window.localStorage.getItem("standup"))
-    let [data, setData] = useState(standUpLocalStorage ? standUpLocalStorage.value.filter((item) => item !== initialText) : [initialText])
+    let [data, setData] = useState(standUpLocalStorage ? standUpLocalStorage.value.filter((item) => item !== initialText) : [initialText.task])
     // let [data, setData] = useState(standUpLocalStorage ? standUpLocalStorage.value.map((item) => [item]) : null)
     let [input, setInput] = useState([])
     let [toggle, setToggle] = useState(false)
@@ -26,13 +27,15 @@ export const StandUpComponent = () => {
     const backEl = useRef();
 
     const handleAddStandup = (event) => {
-        setData([...data, input])
+        data.filter((content) => console.log("filter:", content, initialText.task))
+        let newData = data.filter((content) => content !== initialText.task)
+        setData([...newData, input]) 
         setToggle(true)
     }
     const handleChange = (event) => {
         setToggle(false)
-        console.log("event.target.value:", event.target.value)
-        setInput(event.target.value)
+        let data = {task: event.target.value, toggle: false}
+        setInput(data)
     }
     const handleAddRoadBlocks = (event) => {
         setBlockData([...blockData, blockInput])
@@ -62,7 +65,6 @@ export const StandUpComponent = () => {
         },
         individualTask: {
             fontSize: '13px', 
-            // paddingTop: '5px',
             margin: '0px',
             paddingLeft: '0px',
             paddingRight: '5px',
@@ -71,7 +73,12 @@ export const StandUpComponent = () => {
     }
     const onTaskDelete = (task, index) => {
         setData(data.filter(oldData => oldData !== task))
-    
+    }
+    const onTaskToggle = (task, index) => {
+        let toggledData = data.filter((oldData) => oldData.task === task.task? oldData.toggle = !oldData.toggle : null)
+        let newData = data.filter((content) => content !== initialText.task)
+
+        setData(newData, ...toggledData)
     }
     function setWithExpiry(key, value, ttl) {
         const now = new Date()
@@ -100,25 +107,14 @@ export const StandUpComponent = () => {
         }
         return item.value
     }
-    function setCheckedFunction(e, counter){
-        console.log('e.currentTarget:', e.currentTarget)
-        setChecked(!checked)
-        console.log('counter:', counter)
-        console.log('checked:', checked)
-        console.log("document.getElementById('content').getAttribute('data-key'):", document.getElementById("content").getAttribute('data-key'))
-        console.log("e.currentTarget.id === document.getElementById('content').getAttribute('data-key'):", e.currentTarget.id === document.getElementById("content").getAttribute('data-key'))
-    }
-
+    
     return (
-        <div 
-            style={{ height: height}}
-            className={`site-card-border-less-wrapper card ${flip ? "flip" : ""} `} 
-        >
-            <RightCircleOutlined 
+        <div style={{ height: height}} className={`site-card-border-less-wrapper card ${flip ? "flip" : ""} `} >
+            {/* <RightCircleOutlined 
                 style={{position: 'relative', left: '135px', bottom: '-70px', zIndex: 2, color: 'red', width: '50px'}}
                 onClick={() => setFlip(!flip)}
                 width={10}
-            />
+            /> */}
             <Card 
                 title={flip ? `Stand Down @5:00pm` : `Stand Up @5:00am` }
                 bordered={false} 
@@ -135,50 +131,31 @@ export const StandUpComponent = () => {
                 >   
                     {!flip ?
                         <div className="front" ref={frontEl} style={{width: '100%', margin: 'auto', position: "relative", top: '-20px'}}>
-                            {data && data.length > 0 ? 
-                                data.map((content, key) => content !== initialText ? 
-                                    (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#f4f4f4', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #555', width: '100%'}}>
-                                        <input 
-                                            onClick={(e) => setCheckedFunction(e, counter)} 
-                                            type="checkbox" 
-                                            id={key} 
-                                            name={data.indexOf(content) + counter}
-                                            // checked={checked ? true : false}
-                                         ></input>
-                                    <label style={styles.taskContainer} 
-                                        for={key}>
-                                        <p style={styles.individualTask} 
+                            {   data.map((content, key) => content.task? 
+                                content.task !== null &&
+                                (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#f4f4f4', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #999', width: '100%'}}
+                                >   
+                                    <input onClick={() => onTaskToggle(content)} type="checkbox" id={key} checked={content.toggle? true : false}/>
+                                    <label style={styles.taskContainer} for={key}>
+                                        <p style={styles.individualTask} key={key}>
+                                            <div style={{}}>{counter++}. </div>
+                                            <span id={'content'} data-key={key} key={key}
+                                                style={{ textDecoration: content.toggle? 'line-through' : null }} 
                                             >
-                                                <div style={{}}>{counter++}. </div>
-                                                <span 
-                                                    id={'content'}
-                                                    data-key={key}
-                                                    style={{ textDecoration: checked && input.id === counter ? 'line-through' : null }} 
-                                                    key={key}
-                                                    >
-                                                        {content}
-                                                </span>
-                                        </p> 
-                                        <Button 
-                                            onClick={(e) => onTaskDelete(content)} 
-                                            className="remove-task-button" 
-                                            type="primary" 
-                                            danger> X 
+                                                {content.task}
+                                            </span>
+                                        </p>
+                                        <Button onClick={(e) => onTaskDelete(content)} className="remove-task-button" type="primary" danger> X 
                                         </Button>
                                     </label>
-                                    </div>
-                                    ) 
-                                : null) 
-                                    : 
-                                (<h4>What are you working on today?</h4>)
-                            }
+                                </div>) : 
+                                (<h4>What are you working on today?</h4>))}
                             {counter > 3 ? null : 
                                 <div style={{display: 'flex', padding: '5px'}}>
                                     <input
                                         onChange={(event) => handleChange(event)}
-                                        value={toggle ? '' : input}
+                                        value={toggle ? '' : input.task}
                                         style={{width: '80%', padding: '5px'}}
-                                        
                                         placeholder="What are you working on today?"
                                     ></input>
                                     <button style={{marginLeft: '5px', cursor: 'pointer'}} onClick={() => handleAddStandup()}>Add Task</button>
@@ -195,14 +172,12 @@ export const StandUpComponent = () => {
                                 </>
                             }
                             <div style={{display: 'flex'}}>
-                                <input
-                                    onChange={(event) => handleRoadBlocksChange(event)}
-                                    // value={blockToggle ? '' : blockData}
+                                <input onChange={(event) => handleRoadBlocksChange(event)}
                                 ></input>
                                 <button onClick={() => handleAddRoadBlocks()}>Road block</button>
                             </div>
                         </div>
-                        }   
+                    }   
                 </div> 
             </Card>
         </div>

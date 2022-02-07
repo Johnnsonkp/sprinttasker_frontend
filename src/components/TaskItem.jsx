@@ -2,7 +2,7 @@ import {Button, List, Popconfirm, Tag, Tooltip} from 'antd';
 import { Card, Divider } from 'antd';
 import {CheckOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import React, {useEffect, useState} from 'react';
-import { onChangeETC, updateEstimatedTimeToComplete } from '../utilities/utilFunctions';
+import { onChangeETC, updateEstimatedTimeToComplete, updateTaskTimer } from '../utilities/utilFunctions';
 
 import Pomodoro from '../components/Pomodoro'
 import TaskSubitems from './TaskSubitems'
@@ -68,6 +68,45 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    const TimerTextAreaInProgressTimer = () => {
+        return(
+            <textarea
+                onChange={(e) => updateTaskTimer(e, task, updateTask)}
+                rows="1" 
+                cols='10' 
+                style={{
+                    border: '1px solid transparent', 
+                    padding: '5px',
+                    width: '100%', 
+                    height: '100%', 
+                    background: 'transparent', 
+                    resize: "none"
+                }}
+                value={state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id? state.inProgressTimer : task.timer}
+                >
+                {state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id? state.inProgressTimer : task.timer}
+            </textarea>
+        )
+    }
+    const TimerTextArea = () => {
+        return(
+            <textarea
+                onChange={(e) => updateTaskTimer(e, task, updateTask)}
+                rows="1" 
+                cols='10' 
+                style={{
+                    border: '1px solid transparent', 
+                    padding: '5px',
+                    width: '100%', 
+                    height: '100%', 
+                    background: 'transparent', 
+                    resize: "none"
+                }}
+            >
+                {state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id? state.inProgressTimer : task.timer}
+            </textarea>
+        )
+    }
 
     useEffect(() => {
         setButtonColor(state.work_mode && state.selectedTask.id === task.id ? true : false)
@@ -78,6 +117,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
         }
         
     }, [state.work_mode, state.selectedTask])
+
 
     return (
         <>
@@ -133,7 +173,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                 
                 <div className="btnwrap">
                     <Button size="small" 
-                        type={ buttonColor && task.id === state.selectedTask.id ? "danger" : "primary"} 
+                        type={ task.id === state.selectedTask.id && buttonColor ? 'danger' : 'primary'} 
                         shape="circle" 
                         onClick={(e) => {
                             setToggle(!toggle)
@@ -143,12 +183,16 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                             dispatch({ type: "workMode", payload: toggle})
                             dispatch({ type: "selectTask", payload: task})
                         }}
-                        icon={buttonColor && task.id === state.selectedTask.id ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/> 
-
+                        icon={task.id === state.selectedTask.id && buttonColor ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/>
                     <div 
                         className="timerSlot" 
-                        style={{color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null }}>
-                        {state.work_mode && state.selectedTask.id === task.id ? state.inProgressTimer : task.timer? task.timer : "00:00"}
+                        style={{color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null }}
+                        >
+                        {state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id?
+                            <TimerTextAreaInProgressTimer /> : <TimerTextArea />
+                            
+                        }
+                        
                     </div>
                     <div className="timerSlot">
                         {/* {task.time_to_complete? task.time_to_complete : null} */}
@@ -193,10 +237,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                     {/* <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card> */}
 
                     <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">
-                        {/* <input type="checkbox" id="subitems" name="subitems" />
-                        <label for="subitems"> {task.subtask}</label> */}
-                    {/* {task.subtask.split(",").forEach((items) => <p>{items}</p>)} */}
-                    {task.subtask}
+                     {task.subtask}
                     </Card>
                 </List.Item>
             </div>
