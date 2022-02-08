@@ -72,11 +72,11 @@ export function SidePanel({notes}) {
                         Main WorkSpace
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="3" icon={<UnorderedListOutlined />}>
+                {/* <Menu.Item key="3" icon={<UnorderedListOutlined />}>
                     <Link to="/my_work">
                         My Sprints
                     </Link>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="4" icon={<FormOutlined />}>
                 <Link to="/notes">
                   Notes
@@ -87,16 +87,16 @@ export function SidePanel({notes}) {
                         Calendar
                 </Link>
                 </Menu.Item>
-                <Menu.Item key="6" icon={<MessageOutlined />}>
+                {/* <Menu.Item key="6" icon={<MessageOutlined />}>
                 <Link to="/stand_up">
                         Stand Up
                 </Link>
-                </Menu.Item>
-                <Menu.Item key="7" icon={<FileExcelOutlined />}>
+                </Menu.Item> */}
+                {/* <Menu.Item key="7" icon={<FileExcelOutlined />}>
                 <Link to="/data">
                         Data
                 </Link>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="8" icon={<AppstoreOutlined />}>
                     <Link to="/">
                         Landing Page
@@ -171,7 +171,7 @@ export function SidePanel({notes}) {
                       cursor: 'pointer',
                       // border: '1px solid rgba(248, 72, 74, 0.48)',
                       border: 'none',
-                      padding: '5px 12spx',
+                      padding: '5px 12px',
                       borderRadius: '18px',
                       backgroundColor: 'rgb(248 72 74 / 48%)'
                     }}

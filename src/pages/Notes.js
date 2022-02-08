@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useAppState } from "../AppState";
-import { getNotes, destroyNote, postNote } from "../services/taskService";
 import "../App.css";
+
+import React, { useEffect, useState } from "react";
+import { destroyNote, getNotes, postNote } from "../services/taskService";
+
 import AllNotes from "../components/AllNotes";
 import Loading from "./Loading";
+import { useAppState } from "../AppState";
 import { useNavigate } from "react-router";
 
 const Notes = () => {
@@ -37,7 +39,9 @@ const Notes = () => {
 
   const loadNotes = () => {
     getNotes().then((json) => {
-      const fetchedNotes = json;
+      const fetchedNotes = json.filter(
+        (parsedNotes) => parsedNotes.user_id === state.user_id
+      );
       setLoadNotes(fetchedNotes);
       setNotes(fetchedNotes);
       return fetchedNotes;
