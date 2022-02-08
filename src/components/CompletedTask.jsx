@@ -126,7 +126,7 @@ export const CompletedRate = ({SetShowHide}) => {
                     style={{
                         marginLeft: '5px', 
                         marginRight: '5px', 
-                        border: '1px solid lightGrey',
+                        border: '2px solid blue',
                         background: 'rgb(244, 244, 244)', 
                         background: '#fff',
                         paddingTop: '10px', 
@@ -134,55 +134,30 @@ export const CompletedRate = ({SetShowHide}) => {
                         paddingLeft: '10px', 
                         paddingRight: '10px'}}
                     />
-                    {/* <Progress 
-                    strokeWidth={12}
-                    type="circle" 
-                    percent={totalTimeWorkedOnTask()} 
-                    width={'100px'}
-                    strokeColor={totalTimeWorkedOnTask() >= 80? 'lightGreen' : totalTimeWorkedOnTask() > 50? 'orange' : 'red'}
-                    trailColor={'#444'}
-                    style={{
-                        marginLeft: '5px', 
-                        marginRight: '5px', 
-                        border: '1px solid lightGrey',
-                        background: 'rgb(244, 244, 244)', 
-                        background: '#fff',
-                        paddingTop: '10px', 
-                        paddingBottom: '10px', 
-                        paddingLeft: '5px', 
-                        paddingRight: '5px'}}
-                    /> */}
-
-
-                {/* <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Created Tasks: {taskCreatedToday()}</h5> */}
-
-                {/* <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>Completed Tasks: {completedTaskCount()}</h5> */}
-
-                {/* <h5 style={{margin: '0px', textAlign: 'left', paddingTop: '50px', paddingBottom: '50px', paddingLeft: '15px', paddingRight: '15px', background: 'rgb(244, 244, 244)'}}>Total minutes worked: {totalTimeWorkedOnTask()}</h5> */}
-            
                 <div 
-                    style={{margin: '0px', textAlign: 'center', paddingTop: '25px', paddingBottom: '25px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>
+                    style={{margin: '0px', textAlign: 'center', paddingTop: '15px', paddingBottom: '15px', paddingLeft: '20px', paddingRight: '20px', background: 'rgb(244, 244, 244)'}}>
+                    <h5 style={{textAlign: 'left'}}>Tasks</h5>
                     <div style={{display: 'flex', justifyContent: 'flex-start'}}>
-                        <h3 tyle={{addingRight: '10px'}}>{taskCreatedToday()}</h3>
-                        <p>Task Created</p>
+                        <h5 style={{paddingRight: '10px'}}>{taskCreatedToday()}</h5>
+                        <p>Created</p>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'flex-start'}}>
-                        <h3 style={{addingRight: '10px'}}>{completedTaskCount()}</h3>
-                        <p>Task Completed</p>
+                        <h5 style={{paddingRight: '10px'}}>{completedTaskCount()}</h5>
+                        <p>Completed</p>
                     </div>
                 </div>
 
                 <div 
                     style={{margin: '0px', textAlign: 'left', paddingTop: '35px', paddingBottom: '35px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
-                        <h5>Total minutes worked</h5>
+                        <h5>Minutes worked</h5>
                         <p>{totalTimeWorkedOnTask()} Mins</p>
                     </div>
                 </div>
             </div>
             <Button 
                 type={'primary'}
-                style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
+                style={{marginTop: '0px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
                 onClick={() => SetShowHide(true)}
             >Completed Tasks</Button>
             
