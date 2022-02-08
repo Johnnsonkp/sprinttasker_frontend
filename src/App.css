@@ -220,7 +220,7 @@
   padding-bottom: 40px;
   border: 1px solid transparent;
   border-radius: 20px;
-  box-shadow: -2px 6px 10px 0 rgb(0 0 0 / 8%);
+  box-shadow: -2px 6px 10px 0 rgb(0 0 0 / 20%);
   background-color: #f8f9fa !important;
   color: #111;
 }

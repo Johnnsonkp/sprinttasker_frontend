@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { Button } from "antd";
-import { useParams, useNavigate } from "react-router-dom";
-import { useAppState } from "../AppState";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 import Wave from "../utilities/wave";
+import { useAppState } from "../AppState";
 
 const Auth = ({ name, username, password, email }) => {
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
   const type = useParams().form;
 
   const [formData, setFormData] = React.useState({
@@ -16,6 +20,7 @@ const Auth = ({ name, username, password, email }) => {
   const [userData, setUserData] = React.useState(null);
   const { state, dispatch } = useAppState();
   let navigate = useNavigate();
+  const [showSpinner, setShowSpinner] = useState(false);
 
   React.useEffect(() => {
     if (userData) {
@@ -64,16 +69,33 @@ const Auth = ({ name, username, password, email }) => {
       }).then((response) => response.json());
     },
   };
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-    actions[type]().then((data) => {
-      setUserData(data);
+    setShowSpinner(true);
+    const loadAction = await actions[type];
+    loadAction().then((data) => {
+      console.log("data:", data);
+      if (!data.error) {
+        setShowSpinner(false);
+        setUserData(data);
+      } else {
+        alert(`${data.error} please try again !`);
+        setShowSpinner(false);
+        navigate(`/auth/${type}`);
+        setFormData({
+          name: "",
+          username: "",
+          password: "",
+          email: "",
+        });
+      }
     });
-  };
+  }
 
   return (
     <div className="auth-container">
@@ -97,6 +119,7 @@ const Auth = ({ name, username, password, email }) => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  required={true}
                 />
               </>
             )}
@@ -109,6 +132,7 @@ const Auth = ({ name, username, password, email }) => {
               name="username"
               value={formData.username}
               onChange={handleChange}
+              required={true}
             />
 
             <label className="passwordLabel" htmlFor="password">
@@ -123,6 +147,7 @@ const Auth = ({ name, username, password, email }) => {
               }}
               value={formData.password}
               onChange={handleChange}
+              required={true}
             />
             {type === "LOGIN" ? (
               <></>
@@ -137,6 +162,7 @@ const Auth = ({ name, username, password, email }) => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  required={true}
                 />
               </>
             )}
@@ -146,11 +172,15 @@ const Auth = ({ name, username, password, email }) => {
               shape="round"
               size="large"
             >
-              <input
-                className="submitBtn"
-                type="submit"
-                value={type.toUpperCase()}
-              />
+              {showSpinner ? (
+                <Spin style={{ color: "#fff" }} indicator={antIcon} />
+              ) : (
+                <input
+                  className="submitBtn"
+                  type="submit"
+                  value={type.toUpperCase()}
+                />
+              )}
             </Button>
           </form>
         </div>

@@ -108,7 +108,7 @@ const Nav = () => {
     }
     const BreadCrumb = () => {
       const auth = JSON.parse(window.localStorage.getItem("auth"));
-      const userFirstInitials = auth.name[0].toUpperCase();
+      const userFirstInitials = auth && auth.length > 0? auth.name[0].toUpperCase() : null
 
       return (
         <div className="BreadCrumb" 
@@ -131,7 +131,7 @@ const Nav = () => {
                     size={23}
                     gap={3}
                   >
-                  {userFirstInitials}
+                  {userFirstInitials || 'G'}
               </Avatar>
               </Breadcrumb.Item>
             </Breadcrumb>
