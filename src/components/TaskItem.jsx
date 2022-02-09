@@ -4,6 +4,7 @@ import {CheckOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined}
 import React, {useEffect, useState} from 'react';
 import { onChangeETC, updateEstimatedTimeToComplete, updateTaskTimer } from '../utilities/utilFunctions';
 
+import { FullPageOverlayCard } from './common/cards/cards';
 import Pomodoro from '../components/Pomodoro'
 import TaskSubitems from './TaskSubitems'
 import { useAppState } from '../AppState';
@@ -15,6 +16,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
     const [hover, setHover] = useState(false);
     const [date, setDate] = useState();
     const [buttonColor, setButtonColor] = useState(false)
+    const [showTaskCard, setShowTaskCard] = useState(false)
 
     const styles = {
         listRow: {
@@ -80,7 +82,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                     width: '100%', 
                     height: '100%', 
                     background: 'transparent', 
-                    resize: "none"
+                    resize: "none",
+                    paddingTop: '12px'
                 }}
                 value={state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id? state.inProgressTimer : task.timer}
                 >
@@ -100,7 +103,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                     width: '100%', 
                     height: '100%', 
                     background: 'transparent', 
-                    resize: "none"
+                    resize: "none",
+                    paddingTop: '12px'
                 }}
             >
                 {state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id? state.inProgressTimer : task.timer}
@@ -121,6 +125,13 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
 
     return (
         <>
+        {showTaskCard?
+        <FullPageOverlayCard 
+            task={task}
+            taskStatus={task.completed}
+            setShowTaskCard={setShowTaskCard} 
+            description={task.description} 
+            name={task.name}/> :
         <List.Item
             style={styles.listRow}
             actions={[
@@ -160,12 +171,15 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
 
                 <div className="subitem-wrap">
-                    <TaskSubitems task={task}/>
-                    {/* {task.subtask? task.subtask : null} */}
+                    <Button
+                        onClick={() => setShowTaskCard(true)}
+                    >Comments</Button>
                 </div> 
 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
-                    <div className="task-status" style={task.completed ? styles.completeCell : styles.activeCell}>
+                    <div 
+                        className="task-status" 
+                        style={task.completed ? styles.completeCell : styles.activeCell}>
                         {task.completed ? "Complete" : "status"}
                     </div>
                 
@@ -220,7 +234,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                                 height: '100%', 
                                 background: 'transparent', 
                                 resize: "none"
-                            }}>{task.time_to_complete? task.time_to_complete : null}
+                            }}>{task.time_to_complete? task.time_to_complete : '00:00'}
                         </textarea></p>
                 </div> 
 
@@ -228,20 +242,21 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
             </div>
         </List.Item>
 
-        {showDesc?
-            <div className="task-description" >
-                <List.Item>
-                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Task Description">{task.description}</Card>
-                </List.Item>
-                <List.Item>
-                    {/* <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card> */}
+        // {showDesc?
+        //     <div className="task-description" >
+        //         <List.Item>
+        //             <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Task Description">{task.description}</Card>
+        //         </List.Item>
+        //         <List.Item>
+        //             {/* <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card> */}
 
-                    <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">
-                     {task.subtask}
-                    </Card>
-                </List.Item>
-            </div>
-            : null
+        //             <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">
+        //              {task.subtask}
+        //             </Card>
+        //         </List.Item>
+        //     </div>
+        //     : null
+        // }
         }
         </>                           
     )

@@ -27,11 +27,11 @@ const TaskList = () => {
 
     const dummyData = [
         {   
-            completed: true,
+            completed: false,
             created_at: "2022-01-06T22:28:39.283Z",
             description: "Create a new task",
             id: 222,
-            name: "Tasklist is empty, create a new task here",
+            name: "Tasklist is empty",
             subtask: null,
             time_to_complete: null,
             timer: "00:00",
@@ -70,7 +70,7 @@ const TaskList = () => {
 
     const handleToggleTaskStatus = (task) => {
         task.completed ? task.completed = false : task.completed = true
-        updateTask(task).then(onRefresh())
+        updateTask(task)
         message.info('Task status updated!')
     }
     const handleTimer = (task, updateTimer) => {
@@ -122,7 +122,6 @@ const TaskList = () => {
     }, [refreshing]);
 
     useEffect(() => {
-        console.log("useEffect()");
         refresh().catch(e => {
             console.log("this is the error:", e)  // returns a promise
           })
