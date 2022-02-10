@@ -8,15 +8,6 @@ const { TextArea } = Input;
 
 const TaskForm = ({onFormSubmit}) => {
     const [form] = Form.useForm(); // use form hook
-    const Subtask = () => {
-        return (
-            <>
-            <Input placeholder="Add a Subtask" />
-            </>
-        )
-    }
-    const [Subtasks, addSubtasks] = useState([Subtask])
-
     const onFinish = () => {
         onFormSubmit({
             name: form.getFieldValue('name'),
@@ -25,20 +16,8 @@ const TaskForm = ({onFormSubmit}) => {
             completed: false,
             time_to_complete: form.getFieldValue('ttcomplete')
         });
-
-        console.log('complete:',  form.getFieldValue('ttcomplete'))
-        console.log('typeof complete:', typeof form.getFieldValue('ttcomplete'))
         form.resetFields();
     }
-    function addNewSubtasks(e){
-        e.preventDefault()
-        // addSubtasks([...subtasks], subtask)
-        
-
-    }
-    useEffect(() => {
-        addSubtasks([...Subtasks, Subtask])
-    }, [addNewSubtasks])
 
     return(
         <div>
@@ -65,12 +44,6 @@ const TaskForm = ({onFormSubmit}) => {
                             name={'subtask'}
                         >
                             <Input placeholder="Add a Subtask" />
-                            {/* {Subtasks.map((task) => {
-                                console.log("subtask:", task)
-                                return <span>{task}</span>
-                            })} */}
-
-                            {/* <div style={{width: '20px', background: 'red', height: '20px'}} onClick={(e) => addNewSubtasks(e)}></div> */}
                         </Form.Item>
                     </Col>
                     <Col xs={24} s={24} md={17} lg={19} xl={8}>
