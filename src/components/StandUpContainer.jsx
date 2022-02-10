@@ -109,7 +109,7 @@ export const StandUpComponent = () => {
     }
     
     return (
-        <div style={{ height: height}} className={`site-card-border-less-wrapper card ${flip ? "flip" : ""} `} >
+        <div style={{ height: height, marginTop: '20px'}} className={`site-card-border-less-wrapper card ${flip ? "flip" : ""} `} >
             {/* <RightCircleOutlined 
                 style={{position: 'relative', left: '135px', bottom: '-70px', zIndex: 2, color: 'red', width: '50px'}}
                 onClick={() => setFlip(!flip)}

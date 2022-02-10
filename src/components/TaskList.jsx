@@ -88,9 +88,9 @@ const TaskList = () => {
             if(res.length > 0){
                 dispatch({ type: "getTasks", payload: res})
                 let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
-                setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
-                setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
-                setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));               
+                    setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
+                    setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
+                    setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));             
             }
             else {
                 setActiveTasks(dummyData)
@@ -125,7 +125,7 @@ const TaskList = () => {
         refresh().catch(e => {
             console.log("this is the error:", e)  // returns a promise
           })
-    }, [onRefresh]);
+    }, [onRefresh, state.work_mode]);
 
     const loaded = () => {
         return (
@@ -152,12 +152,12 @@ const TaskList = () => {
                                 }
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="Active" key="active">
-                                        <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTask={updateTask}/>
+                                        <TaskTab tasks={activeTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTimer={handleTimer}  updateTask={updateTask}/>
                                     </TabPane> : null
                                 }
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="Complete" key="complete">
-                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTask={updateTask}/>   
+                                        <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTimer={handleTimer}  updateTask={updateTask}/>   
                                     </TabPane> : null
                                 }
                                     <TabPane tab="Create Task" key="createtask">
