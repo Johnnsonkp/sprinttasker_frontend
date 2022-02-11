@@ -1,4 +1,4 @@
-import React from 'react' 
+import React from 'react'
 
 export const LogoBlock = (props) => {
     const styles = {
@@ -14,12 +14,14 @@ export const LogoBlock = (props) => {
             margin: 'auto',
             borderRadius: '50px',
             backgroundColor: props.backgroundColor ? props.backgroundColor : '#f4f4f4',
-            boxShadow: '-2px 6px 10px 0 rgb(0 0 0 / 8%)', 
-            maxWidth: '1200px'
+            boxShadow: props.boxShadow === false? null : '-2px 6px 10px 0 rgb(0 0 0 / 8%)', 
+            maxWidth: '1200px', 
+            marginTop: props.marginTop || null
         },
         landingIcon: {
             width: props.iconWidth ? props.iconWidth : "120px",
             border: props.iconBorder ? props.iconBorder  : null,
+            backgroundColor: props.iconBackground? props.iconBackground : null,
         }
     }
     const Logos = [

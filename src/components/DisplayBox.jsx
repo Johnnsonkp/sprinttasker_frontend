@@ -9,8 +9,8 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
         <div
           id="homeContent"
           style={{
-            marginTop: "30px",
-            border: "3px solid rgb(98 178 251)",
+            // marginTop: "30px",
+            marginBottom: '0px',
             border: "3px solid lightGrey",
             borderRadius: "10px",
             height: location.pathname !== '/calendar'? "300px" : '600px',
@@ -19,9 +19,9 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             width: "100%",
             boxSizing: "border box",
             padding: "0px",
-            // backgroundColor: "#1890ff",
             backgroundColor: "rgb(98 178 251)",
             // backgroundColor: "#fff"
+            // backgroundColor: "#f4f4f4"
           }}
         >
           <h3
@@ -32,6 +32,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
               marginBottom: "3px",
               color: "#fff",
               // color: "#111",
+              // color: 'rgb(98 178 251)',
               fontWeight: "bolder",
               fontSize: "18px",
             }}
@@ -44,7 +45,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
               marginBottom: "20px",
               width: "100%",
               height: location.pathname !== '/calendar'? "250px" : '800px',
-              border: "1px solid lightgrey",
+              // border: "1px solid lightgrey",
               borderRadius: "5px",
               overflow: "hidden",
             }}
@@ -53,7 +54,9 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
               navigate(link);
             }}
           >
-            <div className="inner" style={{backgroundColor: component? "#fff" : "#fff"}} onLoad={() => customFunction}>
+            <div 
+              className="inner" 
+              style={{backgroundColor: component? "#fff" : "#fff"}} onLoad={() => customFunction}>
                 {component}
             </div>
           </div>

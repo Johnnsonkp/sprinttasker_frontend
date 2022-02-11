@@ -438,9 +438,9 @@ label{
 #projects .dummy-side-panel{
   display: none;
 }
-#projects #note .note-container{
+/* #projects #note .note-container{
   margin-left: 0px !important;
-}
+} */
 
 #projects .ant-layout-content{
   padding: 0px !important;
@@ -449,10 +449,11 @@ label{
 #projects .tasklist{
   /* margin-left: 10px; */
   /* flex: 1; */
-  transform: scale(0.8);
+  transform: scale(0.5);
   position: relative;
   top: -50px;
-  left: -40px;
+  /* left: 100px; */
+  right: 290px;
 }
 #projects{
   position: relative;
@@ -464,17 +465,33 @@ label{
   top: -25px;
 }
 #projects:hover, #calender:hover, #announcements:hover{
-  background-color: lightgrey;
-  background-blend-mode: darken;
+  /* background-color: lightgrey;
+  background-blend-mode: darken; */
   cursor: pointer;
   /* transition: all ease-in-out 0.3s;
   transform: scale(1.02); */
 }
 #projects .notes-container{
   padding-top: 0px;
-  transform: scale(0.8);
+  transform: scale(0.2);
   position: relative;
-  top: -115px;
+  /* top: -115px; */
+  top: 50px;
+  margin-left: 0px !important;
+  /* left: 50px; */
+
+  transform: scale(0.6);
+  position: relative;
+  top: -90px;
+  left: -160px;
+  width: 630px;
+}
+#projects .note-container{
+  
+}
+#projects .notes-list{
+  display: flex;
+  flex-wrap: wrap;
 }
 #projects .display-box-title {
   position: absolute;
@@ -485,11 +502,9 @@ label{
   z-index: 0;
 }
 #homeContent:hover{
-  /* background-color: lightgrey;
-  background-blend-mode: darken; */
   cursor: pointer;
   transition: all ease-in-out 0.3s;
-  transform: scale(1.005);
+  border: 2px solid blue !important;
 }
 
 #calender .site-calendar-demo-card {

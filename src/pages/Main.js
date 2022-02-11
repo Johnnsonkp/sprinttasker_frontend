@@ -12,6 +12,7 @@ export default function Main(props) {
   const loaded = () => {
     return (
       <div
+        id="main"
         style={{
           paddingLeft: "100px",
           paddingRight: "0px",
@@ -23,7 +24,7 @@ export default function Main(props) {
       >
         <div id="menu-banner" className="trackList ">
           <div className="dummy-side-panel"></div>
-          <div className="tasklist ">
+          <div className="tasklist">
             <div className="rest-title workspace-textfield">Main WorkSpace</div>
             <div style={{ position: "relative", top: "-20px", left: "75%" }}>
               <TimerContainer />
