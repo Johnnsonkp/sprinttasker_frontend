@@ -19,9 +19,10 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             width: "100%",
             boxSizing: "border box",
             padding: "0px",
-            backgroundColor: "rgb(98 178 251)",
+            // backgroundColor: "rgb(98 178 251)",
             // backgroundColor: "#fff"
-            // backgroundColor: "#f4f4f4"
+            backgroundColor: "#f7f7f7",
+            backgroundColor: 'lightgray'
           }}
         >
           <h3
@@ -31,7 +32,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
               padding: "8px",
               marginBottom: "3px",
               color: "#fff",
-              // color: "#111",
+              color: "#111",
               // color: 'rgb(98 178 251)',
               fontWeight: "bolder",
               fontSize: "18px",
@@ -43,10 +44,11 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             style={{
               // marginTop: "20px",
               marginBottom: "20px",
+              borderTop: '3px solid lightGray',
               width: "100%",
               height: location.pathname !== '/calendar'? "250px" : '800px',
               // border: "1px solid lightgrey",
-              borderRadius: "5px",
+              // borderRadius: "5px",
               overflow: "hidden",
             }}
             id="projects"
@@ -56,7 +58,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
           >
             <div 
               className="inner" 
-              style={{backgroundColor: component? "#fff" : "#fff"}} onLoad={() => customFunction}>
+              style={{backgroundColor: component? "#fff" : "#fff", height: '100%', boxSize: 'border-box', marginBottom: '0px', paddingBottom: '0px'}} onLoad={() => customFunction}>
                 {component}
             </div>
           </div>
