@@ -9,9 +9,8 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
         <div
           id="homeContent"
           style={{
-            // marginTop: "30px",
             marginBottom: '0px',
-            border: "3px solid lightGrey",
+            border: "2px solid lightGrey",
             borderRadius: "10px",
             height: location.pathname !== '/calendar'? "300px" : '600px',
             maxHeight: location.pathname !== '/calendar'? "300px" : '600px',
@@ -19,10 +18,9 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             width: "100%",
             boxSizing: "border box",
             padding: "0px",
-            // backgroundColor: "rgb(98 178 251)",
-            // backgroundColor: "#fff"
             backgroundColor: "#f7f7f7",
-            backgroundColor: 'lightgray'
+            backgroundColor: 'lightgray',
+            backgroundColor: 'rgb(244, 244, 244)'
           }}
         >
           <h3
@@ -33,7 +31,6 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
               marginBottom: "3px",
               color: "#fff",
               color: "#111",
-              // color: 'rgb(98 178 251)',
               fontWeight: "bolder",
               fontSize: "18px",
             }}
@@ -42,13 +39,10 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
           </h3>
           <div
             style={{
-              // marginTop: "20px",
               marginBottom: "20px",
-              borderTop: '3px solid lightGray',
+              borderTop: '3px solid rgb(244, 244, 244)',
               width: "100%",
               height: location.pathname !== '/calendar'? "250px" : '800px',
-              // border: "1px solid lightgrey",
-              // borderRadius: "5px",
               overflow: "hidden",
             }}
             id="projects"

@@ -108,14 +108,12 @@ const Nav = () => {
     }
     const BreadCrumb = () => {
       const auth = JSON.parse(window.localStorage.getItem("auth"));
-      const userFirstInitials = auth && auth.length > 0? auth.name[0].toUpperCase() : null
+      const userFirstInitials = auth && auth.name[0].length > 0? auth.name[0].toUpperCase() : null
 
       return (
         <div className="BreadCrumb" 
             style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto'}} 
             >
-         
-
            <div style={{position: 'sticky', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
             <Breadcrumb separator=">">
               <Breadcrumb.Item style={{color: '#fff', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
@@ -126,12 +124,11 @@ const Nav = () => {
                       verticalAlign: "middle",
                       margin: 'auto',
                       marginRight: '10px'
-                  
                     }}
                     size={23}
                     gap={3}
                   >
-                  {userFirstInitials || 'G'}
+                  {auth && auth.name[0].length > 0? userFirstInitials : '?'}
               </Avatar>
               </Breadcrumb.Item>
             </Breadcrumb>
