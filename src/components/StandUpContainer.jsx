@@ -121,7 +121,7 @@ export const StandUpComponent = () => {
                 style={{minWidth: 450, minHeight: 266.14, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
                 <Button 
                     type={'primary'}
-                    style={{position: "relative", top: '160px', left: '75%', cursor: 'pointer', fontSize: '13px'}}
+                    style={{position: "relative", top: '20vh', left: '75%', cursor: 'pointer', fontSize: '13px', marginTop: '20px'}}
                     onClick={() => setWithExpiry("standup", data, 1642640400000 )}
                 >Save Items</Button>
 
