@@ -1,4 +1,5 @@
 import { Layout, Menu } from 'antd';
+import { useEffect, useState } from 'react';
 
 import {DatabaseOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
@@ -12,13 +13,17 @@ export default function SidePanelTabs({notes}){
     const Navigate = useNavigate()
     const {state, dispatch} = useAppState()
     const location = useLocation();
+    const [pathname, setPathname] = useState()
+
+    useEffect(() => {
+      setPathname(window.location.pathname)
+    },[window.location.pathname])
 
     const notesSidePanelTabs = ({note}) => {
 
       const selectedNote = (note) => {
         console.log("selected note:", note)
         dispatch({ type: "selectedNote", payload: note})
-
         if(state.selectedNote){
           Navigate('/single-note')
         }
@@ -43,28 +48,30 @@ export default function SidePanelTabs({notes}){
       )
     }
     const defaultSidePanelTabs = () => {
+
       return (
         <Sider style={{ maxWidth: 180, marginTop: "20px" }}>
           <div className="logo" />
-          <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1" icon={<DatabaseOutlined />}>
-                {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/completed-tasks">Task History</Link> : 
-                location.pathname === "/home"? <Link to="/calendar">Calendar</Link> : "Board 1"
+          {/* <Menu theme="light" defaultSelectedKeys={['1']} mode="inline"> */}
+          <Menu theme="light" defaultSelectedKeys={pathname} mode="inline" selectedKeys={location.pathname}>
+            <Menu.Item icon={<DatabaseOutlined />}>
+                {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link key="/completed-tasks" to="/completed-tasks">Task History</Link> : 
+                location.pathname === "/home"? <Link key="/calendar" to="/calendar">Calendar</Link> : "Board 1"
                 }
             </Menu.Item>
-            <Menu.Item key="2" icon={<DatabaseOutlined />}>
-              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/countdown-timer">Countdown Timer</Link> : 
-               location.pathname === "/home"? <Link to="/main">Projects</Link> : "Board 2"
+            <Menu.Item icon={<DatabaseOutlined />}>
+              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link key="/countdown-timer" to="/countdown-timer">Countdown Timer</Link> : 
+               location.pathname === "/home"? <Link key="/main" to="/main">Projects</Link> : "Board 2"
               }
             </Menu.Item>
-            <Menu.Item key="3" icon={<DatabaseOutlined />}>
-              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/standup">Stand Up - Stand Down</Link> : 
-                location.pathname === "/home"? <Link to="/notes">Notes</Link> : "Board 3"
+            <Menu.Item icon={<DatabaseOutlined />}>
+              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link key="/standup" to="/standup">Stand Up - Stand Down</Link> : 
+                location.pathname === "/home"? <Link key="/notes" to="/notes">Notes</Link> : "Board 3"
               }
             </Menu.Item>
             {location.pathname === "/home"? null :
-            <Menu.Item key="4" icon={<DatabaseOutlined />}>
-              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link to="/task-cards">Task Cards</Link> : "Board 4"}
+            <Menu.Item icon={<DatabaseOutlined />}>
+              {location.pathname === "/main" || location.pathname ===  "/my_work" ? <Link key="/task-cards" to="/task-cards">Task Cards</Link> : "Board 4"}
             </Menu.Item>
             }
             </Menu>

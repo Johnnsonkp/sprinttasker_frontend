@@ -32,6 +32,8 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                     maxHeight: 266.14,
                     textAlign: 'left', 
                     backgroundColor: '#fff', 
+                    backgroundColor: '#ffffff;',
+                    backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)',
                     marginTop: '20px', 
                     marginLeft: '10px', 
                     marginRight: '10px', 
@@ -46,7 +48,7 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 } 
                 <Button 
                     type={'primary'}
-                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px', position: 'relative', top: state.alltasks? null : '120px', left: state.alltasks? null : '0px'}}
+                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px', position: 'relative', top: state.alltasks? '140px' : '120px', left: state.alltasks? null : '0px'}}
                     onClick={() => SetShowHide(false)}
                 >Completion Rate (%)</Button>
                 
@@ -110,6 +112,8 @@ export const CompletedRate = ({SetShowHide}) => {
                 maxHeight: 266.14, 
                 textAlign: 'left', 
                 backgroundColor: '#fff', 
+                backgroundColor: '#b8c6db;',
+                backgroundImage: 'linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)',
                 marginTop: '20px', 
                 marginLeft: '10px', 
                 marginRight: '10px', 
@@ -135,7 +139,7 @@ export const CompletedRate = ({SetShowHide}) => {
                         paddingRight: '10px'}}
                     />
                 <div 
-                    style={{margin: '0px', textAlign: 'center', paddingTop: '15px', paddingBottom: '15px', paddingLeft: '20px', paddingRight: '20px', background: 'rgb(244, 244, 244)'}}>
+                    style={{margin: '0px', textAlign: 'center', paddingTop: '15px', paddingBottom: '15px', paddingLeft: '20px', paddingRight: '20px', background: 'rgb(244, 244, 244)', background: '#fff', border: '2px solid lightgray'}}>
                     <h5 style={{textAlign: 'left'}}>Tasks</h5>
                     <div style={{display: 'flex', justifyContent: 'flex-start'}}>
                         <h5 style={{paddingRight: '10px'}}>{taskCreatedToday()}</h5>
@@ -148,7 +152,7 @@ export const CompletedRate = ({SetShowHide}) => {
                 </div>
 
                 <div 
-                    style={{margin: '0px', textAlign: 'left', paddingTop: '35px', paddingBottom: '35px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)'}}>
+                    style={{margin: '0px', textAlign: 'left', paddingTop: '35px', paddingBottom: '35px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)', background: '#fff', border: '2px solid lightgray'}}>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <h5>Minutes worked</h5>
                         <p>{totalTimeWorkedOnTask()} Mins</p>

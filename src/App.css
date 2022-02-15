@@ -451,7 +451,7 @@ label{
   /* flex: 1; */
   transform: scale(0.5);
   position: relative;
-  top: -50px;
+  top: -150px;
   /* left: 100px; */
   right: 290px;
 }
@@ -470,6 +470,9 @@ label{
   cursor: pointer;
   /* transition: all ease-in-out 0.3s;
   transform: scale(1.02); */
+}
+#projects{
+  overflow: visible !important;
 }
 #projects .notes-container{
   padding-top: 0px;

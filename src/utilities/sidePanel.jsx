@@ -19,6 +19,7 @@ import SidePanelTabs from "./SidePanelTabs";
 import logo from "../logo.svg";
 import notion from "../notion-logo-1.svg";
 import { useAppState } from "../AppState";
+import { useEffect } from 'react';
 import { useLocation } from "react-router";
 
 // import { Redirect } from "react-router-dom";
@@ -52,6 +53,10 @@ export function SidePanel({notes}) {
       }
     }
   }
+  useEffect(() => {
+      console.log('location.pathname', location.pathname)
+      console.log('window.location.pathname', window.location.pathname)
+  }, [window.location.pathname])
 
         
         return (
@@ -61,13 +66,13 @@ export function SidePanel({notes}) {
             <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}>
               <div className="logo" />
               {/* defaultSelectedKeys={['1']} */}
-              <Menu theme="dark" defaultSelectedKeys={(e) => sliderSelectedKey(e)} mode="inline" >
-                  <Menu.Item key="1" icon={<BankOutlined />} >
+              <Menu theme="dark" defaultSelectedKeys={(e) => sliderSelectedKey(e)} mode="inline" selectedKeys={location.pathname}>
+                  <Menu.Item key="/home" icon={<BankOutlined />} >
                       <Link to="/home">
                           Home
                       </Link>
                   </Menu.Item>
-                <Menu.Item key="2" icon={<AppstoreOutlined />}>
+                <Menu.Item key="/main" icon={<AppstoreOutlined />}>
                     <Link to="/main">
                         Main WorkSpace
                     </Link>
@@ -77,12 +82,12 @@ export function SidePanel({notes}) {
                         My Sprints
                     </Link>
                 </Menu.Item> */}
-                <Menu.Item key="4" icon={<FormOutlined />}>
+                <Menu.Item key="/notes" icon={<FormOutlined />}>
                 <Link to="/notes">
                   Notes
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="5" icon={<CalendarOutlined />}>
+                <Menu.Item key="/calendar" icon={<CalendarOutlined />}>
                 <Link to="/calendar">
                         Calendar
                 </Link>
