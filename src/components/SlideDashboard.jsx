@@ -53,7 +53,6 @@ export default function StandUpComp(props) {
         card: {
             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 6px 12px 0px',
             cursor: 'pointer',
-            // marginTop: '50px'
         }
        
 

@@ -447,17 +447,20 @@ label{
   background-color: #fff !important;
 }
 #projects .tasklist{
-  /* margin-left: 10px; */
-  /* flex: 1; */
   transform: scale(0.5);
   position: relative;
-  top: -150px;
-  /* left: 100px; */
+  top: -10px;
   right: 290px;
 }
 #projects{
   position: relative;
   cursor: pointer;
+}
+#projects .trackList{
+  background: #f3f2f1 !important;
+}
+#projects .tasklist{
+  padding-bottom: 0px !important;
 }
 #projects .ant-picker-calendar-mini{
   transform: scale(0.8);
@@ -478,11 +481,8 @@ label{
   padding-top: 0px;
   transform: scale(0.2);
   position: relative;
-  /* top: -115px; */
   top: 50px;
   margin-left: 0px !important;
-  /* left: 50px; */
-
   transform: scale(0.6);
   position: relative;
   top: -570px;

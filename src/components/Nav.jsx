@@ -56,7 +56,7 @@ const Nav = () => {
       flexDirection: "row",
       alignItems: "center",
       textDecoration: "none",
-      color: "#fff"
+      color: "#fff",
     },
     hide: {
       display: "none"
@@ -112,7 +112,7 @@ const Nav = () => {
 
       return (
         <div className="BreadCrumb" 
-            style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto'}} 
+            style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto', borderBottom: '1px solid lightgray'}} 
             >
            <div style={{position: 'sticky', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
             <Breadcrumb separator=">">
@@ -166,10 +166,7 @@ const Nav = () => {
         </>
       );
     }
-
-    // return NavComponent() 
     return <Preload timeoutLengthInSeconds={400} handleFunction={NavComponent()} />;
-    // return NavComponent()
 }
 
 export default Nav;

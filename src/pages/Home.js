@@ -112,7 +112,7 @@ export default function Home() {
           display: "flex",
           alignItems: "center",
           paddingTop: "10px",
-          paddingBottom: "30px",
+          paddingBottom: "20px",
         }}
         component={<WelcomeBanner />}
         backgroundImage={banner}
@@ -153,6 +153,7 @@ export default function Home() {
           border: "none",
           paddingLeft: "0px",
           paddingRight: "0px",
+          backgroundColor: "transparent",
         }}
         componentMulti1={
           <DisplayBox
@@ -176,6 +177,7 @@ export default function Home() {
           border: "none",
           paddingLeft: "0px",
           paddingRight: "0px",
+          backgroundColor: "transparent",
         }}
         componentMulti1={
           <DisplayBox component={<TaskList />} title={"Projects"} link={"/"} />

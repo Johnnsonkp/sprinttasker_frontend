@@ -132,7 +132,7 @@ const TaskList = () => {
             <div id="trackList" className="trackList">
                 <div className="dummy-side-panel">
                 </div>
-                <Layout className="layout" style={{backgroundColor: '#fff'}}>
+                <Layout className="layout">
                     <Content style={{ }}>
                     <div className="tasklist">
                         <Row>
@@ -172,10 +172,6 @@ const TaskList = () => {
             </div>
         )
     }
-    // return tasks ? loaded() : <Spin indicator={antIcon} />
-    // return <Preload timeoutLengthInSeconds={500} handleFunction={loaded()} />
-    // return loaded()
-    // return tasks && loaded() || <Spin indicator={antIcon} />
     return tasks? loaded() : <SkeletonTemplate />
 }
 

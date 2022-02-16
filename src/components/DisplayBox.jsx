@@ -10,7 +10,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
           id="homeContent"
           style={{
             marginBottom: '0px',
-            border: "2px solid lightGrey",
+            border: "3px solid lightgray",
             borderRadius: "10px",
             height: location.pathname !== '/calendar'? "300px" : '600px',
             maxHeight: location.pathname !== '/calendar'? "300px" : '600px',
@@ -18,16 +18,16 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             width: "100%",
             boxSizing: "border box",
             padding: "0px",
-            backgroundColor: "#f7f7f7",
-            backgroundColor: 'lightgray',
-            backgroundColor: 'rgb(244, 244, 244)'
+            backgroundColor: 'rgb(244, 244, 244)',
+            backgroundColor: '#fff',
+            boxShadow: '-2px 2px 8px 3px rgba(0,0,0,0.1)'
           }}
         >
-          <h3
+          <h4
             className="display-box-title"
             style={{
               textAlign: "left",
-              padding: "8px",
+              padding: "3px 10px",
               marginBottom: "3px",
               color: "#fff",
               color: "#111",
@@ -36,11 +36,11 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             }}
           >
             {title}
-          </h3>
+          </h4>
           <div
             style={{
               marginBottom: "20px",
-              borderTop: '3px solid rgb(244, 244, 244)',
+              borderTop: '2px solid lightGray',
               width: "100%",
               height: location.pathname !== '/calendar'? "250px" : '800px',
               overflow: "hidden",
