@@ -23,7 +23,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             boxShadow: '-2px 2px 8px 3px rgba(0,0,0,0.1)'
           }}
         >
-          <h4
+          <h5
             className="display-box-title"
             style={{
               textAlign: "left",
@@ -36,7 +36,7 @@ export const DisplayBox = ({component, title, link, customFunction}) => {
             }}
           >
             {title}
-          </h4>
+          </h5>
           <div
             style={{
               marginBottom: "20px",

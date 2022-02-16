@@ -447,17 +447,25 @@ label{
   background-color: #fff !important;
 }
 #projects .tasklist{
-  transform: scale(0.5);
-  position: relative;
-  top: -10px;
-  right: 290px;
+  transform: scale(0.45);
+  /* position: relative;
+  top: -100px;
+  right: 290px; */
+  /* position: absolute;
+  top: -50px;
+  left: -275px; */
+  margin: auto;
+  position: absolute;
+  top: -80px; left: -265px; bottom: 0; right: 0;
 }
 #projects{
   position: relative;
   cursor: pointer;
+  
 }
 #projects .trackList{
   background: #f3f2f1 !important;
+  padding: 0px !important;
 }
 #projects .tasklist{
   padding-bottom: 0px !important;
