@@ -9,11 +9,9 @@ import InputListComponent from "./InputList.component.jsx";
 import {RightCircleOutlined} from '@ant-design/icons';
 
 export const StandUpComponent = () => {
-    // const initialText = 'What are you working on today?'
     const initialText = {task: 'What are you working on today?', toggle: false}
     const standUpLocalStorage = JSON.parse(window.localStorage.getItem("standup"))
     let [data, setData] = useState(standUpLocalStorage ? standUpLocalStorage.value.filter((item) => item !== initialText) : [initialText.task])
-    // let [data, setData] = useState(standUpLocalStorage ? standUpLocalStorage.value.map((item) => [item]) : null)
     let [input, setInput] = useState([])
     let [toggle, setToggle] = useState(false)
     let [blockData, setBlockData] = useState([])
@@ -118,7 +116,7 @@ export const StandUpComponent = () => {
             <Card 
                 title={flip ? `Stand Down @5:00pm` : `Stand Up @5:00am` }
                 bordered={false} 
-                style={{minWidth: 450, minHeight: 266.14, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
+                style={{minWidth: 450, minHeight: 266.14, maxHeight: 266.14, textAlign: 'left', boxShadow: '0 0 5px 3px rgba(100 100 100 / 30%)' }}>
                 <Button 
                     type={'primary'}
                     style={{position: "relative", top: '-65px', left: '75%', cursor: 'pointer', fontSize: '13px', marginTop: '20px'}}
@@ -130,7 +128,7 @@ export const StandUpComponent = () => {
                     style={{ }}
                 >   
                     {!flip ?
-                        <div className="front" ref={frontEl} style={{width: '100%', margin: 'auto', position: "relative", top: '-35px'}}>
+                        <div className="front" ref={frontEl} style={{width: '100%', margin: 'auto', position: "relative", top: '-55px'}}>
                             {   data.map((content, key) => content.task? 
                                 content.task !== null &&
                                 (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#f4f4f4', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #999', width: '100%'}}
