@@ -48,6 +48,9 @@ const TaskForm = ({onFormSubmit}) => {
             time_to_complete: form.getFieldValue('ttcomplete')
         });
         form.resetFields();
+        form.setFieldsValue({
+            reward: ''
+        })
     }
 
     useEffect(() => {
