@@ -77,7 +77,6 @@ const TaskList = () => {
         console.log("handleTimer function", task, "updateTimer:", updateTimer)
         // task.timer = updateTimer.toString()
         task.timer = updateTimer
-        console.log("task.timer:", task.timer)
         updateTask(task)
         message.info('Timer update? ', task.timer);
     }
@@ -87,7 +86,8 @@ const TaskList = () => {
             console.log("res:", res)
             if(res.length > 0){
                 dispatch({ type: "getTasks", payload: res})
-                let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
+                // let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
+                let sortTaskById = res.sort((a, b) => (a.order < b.order) ? -1 : 1)
                     setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                     setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
                     setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));             
@@ -106,8 +106,8 @@ const TaskList = () => {
             console.log("useCallback:", res)
             if(res.length > 0){
                 dispatch({ type: "getTasks", payload: res})
-                let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
-                console.log("sortby:", sortTaskById)
+                // let sortTaskById = res.sort((a, b) => (a.id < b.id) ? 1 : -1)
+                let sortTaskById = res.sort((a, b) => (a.order < b.order) ? -1 : 1)
                 setActiveTasks(sortTaskById.filter(parsedTask => parsedTask.completed === false))
                 setCompletedTasks(sortTaskById.filter(parsedTask => parsedTask.completed === true))
                 setLoadTask(sortTaskById.filter(parsedTask => parsedTask.completed === true).concat(res.filter(parsedTask => parsedTask.completed === false)));

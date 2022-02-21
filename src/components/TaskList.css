@@ -54,12 +54,13 @@ li.ant-list-item.list-item:hover{
     width: 310px;
     /* border: 1px solid red; */
     overflow: hidden;
+    font-size: 12px;
 }
 .task-wrap{
     text-align: left;
     margin-right: 20px;
     margin-right: 5px;
-    width: 270px;
+    width: 240px;
     display: flex;
     justify-content: space-between;
     

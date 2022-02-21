@@ -41,23 +41,31 @@ export function getTasks() {
 
 export function postTask(task) {
   const authToken = JSON.parse(window.localStorage.getItem("auth"));
-  return fetch(baseUrl + "tasks", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + authToken.token,
-    },
-    body: JSON.stringify({
-      name: task.name,
-      description: task.description,
-      subtask: task.subtask,
-      time_to_complete: task.time_to_complete,
-      completed: task.completed,
-    }),
-  })
-    .then(console.log("post task:", task))
-    .then((res) => res.json());
+  console.log("task.items:", task.subitems);
+  let arr = [];
+  arr.push(task.subitems);
+
+  return (
+    fetch(baseUrl + "tasks", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authToken.token,
+      },
+      body: JSON.stringify({
+        name: task.name,
+        description: task.description,
+        reward: task.reward,
+        subitems: task.subitems,
+        time_to_complete: task.time_to_complete,
+        completed: task.completed,
+        order: task.order,
+      }),
+    })
+      // .then(console.log("post task:", task))
+      .then((res) => res.json())
+  );
 }
 
 export const update = (task) => {
@@ -74,10 +82,12 @@ export const update = (task) => {
       id: task.id,
       name: task.name,
       description: task.description,
-      subtask: task.subtask,
+      reward: task.reward,
+      subitems: task.subitems,
       completed: task.completed,
       timer: task.timer,
       time_to_complete: task.time_to_complete,
+      order: task.order,
     }),
   }).then((res) => res.json());
 };

@@ -1,10 +1,11 @@
-import {Button, List, Popconfirm, Tag, Tooltip} from 'antd';
-import { Card, Divider } from 'antd';
-import {CheckOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
+import {Button, Card, Divider, Dropdown, List, Menu, Popconfirm, Tag, Tooltip} from 'antd';
+import {CheckOutlined, DownOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import React, {useEffect, useState} from 'react';
 import { onChangeETC, updateEstimatedTimeToComplete, updateTaskTimer } from '../utilities/utilFunctions';
 
 import { FullPageOverlayCard } from './common/cards/cards';
+import { InputNumber } from 'antd';
+import { OverlayVisible } from './common/dropdown/dropdown';
 import Pomodoro from '../components/Pomodoro'
 import TaskSubitems from './TaskSubitems'
 import { useAppState } from '../AppState';
@@ -161,11 +162,23 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                         />
                     </Tooltip>
                 </div>
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
+                <div style={{width: '45px', marginRight: '0px'}}>
+                    <InputNumber min={0} max={10} defaultValue={task.order || 0} 
+                        style={{width: '100%', float: 'left'}}
+                        keyboard={true}
+                        bordered={false}
+                        // value={task.order || 0}
+                        size={'small'}
+                        controls={true}
+                    />
+                </div>
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
                 <div className="task-wrap" onClick={(e) => displayDescription(e)}>
                     <Tag className="task-tag">
                         {task ? capitalizeFirstLetter(task.name) : task.name}
                     </Tag>
-                    {task.description ? <MessageOutlined style={{color: '#7e8386'}}/> : null}
+                    {task.description && <MessageOutlined style={{color: '#7e8386'}}/>}
                 </div>
 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
@@ -185,7 +198,10 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
                 
-                <div className="btnwrap">
+                <div className="btnwrap"
+                    style={{width: '110px'}}
+                >
+                    
                     <Button size="small" 
                         type={ task.id === state.selectedTask.id && buttonColor ? 'danger' : 'primary'} 
                         shape="circle" 
@@ -200,7 +216,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                         icon={task.id === state.selectedTask.id && buttonColor ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/>
                     <div 
                         className="timerSlot" 
-                        style={{color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null }}
+                        style={{color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null, width: '60px' }}
                         >
                         {state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id?
                             <TimerTextAreaInProgressTimer /> : <TimerTextArea />
@@ -208,15 +224,12 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                         }
                         
                     </div>
-                    <div className="timerSlot">
-                        {/* {task.time_to_complete? task.time_to_complete : null} */}
-                    </div>
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} /> 
 
                 <div 
                     className="timerSlot" 
-                    style={{width: '120px', display: 'flex', justifyContent: 'space-around'}}
+                    style={{width: '90px', display: 'flex', justifyContent: 'space-around'}}
                 >
                      <p 
                         style={{fontSize: '14px', display:'flex', justifyContent: 'space-between', width: '90%'}}
@@ -239,24 +252,17 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                 </div> 
 
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
+                    <div className="timerSlot"
+                        style={{width: '70px', display: 'flex', justifyContent: 'space-around'}}
+                    >   
+                        {task.reward &&
+                            <OverlayVisible task={task}/>
+                        }
+                    </div>
+                    
+                <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
             </div>
         </List.Item>
-
-        // {showDesc?
-        //     <div className="task-description" >
-        //         <List.Item>
-        //             <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Task Description">{task.description}</Card>
-        //         </List.Item>
-        //         <List.Item>
-        //             {/* <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">{task.subtask}</Card> */}
-
-        //             <Card size="small" style={{ width: 460, textAlign: "left", margin: '20px', fontSize: '12px' }} title="Subtask">
-        //              {task.subtask}
-        //             </Card>
-        //         </List.Item>
-        //     </div>
-        //     : null
-        // }
         }
         </>                           
     )
