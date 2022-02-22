@@ -11,7 +11,6 @@ const TaskForm = ({onFormSubmit}) => {
     const [newSubtask, addNewSubtask] = useState()
     let [counter, incrementCounter] = useState(0)
     let [order, setOrder] = useState()
-    let [reward, setReward] = useState()
     let [clearField, setClearField] = useState(false)
 
     const handleChange = (e, index) => {
@@ -27,9 +26,6 @@ const TaskForm = ({onFormSubmit}) => {
 
         console.log("orderOnChange:", e.target)
     }
-    const rewardOnChange = (e) => {
-        setReward(e.target.value)
-    }
     const handleAddSubtask = () => {
         form.setFieldsValue({
             subtask: ''
@@ -43,14 +39,11 @@ const TaskForm = ({onFormSubmit}) => {
             description: form.getFieldValue('description'),
             order: order,
             subitems: subtasks,
-            reward: reward,
+            reward: form.getFieldValue('reward'),
             completed: false,
             time_to_complete: form.getFieldValue('ttcomplete')
         });
         form.resetFields();
-        form.setFieldsValue({
-            reward: ''
-        })
     }
 
     useEffect(() => {
@@ -99,7 +92,6 @@ const TaskForm = ({onFormSubmit}) => {
                             name={'reward'}
                         >
                             <Input placeholder="Reward on task completion" 
-                                onChange={(e) => rewardOnChange(e)}
                             />
                         </Form.Item>
                     </Col>
