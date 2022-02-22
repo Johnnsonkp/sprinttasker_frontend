@@ -69,7 +69,6 @@ export function postTask(task) {
 }
 
 export const update = (task) => {
-  console.log("update task.timer:", task.timer);
   const authToken = JSON.parse(window.localStorage.getItem("auth"));
   return fetch(`${baseUrl}tasks/${task.id}`, {
     method: "PUT",

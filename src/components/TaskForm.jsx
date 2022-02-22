@@ -10,8 +10,8 @@ const TaskForm = ({onFormSubmit}) => {
     const [subtasks, setSubtasks] = useState([])
     const [newSubtask, addNewSubtask] = useState()
     let [counter, incrementCounter] = useState(0)
-    let [order, setOrder] = useState(0)
-    let [reward, setReward] = useState(0)
+    let [order, setOrder] = useState()
+    let [reward, setReward] = useState()
     let [clearField, setClearField] = useState(false)
 
     const handleChange = (e, index) => {

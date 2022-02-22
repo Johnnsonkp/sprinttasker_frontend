@@ -16,6 +16,8 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, u
             dataSource={tasks}
             renderItem={(task, i) => (
                 <TaskItem 
+                    key={task.id}
+                    task_id={task.id}
                     task={task}
                     // inProgress={inProgress}
                     onTaskToggle={onTaskToggle}

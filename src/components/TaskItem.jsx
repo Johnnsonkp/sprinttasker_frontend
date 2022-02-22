@@ -10,7 +10,7 @@ import Pomodoro from '../components/Pomodoro'
 import TaskSubitems from './TaskSubitems'
 import { useAppState } from '../AppState';
 
-const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
+const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, task_id}) => {
     const {state, dispatch } = useAppState();
     const [toggle, setToggle] = useState(true)
     const [showDesc, setShow] = React.useState(false)
@@ -18,6 +18,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
     const [date, setDate] = useState();
     const [buttonColor, setButtonColor] = useState(false)
     const [showTaskCard, setShowTaskCard] = useState(false)
+    let [orderValue, setOrderValue] = useState(task.order)
 
     const styles = {
         listRow: {
@@ -123,6 +124,22 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
         
     }, [state.work_mode, state.selectedTask])
 
+    const updateTaskOrder = (task) => {
+        console.log("task_id:", task_id)
+        console.log("task.id:", task.id)
+        if(task_id === task.id){
+            task.order = orderValue
+            updateTask(task)
+        }
+        
+    }
+
+    // useEffect(() => {
+    //     // task.order = orderValue
+    //     updateTask(task)
+    // }, [updateTaskOrder])
+
+    
 
     return (
         <>
@@ -158,7 +175,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                         <Button type="secondary-btnToggle" shape="circle" icon={<CheckOutlined />} 
                             defaultChecked={task.completed}
                             onClick={() => onTaskToggle(task)}
-                            onClick={() => onTaskToggle(task)}
+                            // onClick={() => onTaskToggle(task)}
                         />
                     </Tooltip>
                 </div>
@@ -168,9 +185,11 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask}) => {
                         style={{width: '100%', float: 'left'}}
                         keyboard={true}
                         bordered={false}
-                        // value={task.order || 0}
+                        value={orderValue}
                         size={'small'}
                         controls={true}
+                        onChange={setOrderValue}
+                        onPressEnter={() => updateTaskOrder(task)}
                     />
                 </div>
                 <hr style={{border: "2px solid #fff", height: "48px", margin: '0px'}} />
