@@ -25,8 +25,15 @@ export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const Divider = () => {
+export const Divider = (props) => {
+  const color = props.task.completed ? "rgba(0, 200, 117, 0.1)" : "#fff";
   return (
-    <hr style={{ border: "2px solid #fff", height: "48px", margin: "0px" }} />
+    <hr
+      style={{
+        border: `2px solid ${color}`,
+        height: "48px",
+        margin: "0px",
+      }}
+    />
   );
 };

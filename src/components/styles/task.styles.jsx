@@ -3,6 +3,15 @@ export const styles = {
         width: '100%',
         maxHeight: '40px',
     },
+    completeListRow: {
+        width: '100%',
+        maxHeight: '40px',
+        boxSizing: 'borderBox',
+        borderBottom: '4px solid rgba(0, 200, 117, 0.1)',
+        // borderRight: '4px solid rgba(0, 200, 117, 0.1)',
+        borderLeft: '4px solid rgba(0, 200, 117, 0.3)',
+        backgroundColor: 'rgba(0, 200, 117, 0.1)'
+    },
     completed: {
         backgroundColor: '#d2f8d2',
         width: '100%'

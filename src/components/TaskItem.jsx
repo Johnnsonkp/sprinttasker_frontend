@@ -45,7 +45,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
             description={task.description} 
             name={task.name}/> :
         <List.Item
-            style={styles.listRow}
+            style={task.completed? styles.completeListRow : styles.listRow}
             actions={[
                 <Popconfirm
                     name={'Are you sure you want to delete?'}
@@ -72,7 +72,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                         />
                     </Tooltip>
                 </div>
-                <Divider />
+                <Divider task={task}/>
                 <div style={{width: '45px', marginRight: '0px'}}>
                     <InputNumber min={0} max={10} defaultValue={task.order || 0} 
                         style={{width: '100%', float: 'left'}}
@@ -85,26 +85,26 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                         onPressEnter={() => updateTaskOrder(task)}
                     />
                 </div>
-                <Divider />
+                <Divider task={task}/>
                     <div className="task-wrap" onClick={() => setShowTaskCard(true)}>
                         <Tag className="task-tag">
                             {task ? capitalizeFirstLetter(task.name) : task.name}
                         </Tag>
                         {task.description && <MessageOutlined style={{color: '#7e8386'}}/>}
                     </div>
-                <Divider />
+                <Divider task={task}/>
                     <div className="subitem-wrap">
                         <Button
                             onClick={() => setShowTaskCard(true)}
                         >Comments</Button>
                     </div> 
-                <Divider />
+                <Divider task={task}/>
                     <div 
                         className="task-status" 
                         style={task.completed ? styles.completeCell : styles.activeCell}>
                         {task.completed ? "Complete" : "status"}
                     </div>
-                <Divider />
+                <Divider task={task}/>
                 <div className="btnwrap"
                     style={{width: '110px'}}
                 >
@@ -142,19 +142,19 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                         }
                     </div>
                 </div>
-                    <Divider /> 
+                    <Divider task={task}/> 
                         <TimerSlot 
                             updateEstimatedTimeToComplete={updateEstimatedTimeToComplete}
                             task={task}
                             updateTask={updateTask}
                         />           
-                    <Divider />
+                    <Divider task={task}/>
                         <div className="timerSlot"
                             style={{width: '70px', display: 'flex', justifyContent: 'space-around'}}
                         >   
                             {task.reward && <OverlayVisible task={task}/>}
                         </div>
-                    <Divider />
+                    <Divider task={task}/>
             </div>
         </List.Item>
         }
