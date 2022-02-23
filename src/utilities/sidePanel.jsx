@@ -77,11 +77,11 @@ export function SidePanel({notes}) {
                         Main WorkSpace
                     </Link>
                 </Menu.Item>
-                {/* <Menu.Item key="3" icon={<UnorderedListOutlined />}>
+                <Menu.Item key="/my_work" icon={<UnorderedListOutlined />}>
                     <Link to="/my_work">
                         My Sprints
                     </Link>
-                </Menu.Item> */}
+                </Menu.Item>
                 <Menu.Item key="/notes" icon={<FormOutlined />}>
                 <Link to="/notes">
                   Notes

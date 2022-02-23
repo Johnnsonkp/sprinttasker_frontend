@@ -21,6 +21,17 @@ export const updateTaskTimer = (e, task, updatedTask) => {
   });
 };
 
+// export const updateTaskTimerOnClick = (e, task, state, updatedTask) => {
+//   e.target.addEventListener("focusout", () => {
+//     task.timer = e.target.value;
+//     updatedTask(task);
+//     console.log("task timer updated:", e.target.value);
+//   });
+
+//   task.timer = state.inProgressTimer;
+//   updatedTask(task);
+// };
+
 export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };

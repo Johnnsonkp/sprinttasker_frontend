@@ -38,6 +38,13 @@ export const TimerTextArea = (props) => {
       onChange={(e) => props.updateTaskTimer(e, props.task, props.updateTask)}
       rows="1"
       cols="10"
+      value={
+        props.state.work_mode &&
+        props.state.inProgressTimer &&
+        props.state.selectedTask.id === props.task.id
+          ? props.state.inProgressTimer
+          : props.task.timer
+      }
       style={{
         border: "1px solid transparent",
         padding: "5px",
@@ -48,11 +55,11 @@ export const TimerTextArea = (props) => {
         paddingTop: "12px",
       }}
     >
-      {props.state.work_mode &&
+      {/* {props.state.work_mode &&
       props.state.inProgressTimer &&
       props.state.selectedTask.id === props.task.id
         ? props.state.inProgressTimer
-        : props.task.timer}
+        : props.task.timer} */}
     </textarea>
   );
 };

@@ -2,12 +2,14 @@ import {Button, Card, Dropdown, List, Menu, Popconfirm, Tag, Tooltip} from 'antd
 import {CheckOutlined, DownOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import React, {useEffect, useState} from 'react';
 import { TimerTextArea, TimerTextAreaInProgressTimer } from './common/inputs/input';
-import { onChangeETC, updateEstimatedTimeToComplete, updateTaskTimer } from '../utilities/utilFunctions';
+import { onChangeETC, updateEstimatedTimeToComplete, updateTaskTimer, updateTaskTimerOnClick } from '../utilities/utilFunctions';
 
 import { Divider } from '../utilities/utilFunctions';
 import { FullPageOverlayCard } from './common/cards/cards';
 import { InputNumber } from 'antd';
 import { OverlayVisible } from './common/dropdown/dropdown';
+import Pomodoro from '../components/Pomodoro'
+import TaskSubitems from './TaskSubitems'
 import {TimerSlot} from './timedisplay/timeSlotDisplay'
 import { capitalizeFirstLetter } from '../utilities/utilFunctions';
 import { styles } from './styles/task.styles';
@@ -28,11 +30,23 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
         }
     }
 
+    const updateTaskTimerOnClick = async (task) => {
+        task.timer = await state.inProgressTimer
+        return updateTask(task)
+    }
+
     useEffect(() => {
         setButtonColor(state.work_mode && state.selectedTask.id === task.id ? true : false)
         if(!state.work_mode && state.selectedTask.id === task.id){
-            updateTimer(task, state.inProgressTimer)
+            task.timer = state.inProgressTimer
+            updateTask(task)
+            // updateTimer(task, state.inProgressTimer)
+            // updateTaskTimerOnClick(task)
+            return function cleanup() {
+                updateTaskTimerOnClick(task)
+            }
         }
+        
     }, [state.work_mode, state.selectedTask])
 
     return (
@@ -117,6 +131,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                             if(toggle === false){
                                 setHover(false)
                             }
+                            // updateTaskTimerOnClick(e, task, state, updateTask)
                             dispatch({ type: "workMode", payload: toggle})
                             dispatch({ type: "selectTask", payload: task})
                         }}

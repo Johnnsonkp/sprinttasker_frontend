@@ -16,7 +16,7 @@ import { useLocation } from 'react-router-dom';
 const { TabPane} = Tabs;
 const { Content} = Layout;
 
-const TaskList = () => {
+const TaskList = (props) => {
     const [refreshing, setRefreshing] = useState(false);
     const [tasks, setLoadTask] = React.useState(null);
     const [activeTasks, setActiveTasks] = useState([]);
@@ -74,8 +74,6 @@ const TaskList = () => {
         message.info('Task status updated!')
     }
     const handleTimer = (task, updateTimer) => {
-        console.log("handleTimer function", task, "updateTimer:", updateTimer)
-        // task.timer = updateTimer.toString()
         task.timer = updateTimer
         updateTask(task)
         message.info('Timer update? ', task.timer);
@@ -158,6 +156,11 @@ const TaskList = () => {
                                 { location.pathname !== '/my_work' ?
                                     <TabPane tab="Complete" key="complete">
                                         <TaskTab tasks={completedTasks} inProgress={taskInProgress} onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask} updateTimer={handleTimer}  updateTask={updateTask}/>   
+                                    </TabPane> : null
+                                }
+                                { location.pathname === '/my_work' ?
+                                    <TabPane tab="All" key="all">
+                                        <TaskTab tasks={props.sprints} />   
                                     </TabPane> : null
                                 }
                                     <TabPane tab="Create Task" key="createtask">
