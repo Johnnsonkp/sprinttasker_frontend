@@ -20,3 +20,13 @@ export const updateTaskTimer = (e, task, updatedTask) => {
     console.log("task timer updated:", e.target.value);
   });
 };
+
+export const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+export const Divider = () => {
+  return (
+    <hr style={{ border: "2px solid #fff", height: "48px", margin: "0px" }} />
+  );
+};

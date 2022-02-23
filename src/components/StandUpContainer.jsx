@@ -47,7 +47,7 @@ export const StandUpComponent = () => {
 
     const styles = {
         taskContainer: {
-            backgroundColor: '#f4f4f4', 
+            backgroundColor: '#fff', 
             paddingLeft: '0px', 
             paddingRight: '10px',  
             margin: '8px', 
@@ -131,7 +131,7 @@ export const StandUpComponent = () => {
                         <div className="front" ref={frontEl} style={{width: '100%', margin: 'auto', position: "relative", top: '-55px'}}>
                             {   data.map((content, key) => content.task? 
                                 content.task !== null &&
-                                (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#f4f4f4', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #999', width: '100%'}}
+                                (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#fff', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #999', width: '100%'}}
                                 >   
                                     <input onClick={() => onTaskToggle(content)} type="checkbox" id={key} checked={content.toggle? true : false}/>
                                     <label style={styles.taskContainer} for={key}>
