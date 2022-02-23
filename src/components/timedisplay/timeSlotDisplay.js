@@ -2,11 +2,15 @@ export const TimerSlot = (props) => {
   return (
     <div
       className="timerSlot"
-      style={{ width: "90px", display: "flex", justifyContent: "space-around" }}
+      style={{
+        width: "105px",
+        display: "flex",
+        justifyContent: "space-around",
+      }}
     >
       <p
         style={{
-          fontSize: "14px",
+          fontSize: "13px",
           display: "flex",
           justifyContent: "space-between",
           width: "90%",

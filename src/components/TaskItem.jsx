@@ -40,8 +40,6 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
         if(!state.work_mode && state.selectedTask.id === task.id){
             task.timer = state.inProgressTimer
             updateTask(task)
-            // updateTimer(task, state.inProgressTimer)
-            // updateTaskTimerOnClick(task)
             return function cleanup() {
                 updateTaskTimerOnClick(task)
             }
@@ -123,7 +121,8 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                     style={{width: '110px'}}
                 >
                     
-                    <Button size="small" 
+                    <Button 
+                        size="small" 
                         type={ task.id === state.selectedTask.id && buttonColor ? 'danger' : 'primary'} 
                         shape="circle" 
                         onClick={(e) => {
@@ -131,7 +130,6 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                             if(toggle === false){
                                 setHover(false)
                             }
-                            // updateTaskTimerOnClick(e, task, state, updateTask)
                             dispatch({ type: "workMode", payload: toggle})
                             dispatch({ type: "selectTask", payload: task})
                         }}
