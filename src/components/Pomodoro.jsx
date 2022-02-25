@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import { Collapse } from 'antd';
 import { useAppState } from "../AppState";
-import { useLocation } from "react-router-dom";
 
 export default function Pomodoro(props) {
   const {state, dispatch} = useAppState()

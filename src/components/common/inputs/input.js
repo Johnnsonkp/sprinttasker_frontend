@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const TimerTextAreaInProgressTimer = (props) => {
   return (
@@ -15,36 +15,38 @@ export const TimerTextAreaInProgressTimer = (props) => {
         resize: "none",
         paddingTop: "12px",
       }}
-      value={
-        props.state.work_mode &&
-        props.state.inProgressTimer &&
-        props.state.selectedTask.id === props.task.id
-          ? props.state.inProgressTimer
-          : props.task.timer
-      }
-    >
-      {props.state.work_mode &&
-      props.state.inProgressTimer &&
-      props.state.selectedTask.id === props.task.id
-        ? props.state.inProgressTimer
-        : props.task.timer}
-    </textarea>
+      value={props.state.inProgressTimer}
+    ></textarea>
   );
 };
 
 export const TimerTextArea = (props) => {
+  const defaultValueAtt = () => {
+    return props.state.inProgressTimer !== null &&
+      parseInt(props.state.inProgressTimer) !== 0
+      ? props.state.inProgressTimer
+      : props.task.timer;
+  };
+  let [timer, setTimer] = useState(defaultValueAtt);
+
+  const updateTimerOnStop = () => {
+    if (!props.work_mode && parseInt(props.state.inProgressTimer) !== 0) {
+      setTimer(props.state.inProgressTimer);
+    }
+  };
+
+  useEffect(() => {
+    updateTimerOnStop();
+    return function cleanup() {
+      updateTimerOnStop();
+    };
+  }, [props.work_mode]);
+
   return (
     <textarea
       onChange={(e) => props.updateTaskTimer(e, props.task, props.updateTask)}
       rows="1"
       cols="10"
-      value={
-        props.state.work_mode &&
-        props.state.inProgressTimer &&
-        props.state.selectedTask.id === props.task.id
-          ? props.state.inProgressTimer
-          : props.task.timer
-      }
       style={{
         border: "1px solid transparent",
         padding: "5px",
@@ -55,11 +57,7 @@ export const TimerTextArea = (props) => {
         paddingTop: "12px",
       }}
     >
-      {/* {props.state.work_mode &&
-      props.state.inProgressTimer &&
-      props.state.selectedTask.id === props.task.id
-        ? props.state.inProgressTimer
-        : props.task.timer} */}
+      {timer}
     </textarea>
   );
 };

@@ -9,7 +9,7 @@ export const styles = {
         boxSizing: 'borderBox',
         borderBottom: '4px solid rgba(0, 200, 117, 0.1)',
         // borderRight: '4px solid rgba(0, 200, 117, 0.1)',
-        borderLeft: '4px solid rgba(0, 200, 117, 0.3)',
+        borderLeft: '4px solid rgba(0, 200, 117, 1)',
         backgroundColor: 'rgba(0, 200, 117, 0.1)'
     },
     completed: {

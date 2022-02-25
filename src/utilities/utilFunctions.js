@@ -21,6 +21,19 @@ export const updateTaskTimer = (e, task, updatedTask) => {
   });
 };
 
+export const sudoTimerUpdate = (e, task, timer, updatedTask) => {
+  e.target.addEventListener("focusout", () => {
+    task.timer = timer;
+    updatedTask(task);
+    console.log("task timer updated:", e.target.value);
+  });
+};
+
+export const taskTimerUpdate = (timer, task, updatedTask) => {
+  task.timer = timer;
+  updatedTask(task);
+};
+
 // export const updateTaskTimerOnClick = (e, task, state, updatedTask) => {
 //   e.target.addEventListener("focusout", () => {
 //     task.timer = e.target.value;
@@ -48,3 +61,10 @@ export const Divider = (props) => {
     />
   );
 };
+
+// export const updateTaskOrder = ({ task, task_id, orderValue, updateTask, task.id, task.order }) => {
+//   if (task_id === task.id) {
+//     task.order = orderValue;
+//     updateTask(task);
+//   }
+// };
