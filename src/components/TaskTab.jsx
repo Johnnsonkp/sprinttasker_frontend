@@ -1,14 +1,8 @@
 import {List} from 'antd';
 import React from 'react';
 import TaskItem from './TaskItem';
-import { useAppState } from "../AppState";
 
-const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, updateTask}) => {
-    const {state, dispatch} = useAppState()
-
-    // let completedTasks = tasks.map(task => task.completed === true)
-    // let allTasks = tasks.map(task => task.completed === false)
-    // allTasks.unshift(completedTasks)
+const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, updateTask, createTask}) => {
     return (
     <>  
         <List 
@@ -19,6 +13,7 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, u
                     key={task.id}
                     task_id={task.id}
                     task={task}
+                    createTask={createTask}
                     // inProgress={inProgress}
                     onTaskToggle={onTaskToggle}
                     onTaskRemoval={onTaskRemoval}

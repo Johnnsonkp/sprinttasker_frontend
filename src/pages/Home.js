@@ -143,7 +143,12 @@ export default function Home() {
         style={{
           backgroundImage:
             "url(https://images.pexels.com/photos/6445381/pexels-photo-6445381.jpeg?auto=compress&cs=tinysrgb&fit=crop&fp-y=0.38&h=500&sharp=15&w=1500)",
+          backgroundImage:
+            "url(https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)",
           marginBottom: "30px",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "object-fit",
         }}
       />
 

@@ -27,7 +27,7 @@ export const styles = {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
-        width: '150px',
+        width: '140px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -44,7 +44,7 @@ export const styles = {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
-        width: '150px',
+        width: '140px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

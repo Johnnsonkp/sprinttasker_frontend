@@ -3,24 +3,26 @@ export const TimerSlot = (props) => {
     <div
       className="timerSlot"
       style={{
-        width: "105px",
+        width: "130px",
         display: "flex",
         justifyContent: "space-around",
       }}
     >
       <p
         style={{
-          fontSize: "13px",
+          fontSize: "12px",
           display: "flex",
           justifyContent: "space-between",
-          width: "90%",
+          // width: "90%",
+          width: "100%",
+          overflow: "hidden",
         }}
       >
-        <h5
+        {/* <h5
           style={{ fontWeight: "400", marginTop: "auto", marginBottom: "auto" }}
         >
           ETC:
-        </h5>
+        </h5> */}
         <textarea
           onChange={(e) =>
             props.updateEstimatedTimeToComplete(e, props.task, props.updateTask)
@@ -34,6 +36,8 @@ export const TimerSlot = (props) => {
             height: "100%",
             background: "transparent",
             resize: "none",
+            overflow: "hidden",
+            fontWeight: "bold",
           }}
         >
           {props.task.time_to_complete ? props.task.time_to_complete : "00:00"}

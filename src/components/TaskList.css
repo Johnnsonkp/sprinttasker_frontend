@@ -21,6 +21,7 @@ li.ant-list-item.list-item {
     background: #f0f2f5;
     background-color: #f5f6f8;
     border-left: 5px solid #1890ff; 
+    border-left: 5px solid #1890ff70; 
     border-bottom: 3px solid #fff;
     /* margin-right: 15px; */
 }
@@ -156,5 +157,5 @@ li.ant-list-item.list-item:hover{
     justify-content: space-between;
     align-items: center;
     width: 120px;
-    padding: 10px;
+    /* padding: 10px; */
 }
