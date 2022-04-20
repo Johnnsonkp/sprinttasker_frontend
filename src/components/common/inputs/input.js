@@ -8,12 +8,12 @@ export const TimerTextAreaInProgressTimer = (props) => {
       cols="10"
       style={{
         border: "1px solid transparent",
-        padding: "5px",
+        // padding: "5px",
         width: "100%",
         height: "100%",
         background: "transparent",
         resize: "none",
-        paddingTop: "12px",
+        paddingTop: "8px",
         fontSize: "12px",
       }}
       value={props.state.inProgressTimer}
@@ -33,10 +33,6 @@ export const TimerTextArea = (props) => {
 
   const updateTimerOnStop = () => {
     if (!props.work_mode && parseInt(props.state.inProgressTimer) !== 0) {
-      // console.log("if seclected task", selectedTaskID);
-      // console.log("taskId", props.task.id);
-      // console.log("otherKey", props.otherKey);
-      // console.log("seclected task = taskId", selectedTaskID === props.otherKey);
       setTimer(props.state.inProgressTimer);
     }
   };
@@ -44,8 +40,6 @@ export const TimerTextArea = (props) => {
   useEffect(() => {
     if (!props.work_mode) {
       setTaskID(props.state.selectedTask.id);
-      // console.log("taskId", props.task.id);
-      // console.log("setTaskID", selectedTaskID);
     }
     updateTimerOnStop();
     return function cleanup() {
@@ -60,12 +54,12 @@ export const TimerTextArea = (props) => {
       cols="10"
       style={{
         border: "1px solid transparent",
-        padding: "5px",
+        // padding: "5px",
         width: "100%",
         height: "100%",
         background: "transparent",
         resize: "none",
-        paddingTop: "12px",
+        paddingTop: "8px",
         fontSize: "12px",
       }}
     >

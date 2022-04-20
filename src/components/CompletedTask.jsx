@@ -33,7 +33,6 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                     textAlign: 'left', 
                     backgroundColor: '#fff', 
                     backgroundColor: '#ffffff;',
-                    // backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)',
                     backgroundColor: '#f5f6f8',
                     marginTop: '20px', 
                     marginLeft: '10px', 
@@ -166,7 +165,6 @@ export const CompletedRate = ({SetShowHide}) => {
                 style={{marginTop: '0px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
                 onClick={() => SetShowHide(true)}
             >Completed Tasks</Button>
-            
         </Card>
     )
 }

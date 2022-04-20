@@ -3,18 +3,18 @@ import { LargeCalendar, showCal } from "../components/Calendar";
 
 import AllNotes from "../components/AllNotes";
 import { Avatar } from "antd";
+import { DefaultProgresSteps } from "../components/progressSteps/ProgressSteps";
 import { DisplayBox } from "../components/DisplayBox";
 import { LogoBlock } from "../components/LogoBlock";
 import Main from "./Main";
+// import Mywork from "./Mywork";
+import { Mywork } from "./index";
 import Notes from "./Notes";
 import { PrimaryContainer } from "../components/common/container/container";
 import React from "react";
 import SmallWave from "../wave-small.png";
 import TaskList from "../components/TaskList";
-import banner from "../std-banner.svg";
-import monday from "../monday-icon.svg";
-import notion from "../notion-logo-1.svg";
-import slackLogo from "../slack.svg";
+import { WorkSpaceHeader } from "../components/workspaceHeader/WorkspaceHeader";
 
 const { Search } = Input;
 
@@ -107,39 +107,26 @@ export default function Home() {
 
   return (
     <>
-      <PrimaryContainer
+      <div
+        id="main"
         style={{
-          display: "flex",
-          alignItems: "center",
-          paddingTop: "10px",
-          paddingBottom: "20px",
+          paddingLeft: "100px",
+          paddingRight: "0px",
+          maxWidth: "1500px",
+          width: "100%",
+          margin: "auto",
+          transition: "all 5s easeInOut",
         }}
-        component={<WelcomeBanner />}
-        backgroundImage={banner}
-      />
+      >
+        <WorkSpaceHeader
+          User={User}
+          welcomeTitle={"Welcome"}
+          userFirstInitials={userFirstInitials}
+        />
+      </div>
 
       <PrimaryContainer
         componentMulti1={<SearchField />}
-        componentMulti2={
-          <LogoBlock
-            backgroundColor={"transparent"}
-            iconWidth={"55px"}
-            iconBorder={"1px solid lightGrey"}
-            firstLogo={slackLogo}
-            secondLogo={notion}
-            thirdLogo={monday}
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            height={"110px"}
-            marginTop={"40px"}
-            boxShadow={false}
-            containerWidth={"250px"}
-            iconBorder={"1px solid #555"}
-            iconBackground={"#555"}
-          />
-        }
-        // style={{ backgroundImage: `url(${banner})`, marginBottom: "30px" }}
         style={{
           backgroundImage:
             "url(https://images.pexels.com/photos/6445381/pexels-photo-6445381.jpeg?auto=compress&cs=tinysrgb&fit=crop&fp-y=0.38&h=500&sharp=15&w=1500)",
@@ -148,7 +135,7 @@ export default function Home() {
           marginBottom: "30px",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "object-fit",
+          backgroundSize: "cover",
         }}
       />
 
@@ -161,11 +148,7 @@ export default function Home() {
           backgroundColor: "transparent",
         }}
         componentMulti1={
-          <DisplayBox
-            component={<TaskList />}
-            title={"Annoucements"}
-            link={"/calendar"}
-          />
+          <DisplayBox component={<TaskList />} title={"Tasks"} link={"/main"} />
         }
         componentMulti2={
           <DisplayBox
@@ -185,7 +168,11 @@ export default function Home() {
           backgroundColor: "transparent",
         }}
         componentMulti1={
-          <DisplayBox component={<TaskList />} title={"Projects"} link={"/"} />
+          <DisplayBox
+            component={<DefaultProgresSteps />}
+            title={"Sprints"}
+            link={"/my_work"}
+          />
         }
         componentMulti2={
           <DisplayBox component={<Notes />} title={"Notes"} link={"/notes"} />

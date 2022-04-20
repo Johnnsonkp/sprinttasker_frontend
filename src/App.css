@@ -85,6 +85,9 @@
   .title-logo {
     height: 8vmin;
     max-height: 60px;
+    z-index: 2;
+    position: relative;
+    right: 60px;
   }
   header{
     display: flex;
@@ -429,7 +432,6 @@ label{
 .standup-section{
   margin-top: 15px;
   margin-bottom: 30px;
-  overflow: hidden;
 }
 #projects .ant-col.ant-col-14.ant-col-offset-5, #projects .ant-col-offset-5 {
   /* margin-left: -0% !important;
@@ -625,6 +627,8 @@ label{
   align-items: center;
   height: 100%;
   padding: 50px;
+  margin-top: -20px;
+
 }
 .singleNoteContainer .singleNote{
   background-color: #fef68a;
@@ -670,14 +674,10 @@ label{
 
 /* Pmodoro timer container */
 .timer-container{
-  /* border: 1px solid red; */
-  /* position: relative;
-  top: 25px;
-  left: 55px; */
   width: 270px;
-  /* margin-right: 50px; */
   position: relative;
   top: -20px;
+  left: 30px;
 }
 .timer-display{
   /* border: 1px solid green; */
@@ -688,9 +688,9 @@ label{
   cursor: pointer;
   position: relative;
 }
-.show-hide-timer{
+/* .show-hide-timer{
   border: 1px solid orange;
-}
+} */
 .timer-display .left{
   display: flex;
   justify-content: flex-start;
@@ -708,9 +708,9 @@ label{
 }
 .show-hide-timer{
   /* visibility: hidden; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
   /* opacity: 0; */
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   color: #111;
   /* z-index: 20; */
 }
@@ -720,10 +720,11 @@ label{
   margin-right: 100px;
   background: #f5f6f8;
   background-color: #3e3e3e;
-  color: #fff;
+  /* color: #fff; */
   width: 100%;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  margin-top: 0px;
 }
 .timer-display .time-display{
   color: #fff;
@@ -855,10 +856,18 @@ label{
   height: 25px;
   padding: 1px 8px;
   font-size: 12px;
-  margin-left: 3px;
-  margin-right: 0px;
+  /* margin-left: 3px;
+  margin-right: 0px; */
+
+  margin: 0px
 }
 
 .ant-card-body{
   padding: 15px;
+}
+.ant-list-item-action{
+  margin-left: 0px;
+}
+.ant-breadcrumb-separator{
+  visibility: hidden;
 }

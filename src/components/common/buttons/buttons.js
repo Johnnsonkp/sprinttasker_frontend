@@ -8,6 +8,7 @@ export const DuplicateTask = (props) => {
   return (
     <DownloadOutlined
       onClick={() => handleClick(props.task, props.createTask)}
+      style={{ fontSize: "11px" }}
     />
   );
 };

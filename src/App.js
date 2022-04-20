@@ -1,25 +1,30 @@
-import React, { useEffect } from "react";
 import "./App.css";
-import Nav from "./components/Nav";
-import { useAppState } from "./AppState";
-import { SidePanel } from "./utilities/sidePanel";
-import { useLocation } from "react-router-dom";
-import Notes from "./pages/Notes";
+
 import {
-  Landing,
-  Auth,
-  Developer,
   About,
+  Auth,
+  CalendarPage,
+  Developer,
+  Home,
+  Landing,
+  Main,
   Mywork,
   Standup,
-  Main,
-  Home,
-  CalendarPage,
 } from "./pages";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+
+import { AuthPage } from "./pages/authPage/index";
+import { Data } from "./pages/Data";
+import Nav from "./components/Nav";
+import Notes from "./pages/Notes";
+import { SidePanel } from "./utilities/sidePanel";
 import { SingleNote } from "./components/SingleNote";
 import { TaskCards } from "./pages/TaskCards";
-import { Data } from "./pages/Data";
+import { TaskCompleted } from "./pages/TaskCompletePage/TaskComplete";
+import { Wrapper } from "./components/common/container/container";
+import { useAppState } from "./AppState";
+import { useLocation } from "react-router-dom";
 
 export const App = () => {
   const { state, dispatch } = useAppState();
@@ -31,6 +36,7 @@ export const App = () => {
     if (auth) {
       dispatch({ type: "auth", payload: auth });
       navigate("/main");
+      // navigate("/authlogin");
     } else {
       navigate("/");
     }
@@ -54,7 +60,8 @@ export const App = () => {
           location.pathname !== "/auth/login" &&
           location.pathname !== "/auth/signup" &&
           location.pathname !== "/single-note" &&
-          location.pathname !== "/task-cards" ? (
+          location.pathname !== "/task-cards" &&
+          location.pathname !== "/authlogin" ? (
             <SidePanel />
           ) : location.pathname === "/notes" ||
             location.pathname === "/single-note" ? (
@@ -64,18 +71,32 @@ export const App = () => {
           )}
           <Routes>
             <Route exact path="/" element={<Landing />} />
-            <Route path="/main" element={<Main />} />
+            <Route path="/main" element={<Wrapper component={<Main />} />} />
             <Route path="/auth/:form" element={<Auth />} />
             <Route path="/developer" element={<Developer />} />
             <Route path="/about" element={<About />} />
-            <Route path="/my_work" element={<Mywork />} />
-            <Route path="/stand_up" element={<Standup />} />
-            <Route path="/notes/" element={<Notes />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/single-note" element={<SingleNote />} />
+            <Route
+              path="/my_work"
+              element={<Wrapper component={<Mywork />} />}
+            />
+            <Route
+              path="/stand_up"
+              element={<Wrapper component={<Standup />} />}
+            />
+            <Route path="/notes/" element={<Wrapper component={<Notes />} />} />
+            <Route path="/home" element={<Wrapper component={<Home />} />} />
+            <Route
+              path="/single-note"
+              element={<Wrapper component={<SingleNote />} />}
+            />
             <Route path="/task-cards" element={<TaskCards />} />
             <Route path="/data" element={<Data />} />
-            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/completed-tasks" element={<TaskCompleted />} />
+            <Route
+              path="/calendar"
+              element={<Wrapper component={<CalendarPage />} />}
+            />
+            <Route path="/authlogin" element={<AuthPage />} />
           </Routes>
         </div>
       </div>

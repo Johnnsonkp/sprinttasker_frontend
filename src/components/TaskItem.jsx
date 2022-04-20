@@ -11,6 +11,7 @@ import { InputNumber } from 'antd';
 import { OverlayVisible } from './common/dropdown/dropdown';
 import {TimerSlot} from './timedisplay/timeSlotDisplay'
 import { capitalizeFirstLetter } from '../utilities/utilFunctions';
+import { reformatDate } from '../utilities/utilFunctions';
 import { styles } from './styles/task.styles';
 import { useAppState } from '../AppState';
 
@@ -20,6 +21,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
     const [hover, setHover] = useState(false);
     const [buttonColor, setButtonColor] = useState(false)
     const [showTaskCard, setShowTaskCard] = useState(false)
+    const date = new Date
     let [orderValue, setOrderValue] = useState(task.order)
 
     const updateTaskOrder = (task) => {
@@ -123,10 +125,13 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                 <Divider task={task}/>
                 <div className="btnwrap"
                     style={{
-                        width: '165px', 
+                        width: '155px', 
+                        height: '80%',
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        justifyContent: 'space-around',
                         marginLeft: '5px',
+                        gap: '0px',
+                        // border: '1px solid red'
                     }}
                 >
                     
@@ -147,29 +152,41 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                     
                     <Divider task={task}/>
                     
-                    <div 
+                    {/* <div 
                         style={{
-                            backgroundColor: '#1890ff29', 
-                            width: '75%', 
-                            width: '100%',
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            // width: '68%',
+                            height: '28px',
                             overflow: 'hidden',
                             marginRight: '0px',
-                            borderTopLeftRadius: '8%',
-                            borderTopRightRadius: '8%',
-                            borderBottomLeftRadius: '8%',
-                            borderBottomRightRadius: '8%',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center', 
-                            // margin: '10px',
-                            padding: '0px',
+                            // padding: '3px',
                             margin: 'auto',
-                            // marginLeft: '10px'
+                            boxSizing: 'border-box',
+                            // border: parseFloat(task.timer) > parseFloat(task.time_to_complete)? '1px solid red': null,
+                            maxWidth: '110px'
                         }}
+                    > */}
+                    <div className="subitem-wrap"
+                        style={{margin: 'auto', maxWidth: '150px'}}
                     >
+                        <Button 
+                            style={{
+                                display: 'flex', 
+                                justifyContent: 'center', 
+                                alignItems: 'center', 
+                                maxWidth: '110px',
+                                padding: '4px 5px',
+                                margin: 'auto'
+                            }}>
                         <div 
                             className="timerSlot" 
-                            style={{color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null, width: '120px' 
+                            style={{
+                                color: parseFloat(task.timer) > parseFloat(task.time_to_complete)? 'red' : null, 
+                                maxWidth: '60px',
+                                display: 'block' 
                             }}
                             >
                             {state.work_mode && state.inProgressTimer && state.selectedTask.id === task.id?
@@ -200,17 +217,31 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                                 task={task}
                                 updateTask={updateTask}
                             /> 
+                    </Button>
                     </div>
                 </div>
                     <Divider task={task}/>
                         <div className="timerSlot"
-                            style={{width: '70px', display: 'flex', justifyContent: 'space-around'}}
+                            style={{width: '75px', display: 'flex', justifyContent: 'space-around'}}
                         >   
-                            {task.reward && <OverlayVisible task={task}/>}
+                            <Button style={{fontSize: '11px', display: 'flex', maxWidth: '80px', minWidth: '65px', fontSize: '11px', margin: 'auto', textAlign: 'center'}}>{task.reward? task.reward &&  <OverlayVisible task={task}/>: 'Reward'}</Button>
                         </div>
                     <Divider task={task}/>
-                        <div className="timerSlot"
-                                style={{width: '40px', display: 'flex', justifyContent: 'space-around'}}
+                    <div className="timerSlot"
+                                style={{width: '90px', display: 'flex', justifyContent: 'space-around'}}
+                            > 
+                            <p 
+                                style={{
+                                    fontSize: '11px', 
+                                    fontWeight: 'bold', 
+                                    color: reformatDate(date, "dd/MM/yyyy") === reformatDate(task.created_at, "dd/MM/yyyy")? null : 'red'
+                                }}>
+                                    {reformatDate(task.created_at, "dd/MM/yyyy")}
+                            </p>
+                    </div>
+                    <Divider task={task}/>
+                    <div className="timerSlot"
+                                style={{width: '15px', display: 'flex', justifyContent: 'space-around', margin: 'auto'}}
                             > 
                             <DuplicateTask 
                                 updateTask={updateTask}
@@ -218,7 +249,7 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                                 createTask={createTask}
                             />
                         </div>
-                    <Divider task={task}/>
+                    {/* <Divider task={task}/> */}
             </div>
         </List.Item>
         }

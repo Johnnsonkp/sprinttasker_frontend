@@ -4,6 +4,7 @@ import { Avatar, Breadcrumb, Dropdown, Menu, message } from 'antd';
 import {Link, useNavigate} from "react-router-dom";
 
 import { DownOutlined } from '@ant-design/icons';
+import LogoComponent from './logo';
 import Preload from '../utilities/Preload'
 import React from "react";
 import Wave from "../utilities/wave";
@@ -106,18 +107,22 @@ const Nav = () => {
         </>
       )
     }
-    const BreadCrumb = () => {
+
+    const TopBanner = () => {
       const auth = JSON.parse(window.localStorage.getItem("auth"));
       const userFirstInitials = auth && auth.name[0].length > 0? auth.name[0].toUpperCase() : null
 
       return (
-        <div className="BreadCrumb" 
-            style={{height: '30px', width: '100%', position: 'sticky', top: '0px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto', borderBottom: '1px solid lightgray'}} 
-            >
+        <div 
+            className="BreadCrumb" 
+            style={{height: '31px', width: '100%', position: 'fixed', top: '0px', textAlign: 'right', paddingLeft: '5px',paddingRight: '20px', backgroundColor: 'rgba(24, 144, 255, 1)' , color: '#111', zIndex: '4', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto', display: 'flex', justifyContent: 'space-between', backgroundColor: '#f3f2f1'}} 
+        >
+            <LogoComponent style={{zIndex: '9000'}}/>
            <div style={{position: 'sticky', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
-            <Breadcrumb separator=">">
-              <Breadcrumb.Item style={{color: '#fff', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
+            <Breadcrumb >
+              <Breadcrumb.Item style={{color: '#111', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
               <Breadcrumb.Item >
+              
                 <Avatar
                     style={{
                       backgroundColor: "#f56a00",
@@ -137,10 +142,42 @@ const Nav = () => {
       );
     }
 
+    const BreadCrumb = () => {
+      const auth = JSON.parse(window.localStorage.getItem("auth"));
+      const userFirstInitials = auth && auth.name[0].length > 0? auth.name[0].toUpperCase() : null
+
+      return (
+        <div className="BreadCrumb" 
+            style={{height: '30px', width: '100%', position: 'fixed', top: '31px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto', borderBottom: '1px solid lightgray'}} 
+            >
+           <div style={{position: 'fixed', top: '0px', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
+            <Breadcrumb >
+              {/* <Breadcrumb.Item style={{color: '#fff', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
+              <Breadcrumb.Item >
+                <Avatar
+                    style={{
+                      backgroundColor: "#f56a00",
+                      verticalAlign: "middle",
+                      margin: 'auto',
+                      marginRight: '10px'
+                    }}
+                    size={23}
+                    gap={3}
+                  >
+                  {auth && auth.name[0].length > 0? userFirstInitials : '?'}
+              </Avatar>
+              </Breadcrumb.Item> */}
+            </Breadcrumb>
+          </div> 
+        </div>
+      );
+    }
+
     const NavComponent = () => {
 
       return (
         <>
+        {location.pathname === "/" || location.pathname == "/auth/login" || location.pathname == "/auth/signup"  ? <></> :<TopBanner />}
         {location.pathname === "/" || location.pathname == "/auth/login" || location.pathname == "/auth/signup"  ? <></> :<BreadCrumb />}
         {location.pathname === "/" || location.pathname === "/about" || location.pathname  === "/developer" || location.pathname == "/auth/login" || location.pathname == "/auth/signup" ?  
           <header style={styles.header}>

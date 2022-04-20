@@ -22,8 +22,6 @@ import { useAppState } from "../AppState";
 import { useEffect } from 'react';
 import { useLocation } from "react-router";
 
-// import { Redirect } from "react-router-dom";
-
 export function SidePanel({notes}) {
   const {dispatch} = useAppState()
   const navigate = useNavigate();
@@ -36,7 +34,7 @@ export function SidePanel({notes}) {
 
   const onCollapse = () => {
     console.log(collapsed);
-    return (setCollapsed(!collapsed))
+    // return (setCollapsed(!collapsed))
   };
   const sliderSelectedKey = (e) => {
     let workSpaces = {
@@ -62,7 +60,8 @@ export function SidePanel({notes}) {
         return (
           <div className="sidePanel">
             { location.pathname !== '/data' ?
-          <Layout style={{ minHeight: '100vh', minWidth: '300px', position: 'fixed', top: '0px', zIndex: '1' }}>
+          <Layout style={{ minHeight: '100vh', minWidth: '300px', position: 'fixed', top: '31px', zIndex: '1' }}>
+            {/* <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}> */}
             <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse()}>
               <div className="logo" />
               {/* defaultSelectedKeys={['1']} */}
@@ -131,7 +130,7 @@ export function SidePanel({notes}) {
                     marginLeft: "11px",
                     marginRight: "10px",
                     position: 'absolute',
-                    bottom: '8vh',
+                    bottom: '12vh',
                     left: collapsed ? '0vw' : '4.8vw' 
                   }}
                   size={collapsed ? 40 : 45 }
@@ -148,8 +147,8 @@ export function SidePanel({notes}) {
 
               {collapsed ?   
                 <Link to="/" className="sideNavLogo">
-                  <img src={logo} className="App-logo title-logo" alt="logo" />
-                  <h3 >TaskSprinter</h3>
+                  <img src={logo} className="App-logo title-logo" alt="logo"/>
+                  <h3 style={{ marginLeft: '0px', marginRight: '-40px', position: 'absolute'}}>TaskSprinter</h3>
                 </Link> : <></>
               }
                 <Divider />
@@ -163,18 +162,25 @@ export function SidePanel({notes}) {
                 <></> 
                 }
 
-                <Footer style={{backgroundColor: '#323439', position: "relative", left: '0px', padding: '0px', width: '65%'}}>
+                <Footer 
+                  style={{
+                    backgroundColor: '#323439', 
+                    position: "relative", 
+                    left: '0px', 
+                    padding: '0px', 
+                    width: '65%',
+                    bottom: '30px'
+                  }}>
                   <div 
                     style={{
                       display: 'flex', 
                       justifyContent: 'space-around', 
                       alignItems: 'center',
                       color: '#fff',
-                      width: '95%',
+                      width: '85%',
                       height: '37px',
                       fontSize: '16px', 
                       cursor: 'pointer',
-                      // border: '1px solid rgba(248, 72, 74, 0.48)',
                       border: 'none',
                       padding: '5px 12px',
                       borderRadius: '18px',
@@ -195,6 +201,5 @@ export function SidePanel({notes}) {
           }
           </div>
         );
-      // }
 }
     

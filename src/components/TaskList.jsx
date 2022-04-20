@@ -140,7 +140,7 @@ const TaskList = (props) => {
                             <Tabs defaultActiveKey={state.work_mode ? "Inprogress" : "all"}>
                                 
                                 { state.selectedTask && state.work_mode ? 
-                                    <TabPane type="danger" tab="In Progress" key="Inprogress">
+                                    <TabPane type="danger" tab="In progress" key="Inprogress">
                                         <InProgressTab onTaskToggle={handleToggleTaskStatus} onTaskRemoval={handleRemoveTask}  updateTask={updateTask} createTask={createTask}/> 
                                     </TabPane> : null
                                 }

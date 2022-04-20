@@ -2,7 +2,6 @@ import React from "react";
 import { useAppState } from "../AppState";
 import { useNavigate } from "react-router-dom";
 
-
 // export default function Form(props){
 const Form = (props) => {
     const { state } = useAppState();
@@ -46,8 +45,8 @@ const Form = (props) => {
     };
 
     const handleChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
-      };
+      setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();

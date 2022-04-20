@@ -32,8 +32,12 @@ export const OverlayVisible = (props) => {
       onVisibleChange={() => handleVisibleChange()}
       visible={visible}
     >
-      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-        Reward <DownOutlined />
+      <a
+        className="ant-dropdown-link"
+        onClick={(e) => e.preventDefault()}
+        style={{ fontSize: "11px" }}
+      >
+        Reward <DownOutlined style={{ fontSize: "8px" }} />
       </a>
     </Dropdown>
   );

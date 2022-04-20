@@ -46,3 +46,16 @@ export const PrimaryContainer = (props) => {
     </div>
   );
 };
+
+export const Wrapper = (props) => {
+  return (
+    <div
+      style={{
+        marginTop: "75px",
+        // transform: "scaleX(0.8)",
+      }}
+    >
+      {props.component}
+    </div>
+  );
+};

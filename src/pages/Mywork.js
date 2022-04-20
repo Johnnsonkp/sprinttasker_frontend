@@ -94,7 +94,7 @@ const Mywork = () => {
               ? state.name + "'s Sprints"
               : authToken.name + "Sprints"}
           </div>
-          <div style={{ position: "relative", top: "-20px", left: "75%" }}>
+          <div style={{ position: "relative", top: "-20px", left: "70%" }}>
             <TimerContainer />
           </div>
         </div>
@@ -108,13 +108,7 @@ const Mywork = () => {
           </div>
         </div>
       </div>
-      {/* <TaskList /> */}
 
-      {/* {sprints &&
-        sprints.map((sprint) => {
-          console.log(sprints);
-          return <h1 key={sprint.id}>{sprint.name}</h1>;
-        })} */}
       <TaskList sprints={sprints} />
 
       <button onClick={() => createTask()}>+</button>

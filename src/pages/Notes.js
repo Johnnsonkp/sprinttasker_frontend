@@ -24,6 +24,9 @@ const Notes = () => {
       backgroundColor: "#282c34",
       minHeight: "100vh",
       color: "#fff",
+      position: "absolute",
+      top: "8%",
+      paddingBottom: "30px",
     },
     notesContainer: {
       marginLeft: "22%",

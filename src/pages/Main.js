@@ -2,12 +2,14 @@ import Preload from "../utilities/Preload";
 import React from "react";
 import StandUpComp from "../components/SlideDashboard";
 import TaskList from "../components/TaskList";
-import TimerContainer from "../components/TimerContainer";
+import { WorkSpaceHeader } from "../components/workspaceHeader/WorkspaceHeader";
 import { useAppState } from "../AppState";
+import { useWindowSize } from "../utilities/utilFunctions";
 
 export default function Main(props) {
   const { state } = useAppState();
   const authToken = JSON.parse(window.localStorage.getItem("auth"));
+  const size = useWindowSize();
 
   const loaded = () => {
     return (
@@ -20,17 +22,15 @@ export default function Main(props) {
           width: "100%",
           margin: "auto",
           transition: "all 5s easeInOut",
+          transform:
+            size.width > 1400
+              ? null
+              : size.width < 1200
+              ? "scaleX(0.75)"
+              : "scaleX(0.9)",
         }}
       >
-        <div id="menu-banner" className="trackList ">
-          <div className="dummy-side-panel"></div>
-          <div className="tasklist">
-            <div className="rest-title workspace-textfield">Main WorkSpace</div>
-            <div style={{ position: "relative", top: "-20px", left: "75%" }}>
-              <TimerContainer />
-            </div>
-          </div>
-        </div>
+        <WorkSpaceHeader title={"Main WorkSpace"} />
         <div className="standup-section">
           <StandUpComp tasks={state.alltasks} />
         </div>
@@ -39,5 +39,4 @@ export default function Main(props) {
     );
   };
   return <Preload timeoutLengthInSeconds={2000} handleFunction={loaded()} />;
-  // return loaded();
 }

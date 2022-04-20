@@ -3,7 +3,8 @@ export const TimerSlot = (props) => {
     <div
       className="timerSlot"
       style={{
-        width: "130px",
+        // width: "130px",
+        maxWidth: "100px",
         display: "flex",
         justifyContent: "space-around",
       }}
@@ -18,11 +19,6 @@ export const TimerSlot = (props) => {
           overflow: "hidden",
         }}
       >
-        {/* <h5
-          style={{ fontWeight: "400", marginTop: "auto", marginBottom: "auto" }}
-        >
-          ETC:
-        </h5> */}
         <textarea
           onChange={(e) =>
             props.updateEstimatedTimeToComplete(e, props.task, props.updateTask)
@@ -31,7 +27,7 @@ export const TimerSlot = (props) => {
           cols="10"
           style={{
             border: "1px solid transparent",
-            padding: "5px",
+            // padding: "5px",
             width: "100%",
             height: "100%",
             background: "transparent",

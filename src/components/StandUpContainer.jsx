@@ -108,11 +108,6 @@ export const StandUpComponent = () => {
     
     return (
         <div style={{ height: height, marginTop: '20px'}} className={`site-card-border-less-wrapper card ${flip ? "flip" : ""} `} >
-            {/* <RightCircleOutlined 
-                style={{position: 'relative', left: '135px', bottom: '-70px', zIndex: 2, color: 'red', width: '50px'}}
-                onClick={() => setFlip(!flip)}
-                width={10}
-            /> */}
             <Card 
                 title={flip ? `Stand Down @5:00pm` : `Stand Up @5:00am` }
                 bordered={false} 
@@ -122,8 +117,6 @@ export const StandUpComponent = () => {
                     style={{position: "relative", top: '-65px', left: '75%', cursor: 'pointer', fontSize: '13px', marginTop: '20px'}}
                     onClick={() => setWithExpiry("standup", data, 1642640400000 )}
                 >Save Items</Button>
-
-                     
                 <div
                     style={{ }}
                 >   
@@ -131,16 +124,16 @@ export const StandUpComponent = () => {
                         <div className="front" ref={frontEl} style={{width: '100%', margin: 'auto', position: "relative", top: '-55px'}}>
                             {   data.map((content, key) => content.task? 
                                 content.task !== null &&
-                                (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#fff', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #999', width: '100%'}}
+                                (<div style={{display: 'flex', alignItems: 'center', backgroundColor: '#fff', paddingLeft: '10px', paddingTop: '0px', paddingBottom: '0px', marginTop: '5px', marginBottom: '5px', border: '1px solid #999', width: '100%', borderRadius: '5px'}}
                                 >   
                                     <input onClick={() => onTaskToggle(content)} type="checkbox" id={key} checked={content.toggle? true : false}/>
                                     <label style={styles.taskContainer} for={key}>
                                         <p style={styles.individualTask} key={key}>
-                                            <div style={{}}>{counter++}. </div>
+                                            <div style={{paddingRight: '5px'}}>{counter++}. </div>
                                             <span id={'content'} data-key={key} key={key}
                                                 style={{ textDecoration: content.toggle? 'line-through' : null }} 
                                             >
-                                                {content.task}
+                                                { content.task}
                                             </span>
                                         </p>
                                         <Button onClick={(e) => onTaskDelete(content)} className="remove-task-button" type="primary" danger> X 
