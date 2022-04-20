@@ -99,7 +99,7 @@ export default function TimerContainer() {
                         color: '#fff', 
                         fontSize: '12px', 
                         fontWeight: 'bold', 
-                        marginRight: state.work_mode ? '0px' : '130px'
+                        marginRight: state.work_mode ? '0px' : '100px'
                     }}>
                     {state.work_mode ? newTimer() : 'No task selected...'}
                 </span>
