@@ -11,23 +11,6 @@ export const WorkSpaceHeader = (props) => {
                 props.title
                 :
                 <>
-                    {/* <Avatar
-                        style={{
-                            backgroundColor: "#f56a00",
-                            verticalAlign: "middle",
-                            marginLeft: "15px",
-                            marginRight: "15px",
-                            position: 'relative',
-                            display: 'block'
-                        }}
-                        size={45}
-                        gap={0}
-                        >
-                        {props.userFirstInitials}
-                    </Avatar> */}
-                    {/* <div>
-                        <h1 style={{fontWeight: "bolder",margin: "0px"}}>{props.welcomeTitle}, {props.User}</h1>
-                    </div> */}
                     <div style={{fontSize: '25px', display: 'flex', alignItems: 'center'}}>
                         <Avatar
                             style={{
@@ -50,7 +33,10 @@ export const WorkSpaceHeader = (props) => {
             }
             </div>
             {/* <div style={{ position: "relative", top:'-20px',  left: "75%", alignItems: 'center' }}> */}
-            <div style={{ position: "absolute", top:'120px',  left: "75%" }}>
+            {/* <div style={{ position: "absolute", top:'120px',  left: "75%" }}>
+              <TimerContainer />
+            </div> */}
+            <div style={{ position: "fixed", top:'53px', left: "77%", zIndex: '9000' }}>
               <TimerContainer />
             </div>
           </div>

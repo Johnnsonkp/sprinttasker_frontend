@@ -7,7 +7,6 @@ import { DownOutlined } from '@ant-design/icons';
 import LogoComponent from './logo';
 import Preload from '../utilities/Preload'
 import React from "react";
-import Wave from "../utilities/wave";
 import logo from "../logo.svg";
 import {useAppState} from '../AppState'
 import { useLocation } from "react-router";
@@ -148,27 +147,8 @@ const Nav = () => {
 
       return (
         <div className="BreadCrumb" 
-            style={{height: '30px', width: '100%', position: 'fixed', top: '31px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto', borderBottom: '1px solid lightgray'}} 
+            style={{height: '30px', width: '100%', position: 'fixed', top: '31px', textAlign: 'right', paddingLeft: '20px', paddingRight: '20px', backgroundColor: '#323439', color: '#fff', zIndex: '1', overflow: 'hidden', margintop: 'auto', marginBottom: 'auto', display: 'flex', alignItems: 'flex-start'}} 
             >
-           <div style={{position: 'fixed', top: '0px', height: '100%',margintop: 'auto', marginBottom: 'auto'}}>
-            <Breadcrumb >
-              {/* <Breadcrumb.Item style={{color: '#fff', marginRight: '-10px', margintop: 'auto', marginBottom: 'auto', fontWeight: 'bolder'}}>Hi, {state.name}</Breadcrumb.Item>
-              <Breadcrumb.Item >
-                <Avatar
-                    style={{
-                      backgroundColor: "#f56a00",
-                      verticalAlign: "middle",
-                      margin: 'auto',
-                      marginRight: '10px'
-                    }}
-                    size={23}
-                    gap={3}
-                  >
-                  {auth && auth.name[0].length > 0? userFirstInitials : '?'}
-              </Avatar>
-              </Breadcrumb.Item> */}
-            </Breadcrumb>
-          </div> 
         </div>
       );
     }
@@ -203,6 +183,7 @@ const Nav = () => {
         </>
       );
     }
+    // return <NavComponent />
     return <Preload timeoutLengthInSeconds={400} handleFunction={NavComponent()} />;
 }
 

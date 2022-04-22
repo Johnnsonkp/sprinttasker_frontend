@@ -9,7 +9,9 @@ import Loading from "./Loading";
 import StandUpComp from "../components/SlideDashboard";
 import TaskList from "../components/TaskList";
 import TimerContainer from "../components/TimerContainer";
+import { WorkSpaceHeader } from "../components/workspaceHeader/WorkspaceHeader";
 import { useAppState } from "../AppState";
+import { useWindowSize } from "../utilities/utilFunctions";
 
 // src / components / progressSteps / ProgressSteps.jsx;
 
@@ -18,6 +20,7 @@ const Mywork = () => {
   const authToken = JSON.parse(window.localStorage.getItem("auth"));
   const baseUrl = process.env.REACT_APP_DEV_API_URL;
   const [sprints, setSprints] = useState();
+  const size = useWindowSize();
 
   // const createSprintComponent = async () => {
   //   return fetch(baseUrl + "sprints", {
@@ -77,30 +80,59 @@ const Mywork = () => {
   };
 
   const loaded = () => (
+    // <div
+    //   style={{
+    //     paddingLeft: "100px",
+    //     paddingRight: "0px",
+    //     maxWidth: "1500px",
+    //     width: "100%",
+    //     margin: "auto",
+    //   }}
+    // >
+    //   <div id="menu-banner" className="trackList ">
+    //     <div className="dummy-side-panel"></div>
+    //     <div className="tasklist ">
+    //       <div className="rest-title workspace-textfield">
+    //         {state.name
+    //           ? state.name + "'s Sprints"
+    //           : authToken.name + "Sprints"}
+    //       </div>
+    //       <div style={{ position: "relative", top: "-20px", left: "70%" }}>
+    //         <TimerContainer />
+    //       </div>
+    //     </div>
+    //     <WorkSpaceHeader title={"Main WorkSpace"} />
+    //   </div>
+    //   <div className="standup-section">
+    //     <div id="menu-banner" className="trackList">
+    //       <div className="dummy-side-panel"></div>
+    //       <div className="tasklist ">
+    //         <DefaultProgresSteps />
+    //       </div>
+    //     </div>
+    //   </div>
+
+    //   <TaskList sprints={sprints} />
+
     <div
+      id="main"
       style={{
         paddingLeft: "100px",
         paddingRight: "0px",
         maxWidth: "1500px",
         width: "100%",
         margin: "auto",
+        transition: "all 5s easeInOut",
+        transform:
+          size.width > 1400
+            ? null
+            : size.width < 1200
+            ? "scaleX(0.75)"
+            : "scaleX(0.9)",
       }}
     >
-      <div id="menu-banner" className="trackList ">
-        <div className="dummy-side-panel"></div>
-        <div className="tasklist ">
-          <div className="rest-title workspace-textfield">
-            {state.name
-              ? state.name + "'s Sprints"
-              : authToken.name + "Sprints"}
-          </div>
-          <div style={{ position: "relative", top: "-20px", left: "70%" }}>
-            <TimerContainer />
-          </div>
-        </div>
-      </div>
+      <WorkSpaceHeader title={"My Sprints"} />
       <div className="standup-section">
-        {/* <StandUpComp tasks={state.alltasks} /> */}
         <div id="menu-banner" className="trackList">
           <div className="dummy-side-panel"></div>
           <div className="tasklist ">
@@ -108,12 +140,13 @@ const Mywork = () => {
           </div>
         </div>
       </div>
-
       <TaskList sprints={sprints} />
+      {/* </div> */}
 
       <button onClick={() => createTask()}>+</button>
       <button onClick={() => refresh()}>Load Sprint</button>
     </div>
+    /* </div> */
   );
 
   return loaded() ? loaded() : <Loading />;

@@ -15,11 +15,11 @@ export default function TimerContainer() {
         hide: {
             opacity: 0,
             transition: 'all 1ms ease-in',
-            transitionProperty: 'opacity,width',
+            transitionProperty: 'opacity, width',
             width: '0%',
             position: "absolute",
             left: '0px',
-            top: '100px',
+            top: '28px',
             backgroundColor: "lightGrey",
         },
         show: {
@@ -29,32 +29,24 @@ export default function TimerContainer() {
             transitionProperty: 'opacity,width',
             position: "absolute",
             left: '0px',
-            top: '44px',
+            top: '29px',
             boxShadow: '0 4px 17px 6px rgb(0 0 0 / 10%)',
             zIndex: '1',
             backgroundColor: "#f5f6f8",
             backgroundColor: '#3e3e3e',
-            // backgroundColor: '#f0f2f5',
-            // border: state.work_mode ? "2px solid #ff4d4f" :  "2px solid rgb(0, 200, 117)",
-            // border: '1px solid transparent',
             borderBottomLeftRadius: '6px', 
             borderBottomRightRadius: '6px',
             boxShadow: 'rgb(100 100 100 / 30%) 0px 0px 2px 1px',
-            // color: '#111 !important',
-            
         },
         workMode: {
             border: "3px solid #ff4d4f",
             backgroundColor: 'rgb(17, 17, 17)',
-            // backgroundColor: '#f0f2f5',
             color: '#111 !important',
             boxShadow: 'rgb(100 100 100 / 30%) 0px 0px 2px 1px',
         },
         restMode: {
             backgroundColor: 'rgb(17, 17, 17)',
-            // backgroundColor: '#f0f2f5',
             border: "3px solid rgb(0, 200, 117)",
-            // border: "2px solid lightgrey",
             color: '#111 !important',
             boxShadow: 'rgb(100 100 100 / 30%) 0px 0px 2px 1px',
         },
@@ -77,6 +69,7 @@ export default function TimerContainer() {
         } 
         
     }, [state.work_mode])
+// }, [state.selectedTask])
 
     return (
         <div className="timer-container" >
@@ -158,10 +151,7 @@ export default function TimerContainer() {
                             margin: 'auto',
                             padding: '5px 10px',
                             boxSizing: 'borderBox',
-                            // background: 'hsla(0,0%,100%,.8)',
-                            // background: '#fff',
                             backgroundColor: 'hsla(0,0%,100%,.1)',
-                            // border: '1px solid lightgrey',
                             borderRadius: '5px',
                             position: 'relative',
                             color: '#111'
