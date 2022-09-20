@@ -13,7 +13,8 @@ import Notes from "./Notes";
 import { PrimaryContainer } from "../components/common/container/container";
 import React from "react";
 import SmallWave from "../wave-small.png";
-import TaskList from "../components/TaskList";
+// import TaskList from "../components/TaskList";
+import TaskList from "../components/tasklist/TaskList";
 import { WorkSpaceHeader } from "../components/workspaceHeader/WorkspaceHeader";
 
 const { Search } = Input;

@@ -2,7 +2,7 @@ import {List} from 'antd';
 import React from 'react';
 import TaskItem from './TaskItem';
 
-const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, updateTask, createTask}) => {
+const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, updateTask, createTask, handleTimer}) => {
     return (
     <>  
         <List 
@@ -14,11 +14,11 @@ const TaskTab = ({tasks, onTaskRemoval, onTaskToggle, inProgress, updateTimer, u
                     task_id={task.id}
                     task={task}
                     createTask={createTask}
-                    // inProgress={inProgress}
                     onTaskToggle={onTaskToggle}
                     onTaskRemoval={onTaskRemoval}
                     updateTimer={updateTimer}
                     updateTask={updateTask}
+                    handleTimer={handleTimer}
                 />
             )}
             pagination={{

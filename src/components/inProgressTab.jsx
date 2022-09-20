@@ -1,8 +1,7 @@
-import React from 'react';
 import {List} from 'antd';
-import TaskItem from './TaskItem';
+import React from 'react';
+import TaskItem from './tasklist/TaskItem';
 import { useAppState } from "../AppState";
-
 
 const InProgressTab = ({ onTaskRemoval, onTaskToggle}) => {
     const {state, dispatch} = useAppState()

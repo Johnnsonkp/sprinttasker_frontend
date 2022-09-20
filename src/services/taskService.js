@@ -80,6 +80,7 @@ export function postTask(task) {
       reward: task.reward,
       subitems: task.subitems,
       time_to_complete: task.time_to_complete,
+      timer: "00:00",
       completed: task.completed,
       order: task.order,
     }),

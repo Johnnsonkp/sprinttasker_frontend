@@ -1,5 +1,6 @@
 import Avatar from "antd/lib/avatar/avatar"
-import TimerContainer from "../TimerContainer"
+// import TimerContainer from "..TimerContainer"
+import TimerContainer from "../timerContainer/TimerContainer"
 
 export const WorkSpaceHeader = (props) => {
     return (

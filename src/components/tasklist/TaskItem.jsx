@@ -1,21 +1,21 @@
-import {Button, Card, Dropdown, List, Menu, Popconfirm, Tag, Tooltip} from 'antd';
-import {CheckOutlined, DownOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
+import {Button, List, Popconfirm, Tag, Tooltip} from 'antd';
+import {CheckOutlined, MessageOutlined, PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import React, {useEffect, useState} from 'react';
-import { TimerTextArea, TimerTextAreaInProgressTimer } from './common/inputs/input';
-import { taskTimerUpdate, updateEstimatedTimeToComplete, updateTaskTimer } from '../utilities/utilFunctions';
+import { TimerTextArea, TimerTextAreaInProgressTimer } from '../common/inputs/input';
+import { taskTimerUpdate, updateEstimatedTimeToComplete, updateTaskTimer } from '../../utilities/utilFunctions';
 
-import { Divider } from '../utilities/utilFunctions';
-import { DuplicateTask } from './common/buttons/buttons';
-import { FullPageOverlayCard } from './common/cards/cards';
+import { Divider } from '../../utilities/utilFunctions';
+import { DuplicateTask } from '../common/buttons/buttons';
+import { FullPageOverlayCard } from '../common/cards/cards';
 import { InputNumber } from 'antd';
-import { OverlayVisible } from './common/dropdown/dropdown';
-import {TimerSlot} from './timedisplay/timeSlotDisplay'
-import { capitalizeFirstLetter } from '../utilities/utilFunctions';
-import { reformatDate } from '../utilities/utilFunctions';
-import { styles } from './styles/task.styles';
-import { useAppState } from '../AppState';
+import { OverlayVisible } from '../common/dropdown/dropdown';
+import {TimerSlot} from '../timedisplay/timeSlotDisplay'
+import { capitalizeFirstLetter } from '../../utilities/utilFunctions';
+import { reformatDate } from '../../utilities/utilFunctions';
+import { styles } from '../styles/task.styles';
+import { useAppState } from '../../AppState';
 
-const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, task_id, createTask}) => {
+const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, task_id, createTask, handleTimer}) => {
     const {state, dispatch } = useAppState();
     const [toggle, setToggle] = useState(true)
     const [hover, setHover] = useState(false);
@@ -30,20 +30,19 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
             updateTask(task)
         }
     }
-
     const updateTaskTimerOnClick =  (task) => {
-        if(!state.work_mode && state.selectedTask.id === task.id){
-            task.timer = state.inProgressTimer
-            updateTask(task)
-        }
+        task.timer = state.inProgressTimer
+        return updateTask(task)
     }
 
     useEffect(() => {
         setButtonColor(state.work_mode && state.selectedTask.id === task.id ? true : false)
-            updateTaskTimerOnClick(task)
-            return function cleanup() {
-                updateTaskTimerOnClick(task)
-            }
+        // if(buttonColor === false && !state.work_mode && state.selectedTask.id === task.id){
+        //     return updateTaskTimerOnClick(task)
+        // }
+        if(!state.work_mode && state.selectedTask.id === task.id){
+            return updateTaskTimerOnClick(task)
+        }
     }, [state.work_mode, state.selectedTask])
 
     return (
@@ -131,7 +130,6 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                         justifyContent: 'space-around',
                         marginLeft: '5px',
                         gap: '0px',
-                        // border: '1px solid red'
                     }}
                 >
                     
@@ -145,30 +143,13 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                             if(toggle === false){
                                 setHover(false)
                             }
-                            dispatch({ type: "workMode", payload: toggle})
                             dispatch({ type: "selectTask", payload: task})
+                            dispatch({ type: "workMode", payload: toggle})
                         }}
                         icon={task.id === state.selectedTask.id && buttonColor ? <PauseCircleOutlined /> : <PlayCircleOutlined />}/>
                     
                     <Divider task={task}/>
-                    
-                    {/* <div 
-                        style={{
-                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                            // width: '68%',
-                            height: '28px',
-                            overflow: 'hidden',
-                            marginRight: '0px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center', 
-                            // padding: '3px',
-                            margin: 'auto',
-                            boxSizing: 'border-box',
-                            // border: parseFloat(task.timer) > parseFloat(task.time_to_complete)? '1px solid red': null,
-                            maxWidth: '110px'
-                        }}
-                    > */}
+
                     <div className="subitem-wrap"
                         style={{margin: 'auto', maxWidth: '150px'}}
                     >
@@ -209,7 +190,9 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                                     key={task.id}
                                     otherKey={task.id}
                                 />
+
                             } 
+
                         </div> / 
 
                         <TimerSlot 
@@ -249,7 +232,6 @@ const Task = ({task, onTaskRemoval, onTaskToggle, updateTimer, updateTask, key, 
                                 createTask={createTask}
                             />
                         </div>
-                    {/* <Divider task={task}/> */}
             </div>
         </List.Item>
         }

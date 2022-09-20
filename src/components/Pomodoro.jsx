@@ -73,9 +73,6 @@ export default function Pomodoro(props) {
         dispatch({ type: "inProgressTimer", payload: countUpTimer})
       } 
       if(!state.work_mode && !stopTimer){
-        // setdisplayMessage(false);
-        // setStopTimer(true)
-
         let CountUpTimerMinutes = countUpMinutes < 10 ? `0${countUpMinutes}` : countUpMinutes;
         let CountUpTimerSeconds = countUpSeconds < 10 ? `0${countUpSeconds}` : countUpSeconds;
         let countUpTimer = `${CountUpTimerMinutes}:${CountUpTimerSeconds}`
@@ -86,12 +83,6 @@ export default function Pomodoro(props) {
         setStopTimer(true)
       }
     }, 535);
-
-    // let CountUpTimerMinutes = countUpMinutes < 10 ? `0${countUpMinutes}` : countUpMinutes;
-    // let CountUpTimerSeconds = countUpSeconds < 10 ? `0${countUpSeconds}` : countUpSeconds;
-    // let countUpTimer = `${CountUpTimerMinutes}:${CountUpTimerSeconds}`
-
-    // dispatch({ type: "inProgressTimer", payload: countUpTimer})
   }, [seconds])
 
   return (

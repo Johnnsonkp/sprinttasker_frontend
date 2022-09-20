@@ -815,16 +815,19 @@ label{
   cursor: pointer;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0))
   translateY(var(--translate-y, 0));
-  background-color: yellow;
-  background-color: #f5f6f8;
   /* background-color: yellow;
-  min-width: 350; */
+  background: rgb(196, 132, 243); */
+  
+
+  background-color: rgba(0, 0, 255, 0.25); 
   min-height: 220;
   box-shadow: 0 0 5px 3px rgba(100 100 100 / 30%);
 }
-/* .standup-section .site-card-border-less-wrapper .ant-card{
-  
-} */
+.ant-card .ant-card-head-title{
+  color: #fff;
+  color: #111;
+  font-weight: bold;
+}
 .card .front{
   left: 0;
 }
@@ -870,4 +873,8 @@ label{
 }
 .ant-breadcrumb-separator{
   visibility: hidden;
+}
+#completed{
+  /* background: rgba(0, 0, 255, 0.25) !important; */
+  background: transparent;
 }

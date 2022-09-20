@@ -6,9 +6,11 @@ import {
 
 import { DefaultProgresSteps } from "../components/progressSteps/ProgressSteps";
 import Loading from "./Loading";
-import StandUpComp from "../components/SlideDashboard";
-import TaskList from "../components/TaskList";
-import TimerContainer from "../components/TimerContainer";
+import StandUpComp from "../components/slideDashboard/SlideDashboard";
+// import TaskList from "../components/TaskList";
+import TaskList from "../components/tasklist/TaskList";
+// import TimerContainer from "../components/TimerContainer";
+import TimerContainer from "../components/timerContainer/TimerContainer";
 import { WorkSpaceHeader } from "../components/workspaceHeader/WorkspaceHeader";
 import { useAppState } from "../AppState";
 import { useWindowSize } from "../utilities/utilFunctions";

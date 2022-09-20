@@ -15,6 +15,7 @@ const initialState = {
     alltasks: null,
     user_id: 0,
     work_mode: false,
+    stateToggle: 0,
     notes: [],
     selectedTask: '',
     selectedNote: [],
@@ -52,7 +53,10 @@ export const reducer = (state, action) => {
             break;
         case "getTasks":
             newState = {...state, alltasks: action.payload}
-            console.log('getTasks:', state.alltasks)
+            return newState;
+            break;
+        case "alltasks":
+            newState = {...state, alltasks: action.payload}
             return newState;
             break;
         case "workMode":
@@ -66,6 +70,10 @@ export const reducer = (state, action) => {
             break;
         case "selectTask":
             newState = {...state, selectedTask: action.payload}
+            return newState;
+            break;
+        case "stateToggle":
+            newState = {...state, stateToggle: action.payload}
             return newState;
             break;
         case "unSelectTask":

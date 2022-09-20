@@ -1,5 +1,6 @@
+import { Dropdown, Menu, Space, message } from 'antd';
+
 import React from "react";
-import { Menu, Dropdown, message, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const TaskSubitems = ({task}) => {
@@ -17,7 +18,6 @@ const TaskSubitems = ({task}) => {
         
         <Menu onClick={handleMenuClick}>
             <Menu.Item key="1" icon={<UserOutlined />}>
-                
             </Menu.Item>
         </Menu>
     );

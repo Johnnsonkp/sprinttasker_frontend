@@ -1,15 +1,18 @@
-import React, { useState } from "react";
 import "../App.css";
-import { Container, Segment, Header, Divider } from "semantic-ui-react";
-import InputListComponent from "../components/InputList.component.jsx";
+
+import { Container, Divider, Header, Segment } from "semantic-ui-react";
+import React, { useState } from "react";
 import { format, formatRelative, subDays } from "date-fns";
+
+import InputListComponent from "../components/InputList.component.jsx";
+import { Notification } from "../components/NotificationSlider";
 // import {
 //   StandUpComponent,
 //   // StandDownComponent,
 //   CheckinHeader,
 // } from "../components/StandUp.jsx";
-import StandUpComp from "../components/SlideDashboard";
-import { Notification } from "../components/NotificationSlider";
+// import StandUpComp from "../components/SlideDashboard";
+import StandUpComp from "../components/slideDashboard/SlideDashboard";
 
 const Standup = () => {
   const start = Date.now();

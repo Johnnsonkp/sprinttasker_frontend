@@ -13,14 +13,20 @@ export const DailyCompletedTask = ({SetShowHide}) => {
             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 6px 12px 0px',
             cursor: 'pointer',
             marginTop: '50px',
-            padding: '0px !important'
+            padding: '0px !important',
+            background: 'rgb(198, 255, 221)'
         }
     }
     let sortedTask = state.alltasks? state.alltasks.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1) : null
     let counter = 1
 
     return (
-        <>
+        <div id='completed' 
+        style={{
+            background: 'rgb(198, 255, 221)',
+            marginTop: '20px',
+        }}
+        >
             <Card 
                 title="Today's Completed Tasks"
                 style={styles.card} 
@@ -31,12 +37,13 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                     minHeight: 266.14, 
                     maxHeight: 266.14,
                     textAlign: 'left', 
-                    backgroundColor: '#fff', 
-                    backgroundColor: '#ffffff;',
-                    backgroundColor: '#f5f6f8',
-                    marginTop: '20px', 
-                    marginLeft: '10px', 
-                    marginRight: '10px', 
+                    // backgroundColor: '#fff', 
+                    // backgroundColor: '#ffffff;',
+                    // backgroundColor: '#f5f6f8',
+                    // backgroundColor: 'rgba(0, 0, 255, 0.25)',
+                    // marginTop: '20px', 
+                    // marginLeft: '10px', 
+                    // marginRight: '10px', 
                     overflowY: 'scroll' 
                 }}>
                 {state.alltasks && sortedTask && sortedTask.map(task => task.completed === true &&
@@ -48,12 +55,12 @@ export const DailyCompletedTask = ({SetShowHide}) => {
                 } 
                 <Button 
                     type={'primary'}
-                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '12px', position: 'relative', top: state.alltasks? '140px' : '120px', left: state.alltasks? null : '0px'}}
+                    style={{marginTop: '10px', float: 'right', cursor: 'pointer', fontSize: '14px', position: 'relative', background: 'rgb(244, 244, 244)', color: '#111', border: 'rgb(244, 244, 244)', bottom: '70px', background: 'rgba(0, 0, 255, 0.3)', color: "#f5f5f5", fontWeight: 'bold'}}
                     onClick={() => SetShowHide(false)}
                 >Completion Rate (%)</Button>
                 
             </Card>  
-        </>
+        </div>
     )
 }
 
@@ -102,24 +109,34 @@ export const CompletedRate = ({SetShowHide}) => {
     }
 
     return (
+        <div id='completed' 
+        style={{
+            background: 'rgb(198, 255, 221)',
+            marginTop: '20px',
+        }}
+        >
         <Card 
             title="Completion Rate (%)"
-            style={styles.card} 
+            // style={styles.card} 
             bordered={true} 
             style={{ 
                 width: 490, 
                 minHeight: 266.14, 
                 maxHeight: 266.14, 
                 textAlign: 'left', 
-                backgroundColor: '#fff', 
-                backgroundColor: '#b8c6db;',
+                // backgroundColor: '#fff', 
+                // backgroundColor: '#b8c6db;',
+                backgroundColor: 'rgba(0, 0, 255, 0.25)',
                 // backgroundImage: 'linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%)',
-                backgroundColor: '#f5f6f8',
-                marginTop: '20px', 
-                marginLeft: '10px', 
-                marginRight: '10px', 
-                overflow: 'hidden' 
+                // backgroundColor: '#f5f6f8',
+                // background: 'rgb(198, 255, 221)',
+                // marginTop: '20px', 
+                // marginLeft: '10px', 
+                // marginRight: '10px', 
+                overflow: 'hidden' ,
+                opacity: 1
             }}>
+                
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: '10px', paddingRight: '10px', paddingTop: '10px', paddingBottom: '10px'}}>
                 <Progress 
                     strokeWidth={12}
@@ -127,20 +144,24 @@ export const CompletedRate = ({SetShowHide}) => {
                     percent={completedPercentage(completedTaskCount(), taskCreatedToday())} 
                     width={'100px'}
                     strokeColor={completedPercentage(completedTaskCount(), taskCreatedToday()) >= 80? 'lightGreen' : completedPercentage(completedTaskCount(), taskCreatedToday()) > 50? 'orange' : 'red'}
-                    trailColor={'#444'}
+                    trailColor={'#9996'}
                     style={{
                         marginLeft: '5px', 
                         marginRight: '5px', 
                         border: '2px solid blue',
-                        background: 'rgb(244, 244, 244)', 
+                        background: 'rgb(244, 244, 244)',
+                        
+                        
                         background: '#fff',
+                        background: '#00f1',
+                        background: 'rgba(255,255,255,0.3)',
                         paddingTop: '10px', 
                         paddingBottom: '10px', 
                         paddingLeft: '10px', 
                         paddingRight: '10px'}}
                     />
                 <div 
-                    style={{margin: '0px', textAlign: 'center', paddingTop: '15px', paddingBottom: '15px', paddingLeft: '20px', paddingRight: '20px', background: 'rgb(244, 244, 244)', background: '#fff', border: '2px solid lightgray'}}>
+                    style={{margin: '0px', textAlign: 'center', paddingTop: '15px', paddingBottom: '15px', paddingLeft: '20px', paddingRight: '20px', background: 'rgb(244, 244, 244)', background: '#00f1', background: 'rgba(255,255,255,0.3)', border: '2px solid lightgray'}}>
                     <h5 style={{textAlign: 'left'}}>Tasks</h5>
                     <div style={{display: 'flex', justifyContent: 'flex-start'}}>
                         <h5 style={{paddingRight: '10px'}}>{taskCreatedToday()}</h5>
@@ -153,7 +174,7 @@ export const CompletedRate = ({SetShowHide}) => {
                 </div>
 
                 <div 
-                    style={{margin: '0px', textAlign: 'left', paddingTop: '35px', paddingBottom: '35px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)', background: '#fff', border: '2px solid lightgray'}}>
+                    style={{margin: '0px', textAlign: 'left', paddingTop: '35px', paddingBottom: '35px', paddingLeft: '10px', paddingRight: '10px', background: 'rgb(244, 244, 244)', background: '#00f1', background: 'rgba(255,255,255,0.3)', border: '2px solid lightgray'}}>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <h5>Minutes worked</h5>
                         <p>{totalTimeWorkedOnTask()} Mins</p>
@@ -162,9 +183,10 @@ export const CompletedRate = ({SetShowHide}) => {
             </div>
             <Button 
                 type={'primary'}
-                style={{marginTop: '0px', float: 'right', cursor: 'pointer', fontSize: '12px'}}
+                style={{marginTop: '0px', float: 'right', cursor: 'pointer', fontSize: '14px', color: '#111', border: 'rgb(244, 244, 244)', position: 'relative', bottom: '210px', background: 'rgba(0, 0, 255, 0.3)', color: "#f5f5f5", fontWeight: 'bold'}}
                 onClick={() => SetShowHide(true)}
             >Completed Tasks</Button>
         </Card>
+        </div>
     )
 }

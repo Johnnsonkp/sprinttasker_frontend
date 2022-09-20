@@ -1,7 +1,8 @@
 import Preload from "../utilities/Preload";
 import React from "react";
-import StandUpComp from "../components/SlideDashboard";
-import TaskList from "../components/TaskList";
+import StandUpComp from "../components/slideDashboard/SlideDashboard.jsx";
+// import TaskList from "../components/TaskList";
+import TaskList from "../components/tasklist/TaskList";
 import { WorkSpaceHeader } from "../components/workspaceHeader/WorkspaceHeader";
 import { useAppState } from "../AppState";
 import { useWindowSize } from "../utilities/utilFunctions";

@@ -3,73 +3,45 @@ import {PauseCircleOutlined, PlayCircleOutlined} from '@ant-design/icons'
 import React, {useEffect, useState} from 'react'
 
 import { CaretRightOutlined } from "@ant-design/icons";
-import Pomodoro from './Pomodoro'
-import { useAppState } from '../AppState'
+import Clock from '../clock/clock';
+import Pomodoro from '../Pomodoro'
+import { reformatDate } from '../../utilities/utilFunctions';
+import {styles} from './timeContainer.styles'
+import { useAppState } from '../../AppState'
 
 export default function TimerContainer() {
     const {state} = useAppState()
     const task = state.selectedTask
     const [show, setShow] = useState(false)
 
-    const styles = {
-        hide: {
-            opacity: 0,
-            transition: 'all 1ms ease-in',
-            transitionProperty: 'opacity, width',
-            width: '0%',
-            position: "absolute",
-            left: '0px',
-            top: '28px',
-            backgroundColor: "lightGrey",
-        },
-        show: {
-            opacity: 1,
-            width: '100%',
-            transition: 'all 1ms ease-in',
-            transitionProperty: 'opacity,width',
-            position: "absolute",
-            left: '0px',
-            top: '29px',
-            boxShadow: '0 4px 17px 6px rgb(0 0 0 / 10%)',
-            zIndex: '1',
-            backgroundColor: "#f5f6f8",
-            backgroundColor: '#3e3e3e',
-            borderBottomLeftRadius: '6px', 
-            borderBottomRightRadius: '6px',
-            boxShadow: 'rgb(100 100 100 / 30%) 0px 0px 2px 1px',
-        },
-        workMode: {
-            border: "3px solid #ff4d4f",
-            backgroundColor: 'rgb(17, 17, 17)',
-            color: '#111 !important',
-            boxShadow: 'rgb(100 100 100 / 30%) 0px 0px 2px 1px',
-        },
-        restMode: {
-            backgroundColor: 'rgb(17, 17, 17)',
-            border: "3px solid rgb(0, 200, 117)",
-            color: '#111 !important',
-            boxShadow: 'rgb(100 100 100 / 30%) 0px 0px 2px 1px',
-        },
-        size: {
-            fontSize: '21px',
-            fontWeight: 'bolder',
-            display: 'inline'
-        }
-    }
-
     const newTimer = () => {
         return <Pomodoro />
     }
     const selectedTaskTruncated = (taskName) => {
-        return taskName.substring(0, 35) + '...'
+        // console.log("taskName.substring.length", taskName.substring(31)? true : false)
+        console.log("taskName.substring(31)? true : false", taskName.substring(30)? true : false)
+        const subStringLength = taskName.substring(30)? true : false
+       if(subStringLength){
+            return taskName.substring(0, 30) + '...'
+       }
+        return taskName.substring(0, 29) 
+        // return taskName.substring(0, 30) + '...'
     }
+    const ClockDisplay = () => {
+        return(
+            <>
+                {Clock()} 
+            </>
+        )
+    }
+
     useEffect(() => {
         if(state.work_mode && show === false){
             setShow(true)
         } 
         
     }, [state.work_mode])
-// }, [state.selectedTask])
+
 
     return (
         <div className="timer-container" >
@@ -82,7 +54,9 @@ export default function TimerContainer() {
                     style={{
                         color: '#fff', 
                         fontSize: '12px', 
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        margin: 'auto',
+                        paddingLeft: state.work_mode ? '15px' : '0px'
                     }}>
                     {state.work_mode ? selectedTaskTruncated(state.selectedTask.name) : null}
                 </span>
@@ -92,9 +66,15 @@ export default function TimerContainer() {
                         color: '#fff', 
                         fontSize: '12px', 
                         fontWeight: 'bold', 
-                        marginRight: state.work_mode ? '0px' : '100px'
+                        // marginRight: state.work_mode ? '0px' : '100px',
+                        // margin: 'auto',
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        width: '70%'
                     }}>
-                    {state.work_mode ? newTimer() : 'No task selected...'}
+                    <span style={{fontSize: '12px', fontWeight: 'bold'}}>{reformatDate(Date.now(), "dd/MM/yyyy")}</span>
+                    {state.work_mode ? newTimer() : (<ClockDisplay />)}  
+                    {/* {reformatDate(Date.now(), "dd/MM/yyyy")} */}
                 </span>
                 <div className="right">
                     <CaretRightOutlined backgroundColor="#111" rotate={show ? 0 : 90} />
@@ -157,7 +137,7 @@ export default function TimerContainer() {
                             color: '#111'
                         }}>
                         <h6 style={{ color: '#fff', marginBottom: '0px'}}>Task Name:</h6>
-                        <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px', marginTop: '15px'}}>{state.work_mode ? task.name : "No task selected"}</h5>
+                        <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px', marginTop: '15px'}}>{state.work_mode && task.name }</h5>
                     </div>
                     <div
                         style={{
@@ -173,7 +153,7 @@ export default function TimerContainer() {
                         }}
                     >   
                         <h6 style={{ color: '#fff', marginBottom: '0px'}}>Task Description:</h6>
-                        <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px', marginTop: '15px'}}>{state.work_mode && task.description ? task.description : "No task description"}</h5>
+                        <h5 style={{ color: '#fff', fontWeight: 'bolder', fontSize: '13px', marginTop: '15px'}}>{state.work_mode && task.description && task.description }</h5>
                     </div>
                     {state.work_mode && task.subtask &&
                         <div 
